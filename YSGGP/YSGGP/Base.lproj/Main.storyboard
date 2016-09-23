@@ -10,7 +10,7 @@
         <!--Drive-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="YSDriveViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -31,11 +31,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xU0-Gq-yTd">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithIconAndSubtitle" id="lSt-zN-7mg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithIconAndSubtitle" id="lSt-zN-7mg" customClass="YSDriveItemTableViewCell" customModule="YSGGP" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lSt-zN-7mg" id="JyG-ZT-k4E">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="uTI-vw-oHU" userLabel="IconImage">
@@ -68,6 +68,11 @@
                                                 <constraint firstItem="uTI-vw-oHU" firstAttribute="leading" secondItem="JyG-ZT-k4E" secondAttribute="leadingMargin" id="rVu-Wq-Sre"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fileImageView" destination="uTI-vw-oHU" id="KKu-7c-CZQ"/>
+                                            <outlet property="fileInfoLabel" destination="n4E-tk-h5p" id="zir-ga-haN"/>
+                                            <outlet property="fileNameLabel" destination="Aa7-Z7-jMC" id="5nT-C3-4PP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -83,9 +88,11 @@
                             <constraint firstItem="xU0-Gq-yTd" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="eez-9M-XpD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Drive" id="7Q4-xv-AtT">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Vyw-2D-BN7"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Drive" id="7Q4-xv-AtT"/>
+                    <connections>
+                        <outlet property="tableView" destination="xU0-Gq-yTd" id="aBV-9K-kAU"/>
+                        <outlet property="toolbar" destination="44c-eL-N4M" id="M3k-6K-2f6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,7 +131,7 @@
         <!--Playlist-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="YSPlaylistViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -133,14 +140,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpA-mW-3Av">
+                                <items>
+                                    <barButtonItem title="Select All" id="ffX-QH-qbU"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BrF-11-9Do"/>
+                                    <barButtonItem title="Hide From Playlists" id="b6j-b1-phS"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6CV-oG-8du"/>
+                                    <barButtonItem style="plain" systemItem="trash" id="fq4-nS-JWJ"/>
+                                </items>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gQ3-SS-Jj2">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithIconAndSubtitle" id="emN-G2-xSA">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -179,7 +195,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hpA-mW-3Av" secondAttribute="trailing" id="CT3-Df-BYI"/>
                             <constraint firstItem="gQ3-SS-Jj2" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="GRN-op-cLW"/>
+                            <constraint firstItem="hpA-mW-3Av" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="PxU-qV-eaX"/>
+                            <constraint firstAttribute="bottom" secondItem="hpA-mW-3Av" secondAttribute="bottom" id="TDG-Sd-t1V"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="gQ3-SS-Jj2" secondAttribute="bottom" id="UXJ-Rb-IhH"/>
                             <constraint firstItem="gQ3-SS-Jj2" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="YXB-qh-8qc"/>
                             <constraint firstAttribute="trailing" secondItem="gQ3-SS-Jj2" secondAttribute="trailing" id="xnQ-NC-slq"/>
@@ -188,6 +207,9 @@
                     <navigationItem key="navigationItem" title="Playlist" id="C6d-IY-BJB">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fx7-cY-cLI"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="gQ3-SS-Jj2" id="ugW-qr-Hu3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

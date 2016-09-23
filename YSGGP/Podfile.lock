@@ -1,0 +1,24 @@
+PODS:
+  - GoogleAPIClient/Core (1.0.5):
+    - GTMSessionFetcher (~> 1.1)
+  - GoogleAPIClient/Drive (1.0.5):
+    - GoogleAPIClient/Core
+    - GTMSessionFetcher (~> 1.1)
+  - GTMOAuth2 (1.1.2):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.1.6):
+    - GTMSessionFetcher/Full (= 1.1.6)
+  - GTMSessionFetcher/Core (1.1.6)
+  - GTMSessionFetcher/Full (1.1.6):
+    - GTMSessionFetcher/Core (= 1.1.6)
+
+DEPENDENCIES:
+  - GoogleAPIClient/Drive
+  - GTMOAuth2
+
+SPEC CHECKSUMS:
+  GoogleAPIClient: 4a6b0b807de8b1115a2835180b25dd93dc60f1ea
+  GTMOAuth2: 1707e2f7fe3a6d7240223c23c473ba5a2d104474
+  GTMSessionFetcher: 6aacd0ab48ddf0c3633ab2642d792abfcad1b08a
+
+COCOAPODS: 0.39.0

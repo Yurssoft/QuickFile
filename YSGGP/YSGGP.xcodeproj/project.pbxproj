@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36642CBBE3A5062FB3A8B6C2 /* Pods_YSGGP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */; };
+		500B6BFA1D92CA0C003996CA /* YSSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */; };
+		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
+		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
+		500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */; };
+		503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */; };
+		503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */; };
+		504110431D95691100BE3B0C /* YSDriveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110421D95691100BE3B0C /* YSDriveItem.swift */; };
+		504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */; };
+		504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110481D956DEF00BE3B0C /* YSDriveModel.swift */; };
+		5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */; };
 		50AB0DBA1D8FF242008EDB0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */; };
 		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
 		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
@@ -33,6 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
+		21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
+		500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewController.swift; sourceTree = "<group>"; };
+		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
+		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
+		500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemProtocol.swift; sourceTree = "<group>"; };
+		503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
+		503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewController.swift; sourceTree = "<group>"; };
+		504110421D95691100BE3B0C /* YSDriveItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItem.swift; sourceTree = "<group>"; };
+		504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelProtocol.swift; sourceTree = "<group>"; };
+		504110481D956DEF00BE3B0C /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
+		5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemCell.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50AB0DC01D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +68,7 @@
 		50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
 		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36642CBBE3A5062FB3A8B6C2 /* Pods_YSGGP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +97,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A4B0FA135E6E29937D943F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */,
+				05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		500B6C271D93EDD8003996CA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		500B6C281D93F048003996CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				500B6C291D93F052003996CA /* Data */,
+				504110471D956B3500BE3B0C /* Protocols */,
+				504110481D956DEF00BE3B0C /* YSDriveModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		500B6C291D93F052003996CA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				500B6C2A1D93F060003996CA /* Data Protocols */,
+				504110441D95699500BE3B0C /* Data Structs */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		500B6C2A1D93F060003996CA /* Data Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */,
+			);
+			name = "Data Protocols";
+			sourceTree = "<group>";
+		};
+		503FB7451D914E7E001F66F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				500B6C271D93EDD8003996CA /* Protocols */,
+				500B6C231D93ED98003996CA /* YSDriveViewModel.swift */,
+				503FB7461D914E91001F66F6 /* Views */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		503FB7461D914E91001F66F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */,
+				503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */,
+				500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */,
+				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
+				5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		504110441D95699500BE3B0C /* Data Structs */ = {
+			isa = PBXGroup;
+			children = (
+				504110421D95691100BE3B0C /* YSDriveItem.swift */,
+			);
+			name = "Data Structs";
+			sourceTree = "<group>";
+		};
+		504110471D956B3500BE3B0C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		50AB0DAD1D8FF242008EDB0D = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +186,8 @@
 				50AB0DCF1D8FF243008EDB0D /* YSGGPTests */,
 				50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
+				2A4B0FA135E6E29937D943F7 /* Pods */,
+				6E1C0062819167B99730D8EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,8 +204,9 @@
 		50AB0DB81D8FF242008EDB0D /* YSGGP */ = {
 			isa = PBXGroup;
 			children = (
+				500B6C281D93F048003996CA /* Models */,
 				50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */,
-				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
+				503FB7451D914E7E001F66F6 /* ViewModels */,
 				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
 				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
 				50AB0DC71D8FF242008EDB0D /* Info.plist */,
@@ -122,6 +232,14 @@
 			path = YSGGPUITests;
 			sourceTree = "<group>";
 		};
+		6E1C0062819167B99730D8EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50AB0DE01D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGP" */;
 			buildPhases = (
+				4E2CFE84C9F38DB3BF6D57AD /* Check Pods Manifest.lock */,
 				50AB0DB21D8FF242008EDB0D /* Sources */,
 				50AB0DB31D8FF242008EDB0D /* Frameworks */,
 				50AB0DB41D8FF242008EDB0D /* Resources */,
+				0E4CACDF4C6B30A4846AAC8B /* Embed Pods Frameworks */,
+				DB851F65290A26B645FC02DD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,12 +373,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E4CACDF4C6B30A4846AAC8B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E2CFE84C9F38DB3BF6D57AD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB851F65290A26B645FC02DD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		50AB0DB21D8FF242008EDB0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */,
+				503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */,
+				5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */,
+				504110431D95691100BE3B0C /* YSDriveItem.swift in Sources */,
+				500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */,
+				504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */,
+				500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */,
+				500B6BFA1D92CA0C003996CA /* YSSettingsViewController.swift in Sources */,
 				50AB0DBA1D8FF242008EDB0D /* AppDelegate.swift in Sources */,
+				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
+				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +586,7 @@
 		};
 		50AB0DE11D8FF243008EDB0D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9AK2GD72HQ;
@@ -421,6 +601,7 @@
 		};
 		50AB0DE21D8FF243008EDB0D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9AK2GD72HQ;
@@ -506,6 +687,7 @@
 				50AB0DE21D8FF243008EDB0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50AB0DE31D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +696,7 @@
 				50AB0DE51D8FF243008EDB0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50AB0DE61D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPUITests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +705,7 @@
 				50AB0DE81D8FF243008EDB0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
