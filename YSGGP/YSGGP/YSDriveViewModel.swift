@@ -11,7 +11,7 @@ import Foundation
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
     weak var viewDelegate: YSDriveViewModelViewDelegate?
-//    weak var coordinatorDelegate: ListViewModelCoordinatorDelegate?
+    weak var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
     fileprivate var items: [YSDriveItem]?
     {
@@ -32,11 +32,6 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
     }
     
-//    var title: String
-//    {
-//        return "Drive"
-//    }
-    
     var numberOfItems: Int
     {
         if let items = items
@@ -55,11 +50,16 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return nil
     }
     
-//    func useItemAtIndex(_ index: Int)
-//    {
-//        if let items = items, let coordinatorDelegate = coordinatorDelegate  , index < items.count
-//        {
-//            coordinatorDelegate.listViewModelDidSelectData(self, data: items[index])
-//        }
-//    }
+    func useItemAtIndex(_ index: Int)
+    {
+        if let items = items, let coordinatorDelegate = coordinatorDelegate, index < items.count
+        {
+            coordinatorDelegate.driveViewModelDidSelectData(self, data: items[index])
+        }
+    }
+    
+    func loginToDrive()
+    {
+        coordinatorDelegate?.driveViewModelDidRequestedLogin()
+    }
 }

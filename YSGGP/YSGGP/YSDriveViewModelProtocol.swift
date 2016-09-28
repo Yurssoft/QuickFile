@@ -15,18 +15,18 @@ protocol YSDriveViewModelViewDelegate: class
 
 protocol YSDriveViewModelCoordinatorDelegate: class
 {
-    func listViewModelDidSelectData(_ viewModel: YSDriveViewModel, data: YSDriveItem)
+    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, data: YSDriveItem)
+    func driveViewModelDidRequestedLogin()
 }
 
 protocol YSDriveViewModelProtocol
 {
     var model: YSDriveModel? { get set }
     var viewDelegate: YSDriveViewModelViewDelegate? { get set }
-    //var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate? { get set}
-    
-    //var title: String { get }
-    
+    var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate? { get set}
     var numberOfItems: Int { get }
+    
     func itemAtIndex(_ index: Int) -> YSDriveItem?
-//    func useItemAtIndex(_ index: Int)
+    func useItemAtIndex(_ index: Int)
+    func loginToDrive()
 }

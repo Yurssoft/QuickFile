@@ -32,11 +32,6 @@ class YSDriveViewController: UIViewController
         }
     }
     
-
-
-    
-    
-    
     var viewModel: YSDriveViewModel?
         {
         willSet
@@ -53,11 +48,6 @@ class YSDriveViewController: UIViewController
     
     func refreshDisplay()
     {
-        //        if let viewModel = viewModel , isViewLoaded {
-        //            title = viewModel.title
-        //        } else {
-        //            title = ""
-        //        }
         self.tableView.reloadData()
     }
     
@@ -69,10 +59,10 @@ class YSDriveViewController: UIViewController
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let viewModel = viewModel {
+        if let viewModel = viewModel
+        {
             return viewModel.numberOfItems
         }
-        
         return 0
     }
     
@@ -84,7 +74,7 @@ class YSDriveViewController: UIViewController
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-//        viewModel?.useItemAtIndex((indexPath as NSIndexPath).row)
+        viewModel?.useItemAtIndex((indexPath as NSIndexPath).row)
     }
     
 }
