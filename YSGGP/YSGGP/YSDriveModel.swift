@@ -16,7 +16,7 @@ class YSDriveModel: YSDriveModelProtocol
     {
         return service.authorizer != nil
     }
-    private let service = GTLServiceDrive()
+    let service = GTLServiceDrive()
     
     func items(_ completionhandler: @escaping (_ items: [YSDriveItem]) -> Void)
     {
@@ -31,32 +31,5 @@ class YSDriveModel: YSDriveModelProtocol
         {
             print("login to drive first!")
         }
-    }
-    
-    func createAuthController(_ completionhandler: @escaping () -> Void) -> GTMOAuth2ViewControllerTouch
-    {
-        let scopeString = YSConstants.kDriveScopes.joined(separator: " ")
-        return GTMOAuth2ViewControllerTouch(
-            scope: scopeString,
-            clientID: YSConstants.kDriveClientID,
-            clientSecret: nil,
-            keychainItemName: YSConstants.kDriveKeychainItemName,
-            delegate: self,
-            finishedSelector: #selector(YSDriveModel.viewController(vc:finishedWithAuth:error:))
-        )
-    }
-    
-    @objc func viewController(vc : UIViewController,
-                        finishedWithAuth authResult : GTMOAuth2Authentication,
-                        error : NSError?)
-    {
-        
-        if let error = error
-        {
-            service.authorizer = nil
-            print("Authentication Error \(error.localizedDescription)")
-        }
-        service.authorizer = authResult
-//        dismissViewControllerAnimated(true, completion: nil)
     }
 }

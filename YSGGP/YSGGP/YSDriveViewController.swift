@@ -12,25 +12,7 @@ class YSDriveViewController: UIViewController
 {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var tableView: UITableView!
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItem = editButtonItem
-        tableView.allowsMultipleSelectionDuringEditing = true
-        refreshDisplay();
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool)
-    {
-        super.setEditing(editing, animated: animated)
-        if editing
-        {
-            toolbar?.isHidden = false
-            view?.bringSubview(toFront: toolbar)
-            tableView.bringSubview(toFront: toolbar)
-        }
-    }
+    @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var viewModel: YSDriveViewModel?
         {
@@ -45,10 +27,38 @@ class YSDriveViewController: UIViewController
         }
     }
     
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        navigationItem.rightBarButtonItems = [editButtonItem, loginButton]
+        tableView.allowsMultipleSelectionDuringEditing = true
+        refreshDisplay()
+        
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool)
+    {
+        super.setEditing(editing, animated: animated)
+        if editing
+        {
+            toolbar?.isHidden = false
+            view?.bringSubview(toFront: toolbar)
+            tableView.bringSubview(toFront: toolbar)
+        }
+    }
+    
+    
+    @IBAction func loginButtonTapped(_ sender: UIBarButtonItem)
+    {
+        viewModel?.loginToDrive()
+    }
     
     func refreshDisplay()
     {
-        self.tableView.reloadData()
+        if (viewIfLoaded != nil)
+        {
+            self.tableView.reloadData()
+        }
     }
     
     

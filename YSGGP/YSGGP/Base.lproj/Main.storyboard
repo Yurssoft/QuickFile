@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lSt-zN-7mg" id="JyG-ZT-k4E">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="uTI-vw-oHU" userLabel="IconImage">
@@ -88,8 +88,15 @@
                             <constraint firstItem="xU0-Gq-yTd" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="eez-9M-XpD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Drive" id="7Q4-xv-AtT"/>
+                    <navigationItem key="navigationItem" title="Drive" id="7Q4-xv-AtT">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="UcO-dn-rB0">
+                            <connections>
+                                <action selector="loginButtonTapped:" destination="9pv-A4-QxB" id="7rQ-Uf-lWB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="loginButton" destination="UcO-dn-rB0" id="3it-8X-PvR"/>
                         <outlet property="tableView" destination="xU0-Gq-yTd" id="aBV-9K-kAU"/>
                         <outlet property="toolbar" destination="44c-eL-N4M" id="M3k-6K-2f6"/>
                     </connections>
@@ -153,10 +160,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithIconAndSubtitle" id="emN-G2-xSA">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="818" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -295,6 +302,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQv-Sw-i4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2186" y="278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bPq-pI-aWf">
+            <objects>
+                <navigationController storyboardIdentifier="YSNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6tI-3W-xbu" customClass="YSNavigationController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0kn-gv-iRk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xlg-CY-6wy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-130.40000000000001" y="964.76761619190415"/>
         </scene>
     </scenes>
     <resources>

@@ -14,5 +14,4 @@ protocol YSDriveModelProtocol
     var isLoggedIn : Bool {get}
     
     func items(_ completionhandler: @escaping (_ items: [YSDriveItem]) -> Void)
-    func createAuthController(_ completionhandler: @escaping () -> Void) -> GTMOAuth2ViewControllerTouch
 }

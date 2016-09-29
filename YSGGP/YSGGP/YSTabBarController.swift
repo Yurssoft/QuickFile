@@ -32,6 +32,11 @@ class YSTabBarController: UITabBarController
         {
             print("driveVC == nil")
         }
-        driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: navigationController!)
+        if driveVC?.navigationController == nil
+        {
+            print("navigationController == nil")
+        }
+        driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: (driveVC?.navigationController!)!)
+        driveCoordinator?.start()
     }
 }

@@ -22,12 +22,15 @@
 		504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */; };
 		504110FF1D9BF5BD00BE3B0C /* YSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */; };
 		504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111001D9C00E200BE3B0C /* YSConstants.swift */; };
-		50AB0DBA1D8FF242008EDB0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */; };
+		504111051D9D0E7000BE3B0C /* YSAuthenticateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111041D9D0E7000BE3B0C /* YSAuthenticateViewModel.swift */; };
+		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
 		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
 		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
 		50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */; };
 		50AB0DD11D8FF243008EDB0D /* YSGGPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DD01D8FF243008EDB0D /* YSGGPTests.swift */; };
 		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
+		50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */; };
+		50E49FC21D9D900400A6FAAC /* YSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FC11D9D900400A6FAAC /* YSNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +67,9 @@
 		504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinator.swift; sourceTree = "<group>"; };
 		504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarController.swift; sourceTree = "<group>"; };
 		504111001D9C00E200BE3B0C /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
+		504111041D9D0E7000BE3B0C /* YSAuthenticateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAuthenticateViewModel.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
 		50AB0DC01D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50AB0DC21D8FF242008EDB0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AB0DC51D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
 		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSStringFromClass.swift; sourceTree = "<group>"; };
+		50E49FC11D9D900400A6FAAC /* YSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNavigationController.swift; sourceTree = "<group>"; };
 		C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */,
+				504111041D9D0E7000BE3B0C /* YSAuthenticateViewModel.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -225,9 +232,11 @@
 				500B6C281D93F048003996CA /* Models */,
 				503FB7451D914E7E001F66F6 /* ViewModels */,
 				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
-				50AB0DB91D8FF242008EDB0D /* AppDelegate.swift */,
+				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
 				504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */,
+				50E49FC11D9D900400A6FAAC /* YSNavigationController.swift */,
 				504111001D9C00E200BE3B0C /* YSConstants.swift */,
+				50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */,
 				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
 				50AB0DC71D8FF242008EDB0D /* Info.plist */,
 			);
@@ -447,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */,
+				50E49FC21D9D900400A6FAAC /* YSNavigationController.swift in Sources */,
 				503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */,
 				5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */,
 				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
@@ -457,8 +467,10 @@
 				500B6BFA1D92CA0C003996CA /* YSSettingsViewController.swift in Sources */,
 				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarController.swift in Sources */,
+				50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */,
+				504111051D9D0E7000BE3B0C /* YSAuthenticateViewModel.swift in Sources */,
 				504110F61D9BE35100BE3B0C /* YSCoordinator.swift in Sources */,
-				50AB0DBA1D8FF242008EDB0D /* AppDelegate.swift in Sources */,
+				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
 				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
 			);
