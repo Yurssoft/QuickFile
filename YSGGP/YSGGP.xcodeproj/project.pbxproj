@@ -337,8 +337,8 @@
 				TargetAttributes = {
 					50AB0DB51D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9AK2GD72HQ;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = A2PX8YZMXY;
+						ProvisioningStyle = Manual;
 					};
 					50AB0DCB1D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
@@ -623,11 +623,14 @@
 			baseConfigurationReference = 21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = YSGGP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c61c4bc6-da06-45d5-8410-b06d695c76c0";
+				PROVISIONING_PROFILE_SPECIFIER = "Softjourn Development Profile";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -638,8 +641,9 @@
 			baseConfigurationReference = 05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";

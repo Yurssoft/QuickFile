@@ -59,6 +59,10 @@ class YSDriveCoordinator: YSCoordinator
                                                                         keychainItemName: YSConstants.kDriveKeychainItemName,
                                                                         completionHandler: { (authController, authResult , error) in
                                                                             
+                                                                            if authResult != nil
+                                                                            {
+                                                                                GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainItemName, authentication: authResult)
+                                                                            }
                                                                             
                                                                             if error != nil
                                                                             {

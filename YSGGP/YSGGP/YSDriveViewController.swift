@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YSDriveViewController: UIViewController
+class YSDriveViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var tableView: UITableView!
@@ -47,7 +47,6 @@ class YSDriveViewController: UIViewController
         }
     }
     
-    
     @IBAction func loginButtonTapped(_ sender: UIBarButtonItem)
     {
         viewModel?.loginToDrive()
@@ -60,7 +59,6 @@ class YSDriveViewController: UIViewController
             self.tableView.reloadData()
         }
     }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -76,8 +74,9 @@ class YSDriveViewController: UIViewController
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! YSDriveItemTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveItemTableViewCell.nameOfClass, for: indexPath) as! YSDriveItemTableViewCell
         cell.item = viewModel?.itemAtIndex((indexPath as NSIndexPath).row)
         return cell
     }
@@ -93,6 +92,9 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
 {
     func itemsDidChange(viewModel: YSDriveViewModel)
     {
-        tableView.reloadData()
+        DispatchQueue.main.async
+        {
+            [weak self] in self?.tableView.reloadData()
+        }
     }
 }
