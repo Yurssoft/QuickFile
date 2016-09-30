@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import GoogleAPIClient
 import GTMOAuth2
+import GoogleAPIClient
 
 protocol YSDriveCoordinatorDelegate: class
 {
@@ -27,6 +27,8 @@ class YSDriveCoordinator: YSCoordinator
     var driveViewController: YSDriveViewController?
     var driveModel: YSDriveModel?
     var navigationController: UINavigationController?
+    var authController : GTMOAuth2ViewControllerTouch?
+    
     
     func start()
     {
@@ -40,10 +42,7 @@ class YSDriveCoordinator: YSCoordinator
     func authorise () -> Void
     {
         let authController = createAuthoriseController()
-        let authNavigationController = YSNavigationController(rootViewController: authController)
-        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissmodalView))
-        authController.navigationItem.leftBarButtonItem = leftButton
-        navigationController?.present(authNavigationController, animated: true, completion: nil)
+        navigationController?.present(authController, animated: true, completion: nil)
     }
     
     @objc func dismissmodalView()
@@ -51,59 +50,68 @@ class YSDriveCoordinator: YSCoordinator
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func createAuthoriseController() -> GTMOAuth2ViewControllerTouch
+    func createAuthoriseController() -> UIViewController
     {
         let scopeString = YSConstants.kDriveScopes.joined(separator: " ")
-        return GTMOAuth2ViewControllerTouch(
-            scope: scopeString,
-            clientID: YSConstants.kDriveClientID,
-            clientSecret: nil,
-            keychainItemName: YSConstants.kDriveKeychainItemName,
-            delegate: self,
-            finishedSelector: Selector(("viewController:finishedWithAuth:error:"))
-        )
+        authController =  GTMOAuth2ViewControllerTouch.controller(withScope: scopeString,
+                                                                        clientID: YSConstants.kDriveClientID,
+                                                                        clientSecret: nil,
+                                                                        keychainItemName: YSConstants.kDriveKeychainItemName,
+                                                                        completionHandler: { (authController, authResult , error) in
+                                                                            
+                                                                            
+                                                                            if error != nil
+                                                                            {
+                                                                                self.driveModel?.service.authorizer = nil
+                                                                                let alert = UIAlertController(
+                                                                                    title: "Authentication Error",
+                                                                                    message: error?.localizedDescription,
+                                                                                    preferredStyle: UIAlertControllerStyle.alert
+                                                                                )
+                                                                                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
+                                                                                    { (UIAlertAction) in
+                                                                                        DispatchQueue.main.async
+                                                                                        {
+                                                                                                [weak self] in self?.navigationController?.dismiss(animated: true, completion:
+                                                                                                    {
+                                                                                                        DispatchQueue.main.async
+                                                                                                        {
+                                                                                                                [weak self] in self?.navigationController?.dismiss(animated: true, completion:
+                                                                                                                    {
+                                                                                                                        DispatchQueue.main.async
+                                                                                                                        {
+                                                                                                                            [weak self] in self?.start()
+                                                                                                                        }
+                                                                                                                })
+                                                                                                        }
+                                                                                                })
+                                                                                        }
+                                                                                })
+                                                                                alert.addAction(ok)
+                                                                                authController?.present(alert, animated: true, completion: nil)
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                DispatchQueue.main.async
+                                                                                    {
+                                                                                        [weak self] in self?.driveModel?.service.authorizer = authResult
+                                                                                        self?.navigationController?.dismiss(animated: true, completion: nil)
+                                                                                        self?.start()
+                                                                                }
+                                                                            }
+                                                                            
+        }) as! GTMOAuth2ViewControllerTouch?
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(YSDriveCoordinator.cancelSigningIn))
+        authController?.navigationItem.leftBarButtonItem = leftButton
+        let authNav = UINavigationController(rootViewController: authController!)
+        return authNav
     }
     
-    @objc func viewController(vc : UIViewController, finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?)
+    @objc func cancelSigningIn()
     {
-        if error != nil
-        {
-            driveModel?.service.authorizer = nil
-            let alert = UIAlertController(
-                title: "Authentication Error",
-                message: error?.localizedDescription,
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
-            { (UIAlertAction) in
-                DispatchQueue.main.async
-                    {
-                        [weak self] in self?.navigationController?.dismiss(animated: true, completion:
-                            {
-                                DispatchQueue.main.async
-                                    {
-                                        [weak self] in self?.navigationController?.dismiss(animated: true, completion:
-                                            {
-                                                DispatchQueue.main.async
-                                                {
-                                                    [weak self] in self?.start()
-                                                }
-                                            })
-                                    }
-                            })
-                    }
-            })
-            alert.addAction(ok)
-            navigationController?.present(alert, animated: true, completion: nil)
-        }
-        else
-        {
-            driveModel?.service.authorizer = authResult
-            navigationController?.dismiss(animated: true, completion: nil)
-            start()
-        }
+        navigationController?.dismiss(animated: true, completion: nil)
+        authController?.cancelSigningIn()
     }
-
 }
 
 extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
