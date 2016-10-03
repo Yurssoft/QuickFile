@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol YSCoordinator: class
+protocol YSCoordinatorProtocol: class
 {    
     func start()
 }
