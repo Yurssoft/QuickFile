@@ -8,10 +8,9 @@
 
 import UIKit
 
-class YSDriveViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class YSDriveViewController: UITableViewController
 {
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var viewModel: YSDriveViewModel?
@@ -35,17 +34,21 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.allowsMultipleSelectionDuringEditing = true
         
     }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setToolbarHidden(!isEditing, animated: true)
+    }
     
     override func setEditing(_ editing: Bool, animated: Bool)
     {
         super.setEditing(editing, animated: animated)
-        if editing
-        {
-            toolbar?.isHidden = false
-            view?.bringSubview(toFront: toolbar)
-            tableView.bringSubview(toFront: toolbar)
-            tableView.reloadData()
-        }
+        navigationController?.setToolbarHidden(!editing, animated: true)
+    }
+    
+    @IBAction func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
+    {
+        viewModel?.removeItems()
     }
     
     @IBAction func loginButtonTapped(_ sender: UIBarButtonItem)
@@ -61,12 +64,12 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let viewModel = viewModel
         {
@@ -75,24 +78,24 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveItemTableViewCell.nameOfClass, for: indexPath) as! YSDriveItemTableViewCell
         cell.item = viewModel?.itemAtIndex((indexPath as NSIndexPath).row)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         viewModel?.useItemAtIndex((indexPath as NSIndexPath).row)
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
     {
         
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
     {
         return .insert
     }

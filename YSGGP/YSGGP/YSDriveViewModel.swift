@@ -62,4 +62,10 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         coordinatorDelegate?.driveViewModelDidRequestedLogin()
     }
+    
+    func removeItems()
+    {
+        items?.removeAll()
+        viewDelegate?.itemsDidChange(viewModel: self)
+    }
 }
