@@ -31,8 +31,8 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         super.viewDidLoad()
         navigationItem.rightBarButtonItems = [editButtonItem, loginButton]
-        tableView.allowsMultipleSelectionDuringEditing = true
         refreshDisplay()
+        tableView.allowsMultipleSelectionDuringEditing = true
         
     }
     
@@ -44,6 +44,7 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
             toolbar?.isHidden = false
             view?.bringSubview(toFront: toolbar)
             tableView.bringSubview(toFront: toolbar)
+            tableView.reloadData()
         }
     }
     
@@ -85,6 +86,17 @@ class YSDriveViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         viewModel?.useItemAtIndex((indexPath as NSIndexPath).row)
     }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+    {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
+    {
+        return .insert
+    }
+    
     
 }
 

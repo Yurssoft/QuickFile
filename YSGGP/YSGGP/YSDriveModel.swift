@@ -20,10 +20,19 @@ class YSDriveModel: YSDriveModelProtocol
     
     func items(_ completionhandler: @escaping (_ items: [YSDriveItem]) -> Void)
     {
-        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
+        let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName:  YSConstants.kDriveKeychainItemName,
             clientID: YSConstants.kDriveClientID,
             clientSecret: nil)
+        do
+        {
+            try GTMOAuth2ViewControllerTouch.authorizeFromKeychain(forName:YSConstants.kDriveKeychainItemName, authentication: auth)
+        }
+        catch
+        {
+            print("error drive login \(error.localizedDescription)")
+        }
+        if auth != nil && (auth?.canAuthorize)!
         {
             service.authorizer = auth
             let query = GTLQueryDrive.queryForFilesList()
@@ -48,6 +57,14 @@ class YSDriveModel: YSDriveModelProtocol
         else
         {
             print("login to drive first!")
+            var items : [YSDriveItem]
+            items = []
+            for i in (0..<200)
+            {
+                let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", isAudio: false)
+                items.append(item)
+            }
+            completionhandler(items)
         }
     }
 }
