@@ -68,7 +68,7 @@
                     <toolbarItems>
                         <barButtonItem title="Select All" id="Gzf-4P-yq6"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="9KT-nz-exH"/>
-                        <barButtonItem image="cloud_download" id="Z2o-sS-bgx"/>
+                        <barButtonItem image="cloud_download_toolbar" id="Z2o-sS-bgx"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FN1-8n-ale"/>
                         <barButtonItem systemItem="trash" id="VXo-81-W9I">
                             <connections>
@@ -291,7 +291,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud_download" width="100" height="100"/>
+        <image name="cloud_download_toolbar" width="33" height="33"/>
         <image name="cloud_filled" width="20" height="20"/>
         <image name="folder" width="500" height="500"/>
         <image name="playlist_filled" width="20" height="20"/>
