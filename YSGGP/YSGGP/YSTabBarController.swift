@@ -48,7 +48,8 @@ extension UITabBarController
         let screenRect = UIScreen.main.bounds
         var screenHeight = screenRect.size.height
         
-        if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        //        if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        if (UIDeviceOrientationIsLandscape(UIDeviceOrientation.init(rawValue: UIApplication.shared.statusBarOrientation.rawValue)!))
         {
             screenHeight = screenRect.size.width
         }

@@ -6,27 +6,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSToolbarView" customModule="YSGGP" customModuleProvider="target">
+            <connections>
+                <outlet property="deleteButton" destination="Z7F-ns-eCj" id="Yi2-d1-hBG"/>
+                <outlet property="downloadButton" destination="N2E-t5-F8W" id="PZA-N7-Ler"/>
+                <outlet property="selectAllButton" destination="id5-qd-5oX" id="VpA-8H-XdD"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEM-kv-923">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dc-vW-v5q">
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="mp7-OR-bda"/>
+                        <constraint firstAttribute="height" constant="44" id="eRf-Ca-oDT"/>
                     </constraints>
                     <items>
-                        <barButtonItem title="Item" id="be5-Bo-p0Y"/>
+                        <barButtonItem title="Select All" id="id5-qd-5oX"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="NsU-w8-K4F"/>
+                        <barButtonItem image="cloud_download_toolbar" id="N2E-t5-F8W"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ddf-fw-7lc"/>
+                        <barButtonItem systemItem="trash" id="Z7F-ns-eCj"/>
                     </items>
                 </toolbar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="rEM-kv-923" secondAttribute="trailing" id="2Wg-RM-YhB"/>
-                <constraint firstItem="rEM-kv-923" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YMB-ER-Xon"/>
-                <constraint firstAttribute="bottom" secondItem="rEM-kv-923" secondAttribute="bottom" id="d0y-qz-IzZ"/>
+                <constraint firstAttribute="trailing" secondItem="6dc-vW-v5q" secondAttribute="trailing" id="9e7-rF-lKY"/>
+                <constraint firstAttribute="bottom" secondItem="6dc-vW-v5q" secondAttribute="bottom" id="LYJ-6Q-siT"/>
+                <constraint firstItem="6dc-vW-v5q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="enz-MV-9eh"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-259.5" y="214"/>
         </view>
     </objects>
+    <resources>
+        <image name="cloud_download_toolbar" width="33" height="33"/>
+    </resources>
 </document>

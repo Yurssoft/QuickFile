@@ -10,7 +10,7 @@ import UIKit
 
 class YSDriveViewController: UITableViewController
 {
-    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet var toolbarView: YSToolbarView!
     @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var viewModel: YSDriveViewModel?
@@ -32,8 +32,8 @@ class YSDriveViewController: UITableViewController
         navigationItem.rightBarButtonItems = [editButtonItem, loginButton]
         refreshDisplay()
         tableView.allowsMultipleSelectionDuringEditing = true
-        
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -44,6 +44,13 @@ class YSDriveViewController: UITableViewController
     {
         super.setEditing(editing, animated: animated)
         navigationController?.setToolbarHidden(!editing, animated: true)
+        tabBarController?.hideTabBar(animated: false)
+        toolbar?.isTranslucent = true
+        toolbar?.translatesAutoresizingMaskIntoConstraints = false
+        tabBarController?.view.addSubview(toolbar!)
+        let views = ["toolbar":toolbar]
+        tabBarController?.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_editingToolbar]|", options:NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: views))
+        
     }
     
     @IBAction func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)

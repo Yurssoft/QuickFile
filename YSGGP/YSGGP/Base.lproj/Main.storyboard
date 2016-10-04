@@ -70,11 +70,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="9KT-nz-exH"/>
                         <barButtonItem image="cloud_download_toolbar" id="Z2o-sS-bgx"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FN1-8n-ale"/>
-                        <barButtonItem systemItem="trash" id="VXo-81-W9I">
-                            <connections>
-                                <action selector="deleteToolbarButtonTapped:" destination="9xv-pl-iv2" id="3a1-wV-kcP"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem systemItem="trash" id="VXo-81-W9I"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Drive" id="6Ox-D5-usO">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="TyO-fV-8Xh">
@@ -85,9 +81,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="loginButton" destination="TyO-fV-8Xh" id="bvH-bj-kpc"/>
+                        <outlet property="toolbarView" destination="lIe-YF-DTl" id="B9d-r4-fEl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9M-KH-EcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="lIe-YF-DTl" customClass="YSToolbarView" customModule="YSGGP" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-100" y="278"/>
         </scene>
@@ -231,7 +233,7 @@
         <!--Drive-->
         <scene sceneID="0Nc-zO-4fb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Drive" image="cloud_filled" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">

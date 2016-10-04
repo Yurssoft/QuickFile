@@ -30,7 +30,8 @@
 		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
 		50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */; };
 		50E49FC61DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */; };
-		50E49FCC1DA3A5EF00A6FAAC /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E49FCB1DA3A5EF00A6FAAC /* YSToolbarView.xib */; };
+		50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */; };
+		50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +82,8 @@
 		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSStringFromClass.swift; sourceTree = "<group>"; };
 		50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAuthenticationCoordinator.swift; sourceTree = "<group>"; };
-		50E49FCB1DA3A5EF00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
+		50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
+		50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
 		C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,7 +162,6 @@
 			children = (
 				500B6C271D93EDD8003996CA /* Protocols */,
 				500B6C231D93ED98003996CA /* YSDriveViewModel.swift */,
-				503FB7461D914E91001F66F6 /* Views */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -173,7 +174,10 @@
 				500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */,
 				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
 				5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */,
-				50E49FCB1DA3A5EF00A6FAAC /* YSToolbarView.xib */,
+				50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */,
+				50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */,
+				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
+				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -232,13 +236,8 @@
 				504110FB1D9BE59F00BE3B0C /* Coordinators */,
 				500B6C281D93F048003996CA /* Models */,
 				503FB7451D914E7E001F66F6 /* ViewModels */,
-				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
-				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
-				504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */,
-				504111001D9C00E200BE3B0C /* YSConstants.swift */,
-				50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */,
-				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
-				50AB0DC71D8FF242008EDB0D /* Info.plist */,
+				503FB7461D914E91001F66F6 /* Views */,
+				50E49FCE1DA3A84E00A6FAAC /* Additional Classes */,
 			);
 			path = YSGGP;
 			sourceTree = "<group>";
@@ -259,6 +258,18 @@
 				50AB0DDD1D8FF243008EDB0D /* Info.plist */,
 			);
 			path = YSGGPUITests;
+			sourceTree = "<group>";
+		};
+		50E49FCE1DA3A84E00A6FAAC /* Additional Classes */ = {
+			isa = PBXGroup;
+			children = (
+				50AB0DC71D8FF242008EDB0D /* Info.plist */,
+				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
+				504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */,
+				504111001D9C00E200BE3B0C /* YSConstants.swift */,
+				50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */,
+			);
+			name = "Additional Classes";
 			sourceTree = "<group>";
 		};
 		6E1C0062819167B99730D8EE /* Frameworks */ = {
@@ -380,7 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50E49FCC1DA3A5EF00A6FAAC /* YSToolbarView.xib in Resources */,
+				50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */,
 				50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */,
 				50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */,
 				50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */,
@@ -470,6 +481,7 @@
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarController.swift in Sources */,
 				50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */,
 				504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */,
+				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,
 				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
 				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
