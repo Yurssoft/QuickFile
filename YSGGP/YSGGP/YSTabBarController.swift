@@ -40,3 +40,48 @@ class YSTabBarController: UITabBarController
         driveCoordinator?.start()
     }
 }
+
+extension UITabBarController
+{
+    func hideTabBar(animated: Bool)
+    {
+        let screenRect = UIScreen.main.bounds
+        var screenHeight = screenRect.size.height
+        
+        if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        {
+            screenHeight = screenRect.size.width
+        }
+        
+        let closure =
+        {
+            for view in self.view.subviews
+            {
+                if view == self.tabBar
+                {
+                    var tabBarFrame = screenRect
+                    tabBarFrame.origin.y = screenHeight
+                    view.frame = tabBarFrame
+                }
+                else
+                {
+                    var viewFrame = screenRect
+                    viewFrame.size.height = screenHeight
+                    view.frame = viewFrame
+                    view.backgroundColor = UIColor.clear
+                }
+            }
+        }
+        if animated
+        {
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationDuration(0.3)
+            closure()
+            UIView.commitAnimations()
+        }
+        else
+        {
+            closure()
+        }
+    }
+}
