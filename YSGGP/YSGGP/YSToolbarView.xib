@@ -11,6 +11,7 @@
                 <outlet property="deleteButton" destination="Z7F-ns-eCj" id="Yi2-d1-hBG"/>
                 <outlet property="downloadButton" destination="N2E-t5-F8W" id="PZA-N7-Ler"/>
                 <outlet property="selectAllButton" destination="id5-qd-5oX" id="VpA-8H-XdD"/>
+                <outlet property="toolbar" destination="6dc-vW-v5q" id="mrW-j6-osS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

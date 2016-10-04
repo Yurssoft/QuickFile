@@ -45,12 +45,14 @@ class YSDriveViewController: UITableViewController
         super.setEditing(editing, animated: animated)
         navigationController?.setToolbarHidden(!editing, animated: true)
         tabBarController?.hideTabBar(animated: false)
-        toolbar?.isTranslucent = true
-        toolbar?.translatesAutoresizingMaskIntoConstraints = false
-        tabBarController?.view.addSubview(toolbar!)
-        let views = ["toolbar":toolbar]
-        tabBarController?.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_editingToolbar]|", options:NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: views))
-        
+        toolbarView.toolbar?.isTranslucent = true
+        toolbarView.toolbar?.translatesAutoresizingMaskIntoConstraints = false
+        tabBarController?.view.addSubview(toolbarView!)
+        let views = ["toolbarView":toolbarView]
+//        tabBarController?.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[toolbarView]-0-|", options:[.alignAllCenterX], metrics: nil, views: views))
+//        tabBarController?.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[toolbarView]-0-|", options:[], metrics: nil, views: views))
+        let botttomConstraint = NSLayoutConstraint.init(item: toolbarView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: tabBarController?.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        tabBarController?.view.addConstraints([botttomConstraint])
     }
     
     @IBAction func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)

@@ -14,6 +14,7 @@ import UIKit
     var view: UIView!
     
     // Outlets
+    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var selectAllButton: UIBarButtonItem!
     @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
