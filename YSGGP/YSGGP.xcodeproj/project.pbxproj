@@ -32,6 +32,7 @@
 		50E49FC61DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */; };
 		50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */; };
 		50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */; };
+		50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
 		50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
+		50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopViewController.swift; sourceTree = "<group>"; };
 		C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				50AB0DC71D8FF242008EDB0D /* Info.plist */,
+				50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */,
 				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
 				504110FE1D9BF5BD00BE3B0C /* YSTabBarController.swift */,
 				504111001D9C00E200BE3B0C /* YSConstants.swift */,
@@ -484,6 +487,7 @@
 				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,
 				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
 				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
+				50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */,
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
