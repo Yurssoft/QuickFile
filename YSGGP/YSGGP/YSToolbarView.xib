@@ -8,18 +8,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSToolbarView" customModule="YSGGP" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZ3-Ub-b74">
+        <view contentMode="scaleToFill" id="fMW-7p-wrW">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbA-Ju-fH6">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="gFD-f2-r4a"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Select All" id="Tid-qO-RYC"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2Xj-fP-HHK"/>
+                        <barButtonItem image="cloud_download_toolbar" id="xdX-EZ-egT"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QbH-Wt-DZH"/>
+                        <barButtonItem systemItem="trash" id="WZl-uE-Jac"/>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="height" constant="44" id="deA-in-Nge"/>
+                <constraint firstAttribute="bottom" secondItem="DbA-Ju-fH6" secondAttribute="bottom" id="2ET-0W-aQC"/>
+                <constraint firstItem="DbA-Ju-fH6" firstAttribute="leading" secondItem="fMW-7p-wrW" secondAttribute="leading" id="Xuc-yk-eYT"/>
+                <constraint firstAttribute="trailing" secondItem="DbA-Ju-fH6" secondAttribute="trailing" id="amF-6t-ZMr"/>
             </constraints>
-            <items>
-                <barButtonItem title="Select All" id="m6R-Jo-NiF"/>
-                <barButtonItem style="plain" systemItem="flexibleSpace" id="wfz-Vi-tCO"/>
-                <barButtonItem image="cloud_download_toolbar" id="InE-xb-FgO"/>
-                <barButtonItem style="plain" systemItem="flexibleSpace" id="NUt-rw-alq"/>
-                <barButtonItem systemItem="trash" id="p4e-ns-P5u"/>
-            </items>
-        </toolbar>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-7.5" y="-718"/>
+        </view>
     </objects>
     <resources>
         <image name="cloud_download_toolbar" width="33" height="33"/>

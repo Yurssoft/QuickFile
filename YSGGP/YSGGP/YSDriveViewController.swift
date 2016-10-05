@@ -11,7 +11,6 @@ import UIKit
 class YSDriveViewController: UITableViewController
 {
     weak var toolbarView: YSToolbarView!
-    @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var viewModel: YSDriveViewModel?
         {
@@ -35,13 +34,6 @@ class YSDriveViewController: UITableViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool)
-    {
-        super.setEditing(editing, animated: animated)
-        toolbarView.isHidden = !editing
-        tabBarController?.hideTabBar(animated: false)
     }
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)

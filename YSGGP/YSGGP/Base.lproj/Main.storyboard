@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coT-OD-vGT" id="SfY-jr-6Dt">
-                                    <frame key="frameInset" width="342" height="44"/>
+                                    <frame key="frameInset" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-SV-8xk" userLabel="IconImage">
@@ -94,7 +94,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8Yc-Hj-nLN" firstAttribute="top" secondItem="wko-dX-0Na" secondAttribute="bottom" constant="5" id="4eC-gF-zah"/>
                             <constraint firstAttribute="trailing" secondItem="qcw-d9-nKt" secondAttribute="trailing" id="4yH-AZ-MFd"/>
                             <constraint firstItem="qcw-d9-nKt" firstAttribute="leading" secondItem="8P4-e0-YhJ" secondAttribute="leading" id="CdW-2Q-Zsg"/>
                             <constraint firstItem="qcw-d9-nKt" firstAttribute="top" secondItem="naw-v6-Bje" secondAttribute="bottom" constant="-64" id="D91-RH-hZj"/>
@@ -105,11 +104,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="40L-P2-lya">
-                        <barButtonItem key="leftBarButtonItem" title="Login" id="T8l-wk-1bo">
-                            <connections>
-                                <action selector="loginButtonTapped:" destination="gnG-ln-Zym" id="qhM-7Q-iHh"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="WqJ-hK-bhX">
                             <connections>
                                 <action selector="editButtonTapped:" destination="gnG-ln-Zym" id="jC0-hU-QOc"/>
@@ -119,6 +113,7 @@
                     <connections>
                         <outlet property="containerView" destination="qcw-d9-nKt" id="4He-6b-PXf"/>
                         <outlet property="toolbarView" destination="8Yc-Hj-nLN" id="KJU-QF-zA3"/>
+                        <outlet property="toolbarViewBottomConstraint" destination="lqx-xo-Wuq" id="0kI-Y2-S3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLQ-iq-QwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,10 +175,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithIconAndSubtitle" id="emN-G2-xSA">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <frame key="frameInset" width="818" height="44"/>
+                                            <frame key="frameInset" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -245,7 +240,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="YSTabBarController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>

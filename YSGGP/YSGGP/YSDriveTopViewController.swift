@@ -11,13 +11,18 @@ import UIKit
 class YSDriveTopViewController: UIViewController
 {
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var toolbarViewBottomConstraint : NSLayoutConstraint?
+    @IBOutlet weak var toolbarView: YSToolbarView?
+    var loginNavigationButton : UIBarButtonItem?
     var driveVC : YSDriveViewController?
     
-    @IBOutlet weak var toolbarView: YSToolbarView!
+    let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
+    let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         if driveVC == nil
         {
             print("driveVC == nil")
@@ -26,14 +31,22 @@ class YSDriveTopViewController: UIViewController
         driveCoordinator.start()
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
+        loginNavigationButton = UIBarButtonItem(title: "Login", style:UIBarButtonItemStyle.plain, target: self, action: #selector(YSDriveTopViewController.loginButtonTapped(_:)))
+        if !(driveVC?.viewModel?.isLoggedIn)!
+        {
+            navigationItem.setLeftBarButton(loginNavigationButton, animated: true)
+        }
     }
     
     @IBAction func editButtonTapped(_ sender: AnyObject)
     {
         driveVC?.setEditing(!(driveVC?.isEditing)!, animated: true)
+        toolbarView?.isHidden = !(driveVC?.isEditing)!
+        navigationItem.leftBarButtonItem = (driveVC?.isEditing)! ? nil : loginNavigationButton
+        tabBarController?.setTabBarVisible(isVisible: !(driveVC?.isEditing)!, animated: true, completion:nil)
     }
     
-    @IBAction func loginButtonTapped(_ sender: AnyObject)
+    func loginButtonTapped(_ sender: AnyObject)
     {
         driveVC?.loginButtonTapped(sender as! UIBarButtonItem)
     }

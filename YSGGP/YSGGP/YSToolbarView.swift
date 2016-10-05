@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable class YSToolbarView: UIToolbar
 {
     // Our custom view from the XIB file
-    var toolbar: UIToolbar!
+    var toolbarView: UIView!
     
     // Outlets
     @IBOutlet weak var selectAllButton: UIBarButtonItem!
@@ -21,28 +21,25 @@ import UIKit
     public override init(frame: CGRect)
     {
         super.init(frame: frame)
+        setupXib()
     }
     
     public required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
+        setupXib()
     }
     
     func setupXib()
     {
-        toolbar = loadViewDromNib()
+        toolbarView = Bundle.main.loadNibNamed(YSToolbarView.nameOfClass, owner: self, options: nil)?[0] as! UIView
         
         // use bounds not frame or it'll be offset
-        toolbar.frame = bounds
-    }
-    
-    func loadViewDromNib() -> UIToolbar
-    {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: YSToolbarView.nameOfClass, bundle: bundle)
+        toolbarView.frame = bounds
+        // Make the view stretch with containing view
+        toolbarView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         
-        // Assumes UIView is top level and only object in CustomView.xib file
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIToolbar
-        return view
+        // Adding custom subview on top of our view (over any custom drawing)
+        addSubview(toolbarView)
     }
 }

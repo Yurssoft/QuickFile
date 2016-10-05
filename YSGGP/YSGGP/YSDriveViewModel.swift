@@ -10,8 +10,13 @@ import Foundation
 
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
+    internal var isLoggedIn: Bool
+    {
+       return (model?.isLoggedIn)!
+    }
+
     weak var viewDelegate: YSDriveViewModelViewDelegate?
-    weak var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
+    var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
     fileprivate var items: [YSDriveItem]?
     {
