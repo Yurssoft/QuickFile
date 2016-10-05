@@ -7,17 +7,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Drive-->
+        <!--Drive View Controller-->
         <scene sceneID="46w-u8-f1H">
             <objects>
                 <tableViewController storyboardIdentifier="YSDriveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9xv-pl-iv2" customClass="YSDriveViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3H-5W-LEE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="YSDriveItemTableViewCell" id="coT-OD-vGT" customClass="YSDriveItemTableViewCell" customModule="YSGGP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coT-OD-vGT" id="SfY-jr-6Dt">
                                     <frame key="frameInset" width="342" height="43"/>
@@ -65,31 +65,60 @@
                             <outlet property="delegate" destination="9xv-pl-iv2" id="yoG-LH-EUL"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Select All" id="Gzf-4P-yq6"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9KT-nz-exH"/>
-                        <barButtonItem image="cloud_download_toolbar" id="Z2o-sS-bgx"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FN1-8n-ale"/>
-                        <barButtonItem systemItem="trash" id="VXo-81-W9I">
+                    <toolbarItems/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9M-KH-EcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-81" y="263"/>
+        </scene>
+        <!--Drive Top View Controller-->
+        <scene sceneID="bAz-Op-zEt">
+            <objects>
+                <viewController id="gnG-ln-Zym" customClass="YSDriveTopViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="naw-v6-Bje"/>
+                        <viewControllerLayoutGuide type="bottom" id="wko-dX-0Na"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8P4-e0-YhJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-d9-nKt">
+                                <connections>
+                                    <segue destination="9xv-pl-iv2" kind="embed" identifier="YSDriveViewControllerSegue" id="hTw-WA-SW8"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yc-Hj-nLN" customClass="YSToolbarView" customModule="YSGGP" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qcw-d9-nKt" secondAttribute="trailing" id="4yH-AZ-MFd"/>
+                            <constraint firstItem="qcw-d9-nKt" firstAttribute="leading" secondItem="8P4-e0-YhJ" secondAttribute="leading" id="CdW-2Q-Zsg"/>
+                            <constraint firstItem="qcw-d9-nKt" firstAttribute="top" secondItem="naw-v6-Bje" secondAttribute="bottom" constant="-64" id="D91-RH-hZj"/>
+                            <constraint firstAttribute="trailing" secondItem="8Yc-Hj-nLN" secondAttribute="trailing" id="H8q-r0-QgH"/>
+                            <constraint firstItem="8Yc-Hj-nLN" firstAttribute="leading" secondItem="8P4-e0-YhJ" secondAttribute="leading" id="UNX-PO-cPd"/>
+                            <constraint firstAttribute="bottom" secondItem="8Yc-Hj-nLN" secondAttribute="bottom" id="lqx-xo-Wuq"/>
+                            <constraint firstItem="wko-dX-0Na" firstAttribute="top" secondItem="qcw-d9-nKt" secondAttribute="bottom" id="qxR-se-YCk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="40L-P2-lya">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="WqJ-hK-bhX">
                             <connections>
-                                <action selector="deleteToolbarButtonTapped:" destination="9xv-pl-iv2" id="3a1-wV-kcP"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Drive" id="6Ox-D5-usO">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="TyO-fV-8Xh">
-                            <connections>
-                                <action selector="loginButtonTapped:" destination="9xv-pl-iv2" id="z8g-ne-7N5"/>
+                                <action selector="editButtonTapped:" destination="gnG-ln-Zym" id="jC0-hU-QOc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loginButton" destination="TyO-fV-8Xh" id="bvH-bj-kpc"/>
+                        <outlet property="containerView" destination="qcw-d9-nKt" id="4He-6b-PXf"/>
+                        <outlet property="toolbarView" destination="8Yc-Hj-nLN" id="KJU-QF-zA3"/>
+                        <outlet property="toolbarViewBottomConstraint" destination="lqx-xo-Wuq" id="0kI-Y2-S3p"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m9M-KH-EcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLQ-iq-QwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="278"/>
+            <point key="canvasLocation" x="-764" y="285.60719640179911"/>
         </scene>
         <!--Settings-->
         <scene sceneID="vye-Ga-tav">
@@ -211,7 +240,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="YSTabBarController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -231,7 +260,7 @@
         <!--Drive-->
         <scene sceneID="0Nc-zO-4fb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Drive" image="cloud_filled" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">
@@ -244,12 +273,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="9xv-pl-iv2" kind="relationship" relationship="rootViewController" id="uLZ-h8-Ajt"/>
+                        <segue destination="gnG-ln-Zym" kind="relationship" relationship="rootViewController" id="Vby-eY-Any"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0n3-zV-8S9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-783" y="278"/>
+            <point key="canvasLocation" x="-1454" y="285"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="Y7t-8C-lKY">
@@ -291,7 +320,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud_download_toolbar" width="33" height="33"/>
         <image name="cloud_filled" width="20" height="20"/>
         <image name="folder" width="500" height="500"/>
         <image name="playlist_filled" width="20" height="20"/>

@@ -10,8 +10,7 @@ import UIKit
 
 class YSDriveViewController: UITableViewController
 {
-    @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var loginButton: UIBarButtonItem!
+    weak var toolbarView: YSToolbarView!
     
     var viewModel: YSDriveViewModel?
         {
@@ -26,32 +25,23 @@ class YSDriveViewController: UITableViewController
         }
     }
     
-    override func viewDidLoad()
+    func containingViewControllerViewDidLoad()
     {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItems = [editButtonItem, loginButton]
         refreshDisplay()
         tableView.allowsMultipleSelectionDuringEditing = true
-        
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        navigationController?.setToolbarHidden(!isEditing, animated: true)
     }
     
-    override func setEditing(_ editing: Bool, animated: Bool)
-    {
-        super.setEditing(editing, animated: animated)
-        navigationController?.setToolbarHidden(!editing, animated: true)
-    }
-    
-    @IBAction func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
+    func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
     {
         viewModel?.removeItems()
     }
     
-    @IBAction func loginButtonTapped(_ sender: UIBarButtonItem)
+    func loginButtonTapped(_ sender: UIBarButtonItem)
     {
         viewModel?.loginToDrive()
     }
@@ -99,8 +89,6 @@ class YSDriveViewController: UITableViewController
     {
         return .insert
     }
-    
-    
 }
 
 extension YSDriveViewController: YSDriveViewModelViewDelegate
