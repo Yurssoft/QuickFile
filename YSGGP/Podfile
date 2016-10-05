@@ -3,4 +3,9 @@ use_frameworks!
 target 'YSGGP' do
     pod 'GoogleAPIClient/Drive'
     pod 'GTMOAuth2'
+end    
+
+    target 'YSGGPTests' do
+        pod 'GoogleAPIClient/Drive'
+        pod 'GTMOAuth2'
 end
