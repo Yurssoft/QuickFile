@@ -28,9 +28,33 @@ class YSGGPUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoginToDrive()
+    {
+        let app = XCUIApplication()
+        app.navigationBars["YSGGP.YSDriveTopView"].buttons["Login"].tap()
+        let enterYourEmailTextField = app.textFields["Enter your email"]
+        enterYourEmailTextField.tap()
+        enterYourEmailTextField.typeText("yurssoft@gmail.com")
+        app.otherElements["Sign in - Google Accounts"].buttons["Next"].tap()
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("Yurs-soft06712997188")
+        
+        app.buttons["Sign in"].tap()
+        app.buttons["Try another way to sign in"].tap()
+        app.buttons["Use one of your 8-digit backup codes"].tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+        
+        let enterThe8DigitCodeTextField = app.textFields["Enter the 8-digit code"]
+        enterThe8DigitCodeTextField.tap()
+        enterThe8DigitCodeTextField.typeText("32337177")
+        app.otherElements["Google Accounts"].buttons["Done"].tap()
+        app.buttons["Allow"].tap()
+        
+        sleep(30)
+        app.buttons["Edit"].tap()
+        sleep(30)
     }
     
 }
