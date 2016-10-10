@@ -52,16 +52,16 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     {
                                                                         DispatchQueue.main.async
                                                                         {
-                                                                            [weak self] in self?.authorizer = authResult
-                                                                            self?.navigationController?.dismiss(animated: true, completion:
+                                                                            self.authorizer = authResult
+                                                                            self.navigationController?.dismiss(animated: true, completion:
                                                                                 {
                                                                                     DispatchQueue.main.async
                                                                                     {
-                                                                                        self?.navigationController?.dismiss(animated: true, completion:
+                                                                                        self.navigationController?.dismiss(animated: true, completion:
                                                                                         {
                                                                                             DispatchQueue.main.async
                                                                                             {
-                                                                                                self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!)
+                                                                                                self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self)
                                                                                             }
                                                                                         })
                                                                                     }
