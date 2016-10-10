@@ -24,10 +24,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-YSGGPTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2795E8835A5724CAF5033D2A1B6FBA59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>596354B7FFF4F758A1AA00E4802BDC75</key>
 		<dict>
 			<key>primary</key>
 			<true/>

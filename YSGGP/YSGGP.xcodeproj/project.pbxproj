@@ -1,771 +1,1859 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		36642CBBE3A5062FB3A8B6C2 /* Pods_YSGGP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */; };
-		500B6BFA1D92CA0C003996CA /* YSSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */; };
-		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
-		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
-		500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */; };
-		503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */; };
-		503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */; };
-		504110431D95691100BE3B0C /* YSDriveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110421D95691100BE3B0C /* YSDriveItem.swift */; };
-		504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */; };
-		504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110481D956DEF00BE3B0C /* YSDriveModel.swift */; };
-		5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */; };
-		504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */; };
-		504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */; };
-		504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */; };
-		504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111001D9C00E200BE3B0C /* YSConstants.swift */; };
-		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
-		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
-		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
-		50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */; };
-		50AB0DD11D8FF243008EDB0D /* YSGGPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DD01D8FF243008EDB0D /* YSGGPTests.swift */; };
-		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
-		50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */; };
-		50E49FC61DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */; };
-		50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */; };
-		50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */; };
-		50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		50AB0DCD1D8FF242008EDB0D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50AB0DAE1D8FF242008EDB0D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
-			remoteInfo = YSGGP;
-		};
-		50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50AB0DAE1D8FF242008EDB0D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
-			remoteInfo = YSGGP;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
-		21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
-		500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewController.swift; sourceTree = "<group>"; };
-		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
-		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
-		500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemProtocol.swift; sourceTree = "<group>"; };
-		503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
-		503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewController.swift; sourceTree = "<group>"; };
-		504110421D95691100BE3B0C /* YSDriveItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItem.swift; sourceTree = "<group>"; };
-		504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelProtocol.swift; sourceTree = "<group>"; };
-		504110481D956DEF00BE3B0C /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
-		5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemCell.swift; sourceTree = "<group>"; };
-		504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCoordinatorProtocol.swift; sourceTree = "<group>"; };
-		504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinator.swift; sourceTree = "<group>"; };
-		504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarControllerExtension.swift; sourceTree = "<group>"; };
-		504111001D9C00E200BE3B0C /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
-		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
-		50AB0DC01D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		50AB0DC21D8FF242008EDB0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		50AB0DC51D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		50AB0DC71D8FF242008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50AB0DCC1D8FF242008EDB0D /* YSGGPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DD01D8FF243008EDB0D /* YSGGPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPTests.swift; sourceTree = "<group>"; };
-		50AB0DD21D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
-		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSStringFromClass.swift; sourceTree = "<group>"; };
-		50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAuthenticationCoordinator.swift; sourceTree = "<group>"; };
-		50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
-		50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
-		50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopViewController.swift; sourceTree = "<group>"; };
-		C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		50AB0DB31D8FF242008EDB0D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36642CBBE3A5062FB3A8B6C2 /* Pods_YSGGP.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DC91D8FF242008EDB0D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DD41D8FF243008EDB0D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		2A4B0FA135E6E29937D943F7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */,
-				05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		500B6C271D93EDD8003996CA /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		500B6C281D93F048003996CA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C291D93F052003996CA /* Data */,
-				504110471D956B3500BE3B0C /* Protocols */,
-				504110481D956DEF00BE3B0C /* YSDriveModel.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		500B6C291D93F052003996CA /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C2A1D93F060003996CA /* Data Protocols */,
-				504110441D95699500BE3B0C /* Data Structs */,
-			);
-			name = Data;
-			sourceTree = "<group>";
-		};
-		500B6C2A1D93F060003996CA /* Data Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */,
-			);
-			name = "Data Protocols";
-			sourceTree = "<group>";
-		};
-		503FB7451D914E7E001F66F6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C271D93EDD8003996CA /* Protocols */,
-				500B6C231D93ED98003996CA /* YSDriveViewModel.swift */,
-			);
-			name = ViewModels;
-			sourceTree = "<group>";
-		};
-		503FB7461D914E91001F66F6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */,
-				503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */,
-				503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */,
-				500B6BF91D92CA0C003996CA /* YSSettingsViewController.swift */,
-				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
-				5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */,
-				50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */,
-				50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */,
-				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
-				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		504110441D95699500BE3B0C /* Data Structs */ = {
-			isa = PBXGroup;
-			children = (
-				504110421D95691100BE3B0C /* YSDriveItem.swift */,
-			);
-			name = "Data Structs";
-			sourceTree = "<group>";
-		};
-		504110471D956B3500BE3B0C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		504110FB1D9BE59F00BE3B0C /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */,
-				50E49FC51DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift */,
-				504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */,
-			);
-			name = Coordinators;
-			sourceTree = "<group>";
-		};
-		50AB0DAD1D8FF242008EDB0D = {
-			isa = PBXGroup;
-			children = (
-				50AB0DB81D8FF242008EDB0D /* YSGGP */,
-				50AB0DCF1D8FF243008EDB0D /* YSGGPTests */,
-				50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */,
-				50AB0DB71D8FF242008EDB0D /* Products */,
-				2A4B0FA135E6E29937D943F7 /* Pods */,
-				6E1C0062819167B99730D8EE /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		50AB0DB71D8FF242008EDB0D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DB61D8FF242008EDB0D /* YSGGP.app */,
-				50AB0DCC1D8FF242008EDB0D /* YSGGPTests.xctest */,
-				50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		50AB0DB81D8FF242008EDB0D /* YSGGP */ = {
-			isa = PBXGroup;
-			children = (
-				504110FB1D9BE59F00BE3B0C /* Coordinators */,
-				500B6C281D93F048003996CA /* Models */,
-				503FB7451D914E7E001F66F6 /* ViewModels */,
-				503FB7461D914E91001F66F6 /* Views */,
-				50E49FCE1DA3A84E00A6FAAC /* Additional Classes */,
-			);
-			path = YSGGP;
-			sourceTree = "<group>";
-		};
-		50AB0DCF1D8FF243008EDB0D /* YSGGPTests */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DD01D8FF243008EDB0D /* YSGGPTests.swift */,
-				50AB0DD21D8FF243008EDB0D /* Info.plist */,
-			);
-			path = YSGGPTests;
-			sourceTree = "<group>";
-		};
-		50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */,
-				50AB0DDD1D8FF243008EDB0D /* Info.plist */,
-			);
-			path = YSGGPUITests;
-			sourceTree = "<group>";
-		};
-		50E49FCE1DA3A84E00A6FAAC /* Additional Classes */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DC71D8FF242008EDB0D /* Info.plist */,
-				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
-				504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */,
-				504111001D9C00E200BE3B0C /* YSConstants.swift */,
-				50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */,
-			);
-			name = "Additional Classes";
-			sourceTree = "<group>";
-		};
-		6E1C0062819167B99730D8EE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C8C320F955D7D2D739F019E2 /* Pods_YSGGP.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		50AB0DB51D8FF242008EDB0D /* YSGGP */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 50AB0DE01D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGP" */;
-			buildPhases = (
-				4E2CFE84C9F38DB3BF6D57AD /* Check Pods Manifest.lock */,
-				50AB0DB21D8FF242008EDB0D /* Sources */,
-				50AB0DB31D8FF242008EDB0D /* Frameworks */,
-				50AB0DB41D8FF242008EDB0D /* Resources */,
-				0E4CACDF4C6B30A4846AAC8B /* Embed Pods Frameworks */,
-				DB851F65290A26B645FC02DD /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = YSGGP;
-			productName = YSGGP;
-			productReference = 50AB0DB61D8FF242008EDB0D /* YSGGP.app */;
-			productType = "com.apple.product-type.application";
-		};
-		50AB0DCB1D8FF242008EDB0D /* YSGGPTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 50AB0DE31D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPTests" */;
-			buildPhases = (
-				50AB0DC81D8FF242008EDB0D /* Sources */,
-				50AB0DC91D8FF242008EDB0D /* Frameworks */,
-				50AB0DCA1D8FF242008EDB0D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				50AB0DCE1D8FF242008EDB0D /* PBXTargetDependency */,
-			);
-			name = YSGGPTests;
-			productName = YSGGPTests;
-			productReference = 50AB0DCC1D8FF242008EDB0D /* YSGGPTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		50AB0DD61D8FF243008EDB0D /* YSGGPUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 50AB0DE61D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPUITests" */;
-			buildPhases = (
-				50AB0DD31D8FF243008EDB0D /* Sources */,
-				50AB0DD41D8FF243008EDB0D /* Frameworks */,
-				50AB0DD51D8FF243008EDB0D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				50AB0DD91D8FF243008EDB0D /* PBXTargetDependency */,
-			);
-			name = YSGGPUITests;
-			productName = YSGGPUITests;
-			productReference = 50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		50AB0DAE1D8FF242008EDB0D /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "Yurii Boiko";
-				TargetAttributes = {
-					50AB0DB51D8FF242008EDB0D = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A2PX8YZMXY;
-						ProvisioningStyle = Manual;
-					};
-					50AB0DCB1D8FF242008EDB0D = {
-						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 50AB0DB51D8FF242008EDB0D;
-					};
-					50AB0DD61D8FF243008EDB0D = {
-						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 50AB0DB51D8FF242008EDB0D;
-					};
-				};
-			};
-			buildConfigurationList = 50AB0DB11D8FF242008EDB0D /* Build configuration list for PBXProject "YSGGP" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 50AB0DAD1D8FF242008EDB0D;
-			productRefGroup = 50AB0DB71D8FF242008EDB0D /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				50AB0DB51D8FF242008EDB0D /* YSGGP */,
-				50AB0DCB1D8FF242008EDB0D /* YSGGPTests */,
-				50AB0DD61D8FF243008EDB0D /* YSGGPUITests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		50AB0DB41D8FF242008EDB0D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */,
-				50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */,
-				50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */,
-				50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DCA1D8FF242008EDB0D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DD51D8FF243008EDB0D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0E4CACDF4C6B30A4846AAC8B /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E2CFE84C9F38DB3BF6D57AD /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DB851F65290A26B645FC02DD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		50AB0DB21D8FF242008EDB0D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */,
-				503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */,
-				5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */,
-				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
-				504110431D95691100BE3B0C /* YSDriveItem.swift in Sources */,
-				500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */,
-				504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */,
-				50E49FC61DA2A2A800A6FAAC /* YSAuthenticationCoordinator.swift in Sources */,
-				500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */,
-				500B6BFA1D92CA0C003996CA /* YSSettingsViewController.swift in Sources */,
-				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
-				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
-				50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */,
-				504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */,
-				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,
-				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
-				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
-				50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */,
-				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DC81D8FF242008EDB0D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50AB0DD11D8FF243008EDB0D /* YSGGPTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DD31D8FF243008EDB0D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		50AB0DCE1D8FF242008EDB0D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50AB0DB51D8FF242008EDB0D /* YSGGP */;
-			targetProxy = 50AB0DCD1D8FF242008EDB0D /* PBXContainerItemProxy */;
-		};
-		50AB0DD91D8FF243008EDB0D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50AB0DB51D8FF242008EDB0D /* YSGGP */;
-			targetProxy = 50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		50AB0DBF1D8FF242008EDB0D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50AB0DC01D8FF242008EDB0D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50AB0DC51D8FF242008EDB0D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		50AB0DDE1D8FF243008EDB0D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		50AB0DDF1D8FF243008EDB0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		50AB0DE11D8FF243008EDB0D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21C08C12A2937BF3992D016E /* Pods-YSGGP.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A2PX8YZMXY;
-				INFOPLIST_FILE = YSGGP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c61c4bc6-da06-45d5-8410-b06d695c76c0";
-				PROVISIONING_PROFILE_SPECIFIER = "Softjourn Development Profile";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		50AB0DE21D8FF243008EDB0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05CCA9077C1CD330FC026C4C /* Pods-YSGGP.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = YSGGP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		50AB0DE41D8FF243008EDB0D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = YSGGPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YSGGP.app/YSGGP";
-			};
-			name = Debug;
-		};
-		50AB0DE51D8FF243008EDB0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = YSGGPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YSGGP.app/YSGGP";
-			};
-			name = Release;
-		};
-		50AB0DE71D8FF243008EDB0D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = YSGGPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = YSGGP;
-			};
-			name = Debug;
-		};
-		50AB0DE81D8FF243008EDB0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = YSGGPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = YSGGP;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		50AB0DB11D8FF242008EDB0D /* Build configuration list for PBXProject "YSGGP" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50AB0DDE1D8FF243008EDB0D /* Debug */,
-				50AB0DDF1D8FF243008EDB0D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		50AB0DE01D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGP" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50AB0DE11D8FF243008EDB0D /* Debug */,
-				50AB0DE21D8FF243008EDB0D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		50AB0DE31D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50AB0DE41D8FF243008EDB0D /* Debug */,
-				50AB0DE51D8FF243008EDB0D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		50AB0DE61D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "YSGGPUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50AB0DE71D8FF243008EDB0D /* Debug */,
-				50AB0DE81D8FF243008EDB0D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 50AB0DAE1D8FF242008EDB0D /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>05CCA9077C1CD330FC026C4C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YSGGP.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0E4CACDF4C6B30A4846AAC8B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>1C92BC640E2700C7990F384E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YSGGPTests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>21C08C12A2937BF3992D016E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YSGGP.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2A4B0FA135E6E29937D943F7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>21C08C12A2937BF3992D016E</string>
+				<string>05CCA9077C1CD330FC026C4C</string>
+				<string>1C92BC640E2700C7990F384E</string>
+				<string>C60B35E30DF4A3A4C8227BB7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>36642CBBE3A5062FB3A8B6C2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C8C320F955D7D2D739F019E2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4E2CFE84C9F38DB3BF6D57AD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>500B6BF91D92CA0C003996CA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSSettingsViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6BFA1D92CA0C003996CA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>500B6BF91D92CA0C003996CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>500B6C231D93ED98003996CA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveViewModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C241D93ED98003996CA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>500B6C231D93ED98003996CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>500B6C251D93EDCF003996CA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveViewModelProtocol.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C261D93EDCF003996CA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>500B6C251D93EDCF003996CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>500B6C271D93EDD8003996CA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>500B6C251D93EDCF003996CA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Protocols</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C281D93F048003996CA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>500B6C291D93F052003996CA</string>
+				<string>504110471D956B3500BE3B0C</string>
+				<string>504110481D956DEF00BE3B0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Models</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C291D93F052003996CA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>500B6C2A1D93F060003996CA</string>
+				<string>504110441D95699500BE3B0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C2A1D93F060003996CA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>500B6C2B1D93F083003996CA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Protocols</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C2B1D93F083003996CA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveItemProtocol.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>500B6C2C1D93F083003996CA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>500B6C2B1D93F083003996CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>503FB7451D914E7E001F66F6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>500B6C271D93EDD8003996CA</string>
+				<string>500B6C231D93ED98003996CA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>ViewModels</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>503FB7461D914E91001F66F6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50E49FD31DA3EE2D00A6FAAC</string>
+				<string>503FB7471D914ED6001F66F6</string>
+				<string>503FB7491D914F88001F66F6</string>
+				<string>500B6BF91D92CA0C003996CA</string>
+				<string>50AB0DBF1D8FF242008EDB0D</string>
+				<string>5041104A1D95763000BE3B0C</string>
+				<string>50E49FCF1DA3A8E800A6FAAC</string>
+				<string>50E49FD11DA3DABD00A6FAAC</string>
+				<string>50AB0DC41D8FF242008EDB0D</string>
+				<string>50AB0DC21D8FF242008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Views</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>503FB7471D914ED6001F66F6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>503FB7481D914ED6001F66F6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>503FB7471D914ED6001F66F6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>503FB7491D914F88001F66F6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSPlaylistViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>503FB74A1D914F88001F66F6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>503FB7491D914F88001F66F6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110421D95691100BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveItem.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110431D95691100BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110421D95691100BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110441D95699500BE3B0C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>504110421D95691100BE3B0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Structs</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110451D956B2A00BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveModelProtocol.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110461D956B2A00BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110451D956B2A00BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110471D956B3500BE3B0C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>504110451D956B2A00BE3B0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Protocols</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110481D956DEF00BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110491D956DEF00BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110481D956DEF00BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5041104A1D95763000BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveItemCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5041104B1D95763000BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5041104A1D95763000BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110F51D9BE35100BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSCoordinatorProtocol.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110F61D9BE35100BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110F51D9BE35100BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110FB1D9BE59F00BE3B0C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>504110FC1D9BEA1D00BE3B0C</string>
+				<string>50E49FC51DA2A2A800A6FAAC</string>
+				<string>504110F51D9BE35100BE3B0C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Coordinators</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110FC1D9BEA1D00BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveCoordinator.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110FD1D9BEA1D00BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110FC1D9BEA1D00BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504110FE1D9BF5BD00BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSTabBarControllerExtension.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504110FF1D9BF5BD00BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504110FE1D9BF5BD00BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>504111001D9C00E200BE3B0C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSConstants.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>504111011D9C00E200BE3B0C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>504111001D9C00E200BE3B0C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DAD1D8FF242008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DB81D8FF242008EDB0D</string>
+				<string>50AB0DCF1D8FF243008EDB0D</string>
+				<string>50AB0DDA1D8FF243008EDB0D</string>
+				<string>50AB0DB71D8FF242008EDB0D</string>
+				<string>2A4B0FA135E6E29937D943F7</string>
+				<string>6E1C0062819167B99730D8EE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DAE1D8FF242008EDB0D</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0800</string>
+				<key>LastUpgradeCheck</key>
+				<string>0800</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Yurii Boiko</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>50AB0DB51D8FF242008EDB0D</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.0</string>
+						<key>DevelopmentTeam</key>
+						<string>A2PX8YZMXY</string>
+						<key>ProvisioningStyle</key>
+						<string>Manual</string>
+					</dict>
+					<key>50AB0DCB1D8FF242008EDB0D</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.0</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+						<key>TestTargetID</key>
+						<string>50AB0DB51D8FF242008EDB0D</string>
+					</dict>
+					<key>50AB0DD61D8FF243008EDB0D</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.0</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+						<key>TestTargetID</key>
+						<string>50AB0DB51D8FF242008EDB0D</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>50AB0DB11D8FF242008EDB0D</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>50AB0DAD1D8FF242008EDB0D</string>
+			<key>productRefGroup</key>
+			<string>50AB0DB71D8FF242008EDB0D</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>50AB0DB51D8FF242008EDB0D</string>
+				<string>50AB0DCB1D8FF242008EDB0D</string>
+				<string>50AB0DD61D8FF243008EDB0D</string>
+			</array>
+		</dict>
+		<key>50AB0DB11D8FF242008EDB0D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>50AB0DDE1D8FF243008EDB0D</string>
+				<string>50AB0DDF1D8FF243008EDB0D</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>50AB0DB21D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>504110461D956B2A00BE3B0C</string>
+				<string>503FB74A1D914F88001F66F6</string>
+				<string>5041104B1D95763000BE3B0C</string>
+				<string>504110FD1D9BEA1D00BE3B0C</string>
+				<string>504110431D95691100BE3B0C</string>
+				<string>500B6C241D93ED98003996CA</string>
+				<string>504110491D956DEF00BE3B0C</string>
+				<string>50E49FC61DA2A2A800A6FAAC</string>
+				<string>500B6C2C1D93F083003996CA</string>
+				<string>500B6BFA1D92CA0C003996CA</string>
+				<string>504111011D9C00E200BE3B0C</string>
+				<string>504110FF1D9BF5BD00BE3B0C</string>
+				<string>50E49FBA1D9D3ED300A6FAAC</string>
+				<string>504110F61D9BE35100BE3B0C</string>
+				<string>50E49FD01DA3A8E800A6FAAC</string>
+				<string>50AB0DBA1D8FF242008EDB0D</string>
+				<string>503FB7481D914ED6001F66F6</string>
+				<string>50E49FD41DA3EE2D00A6FAAC</string>
+				<string>500B6C261D93EDCF003996CA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DB31D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>36642CBBE3A5062FB3A8B6C2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DB41D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>50E49FD21DA3DABD00A6FAAC</string>
+				<string>50AB0DC61D8FF242008EDB0D</string>
+				<string>50AB0DC31D8FF242008EDB0D</string>
+				<string>50AB0DC11D8FF242008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DB51D8FF242008EDB0D</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>50AB0DE01D8FF243008EDB0D</string>
+			<key>buildPhases</key>
+			<array>
+				<string>4E2CFE84C9F38DB3BF6D57AD</string>
+				<string>50AB0DB21D8FF242008EDB0D</string>
+				<string>50AB0DB31D8FF242008EDB0D</string>
+				<string>50AB0DB41D8FF242008EDB0D</string>
+				<string>0E4CACDF4C6B30A4846AAC8B</string>
+				<string>DB851F65290A26B645FC02DD</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>YSGGP</string>
+			<key>productName</key>
+			<string>YSGGP</string>
+			<key>productReference</key>
+			<string>50AB0DB61D8FF242008EDB0D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>50AB0DB61D8FF242008EDB0D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>YSGGP.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>50AB0DB71D8FF242008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DB61D8FF242008EDB0D</string>
+				<string>50AB0DCC1D8FF242008EDB0D</string>
+				<string>50AB0DD71D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DB81D8FF242008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>504110FB1D9BE59F00BE3B0C</string>
+				<string>500B6C281D93F048003996CA</string>
+				<string>503FB7451D914E7E001F66F6</string>
+				<string>503FB7461D914E91001F66F6</string>
+				<string>50E49FCE1DA3A84E00A6FAAC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>YSGGP</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DB91D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSAppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DBA1D8FF242008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DB91D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DBF1D8FF242008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DC01D8FF242008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC01D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC11D8FF242008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DBF1D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DC21D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC31D8FF242008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DC21D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DC41D8FF242008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DC51D8FF242008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC51D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC61D8FF242008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DC41D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DC71D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DC81D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>50AB0DD11D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DC91D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9AEB9C1A7E05DB24A13C618E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DCA1D8FF242008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DCB1D8FF242008EDB0D</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>50AB0DE31D8FF243008EDB0D</string>
+			<key>buildPhases</key>
+			<array>
+				<string>80C6C919BBC44C79DFA88668</string>
+				<string>50AB0DC81D8FF242008EDB0D</string>
+				<string>50AB0DC91D8FF242008EDB0D</string>
+				<string>50AB0DCA1D8FF242008EDB0D</string>
+				<string>625846E1C852C66E68585148</string>
+				<string>9FC2CD7C53397BA0E7D1249E</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>50AB0DCE1D8FF242008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>YSGGPTests</string>
+			<key>productName</key>
+			<string>YSGGPTests</string>
+			<key>productReference</key>
+			<string>50AB0DCC1D8FF242008EDB0D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>50AB0DCC1D8FF242008EDB0D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>YSGGPTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>50AB0DCD1D8FF242008EDB0D</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>50AB0DAE1D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>50AB0DB51D8FF242008EDB0D</string>
+			<key>remoteInfo</key>
+			<string>YSGGP</string>
+		</dict>
+		<key>50AB0DCE1D8FF242008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>50AB0DB51D8FF242008EDB0D</string>
+			<key>targetProxy</key>
+			<string>50AB0DCD1D8FF242008EDB0D</string>
+		</dict>
+		<key>50AB0DCF1D8FF243008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DD01D8FF243008EDB0D</string>
+				<string>50AB0DD21D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>YSGGPTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DD01D8FF243008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSGGPDriveCoordinatorTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DD11D8FF243008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DD01D8FF243008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DD21D8FF243008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DD31D8FF243008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>50AB0DDC1D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DD41D8FF243008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DD51D8FF243008EDB0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>50AB0DD61D8FF243008EDB0D</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>50AB0DE61D8FF243008EDB0D</string>
+			<key>buildPhases</key>
+			<array>
+				<string>50AB0DD31D8FF243008EDB0D</string>
+				<string>50AB0DD41D8FF243008EDB0D</string>
+				<string>50AB0DD51D8FF243008EDB0D</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>50AB0DD91D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>YSGGPUITests</string>
+			<key>productName</key>
+			<string>YSGGPUITests</string>
+			<key>productReference</key>
+			<string>50AB0DD71D8FF243008EDB0D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.ui-testing</string>
+		</dict>
+		<key>50AB0DD71D8FF243008EDB0D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>YSGGPUITests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>50AB0DD81D8FF243008EDB0D</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>50AB0DAE1D8FF242008EDB0D</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>50AB0DB51D8FF242008EDB0D</string>
+			<key>remoteInfo</key>
+			<string>YSGGP</string>
+		</dict>
+		<key>50AB0DD91D8FF243008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>50AB0DB51D8FF242008EDB0D</string>
+			<key>targetProxy</key>
+			<string>50AB0DD81D8FF243008EDB0D</string>
+		</dict>
+		<key>50AB0DDA1D8FF243008EDB0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DDB1D8FF243008EDB0D</string>
+				<string>50AB0DDD1D8FF243008EDB0D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>YSGGPUITests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DDB1D8FF243008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSGGPUITests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DDC1D8FF243008EDB0D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50AB0DDB1D8FF243008EDB0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50AB0DDD1D8FF243008EDB0D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50AB0DDE1D8FF243008EDB0D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>DEBUG</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>50AB0DDF1D8FF243008EDB0D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Owholemodule</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>50AB0DE01D8FF243008EDB0D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>50AB0DE11D8FF243008EDB0D</string>
+				<string>50AB0DE21D8FF243008EDB0D</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>50AB0DE11D8FF243008EDB0D</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>21C08C12A2937BF3992D016E</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>A2PX8YZMXY</string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGP/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGP</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string>c61c4bc6-da06-45d5-8410-b06d695c76c0</string>
+				<key>PROVISIONING_PROFILE_SPECIFIER</key>
+				<string>Softjourn Development Profile</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>50AB0DE21D8FF243008EDB0D</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>05CCA9077C1CD330FC026C4C</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string></string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGP/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGP</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>50AB0DE31D8FF243008EDB0D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>50AB0DE41D8FF243008EDB0D</string>
+				<string>50AB0DE51D8FF243008EDB0D</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>50AB0DE41D8FF243008EDB0D</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>1C92BC640E2700C7990F384E</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGPTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGPTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/YSGGP.app/YSGGP</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>50AB0DE51D8FF243008EDB0D</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>C60B35E30DF4A3A4C8227BB7</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGPTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGPTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/YSGGP.app/YSGGP</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>50AB0DE61D8FF243008EDB0D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>50AB0DE71D8FF243008EDB0D</string>
+				<string>50AB0DE81D8FF243008EDB0D</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>50AB0DE71D8FF243008EDB0D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGPUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGPUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>YSGGP</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>50AB0DE81D8FF243008EDB0D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>YSGGPUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.yurssoft.YSGGPUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>YSGGP</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>50E49FB91D9D3ED300A6FAAC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSStringFromClass.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FBA1D9D3ED300A6FAAC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50E49FB91D9D3ED300A6FAAC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50E49FC51DA2A2A800A6FAAC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSAuthenticationCoordinator.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FC61DA2A2A800A6FAAC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50E49FC51DA2A2A800A6FAAC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50E49FCE1DA3A84E00A6FAAC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>50AB0DC71D8FF242008EDB0D</string>
+				<string>50AB0DB91D8FF242008EDB0D</string>
+				<string>504110FE1D9BF5BD00BE3B0C</string>
+				<string>504111001D9C00E200BE3B0C</string>
+				<string>50E49FB91D9D3ED300A6FAAC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Additional Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FCF1DA3A8E800A6FAAC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSToolbarView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FD01DA3A8E800A6FAAC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50E49FCF1DA3A8E800A6FAAC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50E49FD11DA3DABD00A6FAAC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>path</key>
+			<string>YSToolbarView.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FD21DA3DABD00A6FAAC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50E49FD11DA3DABD00A6FAAC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>50E49FD31DA3EE2D00A6FAAC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>YSDriveTopViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50E49FD41DA3EE2D00A6FAAC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50E49FD31DA3EE2D00A6FAAC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>525D25D6E9B91F8F3A074FB2</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_YSGGPTests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>625846E1C852C66E68585148</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>6E1C0062819167B99730D8EE</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C8C320F955D7D2D739F019E2</string>
+				<string>525D25D6E9B91F8F3A074FB2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>80C6C919BBC44C79DFA88668</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>9AEB9C1A7E05DB24A13C618E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>525D25D6E9B91F8F3A074FB2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9FC2CD7C53397BA0E7D1249E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>C60B35E30DF4A3A4C8227BB7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YSGGPTests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C8C320F955D7D2D739F019E2</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_YSGGP.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>DB851F65290A26B645FC02DD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>50AB0DAE1D8FF242008EDB0D</string>
+</dict>
+</plist>

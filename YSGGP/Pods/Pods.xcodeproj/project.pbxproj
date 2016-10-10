@@ -80,6 +80,33 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>04052585C89D746B1218CF804B450F6F</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>2795E8835A5724CAF5033D2A1B6FBA59</string>
+			<key>remoteInfo</key>
+			<string>GTMSessionFetcher</string>
+		</dict>
+		<key>048A1DE1415EAE8952F6EB2EE522CCF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>980DD97CEF7F0F0CF692CD81AFD9F46C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>055FC3AE81EFC27A3DF827A2F44FD94F</key>
 		<dict>
 			<key>fileRef</key>
@@ -99,6 +126,19 @@
 			<string>2795E8835A5724CAF5033D2A1B6FBA59</string>
 			<key>remoteInfo</key>
 			<string>GTMSessionFetcher</string>
+		</dict>
+		<key>08F0955DF84BA8E8EE8CBADAF690FC14</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>7D505932284C7172E62B61B1590FC7A8</string>
+			<key>remoteInfo</key>
+			<string>GoogleAPIClient</string>
 		</dict>
 		<key>09137B65A58B22A8C1F8377E57CBECE5</key>
 		<dict>
@@ -129,21 +169,6 @@
 			<string>Source/Services/Drive/Generated/GTLQueryDrive.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>09CCB826A6E6D88E04D86A72E41B8242</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_YSGGP.framework</string>
-			<key>path</key>
-			<string>Pods_YSGGP.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>09F34CB06BAB32D06097864D58F8C938</key>
 		<dict>
@@ -222,19 +247,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>0E76F26E347D045C2A72153CAC8AA428</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-YSGGP-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>1264E6F8EBF104AE747C2FE1F6134E9A</key>
 		<dict>
@@ -402,6 +414,17 @@
 				</array>
 			</dict>
 		</dict>
+		<key>1750C400A590548252C4E7C1B4EA22EF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>GoogleAPIClient</string>
+			<key>target</key>
+			<string>7D505932284C7172E62B61B1590FC7A8</string>
+			<key>targetProxy</key>
+			<string>08F0955DF84BA8E8EE8CBADAF690FC14</string>
+		</dict>
 		<key>175BC482C0D609F26E7B56E89A044FF5</key>
 		<dict>
 			<key>fileRef</key>
@@ -425,6 +448,19 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>1A25946368FC873DC8E07C5063F8689F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>1A867B934489B833F2A90E18395D46DA</key>
 		<dict>
@@ -470,12 +506,51 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>1D304B74AF8C080262C2814101059572</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>GoogleAPIClient.framework</string>
+			<key>path</key>
+			<string>GoogleAPIClient.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>1D5F868EEED1CE9D9D67BD479EDA4C70</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>7549CF6880DF479A103660F6665670F3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>1D6C54E7F45B61562F83AE2265CDE16D</key>
 		<dict>
 			<key>fileRef</key>
 			<string>3414CF46D8D5C228D0749BFA5433D8D9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>1D8E1BE0F4701F90F8A8501CBD4D75F7</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>GTMOAuth2</string>
+			<key>target</key>
+			<string>D468777BEC2DE5127A16239373FFD11F</string>
+			<key>targetProxy</key>
+			<string>F1FF1C4B7A1C7041767FD08B27397086</string>
 		</dict>
 		<key>1E6413A49993395DF5B7D94733803936</key>
 		<dict>
@@ -501,7 +576,7 @@
 		<key>2037D5FDEDE27E43387DD138F4752723</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>C2B8808BEE34D375068B65214966D0AF</string>
+			<string>F6F5D549B24EE2126FA40A3FF40EBD09</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -604,19 +679,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>2338E8C9D291967D818D2067F9B0C811</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-YSGGP-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>24F1B7436C233A0C6A4BBFF0413101AA</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -629,6 +691,68 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>256DAB0CCA580E59878B2C12351C40B4</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>1A25946368FC873DC8E07C5063F8689F</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-YSGGPTests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_YSGGPTests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
 		</dict>
 		<key>25ED3A18E897DED4F38D2B1F0F0392B8</key>
 		<dict>
@@ -660,6 +784,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>276D3F579B0818E7FACAA27987701FB7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2795E8835A5724CAF5033D2A1B6FBA59</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -681,7 +818,7 @@
 			<key>productName</key>
 			<string>GTMSessionFetcher</string>
 			<key>productReference</key>
-			<string>DD10F329EBE16E89125FE149FE3804CC</string>
+			<string>A5ED47DC80956CCC38B48A9A5BA98841</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -1121,20 +1258,16 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>3D50F5D3EBF783CFA4E0A013C5C26A3D</key>
+		<key>3CAD24C68E74267BED5D88ACF132C936</key>
 		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
+			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>GTMOAuth2.framework</string>
-			<key>path</key>
-			<string>GTMOAuth2.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
+			<string>GTMSessionFetcher</string>
+			<key>target</key>
+			<string>2795E8835A5724CAF5033D2A1B6FBA59</string>
+			<key>targetProxy</key>
+			<string>04052585C89D746B1218CF804B450F6F</string>
 		</dict>
 		<key>3DA62FDE23BA04A6E5C1CFCBD9F1C750</key>
 		<dict>
@@ -1178,16 +1311,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3EEAFE9A05288A69D8A5A6608B0FAAC3</key>
+		<key>3E9617ECC3332C6F10C77BE3E6D38030</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>text</string>
 			<key>path</key>
-			<string>Pods-YSGGP-umbrella.h</string>
+			<string>Pods-YSGGP-acknowledgements.markdown</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1201,32 +1334,6 @@
 			<string>2795E8835A5724CAF5033D2A1B6FBA59</string>
 			<key>targetProxy</key>
 			<string>7650E621B8629CBBB5FE8CA645E108E4</string>
-		</dict>
-		<key>40989ADC16611859774C058BABAF3162</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>40A31F30AAE8A788B0319071AA910670</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4B24A1FD5571BB74EC5C0C7FBB1D68D0</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Targets Support Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4136103F36E6F145BE2C81BBCBF54507</key>
 		<dict>
@@ -1271,6 +1378,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>439C954126D9ACF9083B0A4203B93E30</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EEFCB23E36BDDE92C36BF1EB5003EC65</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>44FCD4E92D92912F900AD5AB23E2CF90</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1283,6 +1397,19 @@
 			<string>GTLRuntimeCommon.m</string>
 			<key>path</key>
 			<string>Source/Objects/GTLRuntimeCommon.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>45AEB533472CE01133A03C158A4B7CF1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-YSGGP-acknowledgements.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1304,7 +1431,7 @@
 		<key>46BE85485A60548593951252AF9205D5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3EEAFE9A05288A69D8A5A6608B0FAAC3</string>
+			<string>5E413839093C0083B03C01970EF08A69</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1390,30 +1517,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>4B24A1FD5571BB74EC5C0C7FBB1D68D0</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>40989ADC16611859774C058BABAF3162</string>
-				<string>A77FD7CA225FCC5C8DC5379DEEF990BF</string>
-				<string>D6A22C0D4C53426A56F72F278F89AE97</string>
-				<string>0E76F26E347D045C2A72153CAC8AA428</string>
-				<string>771B454718FB766CDE636839ADED2441</string>
-				<string>2338E8C9D291967D818D2067F9B0C811</string>
-				<string>7384A98D2DA0CF4DC75FB7E06DF60A7C</string>
-				<string>3EEAFE9A05288A69D8A5A6608B0FAAC3</string>
-				<string>C2B8808BEE34D375068B65214966D0AF</string>
-				<string>9D985DC363B3477AD802936C3A445858</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-YSGGP</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-YSGGP</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4BBEC95B6110E9D4EA1A52EE1E82E68B</key>
 		<dict>
@@ -1509,6 +1612,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>53DB48DF8A22F929187F30C57D6152A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YSGGP.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>541402E3896B4A4EAAD5F54CF7C83FE9</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1578,6 +1694,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>57422BB79DDE99697ABFD152CF6C4432</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D04EC8C0F5B1D0CAA4129E5ACDB49C33</string>
+				<string>F4E305A589D27BC622E4E6299C2A7203</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>58400AF841E713406AB94E641CB700FE</key>
 		<dict>
 			<key>fileRef</key>
@@ -1591,6 +1721,35 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>596354B7FFF4F758A1AA00E4802BDC75</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D10027227872162BFF70593D33C71CEA</string>
+			<key>buildPhases</key>
+			<array>
+				<string>87E2274CAB4C153014124CE640098E8E</string>
+				<string>1D5F868EEED1CE9D9D67BD479EDA4C70</string>
+				<string>BC5ACB8D156A21193B6D90F7A33DB255</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>1D8E1BE0F4701F90F8A8501CBD4D75F7</string>
+				<string>3CAD24C68E74267BED5D88ACF132C936</string>
+				<string>1750C400A590548252C4E7C1B4EA22EF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-YSGGPTests</string>
+			<key>productName</key>
+			<string>Pods-YSGGPTests</string>
+			<key>productReference</key>
+			<string>DF854AC784B2A413F7A092EEFAB3656F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
 		</dict>
 		<key>59F854EF3E238B8EE537B0F10A342DBE</key>
 		<dict>
@@ -1650,22 +1809,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5B7EB9C5ECDECEBDA2CBA69F041A3382</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B1ADD3F0697AD2DDC65F4034CB2BA3A4</string>
-				<string>3D50F5D3EBF783CFA4E0A013C5C26A3D</string>
-				<string>DD10F329EBE16E89125FE149FE3804CC</string>
-				<string>09CCB826A6E6D88E04D86A72E41B8242</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>5E31BCFA2956D5ED2847FC19851C80CC</key>
 		<dict>
 			<key>fileRef</key>
@@ -1677,6 +1820,19 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>5E413839093C0083B03C01970EF08A69</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-YSGGP-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>5E9ADA55595C278176910F0F1F2A9C64</key>
 		<dict>
@@ -1720,6 +1876,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>616FCEB071CBA859126AA47E2DC40936</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>62A2123C512CD87EF488FAE3B840E484</key>
 		<dict>
 			<key>fileRef</key>
@@ -1746,6 +1915,34 @@
 			<string>GTLDrive.h</string>
 			<key>path</key>
 			<string>Source/Services/Drive/Generated/GTLDrive.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6597F2454E4CF7682AE3B0AD2CD006C0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-YSGGP.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>65E691F642FABAB90442550C56D73B03</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1D304B74AF8C080262C2814101059572</string>
+				<string>EC7DEBA14F5271AF0D22A84F7AB7F7CF</string>
+				<string>A5ED47DC80956CCC38B48A9A5BA98841</string>
+				<string>8CEBDCC6074D4C66028FF2B3FD9D2808</string>
+				<string>DF854AC784B2A413F7A092EEFAB3656F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2014,19 +2211,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>7384A98D2DA0CF4DC75FB7E06DF60A7C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-YSGGP-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>73CBC67A93FE9A2DF217A751172626A0</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2056,6 +2240,13 @@
 			<string>Source/GTMSessionFetcherService.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7549CF6880DF479A103660F6665670F3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A90C281A6FA53C84353664534E78BC4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>75941BF5F3A9279DC796355E392066F8</key>
 		<dict>
@@ -2132,19 +2323,6 @@
 			<key>remoteInfo</key>
 			<string>GTMSessionFetcher</string>
 		</dict>
-		<key>771B454718FB766CDE636839ADED2441</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-YSGGP-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>7841E533DA4C20A0307FB8C5FD6A4E71</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2157,6 +2335,19 @@
 			<string>GTLDriveConstants.m</string>
 			<key>path</key>
 			<string>Source/Services/Drive/Generated/GTLDriveConstants.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7918F1BC0D918B19C9D6302EB08B5CCE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-acknowledgements.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2220,7 +2411,7 @@
 			<key>productName</key>
 			<string>GoogleAPIClient</string>
 			<key>productReference</key>
-			<string>B1ADD3F0697AD2DDC65F4034CB2BA3A4</string>
+			<string>1D304B74AF8C080262C2814101059572</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -2231,8 +2422,8 @@
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>F2A875A48A4D36B979C042CC40252657</string>
 				<string>5E9ADA55595C278176910F0F1F2A9C64</string>
-				<string>5B7EB9C5ECDECEBDA2CBA69F041A3382</string>
-				<string>40A31F30AAE8A788B0319071AA910670</string>
+				<string>65E691F642FABAB90442550C56D73B03</string>
+				<string>57422BB79DDE99697ABFD152CF6C4432</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -2356,6 +2547,32 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
+		<key>86BB6315BD04D809419E6943BE9B19E6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87E2274CAB4C153014124CE640098E8E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>439C954126D9ACF9083B0A4203B93E30</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>87F6F9CA7D2C91044810C9E2F94F9B07</key>
 		<dict>
 			<key>children</key>
@@ -2468,6 +2685,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>8CEBDCC6074D4C66028FF2B3FD9D2808</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_YSGGP.framework</string>
+			<key>path</key>
+			<string>Pods_YSGGP.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>8CF71471F557C5B073F3389D4ECF2227</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2503,6 +2735,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>901826A71FF72042EE7E0647A6D9DAF8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-YSGGP-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>905B24609E91D39D24D24A745CA35269</key>
 		<dict>
@@ -2646,6 +2891,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>980DD97CEF7F0F0CF692CD81AFD9F46C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>985687D5BC9DE7365EBCC09DDD84814E</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2719,19 +2977,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>9D985DC363B3477AD802936C3A445858</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-YSGGP.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9DE7F20E2FF8B93BDCC583F91510521B</key>
 		<dict>
@@ -2855,16 +3100,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A77FD7CA225FCC5C8DC5379DEEF990BF</key>
+		<key>A5ED47DC80956CCC38B48A9A5BA98841</key>
 		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
 			<key>includeInIndex</key>
-			<string>1</string>
+			<string>0</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>GTMSessionFetcher.framework</string>
 			<key>path</key>
-			<string>Pods-YSGGP.modulemap</string>
+			<string>GTMSessionFetcher.framework</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>A8253D666CF80B1DD35C3C8A5FED4399</key>
 		<dict>
@@ -3083,7 +3332,7 @@
 			<key>productName</key>
 			<string>Pods-YSGGP</string>
 			<key>productReference</key>
-			<string>09CCB826A6E6D88E04D86A72E41B8242</string>
+			<string>8CEBDCC6074D4C66028FF2B3FD9D2808</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -3126,21 +3375,6 @@
 			<string>Core</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B1ADD3F0697AD2DDC65F4034CB2BA3A4</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>GoogleAPIClient.framework</string>
-			<key>path</key>
-			<string>GoogleAPIClient.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>B1FAC6D3C4204C978ECB9BCF766D3F3F</key>
 		<dict>
@@ -3382,6 +3616,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>BC5ACB8D156A21193B6D90F7A33DB255</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>048A1DE1415EAE8952F6EB2EE522CCF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>BE72C2076B7BE3C0F6B60E849623EE0E</key>
 		<dict>
 			<key>children</key>
@@ -3545,19 +3792,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C2B8808BEE34D375068B65214966D0AF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-YSGGP.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>C333271C2050C2ADC478290CC5A9F6B7</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3576,7 +3810,7 @@
 		<key>C376D79D25BF95273597A77D2A017C11</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>9D985DC363B3477AD802936C3A445858</string>
+			<string>53DB48DF8A22F929187F30C57D6152A0</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -3699,6 +3933,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>C842282294C72AAC1638DC3AD4343A78</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-YSGGP-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>C906C9F26CBA4677C732CEB3E5A77D4C</key>
 		<dict>
 			<key>children</key>
@@ -3784,6 +4031,106 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>D04EC8C0F5B1D0CAA4129E5ACDB49C33</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>FE22257F738BEAB11A9FA20030A32D4B</string>
+				<string>6597F2454E4CF7682AE3B0AD2CD006C0</string>
+				<string>3E9617ECC3332C6F10C77BE3E6D38030</string>
+				<string>45AEB533472CE01133A03C158A4B7CF1</string>
+				<string>C842282294C72AAC1638DC3AD4343A78</string>
+				<string>901826A71FF72042EE7E0647A6D9DAF8</string>
+				<string>D80C46B5FE46CB5E4EFC7E32C6C5D4F3</string>
+				<string>5E413839093C0083B03C01970EF08A69</string>
+				<string>F6F5D549B24EE2126FA40A3FF40EBD09</string>
+				<string>53DB48DF8A22F929187F30C57D6152A0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-YSGGP</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-YSGGP</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D10027227872162BFF70593D33C71CEA</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D1010F68CC6D830AC442DE96F01C6BB8</string>
+				<string>256DAB0CCA580E59878B2C12351C40B4</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D1010F68CC6D830AC442DE96F01C6BB8</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>616FCEB071CBA859126AA47E2DC40936</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-YSGGPTests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-YSGGPTests/Pods-YSGGPTests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_YSGGPTests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
 		<key>D2082F04DF78E0B51E50406395EEBFCF</key>
 		<dict>
 			<key>fileRef</key>
@@ -3848,6 +4195,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>D40D4139A3C6220EB89181E812A331CC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
 			<key>attributes</key>
@@ -3874,7 +4234,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>5B7EB9C5ECDECEBDA2CBA69F041A3382</string>
+			<string>65E691F642FABAB90442550C56D73B03</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -3887,6 +4247,7 @@
 				<string>D468777BEC2DE5127A16239373FFD11F</string>
 				<string>2795E8835A5724CAF5033D2A1B6FBA59</string>
 				<string>B120FFB1C9E061B82AB81DE05C5EFC1E</string>
+				<string>596354B7FFF4F758A1AA00E4802BDC75</string>
 			</array>
 		</dict>
 		<key>D468777BEC2DE5127A16239373FFD11F</key>
@@ -3913,7 +4274,7 @@
 			<key>productName</key>
 			<string>GTMOAuth2</string>
 			<key>productReference</key>
-			<string>3D50F5D3EBF783CFA4E0A013C5C26A3D</string>
+			<string>EC7DEBA14F5271AF0D22A84F7AB7F7CF</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -3944,19 +4305,6 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>D6A22C0D4C53426A56F72F278F89AE97</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-YSGGP-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D7C44A3FC82D6C2ADE86B6D754F715B6</key>
 		<dict>
 			<key>fileRef</key>
@@ -3977,6 +4325,30 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>D80C46B5FE46CB5E4EFC7E32C6C5D4F3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-YSGGP-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D82ECE0C17672886BDB7AC8AE222E801</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>DA3B53F1841808F066951100A2983D47</key>
 		<dict>
@@ -4034,21 +4406,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DD10F329EBE16E89125FE149FE3804CC</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>GTMSessionFetcher.framework</string>
-			<key>path</key>
-			<string>GTMSessionFetcher.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>DE706A41B96F3438A7D8D5C07CEE3906</key>
 		<dict>
 			<key>fileRef</key>
@@ -4072,6 +4429,21 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>DF854AC784B2A413F7A092EEFAB3656F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_YSGGPTests.framework</string>
+			<key>path</key>
+			<string>Pods_YSGGPTests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>E19067A4337B6CACF37FE58AC835F479</key>
 		<dict>
@@ -4268,6 +4640,21 @@
 				</array>
 			</dict>
 		</dict>
+		<key>EC7DEBA14F5271AF0D22A84F7AB7F7CF</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>GTMOAuth2.framework</string>
+			<key>path</key>
+			<string>GTMOAuth2.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>ECBD5ECEF6DE5E9B3ED2E7A52CB0FAC8</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -4349,9 +4736,22 @@
 		<key>EEC4C5F49DABBF8AA3C80FB2F554AAB4</key>
 		<dict>
 			<key>fileRef</key>
-			<string>771B454718FB766CDE636839ADED2441</string>
+			<string>C842282294C72AAC1638DC3AD4343A78</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>EEFCB23E36BDDE92C36BF1EB5003EC65</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>F188EEBEF60C539BFF04FCCCA5A6567E</key>
 		<dict>
@@ -4366,6 +4766,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>F1FF1C4B7A1C7041767FD08B27397086</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D468777BEC2DE5127A16239373FFD11F</string>
+			<key>remoteInfo</key>
+			<string>GTMOAuth2</string>
 		</dict>
 		<key>F2A875A48A4D36B979C042CC40252657</key>
 		<dict>
@@ -4462,6 +4875,30 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
+		</dict>
+		<key>F4E305A589D27BC622E4E6299C2A7203</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D40D4139A3C6220EB89181E812A331CC</string>
+				<string>D82ECE0C17672886BDB7AC8AE222E801</string>
+				<string>276D3F579B0818E7FACAA27987701FB7</string>
+				<string>7918F1BC0D918B19C9D6302EB08B5CCE</string>
+				<string>EEFCB23E36BDDE92C36BF1EB5003EC65</string>
+				<string>FAEF576F356F86EA8BDD4FB8DBFE6969</string>
+				<string>86BB6315BD04D809419E6943BE9B19E6</string>
+				<string>980DD97CEF7F0F0CF692CD81AFD9F46C</string>
+				<string>616FCEB071CBA859126AA47E2DC40936</string>
+				<string>1A25946368FC873DC8E07C5063F8689F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-YSGGPTests</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-YSGGPTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>F5B240CF353DBE71B4832ED4C2E1F2A3</key>
 		<dict>
@@ -4580,6 +5017,19 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>F6F5D549B24EE2126FA40A3FF40EBD09</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YSGGP.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>FA30E5212A822600C9EC471D0AC99C67</key>
 		<dict>
 			<key>fileRef</key>
@@ -4621,6 +5071,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>FAEF576F356F86EA8BDD4FB8DBFE6969</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-YSGGPTests-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FC63B626A4438F4550D12D3FEC8A5D84</key>
 		<dict>
@@ -4669,6 +5132,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>FE22257F738BEAB11A9FA20030A32D4B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FFE4D6D341330FA88E07E8BF46B9D7A9</key>
 		<dict>

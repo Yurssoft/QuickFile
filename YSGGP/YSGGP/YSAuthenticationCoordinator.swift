@@ -52,9 +52,20 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     {
                                                                         DispatchQueue.main.async
                                                                         {
-                                                                            [weak self] in self?.authorizer = authResult
-                                                                            self?.navigationController?.dismiss(animated: true, completion: nil)
-                                                                            self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!)
+                                                                            self.authorizer = authResult
+                                                                            self.navigationController?.dismiss(animated: true, completion:
+                                                                                {
+                                                                                    DispatchQueue.main.async
+                                                                                    {
+                                                                                        self.navigationController?.dismiss(animated: true, completion:
+                                                                                        {
+                                                                                            DispatchQueue.main.async
+                                                                                            {
+                                                                                                self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self)
+                                                                                            }
+                                                                                        })
+                                                                                    }
+                                                                            })
                                                                         }
                                                                     }
         }) as! GTMOAuth2ViewControllerTouch?
