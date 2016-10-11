@@ -8,13 +8,29 @@
 
 import XCTest
 
-class YSGGPUITests: XCTestCase {
-        
+class YSGGPUITests: XCTestCase
+{
     override func setUp()
     {
         super.setUp()
         continueAfterFailure = true
         XCUIApplication().launch()
+        XCUIDevice.shared().orientation = .faceUp
+    }
+    
+    func testInitialView()
+    {
+        let app = XCUIApplication()
+        let navigationBar = app.navigationBars["YSGGP.YSDriveTopView"]
+        navigationBar.buttons["Login"].tap()
+        app.otherElements["Sign in - Google Accounts"].textFields["Enter your email"].tap()
+        app.navigationBars["GTMOAuth2View"].buttons["Cancel"].tap()
+        app.statusBars.otherElements["100% battery power, On AC Power"].tap()
+        navigationBar.buttons["Done"].tap()
+        
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Playlist"].tap()
+        tabBarsQuery.buttons["Settings"].tap()
     }
     
     func testLoginToDrive()

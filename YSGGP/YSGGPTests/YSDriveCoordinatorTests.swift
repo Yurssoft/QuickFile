@@ -7,10 +7,10 @@
 //
 
 import XCTest
-import GTMOAuth2
 @testable import YSGGP
+import GTMOAuth2
 
-class YSGGPDriveCoordinatorTests: XCTestCase
+class YSDriveCoordinatorTests: XCTestCase
 {
     let coordinator = YSDriveCoordinator.init(driveViewController: YSDriveViewController(), navigationController: UINavigationController())
 

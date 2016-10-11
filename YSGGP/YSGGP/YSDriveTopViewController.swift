@@ -10,6 +10,7 @@ import UIKit
 
 class YSDriveTopViewController: UIViewController
 {
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var toolbarViewBottomConstraint : NSLayoutConstraint?
     @IBOutlet weak var toolbarView: YSToolbarView?
@@ -38,11 +39,12 @@ class YSDriveTopViewController: UIViewController
         }
     }
     
-    @IBAction func editButtonTapped(_ sender: AnyObject)
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem)
     {
         driveVC?.setEditing(!(driveVC?.isEditing)!, animated: true)
         toolbarView?.isHidden = !(driveVC?.isEditing)!
         navigationItem.leftBarButtonItem = (driveVC?.isEditing)! ? nil : loginNavigationButton
+        sender.title = (driveVC?.isEditing)! ? "Done" : "Edit"
         tabBarController?.setTabBarVisible(isVisible: !(driveVC?.isEditing)!, animated: true, completion:nil)
     }
     
