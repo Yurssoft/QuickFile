@@ -1,6 +1,0 @@
-language: swift
-osx_image: xcode8
-script:
-  - xcodebuild -scheme YSGGP -workspace YSGGP.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.0' build test
-after_success:
-  - bash <(curl -s https://codecov.io/bash)

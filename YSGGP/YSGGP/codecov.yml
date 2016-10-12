@@ -1,0 +1,4 @@
+coverage:
+  ignore:
+    - YSGGPUITests/*
+    - YSGGPUnitTests/*
