@@ -22,9 +22,9 @@
 		504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */; };
 		504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */; };
 		504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111001D9C00E200BE3B0C /* YSConstants.swift */; };
-		505B4A3E1DAE42680055C180 /* YSDriveViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */; };
-		50911A2B1DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */; };
 		50911A2C1DAE9071008B7FE4 /* YSDriveModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */; };
+		50911A2E1DAE949A008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */; };
+		50911A2F1DAE94A4008B7FE4 /* YSDriveViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */; };
 		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
 		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
 		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
@@ -548,9 +548,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				505B4A3E1DAE42680055C180 /* YSDriveViewModelTests.swift in Sources */,
-				50911A2B1DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */,
 				50911A2C1DAE9071008B7FE4 /* YSDriveModelTests.swift in Sources */,
+				50911A2F1DAE94A4008B7FE4 /* YSDriveViewModelTests.swift in Sources */,
+				50911A2E1DAE949A008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

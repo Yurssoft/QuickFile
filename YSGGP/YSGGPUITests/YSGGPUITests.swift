@@ -23,14 +23,17 @@ class YSGGPUITests: XCTestCase
         let app = XCUIApplication()
         let navigationBar = app.navigationBars["YSGGP.YSDriveTopView"]
         navigationBar.buttons["Login"].tap()
-        app.otherElements["Sign in - Google Accounts"].textFields["Enter your email"].tap()
+        app.buttons["Next"].tap()
+        app.textFields["Enter your email"].tap()
         app.navigationBars["GTMOAuth2View"].buttons["Cancel"].tap()
-        app.statusBars.otherElements["100% battery power, On AC Power"].tap()
-        navigationBar.buttons["Done"].tap()
+        navigationBar.buttons["Edit"].tap()
         
-        let tabBarsQuery = app.tabBars
-        tabBarsQuery.buttons["Playlist"].tap()
-        tabBarsQuery.buttons["Settings"].tap()
+        app.navigationBars["YSGGP.YSDriveTopView"].buttons["Done"].tap()
+        
+        let tabBars = app.tabBars
+        tabBars.buttons["Playlist"].tap()
+        tabBars.buttons["Settings"].tap()
+        app.tables.staticTexts["You are Logged in to Drive"].tap()
     }
     
     func testLoginToDrive()
@@ -55,6 +58,9 @@ class YSGGPUITests: XCTestCase
         enterThe8DigitCodeTextField.tap()
         enterThe8DigitCodeTextField.typeText("22242774")
         app.otherElements["Google Accounts"].buttons["Done"].tap()
+        
+        XCTAssertFalse(app.staticTexts["Wrong code. Try again."].exists, "Wrong backup code")
+        
         let allowButton = app.otherElements["Request for Permission"].buttons["Allow"]
         let isHittablePredicate = NSPredicate(format: "isHittable == true")
         expectation(for: isHittablePredicate, evaluatedWith: allowButton, handler: nil)
