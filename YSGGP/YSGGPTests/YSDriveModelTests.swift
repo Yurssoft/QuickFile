@@ -11,5 +11,15 @@ import XCTest
 
 class YSDriveModelTests: XCTestCase
 {
-    
+    func testItems()
+    {
+        let driveModel = YSDriveModel()
+        XCTAssertTrue(driveModel.isLoggedIn, "To get items - login")
+        driveModel.items { (items) in
+            XCTAssertTrue(items.count > 0)
+            let item = items.first! as YSDriveItem
+            XCTAssertFalse(item.fileName.isEmpty)
+            XCTAssertFalse(item.fileInfo.isEmpty)
+        }
+    }
 }

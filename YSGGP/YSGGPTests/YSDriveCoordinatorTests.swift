@@ -12,8 +12,14 @@ import GTMOAuth2
 
 class YSDriveCoordinatorTests: XCTestCase
 {
-    let coordinator = YSDriveCoordinator.init(driveViewController: YSDriveViewController(), navigationController: UINavigationController())
+    var coordinator : YSDriveCoordinator
 
+    override func setUp()
+    {
+        coordinator = YSDriveCoordinator.init(driveViewController: YSDriveViewController(), navigationController: UINavigationController())
+        super.setUp()
+    }
+    
     func testInitialDefaults()
     {
         XCTAssertNotNil(coordinator.navigationController)

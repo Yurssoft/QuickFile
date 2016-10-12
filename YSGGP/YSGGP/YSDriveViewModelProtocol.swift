@@ -30,5 +30,5 @@ protocol YSDriveViewModelProtocol
     func itemAtIndex(_ index: Int) -> YSDriveItem?
     func useItemAtIndex(_ index: Int)
     func loginToDrive()
-    func removeItems()
+    func removeDownloads()
 }

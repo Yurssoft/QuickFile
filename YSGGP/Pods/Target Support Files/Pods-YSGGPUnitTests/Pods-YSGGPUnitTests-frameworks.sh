@@ -84,12 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-YSGGPTests/GTMOAuth2.framework"
-  install_framework "Pods-YSGGPTests/GTMSessionFetcher.framework"
-  install_framework "Pods-YSGGPTests/GoogleAPIClient.framework"
+  install_framework "Pods-YSGGPUnitTests/GTMOAuth2.framework"
+  install_framework "Pods-YSGGPUnitTests/GTMSessionFetcher.framework"
+  install_framework "Pods-YSGGPUnitTests/GoogleAPIClient.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-YSGGPTests/GTMOAuth2.framework"
-  install_framework "Pods-YSGGPTests/GTMSessionFetcher.framework"
-  install_framework "Pods-YSGGPTests/GoogleAPIClient.framework"
+  install_framework "Pods-YSGGPUnitTests/GTMOAuth2.framework"
+  install_framework "Pods-YSGGPUnitTests/GTMSessionFetcher.framework"
+  install_framework "Pods-YSGGPUnitTests/GoogleAPIClient.framework"
 fi

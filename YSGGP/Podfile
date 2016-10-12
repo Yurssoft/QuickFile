@@ -5,7 +5,7 @@ target 'YSGGP' do
     pod 'GTMOAuth2'
 end    
 
-    target 'YSGGPTests' do
+    target 'YSGGPUnitTests' do
         pod 'GoogleAPIClient/Drive'
         pod 'GTMOAuth2'
 end

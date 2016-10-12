@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EC4F2B8403B82FD1289E3AF3'
-               BlueprintName = 'Pods-YSGGPTests'
+               BlueprintIdentifier = '35A5DC86A8E424281E77BCB8'
+               BlueprintName = 'Pods-YSGGPUnitTests'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_YSGGPTests.framework'>
+               BuildableName = 'Pods_YSGGPUnitTests.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

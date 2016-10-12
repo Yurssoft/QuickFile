@@ -38,7 +38,7 @@ class YSDriveViewController: UITableViewController
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
     {
-        viewModel?.removeItems()
+        viewModel?.removeDownloads()
     }
     
     func loginButtonTapped(_ sender: UIBarButtonItem)

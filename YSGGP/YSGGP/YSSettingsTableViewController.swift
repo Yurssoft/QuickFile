@@ -8,12 +8,7 @@
 
 import UIKit
 
-class YSSettingsViewController: UIViewController
+class YSSettingsTableViewController: UITableViewController
 {
-    @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
 }

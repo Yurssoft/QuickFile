@@ -66,4 +66,9 @@ class YSGGPUITests: XCTestCase
         expectation(for: loginExistsPredicate, evaluatedWith: loginButton, handler: nil)
         waitForExpectations(timeout: 5, handler: nil)
     }
+    
+    func testLogOut ()
+    {
+        
+    }
 }

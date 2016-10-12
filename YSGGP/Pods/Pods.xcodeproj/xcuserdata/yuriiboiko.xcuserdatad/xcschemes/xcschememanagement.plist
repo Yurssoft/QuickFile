@@ -24,7 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-YSGGPTests.xcscheme</key>
+		<key>Pods-YSGGPUnitTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -33,11 +33,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2795E8835A5724CAF5033D2A1B6FBA59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>596354B7FFF4F758A1AA00E4802BDC75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>D468777BEC2DE5127A16239373FFD11F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6C91C4F660EEE00E262C77957C65CA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
