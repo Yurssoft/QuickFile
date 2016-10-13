@@ -11,6 +11,7 @@ import Foundation
 protocol YSDriveViewModelViewDelegate: class
 {
     func itemsDidChange(viewModel: YSDriveViewModel)
+    func errorDidChange(viewModel: YSDriveViewModel, message: String)
 }
 
 protocol YSDriveViewModelCoordinatorDelegate: class

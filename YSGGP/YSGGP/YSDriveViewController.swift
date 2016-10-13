@@ -100,4 +100,8 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             [weak self] in self?.tableView.reloadData()
         }
     }
+    func errorDidChange(viewModel: YSDriveViewModel, message: String)
+    {
+        
+    }
 }
