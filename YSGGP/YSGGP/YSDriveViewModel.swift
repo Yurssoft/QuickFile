@@ -14,6 +14,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
        return (model?.isLoggedIn)!
     }
+    
+    internal var isItemsPresent: Bool
+    {
+        return items != nil
+    }
 
     weak var viewDelegate: YSDriveViewModelViewDelegate?
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
@@ -31,7 +36,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         didSet
         {
             items = nil;
-            model?.items({ (items) in
+            model?.items({ (items, error) in
                 self.items = items
             })
         }

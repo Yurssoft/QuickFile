@@ -13,5 +13,5 @@ protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem]) -> Void)
+    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : Error?) -> ())
 }

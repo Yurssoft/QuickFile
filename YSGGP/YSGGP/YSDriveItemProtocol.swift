@@ -12,4 +12,5 @@ protocol YSDriveItemProtocol
 {
     var fileName : String { get } //Book 343
     var fileInfo : String { get } //108.03 MB (47 audio) or 10:18
+    var fileURL : String { get }
 }

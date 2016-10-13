@@ -51,8 +51,8 @@ class YSDriveViewModelTests: XCTestCase
     {
         viewModel.viewDelegate = self
         viewModel.model = YSDriveModel()
-        let itemsPredicate = NSPredicate(format: "numberOfItems > 0")
-        currentExpectaion = expectation(for: itemsPredicate, evaluatedWith: viewModel, handler: nil)
+        let itemsPredicate = NSPredicate(format: "self > 0")
+        currentExpectaion = expectation(for: itemsPredicate, evaluatedWith: viewModel.numberOfItems, handler: nil)
         waitForExpectations(timeout: 10, handler: nil)
     }
 }
@@ -61,10 +61,15 @@ extension YSDriveViewModelTests : YSDriveViewModelViewDelegate
 {
     func itemsDidChange(viewModel: YSDriveViewModel)
     {
+        if !viewModel.isItemsPresent
+        {
+            return
+        }
         XCTAssertTrue(viewModel.numberOfItems > 0)
-        let item = viewModel.itemAtIndex(0)! as YSDriveItem
-        XCTAssertFalse(item.fileName.isEmpty)
-        XCTAssertFalse(item.fileInfo.isEmpty)
+        XCTAssertNotNil(viewModel.itemAtIndex(0))
+        let item = viewModel.itemAtIndex(0)
+        XCTAssertFalse((item?.fileName.isEmpty)!)
+        XCTAssertFalse((item?.fileInfo.isEmpty)!)
         currentExpectaion?.fulfill()
     }
 }

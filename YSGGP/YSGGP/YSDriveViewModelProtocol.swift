@@ -25,6 +25,7 @@ protocol YSDriveViewModelProtocol
     var viewDelegate: YSDriveViewModelViewDelegate? { get set }
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate? { get set}
     var numberOfItems: Int { get }
+    var isItemsPresent: Bool { get }
     var isLoggedIn: Bool { get }
     
     func itemAtIndex(_ index: Int) -> YSDriveItem?

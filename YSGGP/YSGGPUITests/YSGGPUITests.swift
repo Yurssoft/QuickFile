@@ -59,7 +59,12 @@ class YSGGPUITests: XCTestCase
         enterThe8DigitCodeTextField.typeText("22242774")
         app.otherElements["Google Accounts"].buttons["Done"].tap()
         
+        sleep(5)
         XCTAssertFalse(app.staticTexts["Wrong code. Try again."].exists, "Wrong backup code")
+        if app.staticTexts["Wrong code. Try again."].exists
+        {
+            XCTFail()
+        }
         
         let allowButton = app.otherElements["Request for Permission"].buttons["Allow"]
         let isHittablePredicate = NSPredicate(format: "isHittable == true")

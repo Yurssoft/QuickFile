@@ -10,15 +10,16 @@ import Foundation
 import GoogleAPIClient
 import GTMOAuth2
 
-class YSDriveModel: YSDriveModelProtocol
+class YSDriveModel: NSObject, YSDriveModelProtocol
 {
     var isLoggedIn : Bool
     {
         return service.authorizer != nil
     }
+    
     let service = GTLServiceDrive()
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem]) -> Void)
+    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : Error?) -> ())
     {
         let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName:  YSConstants.kDriveKeychainItemName,
@@ -47,24 +48,26 @@ class YSDriveModel: YSDriveModelProtocol
                 {
                     for file in files as! [GTLDriveFile]
                     {
-                        let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, isAudio: false)
+                        let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, fileURL: file.size.stringValue, isAudio: false)
                         items.append(item)
                     }
-                    completionhandler(items)
+                    completionhandler(items, error)
                 }
             })
         }
         else
         {
-            print("login to drive first!")
             var items : [YSDriveItem]
             items = []
             for i in (0..<200)
             {
-                let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", isAudio: false)
+                let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            completionhandler(items)
+            let error = NSError(domain: YSDriveModel.nameOfClass,
+                              code: 1,
+                              userInfo: [NSLocalizedDescriptionKey: "Login to drive first!"])
+            completionhandler(items, error)
         }
     }
 }
