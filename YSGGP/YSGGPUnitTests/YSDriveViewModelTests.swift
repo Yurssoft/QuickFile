@@ -36,14 +36,8 @@ import XCTest
 
 class YSDriveViewModelTests: XCTestCase
 {
-    var viewModel : YSDriveViewModel
+    let viewModel = YSDriveViewModel()
     var currentExpectaion: XCTestExpectation?
-    
-    override func setUp()
-    {
-        viewModel = YSDriveViewModel()
-        super.setUp()
-    }
     
     func testInitialDefaults()
     {
