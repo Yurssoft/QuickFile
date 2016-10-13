@@ -1,7 +1,6 @@
 language: objective-c
 osx_image: xcode8
 sudo: false
-- cd YSGGP
 env:
   global:
   - LC_CTYPE=en_US.UTF-8
@@ -12,6 +11,7 @@ env:
   matrix:
     - DESTINATION="OS=10.0,name=iPhone 6s"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
 before_install:
+  - cd YSGGP
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
 script:
   - set -o pipefail
