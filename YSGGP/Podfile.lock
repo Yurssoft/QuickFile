@@ -11,14 +11,19 @@ PODS:
   - GTMSessionFetcher/Core (1.1.6)
   - GTMSessionFetcher/Full (1.1.6):
     - GTMSessionFetcher/Core (= 1.1.6)
+  - SwiftMessages (3.0.1)
 
 DEPENDENCIES:
   - GoogleAPIClient/Drive
   - GTMOAuth2
+  - SwiftMessages
 
 SPEC CHECKSUMS:
   GoogleAPIClient: 4a6b0b807de8b1115a2835180b25dd93dc60f1ea
   GTMOAuth2: 1707e2f7fe3a6d7240223c23c473ba5a2d104474
   GTMSessionFetcher: 6aacd0ab48ddf0c3633ab2642d792abfcad1b08a
+  SwiftMessages: 945e2928c6e819776abc8f480eb288c42cdd9e5b
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 4c7cf07dbe4a97cf567da98ab290a53291c812af
+
+COCOAPODS: 1.1.0.rc.3
