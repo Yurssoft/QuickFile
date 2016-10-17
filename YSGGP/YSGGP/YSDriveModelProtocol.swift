@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import GTMOAuth2
 
 protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ errorMessage : String?) -> ())
+    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : YSError?) -> ())
 }

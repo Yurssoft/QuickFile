@@ -11,7 +11,7 @@ import Foundation
 protocol YSDriveViewModelViewDelegate: class
 {
     func itemsDidChange(viewModel: YSDriveViewModel)
-    func errorDidChange(viewModel: YSDriveViewModel, errorMessage: String)
+    func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
 }
 
 protocol YSDriveViewModelCoordinatorDelegate: class
@@ -28,7 +28,7 @@ protocol YSDriveViewModelProtocol
     var numberOfItems: Int { get }
     var isItemsPresent: Bool { get }
     var isLoggedIn: Bool { get }
-    var errorMessage: String { get }
+    var error : YSError { get }
     
     func itemAtIndex(_ index: Int) -> YSDriveItem?
     func useItemAtIndex(_ index: Int)

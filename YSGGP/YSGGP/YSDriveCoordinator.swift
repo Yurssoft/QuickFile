@@ -8,16 +8,9 @@
 
 import UIKit
 
-protocol YSDriveCoordinatorDelegate: class
-{
-    func driveCoordinatorDidFinish(listCoordinator: YSDriveCoordinator)
-}
-
 class YSDriveCoordinator: YSCoordinatorProtocol
 {
-    weak var delegate: YSDriveCoordinatorDelegate?
     var driveViewController: YSDriveViewController?
-    var driveModel: YSDriveModel?
     var navigationController: UINavigationController?
     
     init(driveViewController: YSDriveViewController, navigationController: UINavigationController)
@@ -32,7 +25,6 @@ class YSDriveCoordinator: YSCoordinatorProtocol
         driveViewController?.viewModel = viewModel
         viewModel.model = YSDriveModel()
         viewModel.coordinatorDelegate = self
-        driveModel = viewModel.model
     }
 }
 
@@ -47,7 +39,7 @@ extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
     
     func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator)
     {
-        driveModel?.service.authorizer = authenticationCoordinator.authorizer
+        YSDriveManager.sharedInstance.service.authorizer = authenticationCoordinator.authorizer
         start()
     }
 }

@@ -14,14 +14,11 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
 {
     var isLoggedIn : Bool
     {
-        return service.authorizer != nil
+        return YSDriveManager.sharedInstance.isLoggedIn
     }
     
-    let service = GTLServiceDrive()
-    
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ errorMessage : String?) -> ())
+    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : YSError?) -> ())
     {
-        var errorMessage = ""
         let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName:  YSConstants.kDriveKeychainItemName,
             clientID: YSConstants.kDriveClientID,
@@ -32,18 +29,18 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         }
         catch
         {
-            print("error drive login \(error.localizedDescription)")
+            print("Error login to drive:       \(error.localizedDescription)")
         }
         if auth != nil && (auth?.canAuthorize)!
         {
-            service.authorizer = auth
+            YSDriveManager.sharedInstance.service.authorizer = auth
             let query = GTLQueryDrive.queryForFilesList()
             query?.pageSize = 10
             query?.fields = "nextPageToken, files(id, name)"
             
             var items : [YSDriveItem]
             items = []
-            service.executeQuery(query!, completionHandler: { (ticket, response1, error) in
+            YSDriveManager.sharedInstance.service.executeQuery(query!, completionHandler: { (ticket, response1, error) in
                 let response = response1 as? GTLDriveFileList
                 if let files = response?.files , !files.isEmpty
                 {
@@ -52,11 +49,11 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                         let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, fileURL: file.size.stringValue, isAudio: false)
                         items.append(item)
                     }
-                    if !error?.localizedDescription.isEmpty
+                    if !(error?.localizedDescription.isEmpty)!
                     {
-                        errorMessage = "Couldn"
+                        completionhandler(items, YSError.couldNotGetFileList)
                     }
-                    completionhandler(items, error?.localizedDescription)
+                    completionhandler(items, YSError.none)
                 }
             })
         }
@@ -69,7 +66,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            completionhandler(items, "You are not logged in to Drive")
+            completionhandler(items, YSError.couldNotLoginToDrive)
         }
     }
 }

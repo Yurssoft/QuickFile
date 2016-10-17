@@ -7,8 +7,81 @@
 //
 
 import UIKit
+import SwiftMessages
 
 class YSSettingsTableViewController: UITableViewController
 {
+    var viewModel : YSSettingsViewModel?
+    {
+        willSet
+        {
+            viewModel?.viewDelegate = nil
+        }
+        didSet
+        {
+            viewModel?.viewDelegate = self
+        }
+    }
+    let cellLogInOutIdentifier = "logInOutCell"
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let cell = tableView.cellForRow(at: indexPath)
+        if cell?.reuseIdentifier == cellLogInOutIdentifier
+        {
+            if (viewModel?.isLoggedIn)!
+            {
+                viewModel?.logOut()
+            }
+            else
+            {
+                viewModel?.loginToDrive()
+            }
+        }
+    }
+}
+
+extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
+{
+    func errorDidChange(viewModel: YSSettingsViewModel, error: YSError)
+    {
+        switch error
+        {
+        case .couldNotLoginToDrive:
+            let warning = MessageView.viewFromNib(layout: .CardView)
+            warning.configureTheme(.warning)
+            warning.configureDropShadow()
+            warning.configureContent(title: "Warning", body: "Couldn't login to Drive")
+            warning.button?.setTitle("Try Again", for: UIControlState.normal)
+            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+            warning.buttonTapHandler =
+                { _ in
+                    viewModel.loginToDrive()
+                    SwiftMessages.hide(id: warning.id)
+            }
+            var warningConfig = SwiftMessages.Config()
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            SwiftMessages.show(config: warningConfig, view: warning)
+            break
+            
+        case .couldNotLogOutFromDrive:
+            let warning = MessageView.viewFromNib(layout: .CardView)
+            warning.configureTheme(.warning)
+            warning.configureDropShadow()
+            warning.configureContent(title: "Warning", body: "Couldn't log out from Drive")
+            warning.button?.setTitle("Try Again", for: UIControlState.normal)
+            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+            warning.buttonTapHandler =
+                { _ in
+                    viewModel.loginToDrive()
+                    SwiftMessages.hide(id: warning.id)
+            }
+            var warningConfig = SwiftMessages.Config()
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            SwiftMessages.show(config: warningConfig, view: warning)
+            break
+            
+        default: break
+        }
+    }
 }

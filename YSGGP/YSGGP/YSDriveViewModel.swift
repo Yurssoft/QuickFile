@@ -20,11 +20,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return items != nil
     }
     
-    internal var errorMessage: String = ""
+    internal var error : YSError = YSError.none
     {
         didSet
         {
-            viewDelegate?.errorDidChange(viewModel: self, errorMessage: errorMessage)
+            viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
 
@@ -46,7 +46,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             items = nil
             model?.items({ (items, error) in
                 self.items = items
-                self.errorMessage = error!
+                self.error = error!
             })
         }
     }

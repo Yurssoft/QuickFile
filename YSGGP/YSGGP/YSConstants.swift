@@ -18,7 +18,10 @@ struct YSConstants
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
 }
 
-//enum YSError : Error
-//{
-//    case couldNotGetFileList
-//}
+enum YSError : Error
+{
+    case none
+    case couldNotGetFileList
+    case couldNotLoginToDrive
+    case couldNotLogOutFromDrive
+}

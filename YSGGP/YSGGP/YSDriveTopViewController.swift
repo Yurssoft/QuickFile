@@ -23,13 +23,11 @@ class YSDriveTopViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        if driveVC == nil
-        {
-            print("driveVC == nil")
-        }
         let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: navigationController!)
         driveCoordinator.start()
+        
+        
+        
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
         loginNavigationButton = UIBarButtonItem(title: "Login", style:UIBarButtonItemStyle.plain, target: self, action: #selector(YSDriveTopViewController.loginButtonTapped(_:)))
