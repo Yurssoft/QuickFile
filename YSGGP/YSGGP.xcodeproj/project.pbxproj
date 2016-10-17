@@ -746,6 +746,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = YSGGP/Info.plist;
@@ -764,6 +765,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGP/Info.plist;
