@@ -29,10 +29,10 @@ class YSDriveCoordinator: YSCoordinatorProtocol
     func start()
     {
         let viewModel =  YSDriveViewModel()
+        driveViewController?.viewModel = viewModel
         viewModel.model = YSDriveModel()
         viewModel.coordinatorDelegate = self
         driveModel = viewModel.model
-        driveViewController?.viewModel = viewModel
     }
 }
 

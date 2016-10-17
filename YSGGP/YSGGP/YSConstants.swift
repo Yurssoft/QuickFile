@@ -17,3 +17,8 @@ struct YSConstants
     static let kStoryboardName = "Main"
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
 }
+
+//enum YSError : Error
+//{
+//    case couldNotGetFileList
+//}

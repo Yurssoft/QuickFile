@@ -19,8 +19,9 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     let service = GTLServiceDrive()
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : Error?) -> ())
+    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ errorMessage : String?) -> ())
     {
+        var errorMessage = ""
         let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName:  YSConstants.kDriveKeychainItemName,
             clientID: YSConstants.kDriveClientID,
@@ -51,7 +52,11 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                         let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, fileURL: file.size.stringValue, isAudio: false)
                         items.append(item)
                     }
-                    completionhandler(items, error)
+                    if !error?.localizedDescription.isEmpty
+                    {
+                        errorMessage = "Couldn"
+                    }
+                    completionhandler(items, error?.localizedDescription)
                 }
             })
         }
@@ -64,10 +69,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            let error = NSError(domain: YSDriveModel.nameOfClass,
-                              code: 1,
-                              userInfo: [NSLocalizedDescriptionKey: "Login to drive first!"])
-            completionhandler(items, error)
+            completionhandler(items, "You are not logged in to Drive")
         }
     }
 }

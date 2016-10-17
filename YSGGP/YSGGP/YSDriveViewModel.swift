@@ -19,6 +19,14 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         return items != nil
     }
+    
+    internal var errorMessage: String = ""
+    {
+        didSet
+        {
+            viewDelegate?.errorDidChange(viewModel: self, errorMessage: errorMessage)
+        }
+    }
 
     weak var viewDelegate: YSDriveViewModelViewDelegate?
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
@@ -35,9 +43,10 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         didSet
         {
-            items = nil;
+            items = nil
             model?.items({ (items, error) in
                 self.items = items
+                self.errorMessage = error!
             })
         }
     }

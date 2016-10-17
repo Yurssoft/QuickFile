@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SwiftMessages
 
 class YSDriveViewController: UITableViewController
 {
     weak var toolbarView: YSToolbarView!
     
     var viewModel: YSDriveViewModel?
-        {
+    {
         willSet
         {
             viewModel?.viewDelegate = nil
@@ -29,11 +30,6 @@ class YSDriveViewController: UITableViewController
     {
         refreshDisplay()
         tableView.allowsMultipleSelectionDuringEditing = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
     }
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
@@ -100,8 +96,20 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             [weak self] in self?.tableView.reloadData()
         }
     }
-    func errorDidChange(viewModel: YSDriveViewModel, message: String)
+    
+    func errorDidChange(viewModel: YSDriveViewModel, errorMessage: String)
     {
-        
+        if !errorMessage.isEmpty
+        {
+            let warning = MessageView.viewFromNib(layout: .CardView)
+            warning.configureTheme(.warning)
+            warning.configureDropShadow()
+            warning.configureContent(title: "Warning", body: errorMessage)
+            warning.button?.setTitle("Login", for: UIControlState.normal)
+            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+            var warningConfig = SwiftMessages.Config()
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            SwiftMessages.show(config: warningConfig, view: warning)
+        }
     }
 }
