@@ -28,6 +28,7 @@
 		508EFC1E1DB52B3600ED5CFB /* YSSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */; };
 		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
 		508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */; };
+		508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */; };
 		50911A2C1DAE9071008B7FE4 /* YSDriveModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */; };
 		50911A2E1DAE949A008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */; };
 		50911A2F1DAE94A4008B7FE4 /* YSDriveViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */; };
@@ -87,6 +88,7 @@
 		508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
 		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
 		508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
+		508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
 		50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinatorTests.swift; sourceTree = "<group>"; };
 		50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelTests.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 				50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */,
 				503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */,
 				503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */,
+				508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */,
 				500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */,
 			);
 			name = Controllers;
@@ -603,6 +606,7 @@
 				50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */,
 				508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */,
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
+				508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,7 +782,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = YSGGP/Info.plist;
@@ -797,7 +801,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGP/Info.plist;

@@ -119,7 +119,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             SwiftMessages.show(config: warningConfig, view: warning)
             break
             
-        case .couldNotLoginToDrive:
+        case .notLoggedInToDrive:
             let warning = MessageView.viewFromNib(layout: .CardView)
             warning.configureTheme(.warning)
             warning.configureDropShadow()

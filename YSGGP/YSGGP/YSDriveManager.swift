@@ -15,14 +15,32 @@ class YSDriveManager
     static let sharedInstance : YSDriveManager =
     {
         let instance = YSDriveManager()
+        instance.login()
         return instance
     }()
+    
+    func login()
+    {
+        let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
+            forName:  YSConstants.kDriveKeychainItemName,
+            clientID: YSConstants.kDriveClientID,
+            clientSecret: nil)
+        do
+        {
+            try GTMOAuth2ViewControllerTouch.authorizeFromKeychain(forName:YSConstants.kDriveKeychainItemName, authentication: auth)
+        }
+        catch
+        {
+            print("Error login to drive:       \(error.localizedDescription)")
+        }
+        service.authorizer = auth
+    }
     
     let service = GTLServiceDrive()
     
     var isLoggedIn : Bool
     {
-        return service.authorizer != nil
+        return service.authorizer != nil && service.authorizer.canAuthorize!
     }
     
     func logOut() throws

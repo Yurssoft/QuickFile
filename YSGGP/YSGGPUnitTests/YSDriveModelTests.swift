@@ -15,7 +15,7 @@ class YSDriveModelTests: XCTestCase
     {
         let driveModel = YSDriveModel()
         XCTAssertTrue(driveModel.isLoggedIn, "To get items - login")
-        driveModel.items { (items) in
+        driveModel.items { (items, error) in
             XCTAssertTrue(items.count > 0)
             let item = items.first! as YSDriveItem
             XCTAssertFalse(item.fileName.isEmpty)

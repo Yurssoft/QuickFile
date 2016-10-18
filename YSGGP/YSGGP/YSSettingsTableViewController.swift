@@ -20,9 +20,31 @@ class YSSettingsTableViewController: UITableViewController
         didSet
         {
             viewModel?.viewDelegate = self
+            if isViewLoaded
+            {
+                tableView.reloadData()
+            }
         }
     }
     let cellLogInOutIdentifier = "logInOutCell"
+    let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        switch cell.reuseIdentifier!
+        {
+            case cellLogInOutInfoIdentifier:
+                cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "You are logged in to Drive" : "You are not logged in to Drive"
+            break
+            
+            case cellLogInOutIdentifier:
+                 cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
+                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
+            break
+        default:
+            break
+        }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
@@ -38,6 +60,17 @@ class YSSettingsTableViewController: UITableViewController
                 viewModel?.loginToDrive()
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func loginToDrive()
+    {
+        viewModel?.loginToDrive()
+    }
+    
+    func logOutFromDrive()
+    {
+        viewModel?.logOut()
     }
 }
 
@@ -53,7 +86,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
             warning.configureDropShadow()
             warning.configureContent(title: "Warning", body: "Couldn't login to Drive")
             warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+            warning.button?.addTarget(self, action: #selector(YSSettingsTableViewController.loginToDrive), for: UIControlEvents.touchUpInside)
             warning.buttonTapHandler =
                 { _ in
                     viewModel.loginToDrive()
@@ -70,7 +103,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
             warning.configureDropShadow()
             warning.configureContent(title: "Warning", body: "Couldn't log out from Drive")
             warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+            warning.button?.addTarget(self, action: #selector(YSSettingsTableViewController.logOutFromDrive), for: UIControlEvents.touchUpInside)
             warning.buttonTapHandler =
                 { _ in
                     viewModel.loginToDrive()

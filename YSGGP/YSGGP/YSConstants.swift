@@ -16,6 +16,7 @@ struct YSConstants
     static let kDriveScopes = [kGTLAuthScopeDriveReadonly]
     static let kStoryboardName = "Main"
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
+    static let kSettingsEmbededSegue = "YSSettingsViewControllerSegue"
 }
 
 enum YSError : Error
@@ -23,5 +24,6 @@ enum YSError : Error
     case none
     case couldNotGetFileList
     case couldNotLoginToDrive
+    case notLoggedInToDrive
     case couldNotLogOutFromDrive
 }

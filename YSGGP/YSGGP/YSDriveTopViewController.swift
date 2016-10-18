@@ -23,10 +23,7 @@ class YSDriveTopViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: navigationController!)
-        driveCoordinator.start()
-        
-        
+        setupCoordinator()
         
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
@@ -35,6 +32,12 @@ class YSDriveTopViewController: UIViewController
         {
             navigationItem.setLeftBarButton(loginNavigationButton, animated: true)
         }
+    }
+    
+    func setupCoordinator()
+    {
+        let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: navigationController!)
+        driveCoordinator.start()
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)

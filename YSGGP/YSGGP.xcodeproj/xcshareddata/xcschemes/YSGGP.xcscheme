@@ -33,16 +33,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50CC748C1DAD2DC9007FC004"
-               BuildableName = "YSGGPTests.xctest"
-               BlueprintName = "YSGGPTests"
-               ReferencedContainer = "container:YSGGP.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "50AB0DD61D8FF243008EDB0D"
                BuildableName = "YSGGPUITests.xctest"
                BlueprintName = "YSGGPUITests"

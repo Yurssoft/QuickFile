@@ -19,21 +19,9 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : YSError?) -> ())
     {
-        let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
-            forName:  YSConstants.kDriveKeychainItemName,
-            clientID: YSConstants.kDriveClientID,
-            clientSecret: nil)
-        do
+        YSDriveManager.sharedInstance.login()
+        if isLoggedIn
         {
-            try GTMOAuth2ViewControllerTouch.authorizeFromKeychain(forName:YSConstants.kDriveKeychainItemName, authentication: auth)
-        }
-        catch
-        {
-            print("Error login to drive:       \(error.localizedDescription)")
-        }
-        if auth != nil && (auth?.canAuthorize)!
-        {
-            YSDriveManager.sharedInstance.service.authorizer = auth
             let query = GTLQueryDrive.queryForFilesList()
             query?.pageSize = 10
             query?.fields = "nextPageToken, files(id, name)"
@@ -66,7 +54,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            completionhandler(items, YSError.couldNotLoginToDrive)
+            completionhandler(items, YSError.notLoggedInToDrive)
         }
     }
 }

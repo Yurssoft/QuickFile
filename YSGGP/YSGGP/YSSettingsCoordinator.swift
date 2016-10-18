@@ -21,5 +21,33 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
     
     func start()
     {
+        let viewModel =  YSSettingsViewModel()
+        settingsViewController?.viewModel = viewModel
+        viewModel.model = YSSettingsModel()
+        viewModel.coordinatorDelegate = self
+    }
+}
+
+extension YSSettingsCoordinator : YSAuthenticationCoordinatorDelegate
+{
+    func showAuthentication()
+    {
+        let authenticationCoordinator = YSAuthenticationCoordinator(navigationController: navigationController!)
+        authenticationCoordinator.delegate = self
+        authenticationCoordinator.start()
+    }
+    
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator)
+    {
+        YSDriveManager.sharedInstance.service.authorizer = authenticationCoordinator.authorizer
+        start()
+    }
+}
+
+extension YSSettingsCoordinator: YSSettingsViewModelCoordinatorDelegate
+{
+    func settingsViewModelDidRequestedLogin()
+    {
+        showAuthentication()
     }
 }
