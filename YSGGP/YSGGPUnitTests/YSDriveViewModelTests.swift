@@ -47,5 +47,9 @@ extension YSDriveViewModelTests : YSDriveViewModelViewDelegate
         XCTAssertFalse((item?.fileInfo.isEmpty)!)
         currentExpectaion?.fulfill()
     }
+    func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
+    {
+        
+    }
 }
 

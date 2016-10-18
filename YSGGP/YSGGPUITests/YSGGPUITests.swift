@@ -20,6 +20,20 @@ class YSGGPUITests: XCTestCase
     
     func testInitialView()
     {
+        let app = XCUIApplication()
+        app.navigationBars["YSGGP.YSDriveTopView"].buttons["Login"].tap()
+        app.navigationBars["GTMOAuth2View"].buttons["Cancel"].tap()
+        
+        let tabBarsQuery = app.tabBars
+        let playlistButton = tabBarsQuery.buttons["Playlist"]
+        playlistButton.tap()
+        tabBarsQuery.buttons["Settings"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.children(matching: .other).element(boundBy: 0).otherElements["Info"].tap()
+        tablesQuery.children(matching: .other).element(boundBy: 1).otherElements["Actions"].tap()
+        playlistButton.tap()
+        tabBarsQuery.buttons["Drive"].tap()
     }
     
     func testLoginToDrive()
@@ -45,7 +59,7 @@ class YSGGPUITests: XCTestCase
         
         let enterThe8DigitCodeTextField = app.textFields["Enter the 8-digit code"]
         enterThe8DigitCodeTextField.tap()
-        enterThe8DigitCodeTextField.typeText("48416371")
+        enterThe8DigitCodeTextField.typeText("50813275")
         app.otherElements["Google Accounts"].buttons["Done"].tap()
         
         sleep(5)
