@@ -12,7 +12,7 @@ import GoogleAPIClient
 
 protocol YSAuthenticationCoordinatorDelegate: class
 {
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator)
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
 }
 
 class YSAuthenticationCoordinator: YSCoordinatorProtocol
@@ -20,7 +20,6 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
     weak var delegate : YSAuthenticationCoordinatorDelegate?
     var navigationController: UINavigationController?
     var authController : GTMOAuth2ViewControllerTouch?
-    var authorizer: GTMOAuth2Authentication?
     
     init(navigationController: UINavigationController)
     {
@@ -50,22 +49,9 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     }
                                                                     else
                                                                     {
-                                                                        DispatchQueue.main.async
+                                                                        self.dismissAuthentication()
                                                                         {
-                                                                            self.authorizer = authResult
-                                                                            self.navigationController?.dismiss(animated: true, completion:
-                                                                                {
-                                                                                    DispatchQueue.main.async
-                                                                                    {
-                                                                                        self.navigationController?.dismiss(animated: true, completion:
-                                                                                        {
-                                                                                            DispatchQueue.main.async
-                                                                                            {
-                                                                                                self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self)
-                                                                                            }
-                                                                                        })
-                                                                                    }
-                                                                            })
+                                                                            [weak self] in self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!, error: YSError(errorType: YSErrorType.couldNotLoginToDrive, message: "Couldn't login to Drive"))
                                                                         }
                                                                     }
         }) as! GTMOAuth2ViewControllerTouch?
@@ -78,33 +64,11 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
     
     func showError(error : Error?)
     {
-        self.authorizer = nil
-        let alert = UIAlertController(
-            title: "Authentication Error",
-            message: error?.localizedDescription,
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
-            { (UIAlertAction) in
-                DispatchQueue.main.async
-                {
-                    [weak self] in self?.navigationController?.dismiss(animated: true, completion:
-                    {
-                        DispatchQueue.main.async
-                        {
-                            [weak self] in self?.navigationController?.dismiss(animated: true, completion:
-                            {
-                                DispatchQueue.main.async
-                                {
-                                    [weak self] in self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!)
-                                }
-                            })
-                        }
-                    })
-            }
-        })
-        alert.addAction(ok)
-        authController?.present(alert, animated: true, completion: nil)
+        YSDriveManager.sharedInstance.service.authorizer = nil
+        dismissAuthentication()
+        {
+           [weak self] in self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!, error: YSError(errorType: YSErrorType.couldNotLoginToDrive, message: "Couldn't login to Drive"))
+        }
     }
     
     func saveAuthResult(authResult : GTMOAuth2Authentication?)
@@ -115,11 +79,38 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
             return
         }
         GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainItemName, authentication: auth)
+        YSDriveManager.sharedInstance.service.authorizer = auth
     }
     
     @objc func cancelSigningIn()
     {
-        navigationController?.dismiss(animated: true, completion: nil)
         authController?.cancelSigningIn()
+        dismissAuthentication()
+        {
+            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: YSError(errorType: YSErrorType.cancelledLoginToDrive, message: "Login cancelled"))
+        }
+    }
+    
+    func dismissAuthentication(_ completionHandler: (() -> Swift.Void)? = nil)
+    {
+        DispatchQueue.main.async
+        {
+            [weak self] in self?.navigationController?.dismiss(animated: true, completion:
+            {
+                DispatchQueue.main.async
+                {
+                    [weak self] in self?.navigationController?.dismiss(animated: true, completion:
+                    {
+                        DispatchQueue.main.async
+                        {
+                            if completionHandler != nil
+                            {
+                                completionHandler!()
+                            }
+                        }
+                    })
+                }
+            })
+        }
     }
 }

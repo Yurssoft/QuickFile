@@ -20,7 +20,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return items != nil
     }
     
-    internal var error : YSError = YSError.none
+    internal var error : YSError = YSError()
     {
         didSet
         {
@@ -44,10 +44,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         didSet
         {
             items = nil
-            model?.items({ (items, error) in
+            model?.items
+            { (items, error) in
                 self.items = items
                 self.error = error!
-            })
+            }
         }
     }
     

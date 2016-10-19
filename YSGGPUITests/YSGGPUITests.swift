@@ -45,22 +45,14 @@ class YSGGPUITests: XCTestCase
         
         let enterYourEmailTextField = app.textFields["Enter your email"]
         enterYourEmailTextField.tap()
-        enterYourEmailTextField.typeText("yurssoft@gmail.com")
+        enterYourEmailTextField.typeText("yurii.boiko.s@gmail.com")
         app.otherElements["Sign in - Google Accounts"].buttons["Next"].tap()
         
         let passwordSecureTextField = app.secureTextFields["Password"]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText("Yurs-soft06712997188")
+        passwordSecureTextField.typeText("PsN-uQv-yKC-7Ck")
         
         app.buttons["Sign in"].tap()
-        app.buttons["Try another way to sign in"].tap()
-        app.buttons["Use one of your 8-digit backup codes"].tap()
-        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
-        
-        let enterThe8DigitCodeTextField = app.textFields["Enter the 8-digit code"]
-        enterThe8DigitCodeTextField.tap()
-        enterThe8DigitCodeTextField.typeText("50813275")
-        app.otherElements["Google Accounts"].buttons["Done"].tap()
         
         sleep(5)
         if app.staticTexts["Wrong code. Try again."].exists || app.staticTexts["Wrong number of digits. Please try again."].exists

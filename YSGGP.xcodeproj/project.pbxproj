@@ -12,6 +12,8 @@
 		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
 		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
 		500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */; };
+		503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */; };
+		503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC17B1DB79F1C000D5BA1 /* YSError.swift */; };
 		503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */; };
 		503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */; };
 		504110431D95691100BE3B0C /* YSDriveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110421D95691100BE3B0C /* YSDriveItem.swift */; };
@@ -69,6 +71,8 @@
 		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
 		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
 		500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemProtocol.swift; sourceTree = "<group>"; };
+		503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSErrorProtocol.swift; sourceTree = "<group>"; };
+		503BC17B1DB79F1C000D5BA1 /* YSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSError.swift; sourceTree = "<group>"; };
 		503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
 		503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewController.swift; sourceTree = "<group>"; };
 		504110421D95691100BE3B0C /* YSDriveItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItem.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				500B6C2B1D93F083003996CA /* YSDriveItemProtocol.swift */,
+				503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */,
 			);
 			path = "Data Protocols";
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				504110421D95691100BE3B0C /* YSDriveItem.swift */,
+				503BC17B1DB79F1C000D5BA1 /* YSError.swift */,
 			);
 			path = "Data Structs";
 			sourceTree = "<group>";
@@ -596,8 +602,10 @@
 				500B6C2C1D93F083003996CA /* YSDriveItemProtocol.swift in Sources */,
 				500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */,
 				508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */,
+				503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */,
 				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
+				503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */,
 				50E49FBA1D9D3ED300A6FAAC /* YSStringFromClass.swift in Sources */,
 				504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */,
 				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,

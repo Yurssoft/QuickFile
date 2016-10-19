@@ -51,7 +51,7 @@ class YSDriveManager
         }
         else
         {
-            throw YSError.couldNotLogOutFromDrive
+            throw YSError(errorType: YSErrorType.couldNotLogOutFromDrive, message: "Couldn't remove saved data from keychain")
         }
     }
 }

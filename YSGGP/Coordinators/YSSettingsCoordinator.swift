@@ -26,6 +26,20 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
         viewModel.model = YSSettingsModel()
         viewModel.coordinatorDelegate = self
     }
+    
+    
+    func start(error: YSError?)
+    {
+        let viewModel =  YSSettingsViewModel()
+        settingsViewController?.viewModel = viewModel
+        viewModel.model = YSSettingsModel()
+        viewModel.coordinatorDelegate = self
+        if error == nil
+        {
+            return
+        }
+        viewModel.viewDelegate?.errorDidChange(viewModel: viewModel, error: error!)
+    }
 }
 
 extension YSSettingsCoordinator : YSAuthenticationCoordinatorDelegate
@@ -37,10 +51,9 @@ extension YSSettingsCoordinator : YSAuthenticationCoordinatorDelegate
         authenticationCoordinator.start()
     }
     
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator)
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
     {
-        YSDriveManager.sharedInstance.service.authorizer = authenticationCoordinator.authorizer
-        start()
+        start(error:error)
     }
 }
 

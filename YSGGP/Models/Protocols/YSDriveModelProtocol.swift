@@ -12,5 +12,5 @@ protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : YSError?) -> ())
+    func items(_ completionHandler: (([YSDriveItem], YSError?) -> Swift.Void)?)
 }

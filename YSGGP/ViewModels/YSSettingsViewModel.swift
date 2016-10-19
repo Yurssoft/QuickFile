@@ -15,7 +15,7 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         return model!.isLoggedIn
     }
 
-    internal var error : YSError = YSError.none
+    internal var error : YSError = YSError()
     {
         didSet
         {

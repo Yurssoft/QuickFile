@@ -17,14 +17,18 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         return YSDriveManager.sharedInstance.isLoggedIn
     }
     
-    func items(_ completionhandler: @escaping (_ items: [YSDriveItem], _ error : YSError?) -> ())
+    func items(_ completionHandler: (([YSDriveItem], YSError?) -> Swift.Void)? = nil)
     {
+        if completionHandler == nil
+        {
+            return
+        }
         YSDriveManager.sharedInstance.login()
         if isLoggedIn
         {
             let query = GTLQueryDrive.queryForFilesList()
             query?.pageSize = 10
-            query?.fields = "nextPageToken, files(id, name)"
+            query?.fields = "nextPageToken, files(id, name, size)"
             
             var items : [YSDriveItem]
             items = []
@@ -37,11 +41,12 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                         let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, fileURL: file.size.stringValue, isAudio: false)
                         items.append(item)
                     }
-                    if !(error?.localizedDescription.isEmpty)!
+                    if error != nil
                     {
-                        completionhandler(items, YSError.couldNotGetFileList)
+                        completionHandler!(items, YSError(errorType: YSErrorType.couldNotGetFileList, message: "Couldn't get data from Drive"))
+                        return
                     }
-                    completionhandler(items, YSError.none)
+                    completionHandler!(items, YSError())
                 }
             })
         }
@@ -54,7 +59,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            completionhandler(items, YSError.notLoggedInToDrive)
+            completionHandler!(items, YSError(errorType: YSErrorType.notLoggedInToDrive, message: "You are not logged in to drive"))
         }
     }
 }

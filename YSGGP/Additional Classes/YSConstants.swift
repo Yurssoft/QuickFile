@@ -19,10 +19,11 @@ struct YSConstants
     static let kSettingsEmbededSegue = "YSSettingsViewControllerSegue"
 }
 
-enum YSError : Error
+enum YSErrorType
 {
     case none
     case couldNotGetFileList
+    case cancelledLoginToDrive
     case couldNotLoginToDrive
     case notLoggedInToDrive
     case couldNotLogOutFromDrive
