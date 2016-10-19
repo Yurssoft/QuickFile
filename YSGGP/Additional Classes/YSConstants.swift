@@ -25,6 +25,7 @@ enum YSErrorType
     case couldNotGetFileList
     case cancelledLoginToDrive
     case couldNotLoginToDrive
+    case loggedInToToDrive
     case notLoggedInToDrive
     case couldNotLogOutFromDrive
 }

@@ -9,6 +9,7 @@
 import Foundation
 import GoogleAPIClient
 import GTMOAuth2
+import SwiftMessages
 
 class YSDriveManager
 {
@@ -51,7 +52,8 @@ class YSDriveManager
         }
         else
         {
-            throw YSError(errorType: YSErrorType.couldNotLogOutFromDrive, message: "Couldn't remove saved data from keychain")
+            let error = YSError(errorType: YSErrorType.couldNotLogOutFromDrive, messageType: Theme.error, title: "Error", message: "Couldn't remove saved data from keychain", buttonTitle: "Try again")
+            throw error
         }
     }
 }

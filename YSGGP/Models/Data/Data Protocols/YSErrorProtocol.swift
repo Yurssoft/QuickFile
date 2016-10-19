@@ -7,9 +7,15 @@
 //
 
 import Foundation
+import SwiftMessages
 
 protocol YSErrorProtocol : Error
 {
     var errorType : YSErrorType { get }
+    var messageType : Theme { get }
+    var title : String { get }
     var message : String { get }
+    var buttonTitle : String { get }
+    
+    func isEmpty() -> Bool
 }

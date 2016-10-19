@@ -414,8 +414,8 @@
 				TargetAttributes = {
 					505B4A2E1DAD36600055C180 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9AK2GD72HQ;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = A2PX8YZMXY;
+						ProvisioningStyle = Manual;
 						TestTargetID = 50AB0DB51D8FF242008EDB0D;
 					};
 					50AB0DB51D8FF242008EDB0D = {
@@ -425,8 +425,8 @@
 					};
 					50AB0DD61D8FF243008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9AK2GD72HQ;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = A2PX8YZMXY;
+						ProvisioningStyle = Manual;
 						TestTargetID = 50AB0DB51D8FF242008EDB0D;
 					};
 				};
@@ -668,7 +668,8 @@
 			baseConfigurationReference = 0F2172C0ABD4537440C844B5 /* Pods-YSGGPUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = YSGGPUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUnitTests;
@@ -683,7 +684,7 @@
 			baseConfigurationReference = BED0F4AF3B0C805A98862AA8 /* Pods-YSGGPUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGPUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUnitTests;
@@ -828,11 +829,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = YSGGPUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c61c4bc6-da06-45d5-8410-b06d695c76c0";
+				PROVISIONING_PROFILE_SPECIFIER = "Softjourn Development Profile";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = YSGGP;
 			};
@@ -842,7 +845,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 9AK2GD72HQ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGPUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;

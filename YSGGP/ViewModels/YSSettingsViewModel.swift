@@ -19,7 +19,10 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
     {
         didSet
         {
-            viewDelegate?.errorDidChange(viewModel: self, error: error)
+            if !error.isEmpty()
+            {
+                viewDelegate?.errorDidChange(viewModel: self, error: error)
+            }
         }
     }
     

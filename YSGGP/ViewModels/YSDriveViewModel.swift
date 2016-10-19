@@ -24,7 +24,10 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         didSet
         {
-            viewDelegate?.errorDidChange(viewModel: self, error: error)
+            if !error.isEmpty()
+            {
+                viewDelegate?.errorDidChange(viewModel: self, error: error)
+            }
         }
     }
 

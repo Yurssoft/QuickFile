@@ -9,6 +9,7 @@
 import UIKit
 import GTMOAuth2
 import GoogleAPIClient
+import SwiftMessages
 
 protocol YSAuthenticationCoordinatorDelegate: class
 {
@@ -51,7 +52,8 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     {
                                                                         self.dismissAuthentication()
                                                                         {
-                                                                            [weak self] in self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!, error: YSError(errorType: YSErrorType.couldNotLoginToDrive, message: "Couldn't login to Drive"))
+                                                                            let error = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged in to Drive", buttonTitle: "Got It")
+                                                                            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
                                                                         }
                                                                     }
         }) as! GTMOAuth2ViewControllerTouch?
@@ -67,7 +69,8 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         YSDriveManager.sharedInstance.service.authorizer = nil
         dismissAuthentication()
         {
-           [weak self] in self?.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self!, error: YSError(errorType: YSErrorType.couldNotLoginToDrive, message: "Couldn't login to Drive"))
+            let error = YSError(errorType: YSErrorType.cancelledLoginToDrive, messageType: Theme.info, title: "Cancelled", message: "Cancelled login to Drive", buttonTitle: "Login")
+            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
         }
     }
     
@@ -86,8 +89,9 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
     {
         authController?.cancelSigningIn()
         dismissAuthentication()
-        {
-            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: YSError(errorType: YSErrorType.cancelledLoginToDrive, message: "Login cancelled"))
+            {
+                let error = YSError(errorType: YSErrorType.cancelledLoginToDrive, messageType: Theme.info, title: "Cancelled", message: "Cancelled login to Drive", buttonTitle: "Login")
+            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
         }
     }
     
@@ -95,22 +99,17 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
     {
         DispatchQueue.main.async
         {
-            [weak self] in self?.navigationController?.dismiss(animated: true, completion:
+            self.navigationController?.dismiss(animated: false, completion:
             {
-                DispatchQueue.main.async
-                {
-                    [weak self] in self?.navigationController?.dismiss(animated: true, completion:
-                    {
-                        DispatchQueue.main.async
-                        {
-                            if completionHandler != nil
-                            {
-                                completionHandler!()
-                            }
-                        }
-                    })
-                }
             })
+            
+            self.navigationController?.dismiss(animated: false, completion:
+            {
+            })
+            if completionHandler != nil
+            {
+                completionHandler!()
+            }
         }
     }
 }

@@ -20,20 +20,21 @@ class YSGGPUITests: XCTestCase
     
     func testInitialView()
     {
+        
         let app = XCUIApplication()
         app.navigationBars["YSGGP.YSDriveTopView"].buttons["Login"].tap()
-        app.navigationBars["GTMOAuth2View"].buttons["Cancel"].tap()
+        
+        let nextButton = app.buttons["Next"]
+        nextButton.tap()
+        
+        let cancelButton = app.navigationBars["GTMOAuth2View"].buttons["Cancel"]
+        cancelButton.tap()
         
         let tabBarsQuery = app.tabBars
-        let playlistButton = tabBarsQuery.buttons["Playlist"]
-        playlistButton.tap()
+        tabBarsQuery.buttons["Playlist"].tap()
         tabBarsQuery.buttons["Settings"].tap()
-        
-        let tablesQuery = app.tables
-        tablesQuery.children(matching: .other).element(boundBy: 0).otherElements["Info"].tap()
-        tablesQuery.children(matching: .other).element(boundBy: 1).otherElements["Actions"].tap()
-        playlistButton.tap()
-        tabBarsQuery.buttons["Drive"].tap()
+        app.tables.staticTexts["Log In To Drive"].tap()
+        cancelButton.tap()
     }
     
     func testLoginToDrive()
@@ -54,13 +55,6 @@ class YSGGPUITests: XCTestCase
         
         app.buttons["Sign in"].tap()
         
-        sleep(5)
-        if app.staticTexts["Wrong code. Try again."].exists || app.staticTexts["Wrong number of digits. Please try again."].exists
-        {
-            XCTFail("Wrong code or Wrong number of digits")
-            return
-        }
-        
         let allowButton = app.otherElements["Request for Permission"].buttons["Allow"]
         let isHittablePredicate = NSPredicate(format: "isHittable == true")
         expectation(for: isHittablePredicate, evaluatedWith: allowButton, handler: nil)
@@ -75,6 +69,9 @@ class YSGGPUITests: XCTestCase
     
     func testLogOut ()
     {
-        
+        let app = XCUIApplication()
+        app.tabBars.buttons["Settings"].tap()
+        app.tables.staticTexts["Log Out From Drive"].tap()
+        app.sheets["Log Out?"].buttons["Log Out"].tap()
     }
 }

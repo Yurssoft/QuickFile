@@ -89,60 +89,40 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSError)
     {
+        let message = MessageView.viewFromNib(layout: .CardView)
+        message.configureTheme(error.messageType)
+        message.configureDropShadow()
+        message.configureContent(title: error.title, body: error.message)
+        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
         switch error.errorType
         {
-        case .couldNotLoginToDrive:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSSettingsTableViewController.loginToDrive), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler =
-                { _ in
-                    viewModel.loginToDrive()
-                    SwiftMessages.hide(id: warning.id)
+        case .loggedInToToDrive:
+            message.buttonTapHandler =
+            { _ in
+                SwiftMessages.hide(id: message.id)
             }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
             break
-            
-        case .cancelledLoginToDrive:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSSettingsTableViewController.loginToDrive), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler =
-                { _ in
-                    viewModel.loginToDrive()
-                    SwiftMessages.hide(id: warning.id)
+        case .cancelledLoginToDrive, .couldNotLoginToDrive:
+            message.buttonTapHandler =
+            { _ in
+                self.loginToDrive()
+                SwiftMessages.hide(id: message.id)
             }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
             break
             
         case .couldNotLogOutFromDrive:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSSettingsTableViewController.logOutFromDrive), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler =
-                { _ in
-                    viewModel.loginToDrive()
-                    SwiftMessages.hide(id: warning.id)
+            message.buttonTapHandler =
+            { _ in
+                self.logOutFromDrive()
+                SwiftMessages.hide(id: message.id)
             }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
             break
             
         default: break
         }
+        
+        var warningConfig = SwiftMessages.Config()
+        warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: warningConfig, view: message)
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import GoogleAPIClient
 import GTMOAuth2
+import SwiftMessages
 
 class YSDriveModel: NSObject, YSDriveModelProtocol
 {
@@ -29,6 +30,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             let query = GTLQueryDrive.queryForFilesList()
             query?.pageSize = 10
             query?.fields = "nextPageToken, files(id, name, size)"
+            let parentID = "root"
+            query?.q = NSString(format: "%@ in parents", parentID) as String!
             
             var items : [YSDriveItem]
             items = []
@@ -43,7 +46,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                     }
                     if error != nil
                     {
-                        completionHandler!(items, YSError(errorType: YSErrorType.couldNotGetFileList, message: "Couldn't get data from Drive"))
+                        let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again")
+                        completionHandler!(items, error)
                         return
                     }
                     completionHandler!(items, YSError())
@@ -59,7 +63,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
                 items.append(item)
             }
-            completionHandler!(items, YSError(errorType: YSErrorType.notLoggedInToDrive, message: "You are not logged in to drive"))
+            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "You are not logged in to drive", buttonTitle: "Login")
+            completionHandler!(items, error)
         }
     }
 }

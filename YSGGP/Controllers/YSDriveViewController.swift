@@ -104,52 +104,40 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
     {
+        let message = MessageView.viewFromNib(layout: .CardView)
+        message.configureTheme(error.messageType)
+        message.configureDropShadow()
+        message.configureContent(title: error.title, body: error.message)
+        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
         switch error.errorType
         {
-        case .couldNotGetFileList:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSDriveViewController.fetchItemsAgain), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler = { _ in SwiftMessages.hide(id: warning.id) }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
-            break
-            
-        case .cancelledLoginToDrive:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Try Again", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler =
-                { _ in
-                    viewModel.loginToDrive()
-                    SwiftMessages.hide(id: warning.id)
+        case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
+            message.buttonTapHandler =
+            { _ in
+                self.loginButtonTapped(UIBarButtonItem())
+                SwiftMessages.hide(id: message.id)
             }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
             break
             
-        case .notLoggedInToDrive:
-            let warning = MessageView.viewFromNib(layout: .CardView)
-            warning.configureTheme(.warning)
-            warning.configureDropShadow()
-            warning.configureContent(title: "Warning", body: error.message)
-            warning.button?.setTitle("Login", for: UIControlState.normal)
-            warning.button?.addTarget(self, action: #selector(YSDriveViewController.loginButtonTapped(_:)), for: UIControlEvents.touchUpInside)
-            warning.buttonTapHandler = { _ in SwiftMessages.hide(id: warning.id) }
-            var warningConfig = SwiftMessages.Config()
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            SwiftMessages.show(config: warningConfig, view: warning)
+        case .loggedInToToDrive:
+            message.buttonTapHandler =
+            { _ in
+                SwiftMessages.hide(id: message.id)
+            }
+            break
+            
+        case .couldNotGetFileList:
+            message.buttonTapHandler =
+            { _ in
+                self.fetchItemsAgain()
+                SwiftMessages.hide(id: message.id)
+            }
             break
             
         default: break
         }
+        var warningConfig = SwiftMessages.Config()
+        warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: warningConfig, view: message)
     }
 }
