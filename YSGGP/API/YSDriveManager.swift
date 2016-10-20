@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GoogleAPIClient
+import GoogleAPIClientForREST
 import GTMOAuth2
 import SwiftMessages
 
@@ -37,11 +37,11 @@ class YSDriveManager
         service.authorizer = auth
     }
     
-    let service = GTLServiceDrive()
+    let service = GTLRDriveService()
     
     var isLoggedIn : Bool
     {
-        return service.authorizer != nil && service.authorizer.canAuthorize!
+        return service.authorizer != nil && service.authorizer!.canAuthorize!
     }
     
     var authorizer: GTMFetcherAuthorizationProtocol!

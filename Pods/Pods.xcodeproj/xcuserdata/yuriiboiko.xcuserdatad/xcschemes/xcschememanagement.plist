@@ -8,80 +8,56 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>GTMSessionFetcher 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
-		<key>GoogleAPIClient.xcscheme</key>
+		<key>GoogleAPIClientForREST.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Pods-YSGGP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-YSGGPUnitTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>SwiftMessages-SwiftMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>SwiftMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2795E8835A5724CAF5033D2A1B6FBA59</key>
+		<key>0F4A130B2774D213887014C7902C86E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C5FF369479266C1E0D71CB65F3F6E17</key>
+		<key>30B115280382A91561C47DB7DEAF0CD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D505932284C7172E62B61B1590FC7A8</key>
+		<key>392202D672CB8590BF4CC96323DD3E1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD262ABF7110E2E134A73D464F26AFB5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D1C9941724457C7644C1851DAB522C06</key>
+		<key>8D9082159A5ADBB80883E78CFE7E686A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -91,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2B64E79B8D9D5B462023CDF3CF39DB3</key>
+		<key>E9954DD48D41FE78C4998FA5D579BB32</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F947E878A982E506BEE88B8192289356</key>
 		<dict>
 			<key>primary</key>
 			<true/>

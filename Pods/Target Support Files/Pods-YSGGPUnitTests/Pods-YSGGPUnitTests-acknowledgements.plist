@@ -644,7 +644,7 @@
 			<key>License</key>
 			<string>Apache</string>
 			<key>Title</key>
-			<string>GoogleAPIClient</string>
+			<string>GoogleAPIClientForREST</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

@@ -8,7 +8,6 @@
 
 import UIKit
 import GTMOAuth2
-import GoogleAPIClient
 import SwiftMessages
 
 protocol YSAuthenticationCoordinatorDelegate: class
