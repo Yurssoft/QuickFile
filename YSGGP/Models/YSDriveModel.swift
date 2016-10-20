@@ -30,12 +30,18 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             let query = GTLQueryDrive.queryForFilesList()
             query?.pageSize = 10
             query?.fields = "nextPageToken, files(id, name, size)"
-            let parentID = "root"
-            query?.q = NSString(format: "%@ in parents", parentID) as String!
+            query?.spaces = "drive"
+//            query?.q = NSString(format: "spaces = drive") as String!
             
             var items : [YSDriveItem]
             items = []
             YSDriveManager.sharedInstance.service.executeQuery(query!, completionHandler: { (ticket, response1, error) in
+                if error != nil
+                {
+                    let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
+                    completionHandler!(items, error)
+                    return
+                }
                 let response = response1 as? GTLDriveFileList
                 if let files = response?.files , !files.isEmpty
                 {
@@ -44,27 +50,14 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                         let item = YSDriveItem(fileName: file.name, fileInfo: file.identifier, fileURL: file.size.stringValue, isAudio: false)
                         items.append(item)
                     }
-                    if error != nil
-                    {
-                        let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again")
-                        completionHandler!(items, error)
-                        return
-                    }
                     completionHandler!(items, YSError())
                 }
             })
         }
         else
         {
-            var items : [YSDriveItem]
-            items = []
-            for i in (0..<200)
-            {
-                let item = YSDriveItem(fileName: "\(i)", fileInfo: "\(i)", fileURL:"\(i)", isAudio: false)
-                items.append(item)
-            }
-            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "You are not logged in to drive", buttonTitle: "Login")
-            completionHandler!(items, error)
+            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
+            completionHandler!([], error)
         }
     }
 }

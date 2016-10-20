@@ -86,7 +86,12 @@ class YSDriveViewController: UITableViewController
         return .insert
     }
     
-    func fetchItemsAgain()
+    func getList()
+    {
+        
+    }
+    
+    func getRootFolder()
     {
         
     }
@@ -129,7 +134,14 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         case .couldNotGetFileList:
             message.buttonTapHandler =
             { _ in
-                self.fetchItemsAgain()
+                self.getList()
+                SwiftMessages.hide(id: message.id)
+            }
+            break
+        case .couldNotGetRootFolder:
+            message.buttonTapHandler =
+            { _ in
+                self.getRootFolder()
                 SwiftMessages.hide(id: message.id)
             }
             break

@@ -44,11 +44,26 @@ class YSDriveManager
         return service.authorizer != nil && service.authorizer.canAuthorize!
     }
     
+    var authorizer: GTMFetcherAuthorizationProtocol!
+    {
+        didSet
+        {
+            if authorizer != nil
+            {
+                GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainItemName, authentication: authorizer as! GTMOAuth2Authentication!)
+                service.authorizer = authorizer
+                login()
+            }
+        }
+    }
+    
     func logOut() throws
     {
         if GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainItemName)
         {
             YSDriveManager.sharedInstance.service.authorizer = nil
+            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged out from Drive", buttonTitle: "Login")
+            throw error
         }
         else
         {

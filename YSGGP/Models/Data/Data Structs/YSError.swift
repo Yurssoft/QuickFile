@@ -16,6 +16,7 @@ struct YSError : YSErrorProtocol
     let title: String
     let message : String
     let buttonTitle : String
+    let debugInfo : String
     
     init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String)
     {
@@ -24,6 +25,20 @@ struct YSError : YSErrorProtocol
         self.title = title
         self.message = message
         self.buttonTitle = buttonTitle
+        self.debugInfo = ""
+    }
+    
+    init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String, debugInfo : String)
+    {
+        self.errorType = errorType
+        self.messageType = messageType
+        self.title = title
+        self.message = message
+        self.buttonTitle = buttonTitle
+        self.debugInfo = debugInfo
+        #if DEBUG
+            print(debugInfo)
+        #endif
     }
     
     init()
@@ -33,6 +48,7 @@ struct YSError : YSErrorProtocol
         self.title = ""
         self.message = ""
         self.buttonTitle = ""
+        self.debugInfo = ""
     }
     
     func isEmpty() -> Bool
@@ -42,7 +58,8 @@ struct YSError : YSErrorProtocol
         self.messageType == Theme.info &&
         self.title == "" &&
         self.message == "" &&
-        self.buttonTitle == ""
+        self.buttonTitle == "" &&
+        self.debugInfo == ""
         {
             return true
         }

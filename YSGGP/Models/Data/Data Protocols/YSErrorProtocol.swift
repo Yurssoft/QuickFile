@@ -16,6 +16,7 @@ protocol YSErrorProtocol : Error
     var title : String { get }
     var message : String { get }
     var buttonTitle : String { get }
+    var debugInfo : String { get }
     
     func isEmpty() -> Bool
 }

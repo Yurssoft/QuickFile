@@ -29,6 +29,12 @@ class YSSettingsTableViewController: UITableViewController
     let cellLogInOutIdentifier = "logInOutCell"
     let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         switch cell.reuseIdentifier!
@@ -124,5 +130,6 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
         var warningConfig = SwiftMessages.Config()
         warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: warningConfig, view: message)
+        tableView.reloadData()
     }
 }

@@ -22,6 +22,7 @@ struct YSConstants
 enum YSErrorType
 {
     case none
+    case couldNotGetRootFolder
     case couldNotGetFileList
     case cancelledLoginToDrive
     case couldNotLoginToDrive

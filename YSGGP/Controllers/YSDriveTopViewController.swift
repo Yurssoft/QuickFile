@@ -28,6 +28,11 @@ class YSDriveTopViewController: UIViewController
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
         loginNavigationButton = UIBarButtonItem(title: "Login", style:UIBarButtonItemStyle.plain, target: self, action: #selector(YSDriveTopViewController.loginButtonTapped(_:)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
         if !(driveVC?.viewModel?.isLoggedIn)!
         {
             navigationItem.setLeftBarButton(loginNavigationButton, animated: true)

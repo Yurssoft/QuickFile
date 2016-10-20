@@ -42,19 +42,20 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                   keychainItemName: YSConstants.kDriveKeychainItemName,
                                                                   completionHandler: { (authController, authResult , error) in
                                                                     
-                                                                    self.saveAuthResult(authResult: authResult)
+                                                                    YSDriveManager.sharedInstance.authorizer = authResult
                                                                     
-                                                                    if error != nil
+                                                                    var yserror : YSError
+                                                                    if error == nil && YSDriveManager.sharedInstance.isLoggedIn
                                                                     {
-                                                                        self.showError(error: error)
+                                                                        yserror = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged in to Drive", buttonTitle: "Got It")
                                                                     }
                                                                     else
                                                                     {
-                                                                        self.dismissAuthentication()
-                                                                        {
-                                                                            let error = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged in to Drive", buttonTitle: "Got It")
-                                                                            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
-                                                                        }
+                                                                        yserror = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't login to Drive", buttonTitle: "Try Again", debugInfo: error.debugDescription)
+                                                                    }
+                                                                    self.dismissAuthentication()
+                                                                    {
+                                                                        self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: yserror)
                                                                     }
         }) as! GTMOAuth2ViewControllerTouch?
         
@@ -64,33 +65,12 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         return authNav
     }
     
-    func showError(error : Error?)
-    {
-        YSDriveManager.sharedInstance.service.authorizer = nil
-        dismissAuthentication()
-        {
-            let error = YSError(errorType: YSErrorType.cancelledLoginToDrive, messageType: Theme.info, title: "Cancelled", message: "Cancelled login to Drive", buttonTitle: "Login")
-            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
-        }
-    }
-    
-    func saveAuthResult(authResult : GTMOAuth2Authentication?)
-    {
-        guard let auth = authResult
-        else
-        {
-            return
-        }
-        GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainItemName, authentication: auth)
-        YSDriveManager.sharedInstance.service.authorizer = auth
-    }
-    
     @objc func cancelSigningIn()
     {
         authController?.cancelSigningIn()
         dismissAuthentication()
-            {
-                let error = YSError(errorType: YSErrorType.cancelledLoginToDrive, messageType: Theme.info, title: "Cancelled", message: "Cancelled login to Drive", buttonTitle: "Login")
+        {
+            let error = YSError(errorType: YSErrorType.cancelledLoginToDrive, messageType: Theme.info, title: "Cancelled", message: "Cancelled login to Drive", buttonTitle: "Login")
             self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: error)
         }
     }
@@ -99,13 +79,8 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
     {
         DispatchQueue.main.async
         {
-            self.navigationController?.dismiss(animated: false, completion:
-            {
-            })
-            
-            self.navigationController?.dismiss(animated: false, completion:
-            {
-            })
+            self.navigationController?.dismiss(animated: false)
+            self.navigationController?.dismiss(animated: false)
             if completionHandler != nil
             {
                 completionHandler!()
