@@ -17,7 +17,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     internal var isItemsPresent: Bool
     {
-        return items != nil
+        return files != nil && !(files?.isEmpty)!
     }
     
     internal var error : YSError = YSError()
@@ -34,7 +34,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     weak var viewDelegate: YSDriveViewModelViewDelegate?
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
-    fileprivate var items: [YSDriveItem]?
+    fileprivate var files: [YSDriveFile]?
     {
         didSet
         {
@@ -46,38 +46,40 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         didSet
         {
-            items = nil
-            model?.items
-            { (items, error) in
-                self.items = items
+            files = nil
+            
+            model?.getFiles()
+            { (files, error) in
+                self.files = files
                 self.error = error!
             }
+            
         }
     }
     
     var numberOfItems: Int
     {
-        if let items = items
+        if let items = files
         {
             return items.count
         }
         return 0
     }
     
-    func itemAtIndex(_ index: Int) -> YSDriveItem?
+    func fileAtIndex(_ index: Int) -> YSDriveFile?
     {
-        if let items = items , items.count > index
+        if let files = files , files.count > index
         {
-            return items[index]
+            return files[index]
         }
         return nil
     }
     
-    func useItemAtIndex(_ index: Int)
+    func useFileAtIndex(_ index: Int)
     {
-        if let items = items, let coordinatorDelegate = coordinatorDelegate, index < items.count
+        if let files = files, let coordinatorDelegate = coordinatorDelegate, index < files.count
         {
-            coordinatorDelegate.driveViewModelDidSelectData(self, data: items[index])
+            coordinatorDelegate.driveViewModelDidSelectData(self, file: files[index])
         }
     }
     
@@ -88,7 +90,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     func removeDownloads()
     {
-        items?.removeAll()
+        files?.removeAll()
         viewDelegate?.itemsDidChange(viewModel: self)
     }
 }

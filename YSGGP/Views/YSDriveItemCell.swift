@@ -14,13 +14,13 @@ class YSDriveItemTableViewCell: UITableViewCell {
     @IBOutlet weak var fileInfoLabel: UILabel!
     @IBOutlet weak var fileImageView: UIImageView!
     
-    var item: YSDriveItem?
+    var file: YSDriveFile?
     {
         didSet
         {
-            fileNameLabel?.text = item?.fileName
-            fileInfoLabel?.text = item?.fileInfo
-            fileImageView?.image = UIImage(named: (item?.isAudio)! ? "song" : "folder")
+            fileNameLabel?.text = file?.fileName
+            fileInfoLabel?.text = file?.fileSize
+            fileImageView?.image = UIImage(named: (file?.isAudio)! ? "song" : "folder")
         }
     }
     

@@ -10,8 +10,8 @@ import UIKit
 
 class YSDriveCoordinator: YSCoordinatorProtocol
 {
-    var driveViewController: YSDriveViewController?
-    var navigationController: UINavigationController?
+    internal var driveViewController: YSDriveViewController?
+    internal var navigationController: UINavigationController?
     
     init(driveViewController: YSDriveViewController, navigationController: UINavigationController)
     {
@@ -21,17 +21,17 @@ class YSDriveCoordinator: YSCoordinatorProtocol
     
     func start()
     {
-        let viewModel =  YSDriveViewModel()
+        let viewModel = YSDriveViewModel()
         driveViewController?.viewModel = viewModel
-        viewModel.model = YSDriveModel()
+        viewModel.model = YSDriveModel(folderID: "")
         viewModel.coordinatorDelegate = self
     }
     
-    func start(error: YSError?)
+    internal func start(error: YSError?)
     {
         let viewModel =  YSDriveViewModel()
         driveViewController?.viewModel = viewModel
-        viewModel.model = YSDriveModel()
+        viewModel.model = YSDriveModel(folderID: "")
         viewModel.coordinatorDelegate = self
         if error == nil
         {
@@ -58,9 +58,10 @@ extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
 
 extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
 {
-    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, data: YSDriveItem)
+    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     {
-        
+        let driveTopVC = driveViewController?.storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
+        navigationController?.pushViewController(driveTopVC, animated: true)
     }
 
     func driveViewModelDidRequestedLogin()

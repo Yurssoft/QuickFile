@@ -10,15 +10,15 @@ import UIKit
 
 class YSDriveTopViewController: UIViewController
 {
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var toolbarViewBottomConstraint : NSLayoutConstraint?
-    @IBOutlet weak var toolbarView: YSToolbarView?
-    var loginNavigationButton : UIBarButtonItem?
-    var driveVC : YSDriveViewController?
+    @IBOutlet internal weak var editButton: UIBarButtonItem!
+    @IBOutlet internal weak var containerView: UIView!
+    @IBOutlet internal weak var toolbarViewBottomConstraint : NSLayoutConstraint?
+    @IBOutlet internal weak var toolbarView: YSToolbarView?
+    internal var loginNavigationButton : UIBarButtonItem?
+    internal var driveVC : YSDriveViewController?
     
-    let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
-    let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
+    internal let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
+    internal let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
     
     override func viewDidLoad()
     {

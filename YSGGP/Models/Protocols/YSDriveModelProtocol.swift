@@ -8,9 +8,11 @@
 
 import Foundation
 
+typealias DriveCompletionHandler = ([YSDriveFile], YSError?) -> Swift.Void
+
 protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func items(_ completionHandler: (([YSDriveItem], YSError?) -> Swift.Void)?)
+    func getFiles(_ completionHandler: DriveCompletionHandler?)
 }

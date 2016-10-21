@@ -16,7 +16,7 @@ protocol YSDriveViewModelViewDelegate: class
 
 protocol YSDriveViewModelCoordinatorDelegate: class
 {
-    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, data: YSDriveItem)
+    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     func driveViewModelDidRequestedLogin()
 }
 
@@ -30,8 +30,8 @@ protocol YSDriveViewModelProtocol
     var isLoggedIn: Bool { get }
     var error : YSError { get }
     
-    func itemAtIndex(_ index: Int) -> YSDriveItem?
-    func useItemAtIndex(_ index: Int)
+    func fileAtIndex(_ index: Int) -> YSDriveFile?
+    func useFileAtIndex(_ index: Int)
     func loginToDrive()
     func removeDownloads()
 }

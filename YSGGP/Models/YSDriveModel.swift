@@ -18,7 +18,14 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         return YSDriveManager.sharedInstance.isLoggedIn
     }
     
-    func items(_ completionHandler: (([YSDriveItem], YSError?) -> Swift.Void)? = nil)
+    internal var currentFolderID : String = ""
+    
+    init(folderID: String)
+    {
+        self.currentFolderID = folderID
+    }
+    
+    func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
     {
         if completionHandler == nil
         {
@@ -31,14 +38,17 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             query.pageSize = 10
             query.fields = "nextPageToken, files(id, name, size, mimeType)"
             query.spaces = "drive"
-            query.q = NSString(format: "mimeType contains 'folder' or mimeType contains 'audio'") as String!
-            
-            var items : [YSDriveItem] = []
+            query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
+            if !currentFolderID.isEmpty
+            {
+                query.q?.append(NSString(format: "and ('%@' in parents)", currentFolderID) as String!)
+            }
+            var ysfiles : [YSDriveFile] = []
             YSDriveManager.sharedInstance.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
                 if error != nil
                 {
                     let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
-                    completionHandler!(items, error)
+                    completionHandler!(ysfiles, error)
                     return
                 }
                 let response = response1 as? GTLRDrive_FileList
@@ -46,12 +56,15 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 {
                     for file in files
                     {
-                        let fileSize = file.size == nil ? "" : file.size?.stringValue
                         let isAudio = file.mimeType != nil && (file.mimeType?.contains("audio"))!
-                        let item = YSDriveItem(fileName: file.name!, fileInfo: file.identifier!, fileURL: fileSize!, isAudio: isAudio)
-                        items.append(item)
+                        let ysfile = YSDriveFile(fileName: file.name,
+                                                 fileSize: file.size?.stringValue,
+                                                 mimeType: file.mimeType,
+                                                 isAudio: isAudio,
+                                                 fileDriveIdentifier: file.identifier)
+                        ysfiles.append(ysfile)
                     }
-                    completionHandler!(items, YSError())
+                    completionHandler!(ysfiles, YSError())
                 }
             })
         }

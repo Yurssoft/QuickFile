@@ -17,9 +17,9 @@ protocol YSAuthenticationCoordinatorDelegate: class
 
 class YSAuthenticationCoordinator: YSCoordinatorProtocol
 {
-    weak var delegate : YSAuthenticationCoordinatorDelegate?
-    var navigationController: UINavigationController?
-    var authController : GTMOAuth2ViewControllerTouch?
+    internal weak var delegate : YSAuthenticationCoordinatorDelegate?
+    internal var navigationController: UINavigationController?
+    internal var authController : GTMOAuth2ViewControllerTouch?
     
     init(navigationController: UINavigationController)
     {
@@ -32,7 +32,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         navigationController?.present(authController, animated: true, completion: nil)
     }
     
-    func createAuthoriseController() -> UIViewController
+    internal func createAuthoriseController() -> UIViewController
     {
         let scopeString = YSConstants.kDriveScopes.joined(separator: " ")
         authController =  GTMOAuth2ViewControllerTouch.controller(withScope: scopeString,
@@ -64,7 +64,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         return authNav
     }
     
-    @objc func cancelSigningIn()
+    @objc internal func cancelSigningIn()
     {
         authController?.cancelSigningIn()
         dismissAuthentication()
@@ -74,7 +74,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         }
     }
     
-    func dismissAuthentication(_ completionHandler: (() -> Swift.Void)? = nil)
+    internal func dismissAuthentication(_ completionHandler: (() -> Swift.Void)? = nil)
     {
         DispatchQueue.main.async
         {

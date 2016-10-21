@@ -67,13 +67,13 @@ class YSDriveViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveItemTableViewCell.nameOfClass, for: indexPath) as! YSDriveItemTableViewCell
-        cell.item = viewModel?.itemAtIndex((indexPath as NSIndexPath).row)
+        cell.file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        viewModel?.useItemAtIndex((indexPath as NSIndexPath).row)
+        viewModel?.useFileAtIndex((indexPath as NSIndexPath).row)
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
