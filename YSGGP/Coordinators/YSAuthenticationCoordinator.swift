@@ -38,7 +38,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
         authController =  GTMOAuth2ViewControllerTouch.controller(withScope: scopeString,
                                                                   clientID: YSConstants.kDriveClientID,
                                                                   clientSecret: nil,
-                                                                  keychainItemName: YSConstants.kDriveKeychainItemName,
+                                                                  keychainItemName: YSConstants.kDriveKeychainAuthorizerName,
                                                                   completionHandler: { (authController, authResult , error) in
                                                                     
                                                                     YSDriveManager.sharedInstance.authorizer = authResult

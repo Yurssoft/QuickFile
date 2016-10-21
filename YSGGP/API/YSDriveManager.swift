@@ -23,12 +23,12 @@ class YSDriveManager
     func login()
     {
         let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
-            forName:  YSConstants.kDriveKeychainItemName,
+            forName:  YSConstants.kDriveKeychainAuthorizerName,
             clientID: YSConstants.kDriveClientID,
             clientSecret: nil)
         do
         {
-            try GTMOAuth2ViewControllerTouch.authorizeFromKeychain(forName:YSConstants.kDriveKeychainItemName, authentication: auth)
+            try GTMOAuth2ViewControllerTouch.authorizeFromKeychain(forName:YSConstants.kDriveKeychainAuthorizerName, authentication: auth)
         }
         catch
         {
@@ -50,7 +50,7 @@ class YSDriveManager
         {
             if authorizer != nil
             {
-                GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainItemName, authentication: authorizer as! GTMOAuth2Authentication!)
+                GTMOAuth2ViewControllerTouch.saveParamsToKeychain(forName: YSConstants.kDriveKeychainAuthorizerName, authentication: authorizer as! GTMOAuth2Authentication!)
                 service.authorizer = authorizer
                 login()
             }
@@ -59,7 +59,7 @@ class YSDriveManager
     
     func logOut() throws
     {
-        if GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainItemName)
+        if GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainAuthorizerName)
         {
             YSDriveManager.sharedInstance.service.authorizer = nil
             let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged out from Drive", buttonTitle: "Login")

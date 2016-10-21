@@ -59,14 +59,14 @@ class YSDriveViewController: UITableViewController
     {
         if let viewModel = viewModel
         {
-            return viewModel.numberOfItems
+            return viewModel.numberOfFiles
         }
         return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveItemTableViewCell.nameOfClass, for: indexPath) as! YSDriveItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
         cell.file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
         return cell
     }
@@ -99,7 +99,7 @@ class YSDriveViewController: UITableViewController
 
 extension YSDriveViewController: YSDriveViewModelViewDelegate
 {
-    func itemsDidChange(viewModel: YSDriveViewModel)
+    func filesDidChange(viewModel: YSDriveViewModel)
     {
         DispatchQueue.main.async
         {

@@ -11,7 +11,7 @@ import GoogleAPIClientForREST
 
 struct YSConstants
 {
-    static let kDriveKeychainItemName = "Drive API"
+    static let kDriveKeychainAuthorizerName = "Drive API"
     static let kDriveClientID = "416980241627-f5pe5hit7mjggbs1sj6jlth83ci9g91o.apps.googleusercontent.com"
     static let kDriveScopes = [kGTLRAuthScopeDriveReadonly]
     static let kStoryboardName = "Main"

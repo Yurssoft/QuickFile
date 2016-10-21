@@ -10,7 +10,7 @@ import Foundation
 
 protocol YSDriveViewModelViewDelegate: class
 {
-    func itemsDidChange(viewModel: YSDriveViewModel)
+    func filesDidChange(viewModel: YSDriveViewModel)
     func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
 }
 
@@ -25,8 +25,8 @@ protocol YSDriveViewModelProtocol
     var model: YSDriveModel? { get set }
     var viewDelegate: YSDriveViewModelViewDelegate? { get set }
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate? { get set}
-    var numberOfItems: Int { get }
-    var isItemsPresent: Bool { get }
+    var numberOfFiles: Int { get }
+    var isFilesPresent: Bool { get }
     var isLoggedIn: Bool { get }
     var error : YSError { get }
     

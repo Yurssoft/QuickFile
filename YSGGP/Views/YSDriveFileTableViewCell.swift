@@ -1,5 +1,5 @@
 //
-//  YSDriveItemCell.swift
+//  YSDriveFileTableViewCell.swift
 //  YSGGP
 //
 //  Created by Yurii Boiko on 9/23/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YSDriveItemTableViewCell: UITableViewCell {
+class YSDriveFileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var fileInfoLabel: UILabel!

@@ -15,7 +15,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
        return (model?.isLoggedIn)!
     }
     
-    internal var isItemsPresent: Bool
+    internal var isFilesPresent: Bool
     {
         return files != nil && !(files?.isEmpty)!
     }
@@ -38,7 +38,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         didSet
         {
-            viewDelegate?.itemsDidChange(viewModel: self)
+            viewDelegate?.filesDidChange(viewModel: self)
         }
     }
     
@@ -57,11 +57,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
     }
     
-    var numberOfItems: Int
+    var numberOfFiles: Int
     {
-        if let items = files
+        if let files = files
         {
-            return items.count
+            return files.count
         }
         return 0
     }
@@ -91,6 +91,6 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     func removeDownloads()
     {
         files?.removeAll()
-        viewDelegate?.itemsDidChange(viewModel: self)
+        viewDelegate?.filesDidChange(viewModel: self)
     }
 }

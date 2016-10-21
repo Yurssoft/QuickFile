@@ -19,7 +19,7 @@
 		504110431D95691100BE3B0C /* YSDriveFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110421D95691100BE3B0C /* YSDriveFile.swift */; };
 		504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */; };
 		504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110481D956DEF00BE3B0C /* YSDriveModel.swift */; };
-		5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */; };
+		5041104B1D95763000BE3B0C /* YSDriveFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */; };
 		504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */; };
 		504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */; };
 		504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */; };
@@ -78,7 +78,7 @@
 		504110421D95691100BE3B0C /* YSDriveFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFile.swift; sourceTree = "<group>"; };
 		504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelProtocol.swift; sourceTree = "<group>"; };
 		504110481D956DEF00BE3B0C /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
-		5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveItemCell.swift; sourceTree = "<group>"; };
+		5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileTableViewCell.swift; sourceTree = "<group>"; };
 		504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinator.swift; sourceTree = "<group>"; };
 		504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarControllerExtension.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
 				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
 				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
-				5041104A1D95763000BE3B0C /* YSDriveItemCell.swift */,
+				5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */,
 				50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */,
 				50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */,
 			);
@@ -591,7 +591,7 @@
 				504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */,
 				508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */,
 				503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */,
-				5041104B1D95763000BE3B0C /* YSDriveItemCell.swift in Sources */,
+				5041104B1D95763000BE3B0C /* YSDriveFileTableViewCell.swift in Sources */,
 				508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */,
 				508EFC191DB527C300ED5CFB /* YSDriveManager.swift in Sources */,
 				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
