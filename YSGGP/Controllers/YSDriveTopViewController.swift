@@ -8,6 +8,14 @@
 
 import UIKit
 
+
+typealias DriveViewControllerDidLoadedHandler = () -> Swift.Void
+
+protocol YSDriveViewControllerDidFinishedLoading: class
+{
+    func driveViewControllerDidLoaded(driveVC: YSDriveViewController, navigationController: UINavigationController)
+}
+
 class YSDriveTopViewController: UIViewController
 {
     @IBOutlet internal weak var editButton: UIBarButtonItem!
@@ -17,17 +25,23 @@ class YSDriveTopViewController: UIViewController
     internal var loginNavigationButton : UIBarButtonItem?
     internal var driveVC : YSDriveViewController?
     
+    var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
+    var driveViewControllerDidLoadedHandler : DriveViewControllerDidLoadedHandler?
+    
     internal let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
     internal let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setupCoordinator()
-        
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
         loginNavigationButton = UIBarButtonItem(title: "Login", style:UIBarButtonItemStyle.plain, target: self, action: #selector(YSDriveTopViewController.loginButtonTapped(_:)))
+        driveVCReadyDelegate?.driveViewControllerDidLoaded(driveVC: driveVC!, navigationController: navigationController!)
+        if let handler = driveViewControllerDidLoadedHandler
+        {
+            handler()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -37,12 +51,6 @@ class YSDriveTopViewController: UIViewController
         {
             navigationItem.setLeftBarButton(loginNavigationButton, animated: true)
         }
-    }
-    
-    func setupCoordinator()
-    {
-        let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC!, navigationController: navigationController!)
-        driveCoordinator.start()
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)

@@ -79,7 +79,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         if let files = files, let coordinatorDelegate = coordinatorDelegate, index < files.count
         {
-            coordinatorDelegate.driveViewModelDidSelectData(self, file: files[index])
+            coordinatorDelegate.driveViewModelDidSelectFile(self, file: files[index])
         }
     }
     

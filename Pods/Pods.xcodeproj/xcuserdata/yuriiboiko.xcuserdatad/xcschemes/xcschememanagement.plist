@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DGElasticPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F4A130B2774D213887014C7902C86E0</key>
+		<key>0821C23DCBD338361FE46081FF6814E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E409C5B8CC6450178006E13B930A6C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>115824B7CB2E76E5ACB836A251E79404</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>392202D672CB8590BF4CC96323DD3E1C</key>
+		<key>634BB4591036E1C9ADCE95570D0ED6AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,11 +83,6 @@
 			<true/>
 		</dict>
 		<key>E9954DD48D41FE78C4998FA5D579BB32</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F947E878A982E506BEE88B8192289356</key>
 		<dict>
 			<key>primary</key>
 			<true/>

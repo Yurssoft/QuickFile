@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C14B03DD75083FE55A5002B /* Pods_YSGGPUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD128DF4523C94D2288F545 /* Pods_YSGGPUnitTests.framework */; };
+		5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000501A1DBA7A19008D752E /* YSTabBarController.swift */; };
 		500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */; };
 		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
 		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		0F2172C0ABD4537440C844B5 /* Pods-YSGGPUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGPUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGPUnitTests/Pods-YSGGPUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
+		5000501A1DBA7A19008D752E /* YSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarController.swift; sourceTree = "<group>"; };
 		500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTableViewController.swift; sourceTree = "<group>"; };
 		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
 		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				504111001D9C00E200BE3B0C /* YSConstants.swift */,
 				50E49FB91D9D3ED300A6FAAC /* YSStringFromClass.swift */,
 				504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */,
+				5000501A1DBA7A19008D752E /* YSTabBarController.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				500B6C2C1D93F083003996CA /* YSDriveFileProtocol.swift in Sources */,
 				500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */,
 				508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */,
+				5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */,
 				503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */,
 				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
@@ -793,11 +797,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -812,11 +816,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";

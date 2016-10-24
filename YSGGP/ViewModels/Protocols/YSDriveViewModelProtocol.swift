@@ -16,7 +16,7 @@ protocol YSDriveViewModelViewDelegate: class
 
 protocol YSDriveViewModelCoordinatorDelegate: class
 {
-    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     func driveViewModelDidRequestedLogin()
 }
 

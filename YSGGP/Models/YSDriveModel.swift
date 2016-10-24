@@ -35,13 +35,17 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         if isLoggedIn
         {
             let query = GTLRDriveQuery_FilesList.query()
-            query.pageSize = 10
+            query.pageSize = 100
             query.fields = "nextPageToken, files(id, name, size, mimeType)"
             query.spaces = "drive"
             query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
-            if !currentFolderID.isEmpty
+            if currentFolderID.isEmpty
             {
-                query.q?.append(NSString(format: "and ('%@' in parents)", currentFolderID) as String!)
+                query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
+            }
+            else
+            {
+                query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
             }
             var ysfiles : [YSDriveFile] = []
             YSDriveManager.sharedInstance.service.executeQuery(query, completionHandler: { (ticket, response1, error) in

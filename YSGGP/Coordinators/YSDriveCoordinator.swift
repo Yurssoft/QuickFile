@@ -13,12 +13,6 @@ class YSDriveCoordinator: YSCoordinatorProtocol
     internal var driveViewController: YSDriveViewController?
     internal var navigationController: UINavigationController?
     
-    init(driveViewController: YSDriveViewController, navigationController: UINavigationController)
-    {
-        self.driveViewController = driveViewController
-        self.navigationController = navigationController
-    }
-    
     func start()
     {
         let viewModel = YSDriveViewModel()
@@ -41,6 +35,16 @@ class YSDriveCoordinator: YSCoordinatorProtocol
     }
 }
 
+extension YSDriveCoordinator : YSDriveViewControllerDidFinishedLoading
+{
+    func driveViewControllerDidLoaded(driveVC: YSDriveViewController, navigationController: UINavigationController)
+    {
+        driveViewController = driveVC
+        self.navigationController = navigationController
+        start()
+    }
+}
+
 extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
 {
     func showAuthentication()
@@ -58,10 +62,24 @@ extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
 
 extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
 {
-    func driveViewModelDidSelectData(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     {
-        let driveTopVC = driveViewController?.storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
-        navigationController?.pushViewController(driveTopVC, animated: true)
+        if (file.isAudio)
+        {
+            print("open player")
+        }
+        else
+        {
+            let driveTopVC = driveViewController?.storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
+            driveTopVC.driveViewControllerDidLoadedHandler =
+                {
+                    let viewModel = YSDriveViewModel()
+                    driveTopVC.driveVC?.viewModel = viewModel
+                    viewModel.model = YSDriveModel(folderID: file.fileDriveIdentifier)
+                    viewModel.coordinatorDelegate = self
+            }
+            navigationController?.pushViewController(driveTopVC, animated: true)
+        }
     }
 
     func driveViewModelDidRequestedLogin()

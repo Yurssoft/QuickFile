@@ -67,13 +67,16 @@ class YSDriveViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
-        cell.file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
+        let file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
+        cell.file = file
+        cell.accessoryType = (file?.isAudio)! ? .none : .disclosureIndicator
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         viewModel?.useFileAtIndex((indexPath as NSIndexPath).row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
