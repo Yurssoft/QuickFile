@@ -8,27 +8,37 @@
 
 import UIKit
 
-class YSDriveCoordinator: YSCoordinatorProtocol
+protocol YSDriveCoordinatorDelegate: class
 {
-    fileprivate var driveViewController: YSDriveViewController?
-    fileprivate var navigationController: UINavigationController?
+    func driveCoordinatorDidFinish(driveVC: YSDriveCoordinator, error: YSError?)
+    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveCoordinatorDidRequestedLogin()
+}
+
+class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
+{
+    fileprivate let driveViewController: YSDriveViewController
+    weak var delegate : YSDriveCoordinatorDelegate?
+    var folderID : String = ""
     
-//    init(<#parameters#>) {
-//        <#statements#>
-//    }
+    init(driveViewController: YSDriveViewController, folderID: String)
+    {
+        self.driveViewController = driveViewController
+        self.folderID = folderID
+    }
     
     func start()
     {
         let viewModel = YSDriveViewModel()
-        driveViewController?.viewModel = viewModel
-        viewModel.model = YSDriveModel(folderID: "")
+        driveViewController.viewModel = viewModel
+        viewModel.model = YSDriveModel(folderID: folderID)
         viewModel.coordinatorDelegate = self
     }
     
     fileprivate func start(folderID: String,error: YSError?)
     {
         let viewModel =  YSDriveViewModel()
-        driveViewController?.viewModel = viewModel
+        driveViewController.viewModel = viewModel
         viewModel.model = YSDriveModel(folderID: folderID)
         viewModel.coordinatorDelegate = self
         if error == nil
@@ -39,52 +49,20 @@ class YSDriveCoordinator: YSCoordinatorProtocol
     }
 }
 
-extension YSDriveCoordinator : YSDriveViewControllerDidFinishedLoading
-{
-    func driveViewControllerDidLoaded(driveVC: YSDriveViewController, navigationController: UINavigationController)
-    {
-        driveViewController = driveVC
-        self.navigationController = navigationController
-        start()
-    }
-}
-
-extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
-{
-    func showAuthentication()
-    {
-        let authenticationCoordinator = YSAuthenticationCoordinator(navigationController: navigationController!)
-        authenticationCoordinator.delegate = self
-        authenticationCoordinator.start()
-    }
-    
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
-    {
-        start(folderID:"", error: error)
-    }
-}
-
 extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
 {
     func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     {
-        if (file.isAudio)
-        {
-            print("open player")
-        }
-        else
-        {
-            let driveTopVC = driveViewController?.storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
-            driveTopVC.driveViewControllerDidLoadedHandler =
-            {
-                self.start(folderID: file.fileDriveIdentifier, error: nil)
-            }
-            navigationController?.pushViewController(driveTopVC, animated: true)
-        }
+        delegate?.driveCoordinatorDidSelectFile(viewModel, file: file)
     }
 
     func driveViewModelDidRequestedLogin()
     {
-        showAuthentication()
+        delegate?.driveCoordinatorDidRequestedLogin()
+    }
+    
+    func driveViewModelDidFinish()
+    {
+        delegate?.driveCoordinatorDidFinish(driveVC: self, error: nil)
     }
 }

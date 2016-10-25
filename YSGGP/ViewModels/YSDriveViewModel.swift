@@ -113,4 +113,9 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             completion(error)
         }
     }
+    
+    func driveViewControllerDidFinish()
+    {
+        coordinatorDelegate?.driveViewModelDidFinish()
+    }
 }

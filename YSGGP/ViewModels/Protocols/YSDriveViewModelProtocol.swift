@@ -19,6 +19,7 @@ protocol YSDriveViewModelCoordinatorDelegate: class
 {
     func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
     func driveViewModelDidRequestedLogin()
+    func driveViewModelDidFinish()
 }
 
 protocol YSDriveViewModelProtocol
@@ -37,4 +38,5 @@ protocol YSDriveViewModelProtocol
     func loginToDrive()
     func removeDownloads()
     func getFiles(completion: @escaping CompletionHandler)
+    func driveViewControllerDidFinish()
 }

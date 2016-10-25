@@ -55,8 +55,10 @@ class YSDriveViewController: UITableViewController
     
     deinit
     {
-        print(",hj")
-        tableView.dg_removePullToRefresh()
+        if tableView != nil
+        {
+            tableView.dg_removePullToRefresh()
+        }
     }
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)

@@ -41,7 +41,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
             if currentFolderID.isEmpty
             {
-                query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
+                query.q = "'root' in parents and (mimeType contains 'folder' or mimeType contains 'audio')"
             }
             else
             {
@@ -70,6 +70,10 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                         ysfiles.append(ysfile)
                     }
                     completionHandler!(ysfiles, YSError())
+                }
+                else
+                {
+                    completionHandler!([], YSError())
                 }
             })
         }

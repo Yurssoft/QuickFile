@@ -8,8 +8,6 @@
 
 import UIKit
 
-typealias DriveViewControllerDidLoadedHandler = () -> Swift.Void
-
 protocol YSDriveViewControllerDidFinishedLoading: class
 {
     func driveViewControllerDidLoaded(driveVC: YSDriveViewController, navigationController: UINavigationController)
@@ -21,11 +19,9 @@ class YSDriveTopViewController: UIViewController
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var toolbarViewBottomConstraint : NSLayoutConstraint?
     @IBOutlet fileprivate weak var toolbarView: YSToolbarView?
-    fileprivate var loginNavigationButton : UIBarButtonItem?
     var driveVC : YSDriveViewController?
     
-    var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
-    var driveViewControllerDidLoadedHandler : DriveViewControllerDidLoadedHandler?
+    weak var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
     
     fileprivate let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
     fileprivate let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
@@ -35,28 +31,33 @@ class YSDriveTopViewController: UIViewController
         super.viewDidLoad()
         driveVC?.toolbarView = toolbarView
         driveVC?.containingViewControllerViewDidLoad()
-        loginNavigationButton = UIBarButtonItem(title: "Login", style:UIBarButtonItemStyle.plain, target: self, action: #selector(YSDriveTopViewController.loginButtonTapped(_:)))
         driveVCReadyDelegate?.driveViewControllerDidLoaded(driveVC: driveVC!, navigationController: navigationController!)
-        if let handler = driveViewControllerDidLoadedHandler
-        {
-            handler()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        if !(driveVC?.viewModel?.isLoggedIn)!
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?)
+    {
+        super.willMove(toParentViewController: parent)
+        if parent == nil
         {
-            navigationItem.setLeftBarButton(loginNavigationButton, animated: true)
+            driveVC?.viewModel?.driveViewControllerDidFinish()
         }
+    }
+    
+    deinit
+    {
+        driveVC?.viewModel = nil
+        driveVC = nil
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)
     {
         driveVC?.setEditing(!(driveVC?.isEditing)!, animated: true)
         toolbarView?.isHidden = !(driveVC?.isEditing)!
-        navigationItem.leftBarButtonItem = (driveVC?.isEditing)! ? nil : loginNavigationButton
         sender.title = (driveVC?.isEditing)! ? "Done" : "Edit"
         tabBarController?.setTabBarVisible(isVisible: !(driveVC?.isEditing)!, animated: true, completion:nil)
     }

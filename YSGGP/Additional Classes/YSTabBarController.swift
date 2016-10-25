@@ -24,7 +24,9 @@ class YSTabBarController: UITabBarController
                 }
             }
         }
-        let coordinator = YSDriveCoordinator()
-        driveTopViewController?.driveVCReadyDelegate = coordinator
+        let coordinator = YSDriveTopCoordinator()
+        let appDelegate = UIApplication.shared.delegate as! YSAppDelegate
+        appDelegate.driveTopCoordinator = coordinator
+        coordinator.start(driveTopVC: driveTopViewController!)
     }
 }
