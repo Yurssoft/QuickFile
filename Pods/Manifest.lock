@@ -12,12 +12,14 @@ PODS:
   - GTMSessionFetcher/Core (1.1.6)
   - GTMSessionFetcher/Full (1.1.6):
     - GTMSessionFetcher/Core (= 1.1.6)
+  - M13ProgressSuite (1.2.8)
   - SwiftMessages (3.0.2)
 
 DEPENDENCIES:
   - DGElasticPullToRefresh
   - GoogleAPIClientForREST/Drive
   - GTMOAuth2
+  - M13ProgressSuite
   - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -25,8 +27,9 @@ SPEC CHECKSUMS:
   GoogleAPIClientForREST: 0b72399da5a108ba42a7fe0f8559edd7c49ea96a
   GTMOAuth2: 72f8a58b1ad821cc06638b6099a522789fe04fcc
   GTMSessionFetcher: 6aacd0ab48ddf0c3633ab2642d792abfcad1b08a
+  M13ProgressSuite: c357c8c163a59a7405e5a9ad7e9c63a19e5e5d20
   SwiftMessages: 3523c331c6b7b66e6f23a970ced259065ba31f9c
 
-PODFILE CHECKSUM: 8a036690757e73200b3d0bafcc2a2f41d4996bdf
+PODFILE CHECKSUM: 83c78642e1a9d62763641d1714a8e7f2321c5b2b
 
 COCOAPODS: 1.1.0.rc.3

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 typealias DriveViewControllerDidLoadedHandler = () -> Swift.Void
 
 protocol YSDriveViewControllerDidFinishedLoading: class
@@ -18,18 +17,18 @@ protocol YSDriveViewControllerDidFinishedLoading: class
 
 class YSDriveTopViewController: UIViewController
 {
-    @IBOutlet internal weak var editButton: UIBarButtonItem!
-    @IBOutlet internal weak var containerView: UIView!
-    @IBOutlet internal weak var toolbarViewBottomConstraint : NSLayoutConstraint?
-    @IBOutlet internal weak var toolbarView: YSToolbarView?
-    internal var loginNavigationButton : UIBarButtonItem?
-    internal var driveVC : YSDriveViewController?
+    @IBOutlet fileprivate weak var editButton: UIBarButtonItem!
+    @IBOutlet fileprivate weak var containerView: UIView!
+    @IBOutlet fileprivate weak var toolbarViewBottomConstraint : NSLayoutConstraint?
+    @IBOutlet fileprivate weak var toolbarView: YSToolbarView?
+    fileprivate var loginNavigationButton : UIBarButtonItem?
+    var driveVC : YSDriveViewController?
     
     var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
     var driveViewControllerDidLoadedHandler : DriveViewControllerDidLoadedHandler?
     
-    internal let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
-    internal let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
+    fileprivate let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
+    fileprivate let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
     
     override func viewDidLoad()
     {

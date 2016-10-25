@@ -10,17 +10,17 @@ import Foundation
 
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
-    internal var isLoggedIn: Bool
+    var isLoggedIn: Bool
     {
        return (model?.isLoggedIn)!
     }
     
-    internal var isFilesPresent: Bool
+    var isFilesPresent: Bool
     {
         return files != nil && !(files?.isEmpty)!
     }
     
-    internal var error : YSError = YSError()
+    var error : YSError = YSError()
     {
         didSet
         {
@@ -42,18 +42,26 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
     }
     
+    var isDownloadingMetadata : Bool = false
+    {
+        didSet
+        {
+            viewDelegate?.metadataDownloadStatusDidChange(viewModel: self)
+        }
+    }
+    
     var model: YSDriveModel?
     {
         didSet
         {
             files = nil
-            
+            isDownloadingMetadata = true
             model?.getFiles()
             { (files, error) in
+                self.isDownloadingMetadata = false
                 self.files = files
                 self.error = error!
             }
-            
         }
     }
     
@@ -92,5 +100,17 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         files?.removeAll()
         viewDelegate?.filesDidChange(viewModel: self)
+    }
+    
+    func getFiles(completion: @escaping CompletionHandler)
+    {
+        isDownloadingMetadata = true
+        model?.getFiles()
+            { (files, error) in
+            self.isDownloadingMetadata = false
+            self.files = files
+            self.error = error!
+            completion(error)
+        }
     }
 }

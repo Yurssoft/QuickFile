@@ -13,6 +13,7 @@ import GTMOAuth2
 class YSAppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
+    var driveCoordinator : YSDriveCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {

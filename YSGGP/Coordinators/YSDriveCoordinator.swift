@@ -10,8 +10,12 @@ import UIKit
 
 class YSDriveCoordinator: YSCoordinatorProtocol
 {
-    internal var driveViewController: YSDriveViewController?
-    internal var navigationController: UINavigationController?
+    fileprivate var driveViewController: YSDriveViewController?
+    fileprivate var navigationController: UINavigationController?
+    
+//    init(<#parameters#>) {
+//        <#statements#>
+//    }
     
     func start()
     {
@@ -21,11 +25,11 @@ class YSDriveCoordinator: YSCoordinatorProtocol
         viewModel.coordinatorDelegate = self
     }
     
-    internal func start(error: YSError?)
+    fileprivate func start(folderID: String,error: YSError?)
     {
         let viewModel =  YSDriveViewModel()
         driveViewController?.viewModel = viewModel
-        viewModel.model = YSDriveModel(folderID: "")
+        viewModel.model = YSDriveModel(folderID: folderID)
         viewModel.coordinatorDelegate = self
         if error == nil
         {
@@ -56,7 +60,7 @@ extension YSDriveCoordinator : YSAuthenticationCoordinatorDelegate
     
     func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
     {
-        start(error: error)
+        start(folderID:"", error: error)
     }
 }
 
@@ -72,11 +76,8 @@ extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
         {
             let driveTopVC = driveViewController?.storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
             driveTopVC.driveViewControllerDidLoadedHandler =
-                {
-                    let viewModel = YSDriveViewModel()
-                    driveTopVC.driveVC?.viewModel = viewModel
-                    viewModel.model = YSDriveModel(folderID: file.fileDriveIdentifier)
-                    viewModel.coordinatorDelegate = self
+            {
+                self.start(folderID: file.fileDriveIdentifier, error: nil)
             }
             navigationController?.pushViewController(driveTopVC, animated: true)
         }

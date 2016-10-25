@@ -10,8 +10,8 @@ import UIKit
 
 class YSSettingsCoordinator: YSCoordinatorProtocol
 {
-    internal var settingsViewController: YSSettingsTableViewController?
-    internal var navigationController: UINavigationController?
+    fileprivate var settingsViewController: YSSettingsTableViewController?
+    fileprivate var navigationController: UINavigationController?
     
     init(settingsViewController: YSSettingsTableViewController, navigationController: UINavigationController)
     {
@@ -28,7 +28,7 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
     }
     
     
-    internal func start(error: YSError?)
+    fileprivate func start(error: YSError?)
     {
         let viewModel =  YSSettingsViewModel()
         settingsViewController?.viewModel = viewModel

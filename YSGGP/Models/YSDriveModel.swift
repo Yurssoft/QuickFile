@@ -18,7 +18,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         return YSDriveManager.sharedInstance.isLoggedIn
     }
     
-    internal var currentFolderID : String = ""
+    fileprivate var currentFolderID : String = ""
     
     init(folderID: String)
     {
@@ -48,6 +48,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
             }
             var ysfiles : [YSDriveFile] = []
+            
             YSDriveManager.sharedInstance.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
                 if error != nil
                 {

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>M13ProgressSuite.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-YSGGP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,16 +52,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0821C23DCBD338361FE46081FF6814E8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0E409C5B8CC6450178006E13B930A6C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>115824B7CB2E76E5ACB836A251E79404</key>
 		<dict>
 			<key>primary</key>
@@ -67,7 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>634BB4591036E1C9ADCE95570D0ED6AF</key>
+		<key>6EE92B33814B63C6F0A539A1BDC613CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>809950F0FF040A93920DA8942176F8C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>81ABC8165309E3607451C2C69CDC9F25</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -83,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>E9954DD48D41FE78C4998FA5D579BB32</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5FE7043DCD5223A6455BE9B2049A92A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

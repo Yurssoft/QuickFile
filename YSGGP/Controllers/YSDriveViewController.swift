@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftMessages
+import DGElasticPullToRefresh
+import M13ProgressSuite
 
 class YSDriveViewController: UITableViewController
 {
@@ -30,6 +32,31 @@ class YSDriveViewController: UITableViewController
     {
         refreshDisplay()
         tableView.allowsMultipleSelectionDuringEditing = true
+        configurePullToRefresh()
+        navigationController?.showProgress()
+    }
+    
+    func configurePullToRefresh()
+    {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.getFiles()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        metadataDownloadStatusDidChange(viewModel: viewModel!)
+    }
+    
+    deinit
+    {
+        print(",hj")
+        tableView.dg_removePullToRefresh()
     }
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
@@ -89,14 +116,16 @@ class YSDriveViewController: UITableViewController
         return .insert
     }
     
-    func getList()
+    func getFiles()
     {
-        
-    }
-    
-    func getRootFolder()
-    {
-        
+         if (viewModel?.isLoggedIn)!
+         {
+            self.tableView.dg_stopLoading()
+        }
+        viewModel?.getFiles(completion:
+        { _ in
+            self.tableView.dg_stopLoading()
+        })
     }
 }
 
@@ -107,6 +136,14 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         DispatchQueue.main.async
         {
             [weak self] in self?.tableView.reloadData()
+        }
+    }
+    
+    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModel)
+    {
+        DispatchQueue.main.async
+        {
+            [weak self] in self?.navigationController?.setIndeterminate(viewModel.isDownloadingMetadata)
         }
     }
     
@@ -137,14 +174,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         case .couldNotGetFileList:
             message.buttonTapHandler =
             { _ in
-                self.getList()
-                SwiftMessages.hide(id: message.id)
-            }
-            break
-        case .couldNotGetRootFolder:
-            message.buttonTapHandler =
-            { _ in
-                self.getRootFolder()
+                self.getFiles()
                 SwiftMessages.hide(id: message.id)
             }
             break

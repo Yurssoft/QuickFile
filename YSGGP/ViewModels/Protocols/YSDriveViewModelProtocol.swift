@@ -11,6 +11,7 @@ import Foundation
 protocol YSDriveViewModelViewDelegate: class
 {
     func filesDidChange(viewModel: YSDriveViewModel)
+    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModel)
     func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
 }
 
@@ -28,10 +29,12 @@ protocol YSDriveViewModelProtocol
     var numberOfFiles: Int { get }
     var isFilesPresent: Bool { get }
     var isLoggedIn: Bool { get }
+    var isDownloadingMetadata: Bool { get }
     var error : YSError { get }
     
     func fileAtIndex(_ index: Int) -> YSDriveFile?
     func useFileAtIndex(_ index: Int)
     func loginToDrive()
     func removeDownloads()
+    func getFiles(completion: @escaping CompletionHandler)
 }

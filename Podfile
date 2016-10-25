@@ -5,6 +5,7 @@ target 'YSGGP' do
     pod 'GTMOAuth2'
     pod 'SwiftMessages'
     pod 'DGElasticPullToRefresh'
+    pod 'M13ProgressSuite'
 end    
 
 target 'YSGGPUnitTests' do

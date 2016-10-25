@@ -9,6 +9,8 @@
 import Foundation
 import GoogleAPIClientForREST
 
+typealias CompletionHandler = (YSError?) -> Swift.Void
+
 struct YSConstants
 {
     static let kDriveKeychainAuthorizerName = "Drive API"
@@ -22,7 +24,6 @@ struct YSConstants
 enum YSErrorType
 {
     case none
-    case couldNotGetRootFolder
     case couldNotGetFileList
     case cancelledLoginToDrive
     case couldNotLoginToDrive
