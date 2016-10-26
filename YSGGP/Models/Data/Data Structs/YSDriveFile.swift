@@ -15,6 +15,7 @@ struct YSDriveFile : YSDriveFileProtocol
     let mimeType : String
     let isAudio : Bool
     let fileDriveIdentifier : String
+    var localFilePath : String = ""
     
     init(fileName : String?, fileSize : String?, mimeType : String?, isAudio : Bool, fileDriveIdentifier : String?)
     {
