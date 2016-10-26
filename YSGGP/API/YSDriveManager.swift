@@ -13,7 +13,7 @@ import SwiftMessages
 
 class YSDriveManager
 {
-    static let sharedInstance : YSDriveManager =
+    static let shared : YSDriveManager =
     {
         let instance = YSDriveManager()
         instance.login()
@@ -61,7 +61,7 @@ class YSDriveManager
     {
         if GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainAuthorizerName)
         {
-            YSDriveManager.sharedInstance.service.authorizer = nil
+            YSDriveManager.shared.service.authorizer = nil
             let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged out from Drive", buttonTitle: "Login")
             throw error
         }

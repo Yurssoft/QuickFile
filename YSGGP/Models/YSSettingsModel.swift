@@ -12,14 +12,14 @@ class YSSettingsModel
 {
     var isLoggedIn : Bool
     {
-        return YSDriveManager.sharedInstance.isLoggedIn
+        return YSDriveManager.shared.isLoggedIn
     }
     
     func logOut() throws
     {
         do
         {
-            try YSDriveManager.sharedInstance.logOut()
+            try YSDriveManager.shared.logOut()
         }
         catch
         {

@@ -41,10 +41,10 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                   keychainItemName: YSConstants.kDriveKeychainAuthorizerName,
                                                                   completionHandler: { (authController, authResult , error) in
                                                                     
-                                                                    YSDriveManager.sharedInstance.authorizer = authResult
+                                                                    YSDriveManager.shared.authorizer = authResult
                                                                     
                                                                     var yserror : YSErrorProtocol
-                                                                    if error == nil && YSDriveManager.sharedInstance.isLoggedIn
+                                                                    if error == nil && YSDriveManager.shared.isLoggedIn
                                                                     {
                                                                         yserror = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged in to Drive", buttonTitle: "Got It")
                                                                     }

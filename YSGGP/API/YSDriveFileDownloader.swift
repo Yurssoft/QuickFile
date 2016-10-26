@@ -11,4 +11,5 @@ import Foundation
 class YSDriveFileDownloader
 {
     fileprivate var downloads : [YSDownloadProtocol] = []
+    
 }

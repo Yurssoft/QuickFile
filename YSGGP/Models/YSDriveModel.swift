@@ -15,7 +15,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
 {
     var isLoggedIn : Bool
     {
-        return YSDriveManager.sharedInstance.isLoggedIn
+        return YSDriveManager.shared.isLoggedIn
     }
     
     fileprivate var currentFolderID : String = ""
@@ -31,7 +31,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         {
             return
         }
-        YSDriveManager.sharedInstance.login()
+        YSDriveManager.shared.login()
         if isLoggedIn
         {
             let query = GTLRDriveQuery_FilesList.query()
@@ -49,7 +49,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             }
             var ysfiles : [YSDriveFileProtocol] = []
             
-            YSDriveManager.sharedInstance.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
+            YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
                 if error != nil
                 {
                     let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
