@@ -47,7 +47,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             {
                 query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
             }
-            var ysfiles : [YSDriveFile] = []
+            var ysfiles : [YSDriveFileProtocol] = []
             
             YSDriveManager.sharedInstance.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
                 if error != nil

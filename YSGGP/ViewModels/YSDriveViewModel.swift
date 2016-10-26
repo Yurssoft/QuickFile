@@ -20,7 +20,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return files != nil && !(files?.isEmpty)!
     }
     
-    var error : YSError = YSError()
+    var error : YSErrorProtocol = YSError()
     {
         didSet
         {
@@ -34,7 +34,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     weak var viewDelegate: YSDriveViewModelViewDelegate?
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
-    fileprivate var files: [YSDriveFile]?
+    fileprivate var files: [YSDriveFileProtocol]?
     {
         didSet
         {
@@ -74,7 +74,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return 0
     }
     
-    func fileAtIndex(_ index: Int) -> YSDriveFile?
+    func fileAtIndex(_ index: Int) -> YSDriveFileProtocol?
     {
         if let files = files , files.count > index
         {

@@ -10,7 +10,7 @@ import Foundation
 
 protocol YSSettingsViewModelViewDelegate: class
 {
-    func errorDidChange(viewModel: YSSettingsViewModel, error: YSError)
+    func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
 }
 
 protocol YSSettingsViewModelCoordinatorDelegate: class

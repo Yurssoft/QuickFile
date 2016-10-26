@@ -97,7 +97,7 @@ class YSDriveViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
         let file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
-        cell.file = file
+        cell.file = file as! YSDriveFile?
         cell.accessoryType = (file?.isAudio)! ? .none : .disclosureIndicator
         return cell
     }
@@ -149,7 +149,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
-    func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
+    func errorDidChange(viewModel: YSDriveViewModel, error: YSErrorProtocol)
     {
         let message = MessageView.viewFromNib(layout: .CardView)
         message.configureTheme(error.messageType)

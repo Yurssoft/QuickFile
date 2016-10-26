@@ -51,9 +51,9 @@ extension YSSettingsCoordinator : YSAuthenticationCoordinatorDelegate
         authenticationCoordinator.start()
     }
     
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSErrorProtocol?)
     {
-        start(error:error)
+        start(error:error as! YSError?)
     }
 }
 

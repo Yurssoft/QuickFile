@@ -10,8 +10,8 @@ import UIKit
 
 protocol YSDriveCoordinatorDelegate: class
 {
-    func driveCoordinatorDidFinish(driveVC: YSDriveCoordinator, error: YSError?)
-    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveCoordinatorDidFinish(driveVC: YSDriveCoordinator, error: YSErrorProtocol?)
+    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
     func driveCoordinatorDidRequestedLogin()
 }
 
@@ -51,7 +51,7 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
 
 extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
 {
-    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
     {
         delegate?.driveCoordinatorDidSelectFile(viewModel, file: file)
     }

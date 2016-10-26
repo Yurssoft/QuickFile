@@ -12,12 +12,12 @@ protocol YSDriveViewModelViewDelegate: class
 {
     func filesDidChange(viewModel: YSDriveViewModel)
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModel)
-    func errorDidChange(viewModel: YSDriveViewModel, error: YSError)
+    func errorDidChange(viewModel: YSDriveViewModel, error: YSErrorProtocol)
 }
 
 protocol YSDriveViewModelCoordinatorDelegate: class
 {
-    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
     func driveViewModelDidRequestedLogin()
     func driveViewModelDidFinish()
 }
@@ -31,9 +31,9 @@ protocol YSDriveViewModelProtocol
     var isFilesPresent: Bool { get }
     var isLoggedIn: Bool { get }
     var isDownloadingMetadata: Bool { get }
-    var error : YSError { get }
+    var error : YSErrorProtocol { get }
     
-    func fileAtIndex(_ index: Int) -> YSDriveFile?
+    func fileAtIndex(_ index: Int) -> YSDriveFileProtocol?
     func useFileAtIndex(_ index: Int)
     func loginToDrive()
     func removeDownloads()

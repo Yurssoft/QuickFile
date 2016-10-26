@@ -15,7 +15,7 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         return model!.isLoggedIn
     }
 
-    fileprivate var error : YSError = YSError()
+    fileprivate var error : YSErrorProtocol = YSError()
     {
         didSet
         {
@@ -43,7 +43,7 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         }
         catch
         {
-            viewDelegate?.errorDidChange(viewModel: self, error: error as! YSError)
+            viewDelegate?.errorDidChange(viewModel: self, error: error as! YSErrorProtocol)
         }
     }
 }

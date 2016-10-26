@@ -33,7 +33,7 @@ extension YSDriveTopCoordinator : YSAuthenticationCoordinatorDelegate
         authenticationCoordinator.start()
     }
     
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSErrorProtocol?)
     {
         driveCoordinators.last?.start()
     }
@@ -53,7 +53,7 @@ extension YSDriveTopCoordinator : YSDriveViewControllerDidFinishedLoading
 
 extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
 {
-    func driveCoordinatorDidFinish(driveVC: YSDriveCoordinator, error: YSError?)
+    func driveCoordinatorDidFinish(driveVC: YSDriveCoordinator, error: YSErrorProtocol?)
     {
         if let index = driveCoordinators.index(of: driveVC)
         {
@@ -75,7 +75,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
         }
     }
     
-    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFile)
+    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
     {
         if (file.isAudio)
         {

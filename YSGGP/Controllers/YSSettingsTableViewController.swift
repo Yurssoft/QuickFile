@@ -93,7 +93,7 @@ class YSSettingsTableViewController: UITableViewController
 
 extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
-    func errorDidChange(viewModel: YSSettingsViewModel, error: YSError)
+    func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
     {
         let message = MessageView.viewFromNib(layout: .CardView)
         message.configureTheme(error.messageType)

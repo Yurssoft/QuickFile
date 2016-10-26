@@ -12,7 +12,7 @@ import SwiftMessages
 
 protocol YSAuthenticationCoordinatorDelegate: class
 {
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSError?)
+    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSErrorProtocol?)
 }
 
 class YSAuthenticationCoordinator: YSCoordinatorProtocol
@@ -43,7 +43,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     
                                                                     YSDriveManager.sharedInstance.authorizer = authResult
                                                                     
-                                                                    var yserror : YSError
+                                                                    var yserror : YSErrorProtocol
                                                                     if error == nil && YSDriveManager.sharedInstance.isLoggedIn
                                                                     {
                                                                         yserror = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Successfully logged in to Drive", buttonTitle: "Got It")

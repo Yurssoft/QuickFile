@@ -9,7 +9,7 @@
 import Foundation
 import GoogleAPIClientForREST
 
-typealias CompletionHandler = (YSError?) -> Swift.Void
+typealias CompletionHandler = (YSErrorProtocol?) -> Swift.Void
 
 struct YSConstants
 {
