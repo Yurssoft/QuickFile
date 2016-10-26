@@ -19,6 +19,8 @@ struct YSConstants
     static let kStoryboardName = "Main"
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
     static let kSettingsEmbededSegue = "YSSettingsViewControllerSegue"
+    static let kDriveAPIKey = "AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
+    static let kDriveAPIEndpoint = "https://www.googleapis.com/drive/v3/"
 }
 
 enum YSErrorType
