@@ -58,13 +58,13 @@ class YSGGPUITests: XCTestCase
         let allowButton = app.otherElements["Request for Permission"].buttons["Allow"]
         let isHittablePredicate = NSPredicate(format: "isHittable == true")
         expectation(for: isHittablePredicate, evaluatedWith: allowButton, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 150, handler: nil)
         app.otherElements["Request for Permission"].buttons["Allow"].tap()
         
         let object = app.tables.staticTexts["Log Out From Drive"]
         let logOutExistsPredicate = NSPredicate(format: "exists == true", "Wrong label text")
         expectation(for: logOutExistsPredicate, evaluatedWith: object, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 150, handler: nil)
     }
     
     func testLogOut ()

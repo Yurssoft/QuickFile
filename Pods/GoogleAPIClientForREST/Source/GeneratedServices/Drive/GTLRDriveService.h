@@ -111,8 +111,6 @@ GTLR_EXTERN NSString * const kGTLRAuthScopeDriveScripts;
 // The object passed to the completion handler or delegate method
 // is a subclass of GTLRObject, determined by the query method executed.
 
-- (instancetype)initWithDummyString:(NSString *)str;
-
 @end
 
 NS_ASSUME_NONNULL_END

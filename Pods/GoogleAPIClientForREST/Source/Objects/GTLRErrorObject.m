@@ -18,7 +18,11 @@
 #endif
 
 #import "GTLRErrorObject.h"
+
+#import "GTLRUtilities.h"
 #import "GTLRService.h"
+
+static NSString *const kGTLRErrorObjectFoundationErrorKey = @"foundationError";
 
 @implementation GTLRErrorObject {
   NSError *_originalFoundationError;
@@ -42,7 +46,7 @@
   GTLRErrorObject *object = [self object];
   object->_originalFoundationError = error;
   object.code = @(error.code);
-  object.message = error.description;
+  object.message = error.localizedDescription;
   return object;
 }
 
@@ -60,7 +64,7 @@
 
   // This structured GTLRErrorObject will be available in the error's userInfo
   // dictionary.
-  [userInfo setObject:self forKey:kGTLRStructuredErrorKey];
+  userInfo[kGTLRStructuredErrorKey]  = self;
 
   NSError *error;
   if (_originalFoundationError) {
@@ -70,14 +74,7 @@
   } else {
     NSString *reasonStr = self.message;
     if (reasonStr) {
-      // We always store an error in the userInfo key "error"
-      [userInfo setObject:reasonStr forKey:kGTLRServiceErrorStringKey];
-
-      // Store a user-readable "reason" to show up when an error is logged,
-      // in parentheses like NSError does it
-      NSString *parenthesized = [NSString stringWithFormat:@"(%@)", reasonStr];
-      [userInfo setObject:parenthesized
-                   forKey:NSLocalizedFailureReasonErrorKey];
+      userInfo[NSLocalizedDescriptionKey] = reasonStr;
     }
 
     error = [NSError errorWithDomain:kGTLRErrorObjectDomain
@@ -91,6 +88,36 @@
   NSDictionary *userInfo = [foundationError userInfo];
   GTLRErrorObject *errorObj = [userInfo objectForKey:kGTLRStructuredErrorKey];
   return errorObj;
+}
+
+- (BOOL)isEqual:(id)object {
+  // Include the underlying foundation error in equality checks.
+  if (self == object) return YES;
+  if (![super isEqual:object]) return NO;
+  if (![object isKindOfClass:[GTLRErrorObject class]]) return NO;
+  GTLRErrorObject *other = (GTLRErrorObject *)object;
+  return GTLR_AreEqualOrBothNil(_originalFoundationError,
+                                other->_originalFoundationError);
+}
+
++ (BOOL)supportsSecureCoding {
+  return YES;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder {
+  self = [super initWithCoder:decoder];
+  if (self) {
+    _originalFoundationError =
+        [decoder decodeObjectOfClass:[NSError class]
+                              forKey:kGTLRErrorObjectFoundationErrorKey];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [super encodeWithCoder:encoder];
+  [encoder encodeObject:_originalFoundationError
+                 forKey:kGTLRErrorObjectFoundationErrorKey];
 }
 
 @end

@@ -9,6 +9,7 @@
 import UIKit
 import GTMOAuth2
 import SwiftMessages
+import Firebase
 
 protocol YSAuthenticationCoordinatorDelegate: class
 {
@@ -40,6 +41,57 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                   clientSecret: nil,
                                                                   keychainItemName: YSConstants.kDriveKeychainAuthorizerName,
                                                                   completionHandler: { (authController, authResult , error) in
+                                                                    
+                                                                    
+                                                                    let idToken = authResult?.parameters["id_token"] as? String
+                                                                    let accessToken = authResult?.parameters["access_token"] as? String
+                                                                    if idToken != nil && accessToken != nil
+                                                                    {
+                                                                        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken!,
+                                                                                                                      accessToken: accessToken!)
+                                                                        print(credential.provider)
+                                                                        var storedError: YSErrorProtocol!
+                                                                        let downloadGroup = DispatchGroup()
+                                                                        downloadGroup.enter()
+                                                                        print(FIRAuth.auth()?.app.debugDescription)
+                                                                        FIRAuth.auth()?.signIn(with: credential)
+                                                                        { (user, error) in
+                                                                            if let error = error
+                                                                            {
+                                                                                storedError = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't login to Database", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
+                                                                            }
+                                                                            print("Firebase user refresh token : \(user?.refreshToken)")
+                                                                            downloadGroup.leave()
+                                                                        }
+                                                                        let result = downloadGroup.wait(timeout: DispatchTime.distantFuture)
+                                                                        switch result
+                                                                        {
+                                                                        case .success:
+                                                                            
+                                                                            if storedError != nil
+                                                                            {
+                                                                                self.dismissAuthentication()
+                                                                                {
+                                                                                    self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: storedError)
+                                                                                }
+                                                                                return
+                                                                            }
+                                                                            
+                                                                            break
+                                                                        default:
+                                                                            break
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        var yserror : YSErrorProtocol
+                                                                        yserror = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't login to Database", buttonTitle: "Try Again", debugInfo: error.debugDescription)
+                                                                        self.dismissAuthentication()
+                                                                        {
+                                                                            self.delegate?.authenticationCoordinatorDidFinish(authenticationCoordinator: self, error: yserror)
+                                                                        }
+                                                                        return
+                                                                    }
                                                                     
                                                                     YSDriveManager.shared.authorizer = authResult
                                                                     

@@ -68,7 +68,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) GTLRDrive_AboutImportFormats *importFormats;
 
-/** This is always drive#about. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#about".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** A map of maximum import sizes by MIME type, in bytes. */
@@ -178,7 +181,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** The ID of the file which has changed. */
 @property(nonatomic, copy, nullable) NSString *fileId;
 
-/** This is always drive#change. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#change".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -213,7 +219,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) NSArray<GTLRDrive_Change *> *changes;
 
-/** This is always drive#changeList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#changeList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -343,7 +352,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable) NSString *identifier;
 
-/** This is always drive#comment. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#comment".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -409,7 +421,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) NSArray<GTLRDrive_Comment *> *comments;
 
-/** This is always drive#commentList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#commentList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -509,7 +524,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) NSNumber *isAppAuthorized;
 
-/** This is always drive#file. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#file".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The last user to modify the file. */
@@ -1004,7 +1022,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) NSArray<GTLRDrive_File *> *files;
 
-/** This is always drive#fileList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#fileList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -1024,7 +1045,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** The IDs generated for the requesting user in the specified space. */
 @property(nonatomic, strong, nullable) NSArray<NSString *> *ids;
 
-/** This is always drive#generatedIds */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#generatedIds".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The type of file that can be created with these IDs. */
@@ -1067,7 +1091,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable) NSString *identifier;
 
-/** This is always drive#permission. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#permission".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** A link to the user's profile photo, if available. */
@@ -1099,7 +1126,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GTLRDrive_PermissionList : GTLRObject
 
-/** This is always drive#permissionList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#permissionList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The full list of permissions. */
@@ -1150,7 +1180,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable) NSString *identifier;
 
-/** This is always drive#reply. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#reply".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The last time the reply was modified (RFC 3339 date-time). */
@@ -1169,7 +1202,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GTLRDrive_ReplyList : GTLRCollectionObject
 
-/** This is always drive#replyList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#replyList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**
@@ -1212,7 +1248,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, nullable) NSNumber *keepForever;
 
-/** This is always drive#revision. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#revision".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The last user to modify this revision. */
@@ -1272,13 +1311,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  A list of revisions of a file.
+ *
+ *  @note This class supports NSFastEnumeration and indexed subscripting over
+ *        its "revisions" property. If returned as the result of a query, it
+ *        should support automatic pagination (when @c shouldFetchNextPages is
+ *        enabled).
  */
-@interface GTLRDrive_RevisionList : GTLRObject
+@interface GTLRDrive_RevisionList : GTLRCollectionObject
 
-/** This is always drive#revisionList. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#revisionList".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
-/** The full list of revisions. */
+/**
+ *  The page token for the next page of revisions. This will be absent if the
+ *  end of the revisions list has been reached.
+ */
+@property(nonatomic, copy, nullable) NSString *nextPageToken;
+
+/**
+ *  The full list of revisions.
+ *
+ *  @note This property is used to support NSFastEnumeration and indexed
+ *        subscripting on this class.
+ */
 @property(nonatomic, strong, nullable) NSArray<GTLRDrive_Revision *> *revisions;
 
 @end
@@ -1289,7 +1347,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GTLRDrive_StartPageToken : GTLRObject
 
-/** This is always drive#startPageToken. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#startPageToken".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /** The starting page token for listing changes. */
@@ -1312,7 +1373,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable) NSString *emailAddress;
 
-/** This is always drive#user. */
+/**
+ *  Identifies what kind of resource this is. Value: the fixed string
+ *  "drive#user".
+ */
 @property(nonatomic, copy, nullable) NSString *kind;
 
 /**

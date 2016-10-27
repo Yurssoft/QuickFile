@@ -6,6 +6,9 @@ target 'YSGGP' do
     pod 'SwiftMessages'
     pod 'DGElasticPullToRefresh'
     pod 'M13ProgressSuite'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
 end    
 
 target 'YSGGPUnitTests' do

@@ -43,21 +43,6 @@ NSString * const kGTLRAuthScopeDriveScripts          = @"https://www.googleapis.
   return self;
 }
 
-- (instancetype)initWithDummyString:(NSString *)str {
-    self = [super init];
-    if (self) {
-        str = @"";
-        // From discovery.
-        self.rootURLString = @"https://www.googleapis.com/";
-        self.servicePath = @"drive/v3/";
-        self.resumableUploadPath = @"resumable/upload/";
-        self.simpleUploadPath = @"upload/";
-        self.batchPath = @"batch";
-        self.prettyPrintQueryParameterNames = @[ @"prettyPrint" ];
-    }
-    return self;
-}
-
 + (NSDictionary<NSString *, Class> *)kindStringToClassMap {
   return @{
     @"api#channel" : [GTLRDrive_Channel class],
