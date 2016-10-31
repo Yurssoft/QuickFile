@@ -22,7 +22,12 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     init(folderID: String)
     {
-        self.currentFolderID = folderID
+        var folID = folderID
+        if folID.isEmpty
+        {
+            folID = "root"
+        }
+        self.currentFolderID = folID
     }
     
     func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
@@ -34,19 +39,12 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         YSDriveManager.shared.login()
         if isLoggedIn
         {
+            //check for internet connection
             let query = GTLRDriveQuery_FilesList.query()
             query.pageSize = 100
             query.fields = "nextPageToken, files(id, name, size, mimeType)"
             query.spaces = "drive"
-            query.q = "mimeType contains 'folder' or mimeType contains 'audio'"
-            if currentFolderID.isEmpty
-            {
-                query.q = "'root' in parents and (mimeType contains 'folder' or mimeType contains 'audio')"
-            }
-            else
-            {
-                query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
-            }
+            query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
             var ysfiles : [YSDriveFileProtocol] = []
             
             YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
@@ -61,15 +59,10 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 {
                     for file in files
                     {
-                        let isAudio = file.mimeType != nil && (file.mimeType?.contains("audio"))!
-                        let ysfile = YSDriveFile(fileName: file.name,
-                                                 fileSize: file.size?.stringValue,
-                                                 mimeType: file.mimeType,
-                                                 isAudio: isAudio,
-                                                 fileDriveIdentifier: file.identifier)
+                        let ysfile = YSDriveFile(file: file)
                         ysfiles.append(ysfile)
                     }
-                    completionHandler!(ysfiles, YSError())
+                    YSDatabaseManager.save(files: ysfiles, folderID: self.currentFolderID, completionHandler)
                 }
                 else
                 {

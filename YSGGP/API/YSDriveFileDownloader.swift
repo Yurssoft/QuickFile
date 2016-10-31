@@ -13,12 +13,7 @@ class YSDriveFileDownloader : NSObject
     fileprivate var downloads : [YSDownloadProtocol] = []
     fileprivate var session : Foundation.URLSession
     
-    static let shared : YSDriveFileDownloader =
-    {
-        return YSDriveFileDownloader()
-    }()
-    
-    private override init()
+    override init()
     {
         self.session = Foundation.URLSession()
         super.init()
@@ -32,9 +27,9 @@ class YSDriveFileDownloader : NSObject
         self.session = backgroundSession
     }
     
-    func downloadFile(fileID: String)
+    func downloadFile(file: YSDriveFile)
     {
-        let download = YSDownload(fileDriveIdentifier: fileID)
+        let download = YSDownload(fileDriveIdentifier: file.fileDriveIdentifier)
         
     }
     

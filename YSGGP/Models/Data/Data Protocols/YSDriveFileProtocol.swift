@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoogleAPIClientForREST
 
 protocol YSDriveFileProtocol
 {
@@ -16,4 +17,7 @@ protocol YSDriveFileProtocol
     var isAudio : Bool { get } //If true it is audio if false it is folder
     var fileDriveIdentifier : String { get }
     var localFilePath : String { get set}
+    var modifiedTime : String { get set}
+    
+    init(file: GTLRDrive_File)
 }

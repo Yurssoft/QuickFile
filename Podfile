@@ -9,6 +9,7 @@ target 'YSGGP' do
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
+    pod 'Firebase/Crash'
 end    
 
 target 'YSGGPUnitTests' do

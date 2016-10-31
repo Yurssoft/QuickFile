@@ -18,39 +18,27 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var driveTopCoordinator : YSDriveTopCoordinator?
     var backgroundSession : URLSession?
     var backgroundSessionCompletionHandler: (() -> Void)?
+    var fileDownloader : YSDriveFileDownloader?
+//    var databaseManager : YSDatabaseManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
 //        GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainAuthorizerName)
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
         
-//        if (FIRAuth.auth()?.currentUser) != nil
-//        {
-//            var ref: FIRDatabaseReference!
-//            
-//            ref = FIRDatabase.database().reference()
-//            let user = "user1"
-//            ref.setValue(user)
-//            ref.child("user1/username").setValue("someUsername")
-//            
-//            ref.child("user1").observeSingleEvent(of: .value, with: { (snapshot) in
-//                // Get user value
-//                let value = snapshot.value as? NSDictionary
-//                print(value)
-//                // ...
-//            }) { (error) in
-//                print(error.localizedDescription)
-//            }
-//            
-//            
-//        } else {
-//            // No user is signed in.
-//        }
+        fileDownloader = YSDriveFileDownloader()
+//        databaseManager = YSDatabaseManager()
         return true
     }
     
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void)
     {
         backgroundSessionCompletionHandler = completionHandler
+    }
+    
+    static func appDelegate() -> YSAppDelegate
+    {
+        return UIApplication.shared.delegate as! YSAppDelegate
     }
 }
