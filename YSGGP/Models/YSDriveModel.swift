@@ -32,26 +32,28 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
     {
-        if completionHandler == nil
-        {
-            return
-        }
         YSDriveManager.shared.login()
         if isLoggedIn
         {
-            //check for internet connection
             let query = GTLRDriveQuery_FilesList.query()
             query.pageSize = 100
             query.fields = "nextPageToken, files(id, name, size, mimeType)"
             query.spaces = "drive"
-            query.q = NSString(format: "'%@' in parents and (mimeType contains 'folder' or mimeType contains 'audio')", currentFolderID) as String!
+            query.orderBy = "folder,name"
+            query.q = "'\(currentFolderID)' in parents and (mimeType contains 'folder' or mimeType contains 'audio')"
             var ysfiles : [YSDriveFileProtocol] = []
             
             YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
                 if error != nil
                 {
-                    let error = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
-                    completionHandler!(ysfiles, error)
+                    if (error?.localizedDescription.contains("appears to be offline"))!
+                    {
+                        let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list offline", buttonTitle: "Try again", debugInfo: error.debugDescription)
+                        YSDatabaseManager.getFiles(folderID: self.currentFolderID, errorMessage, completionHandler)
+                        return
+                    }
+                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
+                    completionHandler!(ysfiles, errorMessage)
                     return
                 }
                 let response = response1 as? GTLRDrive_FileList
@@ -72,8 +74,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         }
         else
         {
-            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
-            completionHandler!([], error)
+            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
+            completionHandler!([], errorMessage)
         }
     }
 }

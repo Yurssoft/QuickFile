@@ -162,14 +162,14 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             message.buttonTapHandler =
             { _ in
                 self.loginButtonTapped(UIBarButtonItem())
-                SwiftMessages.hide(id: message.id)
+                SwiftMessages.hide()
             }
             break
             
         case .loggedInToToDrive:
             message.buttonTapHandler =
             { _ in
-                SwiftMessages.hide(id: message.id)
+                SwiftMessages.hide()
             }
             break
             
@@ -177,13 +177,14 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             message.buttonTapHandler =
             { _ in
                 self.getFiles()
-                SwiftMessages.hide(id: message.id)
+                SwiftMessages.hide()
             }
             break
             
         default: break
         }
         var warningConfig = SwiftMessages.Config()
+        warningConfig.duration = .forever
         warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: warningConfig, view: message)
     }

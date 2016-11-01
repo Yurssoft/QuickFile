@@ -9,13 +9,13 @@
 import Foundation
 import GoogleAPIClientForREST
 
-struct YSDriveFile : YSDriveFileProtocol
+class YSDriveFile : NSObject, YSDriveFileProtocol
 {
-    let fileName : String //Book 343
-    let fileSize : String //108.03 MB (47 audio) or 10:18
-    let mimeType : String
-    let isAudio : Bool
-    let fileDriveIdentifier : String
+    var fileName : String //Book 343
+    var fileSize : String //108.03 MB (47 audio) or 10:18
+    var mimeType : String
+    var isAudio : Bool
+    var fileDriveIdentifier : String
     var localFilePath : String = ""
     var modifiedTime : String = ""
     
@@ -28,7 +28,16 @@ struct YSDriveFile : YSDriveFileProtocol
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
     }
     
-    init(file: GTLRDrive_File)
+    override init()
+    {
+        self.fileName = ""
+        self.fileSize = ""
+        self.isAudio = false
+        self.mimeType = ""
+        self.fileDriveIdentifier = ""
+    }
+    
+    required init(file: GTLRDrive_File)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: file.name)
         self.fileSize = YSDriveFile.checkStringForNil(string: file.size == nil ? "" : file.size?.stringValue)
