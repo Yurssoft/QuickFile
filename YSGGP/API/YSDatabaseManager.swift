@@ -52,8 +52,12 @@ class YSDatabaseManager
         {
             var ref: FIRDatabaseReference!
             ref = FIRDatabase.database().reference(withPath: "files/\(folderID)")
-            
             ref.queryLimited(toLast: 150).observe(.value, with: { (snapshot) in
+                if snapshot.value == nil
+                {
+                    completionHandler!([], error)
+                    return
+                }
                 let DBfiles = snapshot.value as! [String : [String: Any]]
                 var files = [YSDriveFileProtocol]()
                 for key in DBfiles.keys
