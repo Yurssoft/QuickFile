@@ -183,9 +183,10 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             
         default: break
         }
-        var warningConfig = SwiftMessages.Config()
-        warningConfig.duration = .forever
-        warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.show(config: warningConfig, view: message)
+        var messageConfig = SwiftMessages.Config()
+        messageConfig.duration = .forever
+        messageConfig.ignoreDuplicates = false
+        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: messageConfig, view: message)
     }
 }

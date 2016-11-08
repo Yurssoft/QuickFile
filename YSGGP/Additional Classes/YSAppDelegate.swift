@@ -19,16 +19,12 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var backgroundSession : URLSession?
     var backgroundSessionCompletionHandler: (() -> Void)?
     var fileDownloader : YSDriveFileDownloader?
-//    var databaseManager : YSDatabaseManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
 //        GTMOAuth2ViewControllerTouch.removeAuthFromKeychain(forName: YSConstants.kDriveKeychainAuthorizerName)
-        FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
-        
+        YSDatabaseManager.initialize()
         fileDownloader = YSDriveFileDownloader()
-//        databaseManager = YSDatabaseManager()
         return true
     }
     

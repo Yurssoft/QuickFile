@@ -63,7 +63,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - M13ProgressSuite (1.2.8)
-  - SwiftMessages (3.0.2)
+  - SwiftMessages (3.0.3)
 
 DEPENDENCIES:
   - DGElasticPullToRefresh
@@ -92,7 +92,7 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   M13ProgressSuite: c357c8c163a59a7405e5a9ad7e9c63a19e5e5d20
-  SwiftMessages: 3523c331c6b7b66e6f23a970ced259065ba31f9c
+  SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
 
 PODFILE CHECKSUM: 536c7be219d645952a5b525ce40d1a14f98d878e
 
