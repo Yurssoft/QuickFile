@@ -7,53 +7,93 @@
 //
 
 import UIKit
+import SwiftMessages
 
 class YSDriveFileDownloader : NSObject
 {
-    fileprivate var downloads : [YSDownloadProtocol] = []
+    fileprivate var downloads : [String : YSDownloadProtocol] = [String : YSDownloadProtocol]()
     fileprivate var session : Foundation.URLSession
+    fileprivate var sessionQueue : OperationQueue
     
-    override init()
+    required override init()
     {
         self.session = Foundation.URLSession()
+        sessionQueue = OperationQueue()
         super.init()
         
         let configuration = URLSessionConfiguration.background(withIdentifier: "drive_background_file_downloader_session")
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = .background
-        queue.name = "drive_background_file_downloader_delegate_queue"
-        let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
+        sessionQueue.maxConcurrentOperationCount = 1
+        sessionQueue.qualityOfService = .background
+        sessionQueue.name = "drive_background_file_downloader_delegate_queue"
+        let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
         self.session = backgroundSession
     }
     
-    func downloadFile(file: YSDriveFile)
+    
+    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     {
-        let download = YSDownload(fileDriveIdentifier: file.fileDriveIdentifier)
-        
+        return downloads[file.fileUrl]
     }
     
-    func localFilePath(for fileID: String) -> NSURL?
+    func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
     {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        if let url = NSURL(string: fileID), let lastPathComponent = url.lastPathComponent
+        //if file is folder
+        if progressHandler == nil || completionHandler == nil
         {
-            let fullPath = documentsPath.appendingPathComponent(lastPathComponent)
-            return NSURL(fileURLWithPath:fullPath)
+            print("NO HANDLERS!")
+            return
         }
-        return nil
-    }
-    
-    func localFileExists(at localFilePath: NSURL) -> Bool
-    {
-        var isDir : ObjCBool = false
-        if let path = localFilePath.path
+        if file.localFileExists()
         {
-            return FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
+            print("localFileExists")
+            //return
         }
-        return false
+        var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
+        let downloadTask = session.downloadTask(with: URL.init(string: file.fileUrl)!)
+        downloadTask.taskDescription = UUID().uuidString
+        download.downloadTask = downloadTask
+        download.isDownloading = true
+        downloads[file.fileUrl] = download
+        downloadTask.resume()
+        download.progressHandler(download)
     }
     
+    func pauseDownloading(file: YSDriveFileProtocol)
+    {
+        var download = downloads[file.fileUrl]
+        if (download?.isDownloading)!
+        {
+            download?.downloadTask?.cancel()
+            { (data) in
+                download?.resumeData = data
+            }
+            download?.isDownloading = false
+        }
+    }
+    
+    func cancelDownloading(file: YSDriveFileProtocol)
+    {
+        var download = downloads[file.fileUrl]
+        download?.downloadTask?.cancel()
+        downloads[file.fileUrl] = nil
+    }
+    
+    func resumeDownloading(file: YSDriveFileProtocol)
+    {
+        var download = downloads[file.fileUrl]
+        download?.isDownloading = true
+        if let resumeData = download?.resumeData
+        {
+            download?.downloadTask = session.downloadTask(withResumeData: resumeData)
+            download?.downloadTask!.resume()
+        }
+        else
+        {
+            let downloadTask = session.downloadTask(with: URL.init(string: file.fileUrl)!)
+            download?.downloadTask = downloadTask
+            downloadTask.resume()
+        }
+    }
 }
 
 extension YSDriveFileDownloader: URLSessionDelegate
@@ -76,16 +116,48 @@ extension YSDriveFileDownloader: URLSessionDelegate
 
 extension YSDriveFileDownloader: URLSessionDownloadDelegate
 {
-    
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
+        if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
+        {
+            let fileManager = FileManager.default
+            
+            try? fileManager.removeItem(at: download.file.localFilePath()!)
+            
+            do
+            {
+                try fileManager.copyItem(at: location, to: download.file.localFilePath()!)
+                download.file.isFileOnDisk = true
+                YSDatabaseManager.update(file: download.file)
+            }
+            catch let error as NSError
+            {
+                print("Could not copy file to disk: \(error.localizedDescription)")
+            }
+            download.completionHandler(download, nil)
+            downloads[url] = nil
+        }
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
     {
+        if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
+        {
+            download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
+            let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
+            download.totalSize = totalSize
+            download.progressHandler(download)
+            print("Progress \(download.progressString())")
+        }
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
+        if let url = task.originalRequest?.url?.absoluteString, let download = downloads[url]
+        {
+            var yserror : YSErrorProtocol
+            yserror = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.debugDescription)
+            download.completionHandler(download, yserror)
+        }
     }
 }

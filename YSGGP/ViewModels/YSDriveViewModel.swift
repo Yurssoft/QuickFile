@@ -50,7 +50,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
     }
     
-    var model: YSDriveModel?
+    var model: YSDriveModelProtocol?
     {
         didSet
         {
@@ -74,7 +74,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return 0
     }
     
-    func fileAtIndex(_ index: Int) -> YSDriveFileProtocol?
+    func file(at index: Int) -> YSDriveFileProtocol?
     {
         if let files = files , files.count > index
         {
@@ -83,7 +83,12 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return nil
     }
     
-    func useFileAtIndex(_ index: Int)
+    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    {
+        return model?.download(for: file)
+    }
+    
+    func useFile(at index: Int)
     {
         if let files = files, let coordinatorDelegate = coordinatorDelegate, index < files.count
         {
@@ -117,5 +122,21 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     func driveViewControllerDidFinish()
     {
         coordinatorDelegate?.driveViewModelDidFinish()
+    }
+    
+    func download(_ file : YSDriveFileProtocol)
+    {
+        model?.download(file, { (download) in
+            let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+            self.viewDelegate?.reloadFile(at: index!, viewModel: self)
+        },
+        completionHandler: { (download, error) in
+            if let error = error
+            {
+                self.viewDelegate?.errorDidChange(viewModel: self, error: error)
+            }
+            let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+            self.viewDelegate?.reloadFile(at: index!, viewModel: self)
+        })
     }
 }

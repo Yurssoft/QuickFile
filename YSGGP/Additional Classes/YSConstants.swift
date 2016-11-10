@@ -32,4 +32,5 @@ enum YSErrorType
     case loggedInToToDrive
     case notLoggedInToDrive
     case couldNotLogOutFromDrive
+    case couldNotDownloadFile
 }

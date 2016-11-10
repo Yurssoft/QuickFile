@@ -49,18 +49,15 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     {
                                                                         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken!,
                                                                                                                       accessToken: accessToken!)
-                                                                        print(credential.provider)
                                                                         var storedError: YSErrorProtocol!
                                                                         let downloadGroup = DispatchGroup()
                                                                         downloadGroup.enter()
-                                                                        print(FIRAuth.auth()?.app.debugDescription)
                                                                         FIRAuth.auth()?.signIn(with: credential)
                                                                         { (user, error) in
                                                                             if let error = error
                                                                             {
                                                                                 storedError = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't login to Database", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
                                                                             }
-                                                                            print("Firebase user refresh token : \(user?.refreshToken)")
                                                                             downloadGroup.leave()
                                                                         }
                                                                         let result = downloadGroup.wait(timeout: DispatchTime.distantFuture)

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -11,23 +11,18 @@
         <scene sceneID="46w-u8-f1H">
             <objects>
                 <tableViewController storyboardIdentifier="YSDriveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9xv-pl-iv2" customClass="YSDriveViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3H-5W-LEE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="47" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3H-5W-LEE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="YSDriveFileTableViewCell" id="coT-OD-vGT" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="YSDriveFileTableViewCell" rowHeight="47" id="coT-OD-vGT" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coT-OD-vGT" id="SfY-jr-6Dt">
-                                    <frame key="frameInset" width="342" height="43"/>
+                                    <frame key="frameInset" width="375" height="47"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-SV-8xk" userLabel="IconImage">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="27" id="uYz-0S-DiY"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcr-bs-Zgo">
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -41,22 +36,55 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsY-Jd-Feg">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="Cxz-M6-0ee"/>
+                                                <constraint firstAttribute="height" constant="34" id="qYf-qW-eIe"/>
+                                            </constraints>
+                                            <state key="normal" image="cloud_download"/>
+                                            <connections>
+                                                <action selector="downloadButtonTapped:" destination="coT-OD-vGT" eventType="touchUpInside" id="cDi-Fq-qgI"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-SV-8xk" userLabel="IconImage">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="uYz-0S-DiY"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1km-m9-Gcg" customClass="MRCircularProgressView">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="L0H-zK-tx2"/>
+                                                <constraint firstAttribute="height" constant="34" id="pRf-ZV-8NT"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="VKx-SV-8xk" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="topMargin" id="Iuy-DK-h1Q"/>
-                                        <constraint firstAttribute="bottom" secondItem="jcr-bs-Zgo" secondAttribute="bottom" constant="5" id="LeM-QK-zAg"/>
+                                        <constraint firstItem="VKx-SV-8xk" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" id="2U5-mr-Stj"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZsY-Jd-Feg" secondAttribute="trailing" constant="8" id="3UB-i7-9wX"/>
+                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="leading" secondItem="B1Z-32-zXO" secondAttribute="trailing" constant="8" id="9rD-Nl-yO0"/>
+                                        <constraint firstItem="1km-m9-Gcg" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="AZ7-tf-LaH"/>
+                                        <constraint firstAttribute="bottom" secondItem="jcr-bs-Zgo" secondAttribute="bottom" constant="0.5" id="LeM-QK-zAg"/>
                                         <constraint firstItem="VKx-SV-8xk" firstAttribute="leading" secondItem="SfY-jr-6Dt" secondAttribute="leadingMargin" id="PJa-4A-uie"/>
-                                        <constraint firstItem="VKx-SV-8xk" firstAttribute="bottom" secondItem="SfY-jr-6Dt" secondAttribute="bottomMargin" id="TRK-c4-S6i"/>
+                                        <constraint firstItem="VKx-SV-8xk" firstAttribute="bottom" secondItem="SfY-jr-6Dt" secondAttribute="bottomMargin" constant="4" id="TRK-c4-S6i"/>
+                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" id="Uc6-eW-9zr"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZsY-Jd-Feg" secondAttribute="bottom" constant="4" id="ZH8-ov-Sfa"/>
                                         <constraint firstItem="B1Z-32-zXO" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="cPI-KB-NVi"/>
-                                        <constraint firstItem="jcr-bs-Zgo" firstAttribute="top" secondItem="B1Z-32-zXO" secondAttribute="bottom" constant="4" id="qCj-D6-Ixn"/>
+                                        <constraint firstAttribute="trailing" secondItem="1km-m9-Gcg" secondAttribute="trailing" constant="2" id="poC-LT-Byr"/>
+                                        <constraint firstItem="jcr-bs-Zgo" firstAttribute="top" secondItem="B1Z-32-zXO" secondAttribute="bottom" constant="-8.5" id="qCj-D6-Ixn"/>
+                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="uJA-6m-VFW"/>
+                                        <constraint firstAttribute="bottom" secondItem="1km-m9-Gcg" secondAttribute="bottom" constant="9" id="vYR-Dc-8as"/>
                                         <constraint firstItem="B1Z-32-zXO" firstAttribute="leading" secondItem="VKx-SV-8xk" secondAttribute="trailing" constant="8" id="wfz-va-7gv"/>
+                                        <constraint firstItem="1km-m9-Gcg" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" constant="-2.5" id="ykI-Gs-scJ"/>
                                         <constraint firstItem="jcr-bs-Zgo" firstAttribute="leading" secondItem="VKx-SV-8xk" secondAttribute="trailing" constant="8" id="zcH-Az-G0K"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="downloadButton" destination="ZsY-Jd-Feg" id="j7T-VE-cOz"/>
                                     <outlet property="fileImageView" destination="VKx-SV-8xk" id="Uq5-RN-x34"/>
                                     <outlet property="fileInfoLabel" destination="jcr-bs-Zgo" id="pN0-xX-emF"/>
                                     <outlet property="fileNameLabel" destination="B1Z-32-zXO" id="JM0-EU-Zzw"/>
+                                    <outlet property="progressView" destination="1km-m9-Gcg" id="1MZ-Th-lFg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,7 +97,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9M-KH-EcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="211" y="277"/>
+            <point key="canvasLocation" x="212" y="254.57271364317842"/>
         </scene>
         <!--Drive Top View Controller-->
         <scene sceneID="bAz-Op-zEt">
@@ -119,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLQ-iq-QwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211" y="278"/>
+            <point key="canvasLocation" x="-462" y="278"/>
         </scene>
         <!--Settings-->
         <scene sceneID="vye-Ga-tav">
@@ -151,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUV-6i-S19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085.5" y="277.5"/>
+            <point key="canvasLocation" x="2926" y="278"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="IfJ-6j-XI2">
@@ -185,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQE-bM-Mg5" id="9yY-H7-MvI">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yurii.boiko.s@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-sc-99K">
@@ -202,7 +230,7 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90Z-7p-Phx" id="Rhp-xw-mrL">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="PsN-uQv-yKC-7Ck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qV5-Ts-kyB">
@@ -247,7 +275,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8E-uj-8J4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2506.4000000000001" y="276.1619190404798"/>
+            <point key="canvasLocation" x="3598" y="255"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="wg7-f3-ORb">
@@ -277,7 +305,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -334,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="278"/>
+            <point key="canvasLocation" x="1607" y="278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -403,7 +431,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0n3-zV-8S9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-631" y="278"/>
+            <point key="canvasLocation" x="-1135" y="278"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="Y7t-8C-lKY">
@@ -422,7 +450,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icS-Sh-31Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="278"/>
+            <point key="canvasLocation" x="940" y="278"/>
         </scene>
         <!--Settings-->
         <scene sceneID="L3m-yb-lVq">
@@ -441,7 +469,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQv-Sw-i4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642" y="278"/>
+            <point key="canvasLocation" x="2270" y="278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bcy-wU-2Vu">
@@ -463,6 +491,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cloud_download" width="100" height="100"/>
         <image name="cloud_filled" width="20" height="20"/>
         <image name="folder" width="500" height="500"/>
         <image name="playlist_filled" width="20" height="20"/>

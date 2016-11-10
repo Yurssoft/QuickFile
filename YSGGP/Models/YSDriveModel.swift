@@ -61,10 +61,10 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 {
                     for file in files
                     {
-                        let ysfile = YSDriveFile(file: file)
+                        let ysfile = YSDriveFile(file: file, folder: self.currentFolderID)
                         ysfiles.append(ysfile)
                     }
-                    YSDatabaseManager.save(files: ysfiles, folderID: self.currentFolderID, completionHandler)
+                    YSDatabaseManager.save(files: ysfiles, completionHandler)
                 }
                 else
                 {
@@ -77,5 +77,15 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
             completionHandler!([], errorMessage)
         }
+    }
+    
+    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    {
+        return YSAppDelegate.appDelegate().fileDownloader?.download(for: file)
+    }
+    
+    func download(_ file : YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
+    {
+        YSAppDelegate.appDelegate().fileDownloader?.download(file: file, progressHandler, completionHandler: completionHandler)
     }
 }

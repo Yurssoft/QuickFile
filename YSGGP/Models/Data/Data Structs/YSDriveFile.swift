@@ -16,8 +16,14 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     var mimeType : String
     var isAudio : Bool
     var fileDriveIdentifier : String
-    var localFilePath : String = ""
     var modifiedTime : String = ""
+    var isFileOnDisk : Bool = false
+    var folder : String = ""
+    
+    var fileUrl : String
+    {
+        return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
+    }
     
     init(fileName : String?, fileSize : String?, mimeType : String?, isAudio : Bool, fileDriveIdentifier : String?)
     {
@@ -37,7 +43,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.fileDriveIdentifier = ""
     }
     
-    required init(file: GTLRDrive_File)
+    required init(file: GTLRDrive_File, folder : String)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: file.name)
         self.fileSize = YSDriveFile.checkStringForNil(string: file.size == nil ? "" : file.size?.stringValue)
@@ -45,6 +51,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.isAudio = isAudio
         self.mimeType = YSDriveFile.checkStringForNil(string: file.mimeType)
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: file.identifier)
+        self.folder = folder
     }
     
     static func checkStringForNil(string : String?) -> String
@@ -54,5 +61,27 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
             return ""
         }
         return string!
+    }
+    
+    func localFilePath() -> URL?
+    {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        if let url = URL(string: fileUrl)
+        {
+            let fullPath = documentsPath.appendingPathComponent(url.lastPathComponent)
+            return URL(fileURLWithPath:fullPath)
+        }
+        return nil
+    }
+    
+    func localFileExists() -> Bool
+    {
+        var isDir : ObjCBool = false
+        if let path = localFilePath()?.path
+        {
+            let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
+            return exists
+        }
+        return false
     }
 }

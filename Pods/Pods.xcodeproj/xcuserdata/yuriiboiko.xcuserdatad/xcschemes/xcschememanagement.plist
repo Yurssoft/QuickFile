@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FFCircularProgressView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +35,11 @@
 			<false/>
 		</dict>
 		<key>M13ProgressSuite.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MRProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,6 +77,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>188D1FE3BBA0F413BE1B252973421026</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>30B115280382A91561C47DB7DEAF0CD6</key>
 		<dict>
 			<key>primary</key>
@@ -77,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE9846C4284C2171C43916AC7490BA6D</key>
+		<key>70D13F1AE7B20473AC9CEC6873F6013C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71FDC73CFD4D6C27083F7B6E0BB5D522</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CAAB2A1855182D992E2945796B03B4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB317B901C227B53F7463B9CEBA25437</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C326701A829F85B8480709CEC176F900</key>
+		<key>CA4BD342E8531C4BCE4A4F999A506FE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

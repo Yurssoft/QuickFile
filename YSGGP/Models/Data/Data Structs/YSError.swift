@@ -37,7 +37,7 @@ struct YSError : YSErrorProtocol
         self.buttonTitle = buttonTitle
         self.debugInfo = debugInfo
         #if DEBUG
-            print(debugInfo)
+            print("debug info : \(debugInfo)")
         #endif
     }
     

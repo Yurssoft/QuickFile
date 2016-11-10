@@ -96,15 +96,15 @@ class YSDriveViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
-        let file = viewModel?.fileAtIndex((indexPath as NSIndexPath).row)
-        cell.file = file as! YSDriveFile?
-        cell.accessoryType = (file?.isAudio)! ? .none : .disclosureIndicator
+        let file = viewModel?.file(at: indexPath.row)
+        let download = viewModel?.download(for: file!)
+        cell.configure(file, self, download)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        viewModel?.useFileAtIndex((indexPath as NSIndexPath).row)
+        viewModel?.useFile(at: (indexPath as NSIndexPath).row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -128,6 +128,14 @@ class YSDriveViewController: UITableViewController
         { _ in
             self.tableView.dg_stopLoading()
         })
+    }
+}
+
+extension YSDriveViewController: YSDriveFileTableViewCellDelegate
+{
+    func downloadButtonPressed(_ file: YSDriveFileProtocol)
+    {
+        viewModel?.download(file)
     }
 }
 
@@ -180,7 +188,13 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
                 SwiftMessages.hide()
             }
             break
-            
+        case .couldNotDownloadFile:
+            message.buttonTapHandler =
+                { _ in
+                    //redownload file
+                    SwiftMessages.hide()
+            }
+            break
         default: break
         }
         var messageConfig = SwiftMessages.Config()
@@ -188,5 +202,14 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
+    }
+    
+    func reloadFile(at index: Int, viewModel: YSDriveViewModel)
+    {
+        DispatchQueue.main.async
+        {
+            let indexPath = IndexPath.init(row: index, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 }

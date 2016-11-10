@@ -19,35 +19,44 @@ class YSDatabaseManager
         FIRDatabase.database().persistenceEnabled = true
     }
     
-    static func save(files: [YSDriveFileProtocol], folderID: String, _ completionHandler: DriveCompletionHandler? = nil)
+    static func save(files: [YSDriveFileProtocol], _ completionHandler: DriveCompletionHandler? = nil)
     {
-        if (FIRAuth.auth()?.currentUser) != nil
+        if let ref = referenceForCurrentUser()
         {
-            var ref: FIRDatabaseReference!
-            ref = FIRDatabase.database().reference()
-            
-            var dictionaryFiles = [String : [String: Any]]()
-            
-            for file in files
-            {
-                let mirroredFile = Mirror(reflecting: file)
+            let key = ref.child("files").childByAutoId().key
+            print(key)
+            ref.child("files").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 
-                var fileDict = [String: Any]()
-                for (_, attr) in mirroredFile.children.enumerated()
+                var dictionaryFiles = [String : [String: Any]]()
+                
+                for file in files
                 {
-                    if let property_name = attr.label as String!
-                    {
-                        fileDict[property_name] = attr.value
-                    }
+                    var fileDict = convert(ysFile: file)
+                    let identifier = fileDict["fileDriveIdentifier"] as! String
+                    fileDict["rules"] = ["indexOn":"isAudio, fileName"]
+                    dictionaryFiles[identifier] = fileDict
                 }
-                let identifier = fileDict["fileDriveIdentifier"] as! String
-//                let rules = ["rules" : [identifier:["indexOn":"isAudio, fileName"]]]
-//                print(rules)
-//                ref.child("files").setValue(rules)
-                dictionaryFiles[identifier] = fileDict
-            }
-            ref.child("files").child(folderID).setValue(dictionaryFiles)
-            completionHandler!(files, YSError())
+                let (updatedFiles, databaseFilesToDelete) = update(files: dictionaryFiles, with: currentData)
+                
+                if !databaseFilesToDelete.isEmpty
+                {
+                    var fileDBIdentifiersToDelete = [String : Any]()
+                    for key in databaseFilesToDelete.keys
+                    {
+                        let dbFile = databaseFilesToDelete[key]
+                        let fileDBIdentifier = dbFile?["fileDriveIdentifier"] as! String
+                        fileDBIdentifiersToDelete[fileDBIdentifier] = NSNull()
+                    }
+                    ref.updateChildValues(fileDBIdentifiersToDelete)
+                }
+                ref.child("files").setValue(updatedFiles)
+                { error , _ in
+                    print("Database error \(error)")
+                }
+                completionHandler!(files, YSError())
+                
+                return FIRTransactionResult.abort()
+            })
         }
         else
         {
@@ -56,13 +65,26 @@ class YSDatabaseManager
         }
     }
     
+    static func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
+    {
+        let mirroredFile = Mirror(reflecting: ysFile)
+        
+        var fileDict = [String: Any]()
+        for (_, attr) in mirroredFile.children.enumerated()
+        {
+            if let property_name = attr.label as String!
+            {
+                fileDict[property_name] = attr.value
+            }
+        }
+        return fileDict
+    }
+    
     static func getFiles(folderID: String,_ error: YSError,_ completionHandler: DriveCompletionHandler? = nil)
     {
-        if (FIRAuth.auth()?.currentUser) != nil
+        if let ref = referenceForCurrentUser()
         {
-            var ref: FIRDatabaseReference!
-            ref = FIRDatabase.database().reference(withPath: "files/\(folderID)")
-            ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 
                 if currentData.hasChildren()
                 {
@@ -74,6 +96,10 @@ class YSDatabaseManager
                         let ysFile = YSDriveFile()
                         for key in dbFile.keys
                         {
+                            if key == "rules"
+                            {
+                                continue
+                            }
                             let val = dbFile[key]
                             ysFile.setValue(val, forKey: key)
                         }
@@ -97,6 +123,83 @@ class YSDatabaseManager
         {
             callCompletionHandler(completionHandler, files: [], error)
         }
+    }
+    
+    static func update(files: [String : [String: Any]], with dbFiles: FIRMutableData) -> ([String : [String: Any]], [String : [String: Any]])
+    {
+        var files = files
+        var databaseFiles = databaseFilesDictionary(from: dbFiles)
+        for key in files.keys
+        {
+            var file = files[key]!
+            let fileDriveIdentifier = file["fileDriveIdentifier"] as! String
+            if let databaseFile = databaseFiles[fileDriveIdentifier]
+            {
+                for key in databaseFile.keys
+                {
+                    switch key
+                    {
+                    case "isFileOnDisk":
+                        print(file)
+                        file[key] = databaseFile[key]
+                        break
+                    default:
+                        if file[key] == nil
+                        {
+                            file[key] = databaseFile[key]
+                        }
+                        break
+                    }
+                }
+                databaseFiles.removeValue(forKey: fileDriveIdentifier)
+            }
+        }
+        let databaseFilesToDelete = databaseFiles
+        return (files, databaseFilesToDelete)
+    }
+    
+    static func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
+    {
+        var databaseFilesDictionary = [String : [String: Any]]()
+        for currentDatabaseFile in databaseFiles.children
+        {
+            let databaseFile = currentDatabaseFile as! FIRMutableData
+            let dbFile = databaseFile.value as! [String : Any]
+            let fileDriveIdentifier = dbFile["fileDriveIdentifier"] as! String
+            databaseFilesDictionary[fileDriveIdentifier] = dbFile
+        }
+        return databaseFilesDictionary
+    }
+    
+    static func update(file: YSDriveFileProtocol)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                let updatedFile = convert(ysFile: file)
+                
+                ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
+                return FIRTransactionResult.abort()
+            })
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5)
+            {
+                ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+                    return FIRTransactionResult.success(withValue: currentData)
+                })
+                    
+            }
+        }
+    }
+    
+    static func referenceForCurrentUser() -> FIRDatabaseReference?
+    {
+        if (FIRAuth.auth()?.currentUser) != nil, let uud = FIRAuth.auth()?.currentUser?.uid
+        {
+            let ref = FIRDatabase.database().reference(withPath: "users/\(uud)")
+            return ref
+        }
+        return nil
     }
     
     static func callCompletionHandler(_ completionHandler: DriveCompletionHandler?, files : [YSDriveFileProtocol], _ error: YSError)
