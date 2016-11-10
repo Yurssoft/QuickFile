@@ -36,8 +36,9 @@ class YSDatabaseManager
                     fileDict["rules"] = ["indexOn":"isAudio, fileName"]
                     dictionaryFiles[identifier] = fileDict
                 }
-                let (updatedFiles, databaseFilesToDelete) = update(files: dictionaryFiles, with: currentData)
+                let (updatedFiles, databaseFilesToDelete) = update(filesToUpdate: dictionaryFiles, with: currentData)
                 
+                var updatedFilesArray = [YSDriveFileProtocol]()
                 if !databaseFilesToDelete.isEmpty
                 {
                     var fileDBIdentifiersToDelete = [String : Any]()
@@ -53,7 +54,7 @@ class YSDatabaseManager
                 { error , _ in
                     print("Database error \(error)")
                 }
-                completionHandler!(files, YSError())
+                completionHandler!(updatedFilesArray, YSError())
                 
                 return FIRTransactionResult.abort()
             })
@@ -80,6 +81,21 @@ class YSDatabaseManager
         return fileDict
     }
     
+    static func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
+    {
+        let ysFile = YSDriveFile()
+        for key in fileDictionary.keys
+        {
+            if key == "rules"
+            {
+                continue
+            }
+            let val = fileDictionary[key]
+            ysFile.setValue(val, forKey: key)
+        }
+        return ysFile
+    }
+    
     static func getFiles(folderID: String,_ error: YSError,_ completionHandler: DriveCompletionHandler? = nil)
     {
         if let ref = referenceForCurrentUser()
@@ -93,16 +109,7 @@ class YSDatabaseManager
                     {
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
-                        let ysFile = YSDriveFile()
-                        for key in dbFile.keys
-                        {
-                            if key == "rules"
-                            {
-                                continue
-                            }
-                            let val = dbFile[key]
-                            ysFile.setValue(val, forKey: key)
-                        }
+                        let ysFile = convert(fileDictionary: dbFile)
                         files.append(ysFile)
                     }
                     let sortedFiles = files.sorted(by: { (_ file1,_ file2) -> Bool in
@@ -125,9 +132,9 @@ class YSDatabaseManager
         }
     }
     
-    static func update(files: [String : [String: Any]], with dbFiles: FIRMutableData) -> ([String : [String: Any]], [String : [String: Any]])
+    static func update(filesToUpdate: [String : [String: Any]], with dbFiles: FIRMutableData) -> ([String : [String: Any]], [String : [String: Any]])
     {
-        var files = files
+        var files = filesToUpdate
         var databaseFiles = databaseFilesDictionary(from: dbFiles)
         for key in files.keys
         {
@@ -135,22 +142,7 @@ class YSDatabaseManager
             let fileDriveIdentifier = file["fileDriveIdentifier"] as! String
             if let databaseFile = databaseFiles[fileDriveIdentifier]
             {
-                for key in databaseFile.keys
-                {
-                    switch key
-                    {
-                    case "isFileOnDisk":
-                        print(file)
-                        file[key] = databaseFile[key]
-                        break
-                    default:
-                        if file[key] == nil
-                        {
-                            file[key] = databaseFile[key]
-                        }
-                        break
-                    }
-                }
+                files[key]?["isFileOnDisk"] = databaseFile["isFileOnDisk"]
                 databaseFiles.removeValue(forKey: fileDriveIdentifier)
             }
         }
