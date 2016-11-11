@@ -109,6 +109,9 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
+//            let query = ref.child("files").queryOrdered(byChild: "folder").queryEqual(toValue: folderID, childKey: "folder").observe(.value, with: { (snap) in
+//                print(snap)
+//            })
             ref.child("files").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 
                 if currentData.hasChildren()
