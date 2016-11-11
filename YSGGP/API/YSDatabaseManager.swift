@@ -23,8 +23,6 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            let key = ref.child("files").childByAutoId().key
-            print(key)
             ref.child("files").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 
                 var dictionaryFiles = [String : [String: Any]]()
@@ -121,7 +119,10 @@ class YSDatabaseManager
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = convert(fileDictionary: dbFile)
-                        files.append(ysFile)
+                        if ysFile.folder == folderID
+                        {
+                            files.append(ysFile)
+                        }
                     }
                     let sortedFiles = files.sorted(by: { (_ file1,_ file2) -> Bool in
                         return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio

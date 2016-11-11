@@ -36,9 +36,6 @@
 		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
 		508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */; };
 		508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */; };
-		50911A2C1DAE9071008B7FE4 /* YSDriveModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */; };
-		50911A2E1DAE949A008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */; };
-		50911A2F1DAE94A4008B7FE4 /* YSDriveViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */; };
 		50A157171DC0F3E1008AD787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */; };
 		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
 		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
@@ -98,7 +95,6 @@
 		504111001D9C00E200BE3B0C /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
 		505B4A2F1DAD36600055C180 /* YSGGPUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		505B4A331DAD36600055C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelTests.swift; sourceTree = "<group>"; };
 		50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDatabaseManager.swift; sourceTree = "<group>"; };
 		508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsCoordinator.swift; sourceTree = "<group>"; };
 		508EFC181DB527C300ED5CFB /* YSDriveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveManager.swift; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
 		508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
 		508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
-		50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinatorTests.swift; sourceTree = "<group>"; };
-		50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelTests.swift; sourceTree = "<group>"; };
 		50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
@@ -244,9 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				505B4A331DAD36600055C180 /* Info.plist */,
-				50911A291DAE9071008B7FE4 /* YSDriveCoordinatorTests.swift */,
-				50911A2A1DAE9071008B7FE4 /* YSDriveModelTests.swift */,
-				505B4A3D1DAE42680055C180 /* YSDriveViewModelTests.swift */,
 			);
 			path = YSGGPUnitTests;
 			sourceTree = "<group>";
@@ -625,9 +616,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50911A2C1DAE9071008B7FE4 /* YSDriveModelTests.swift in Sources */,
-				50911A2F1DAE94A4008B7FE4 /* YSDriveViewModelTests.swift in Sources */,
-				50911A2E1DAE949A008B7FE4 /* YSDriveCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
