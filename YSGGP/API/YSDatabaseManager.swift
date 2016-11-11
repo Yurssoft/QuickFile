@@ -38,7 +38,6 @@ class YSDatabaseManager
                 }
                 let (updatedFiles, databaseFilesToDelete) = update(filesToUpdate: dictionaryFiles, with: currentData)
                 
-                var updatedFilesArray = [YSDriveFileProtocol]()
                 if !databaseFilesToDelete.isEmpty
                 {
                     var fileDBIdentifiersToDelete = [String : Any]()
@@ -54,7 +53,19 @@ class YSDatabaseManager
                 { error , _ in
                     print("Database error \(error)")
                 }
-                completionHandler!(updatedFilesArray, YSError())
+                var updatedFilesArray = [YSDriveFileProtocol]()
+                
+                
+                for uldatedFileDictionary in updatedFiles
+                {
+                    let uldatedFileDict = uldatedFileDictionary.value
+                    let ysFile = convert(fileDictionary: uldatedFileDict)
+                    updatedFilesArray.append(ysFile)
+                }
+                let sortedFiles = updatedFilesArray.sorted(by: { (_ file1,_ file2) -> Bool in
+                    return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio
+                })
+                completionHandler!(sortedFiles, YSError())
                 
                 return FIRTransactionResult.abort()
             })

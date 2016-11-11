@@ -18,25 +18,6 @@ class YSGGPUITests: XCTestCase
         XCUIDevice.shared().orientation = .faceUp
     }
     
-    func testInitialView()
-    {
-        
-        let app = XCUIApplication()
-        app.navigationBars["YSGGP.YSDriveTopView"].buttons["Login"].tap()
-        
-        let nextButton = app.buttons["Next"]
-        nextButton.tap()
-        
-        let cancelButton = app.navigationBars["GTMOAuth2View"].buttons["Cancel"]
-        cancelButton.tap()
-        
-        let tabBarsQuery = app.tabBars
-        tabBarsQuery.buttons["Playlist"].tap()
-        tabBarsQuery.buttons["Settings"].tap()
-        app.tables.staticTexts["Log In To Drive"].tap()
-        cancelButton.tap()
-    }
-    
     func testLoginToDrive()
     {
         let app = XCUIApplication()
@@ -65,13 +46,5 @@ class YSGGPUITests: XCTestCase
         let logOutExistsPredicate = NSPredicate(format: "exists == true", "Wrong label text")
         expectation(for: logOutExistsPredicate, evaluatedWith: object, handler: nil)
         waitForExpectations(timeout: 150, handler: nil)
-    }
-    
-    func testLogOut ()
-    {
-        let app = XCUIApplication()
-        app.tabBars.buttons["Settings"].tap()
-        app.tables.staticTexts["Log Out From Drive"].tap()
-        app.sheets["Log Out?"].buttons["Log Out"].tap()
     }
 }
