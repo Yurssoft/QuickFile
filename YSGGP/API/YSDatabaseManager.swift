@@ -73,9 +73,10 @@ class YSDatabaseManager
                     {
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
-                        let ysFile = convert(fileDictionary: dbFile)
+                        var ysFile = convert(fileDictionary: dbFile)
                         if ysFile.folder == folderID
                         {
+                            ysFile.isFileOnDisk = ysFile.localFileExists()
                             files.append(ysFile)
                         }
                     }

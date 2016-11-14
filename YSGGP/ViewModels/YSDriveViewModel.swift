@@ -151,6 +151,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         {
             let file = files?[indexPath.row]
             file?.removeLocalFile()
+            files?[indexPath.row] = file!
         }
         viewDelegate?.filesDidChange(viewModel: self)
     }

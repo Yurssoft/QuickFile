@@ -41,6 +41,14 @@ class YSDriveFileTableViewCell: UITableViewCell {
         delegate?.downloadButtonPressed(file!)
     }
     
+    override var isEditing: Bool
+    {
+        didSet
+        {
+            downloadButton.isHidden = isEditing
+        }
+    }
+    
     var file: YSDriveFileProtocol?
     {
         didSet
@@ -51,7 +59,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 fileNameLabel?.text = file.fileName
                 fileInfoLabel?.text = file.fileSize
                 fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
-                downloadButton.isHidden = isEditing || file.isFileOnDisk
+                downloadButton.isHidden = file.isFileOnDisk
             }
         }
     }
