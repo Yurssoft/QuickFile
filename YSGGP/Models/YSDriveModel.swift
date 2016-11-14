@@ -62,6 +62,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                     for file in files
                     {
                         let ysfile = YSDriveFile(file: file, folder: self.currentFolderID)
+                        ysfile.isFileOnDisk = ysfile.localFileExists()
                         ysfiles.append(ysfile)
                     }
                     YSDatabaseManager.save(files: ysfiles, completionHandler)
