@@ -57,6 +57,7 @@ class YSDriveTopViewController: UIViewController
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)
     {
+        driveVC?.selectedIndexes.removeAll()
         driveVC?.setEditing(!(driveVC?.isEditing)!, animated: true)
         toolbarView?.isHidden = !(driveVC?.isEditing)!
         sender.title = (driveVC?.isEditing)! ? "Done" : "Edit"

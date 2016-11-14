@@ -150,10 +150,25 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         for indexPath in indexes
         {
             let file = files?[indexPath.row]
-            file?.removeLocalFile()
-            files?[indexPath.row] = file!
+            if (file?.isAudio)!
+            {
+                file?.removeLocalFile()
+                files?[indexPath.row] = file!
+            }
         }
         viewDelegate?.filesDidChange(viewModel: self)
+    }
+    
+    func downloadFilesFor(_ indexes : [IndexPath])
+    {
+        for indexPath in indexes
+        {
+            let file = files?[indexPath.row]
+            if (file?.isAudio)!
+            {
+                download(file!)
+            }
+        }
     }
 }
 

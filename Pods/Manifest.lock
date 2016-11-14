@@ -64,34 +64,6 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - M13ProgressSuite (1.2.8)
-  - MRProgress (0.8.3):
-    - MRProgress/ActivityIndicator (= 0.8.3)
-    - MRProgress/Blur (= 0.8.3)
-    - MRProgress/Circular (= 0.8.3)
-    - MRProgress/Icons (= 0.8.3)
-    - MRProgress/NavigationBarProgress (= 0.8.3)
-    - MRProgress/Overlay (= 0.8.3)
-  - MRProgress/ActivityIndicator (0.8.3):
-    - MRProgress/Stopable
-  - MRProgress/Blur (0.8.3):
-    - MRProgress/Helper
-  - MRProgress/Circular (0.8.3):
-    - MRProgress/Helper
-    - MRProgress/ProgressBaseClass
-    - MRProgress/Stopable
-  - MRProgress/Helper (0.8.3)
-  - MRProgress/Icons (0.8.3)
-  - MRProgress/NavigationBarProgress (0.8.3):
-    - MRProgress/ProgressBaseClass
-  - MRProgress/Overlay (0.8.3):
-    - MRProgress/ActivityIndicator
-    - MRProgress/Blur
-    - MRProgress/Circular
-    - MRProgress/Helper
-    - MRProgress/Icons
-  - MRProgress/ProgressBaseClass (0.8.3)
-  - MRProgress/Stopable (0.8.3):
-    - MRProgress/Helper
   - SwiftMessages (3.0.3)
 
 DEPENDENCIES:
@@ -104,7 +76,6 @@ DEPENDENCIES:
   - GoogleAPIClientForREST/Drive
   - GTMOAuth2
   - M13ProgressSuite
-  - MRProgress
   - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -124,9 +95,8 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   M13ProgressSuite: c357c8c163a59a7405e5a9ad7e9c63a19e5e5d20
-  MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
 
-PODFILE CHECKSUM: f70025b43bb3a495d5a3064acd4edc76ee52f399
+PODFILE CHECKSUM: c99415eb8c3cc2ffba9d133fb18cb9993dd647db
 
 COCOAPODS: 1.1.0.rc.3

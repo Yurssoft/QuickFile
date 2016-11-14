@@ -15,7 +15,7 @@ class YSDriveViewController: UITableViewController
 {
     weak var toolbarView: YSToolbarView!
     
-    fileprivate var selectedIndexes : [IndexPath] = []
+    var selectedIndexes : [IndexPath] = []
     
     var viewModel: YSDriveViewModelProtocol?
     {
@@ -101,6 +101,10 @@ class YSDriveViewController: UITableViewController
         let file = viewModel?.file(at: indexPath.row)
         let download = viewModel?.download(for: file!)
         cell.configure(file, self, download)
+        if isEditing && selectedIndexes.contains(indexPath)
+        {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
         return cell
     }
     
@@ -231,17 +235,35 @@ extension YSDriveViewController : YSToolbarViewDelegate
 {
     func selectAllButtonTapped(toolbar: YSToolbarView)
     {
-        print("selectAllButtonTapped")
+        selectedIndexes.removeAll()
+        for index in 0..<tableView.numberOfRows(inSection: 0)
+        {
+            let indexPath = IndexPath.init(row: index, section: 0)
+            selectedIndexes.append(indexPath)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
     }
     
     func downloadButtonTapped(toolbar: YSToolbarView)
     {
-        print("downloadButtonTapped")
+        viewModel?.downloadFilesFor(selectedIndexes)
     }
     
     func deleteButtonTapped(toolbar: YSToolbarView)
     {
-        viewModel?.deleteDownloadsFor(selectedIndexes)
+        let alertController = UIAlertController(title: "Confirm", message: "Deleting \(selectedIndexes.count) local files", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Confirm", style: .destructive)
+        { (action) in
+            self.viewModel?.deleteDownloadsFor(self.selectedIndexes)
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
     }
 }
 

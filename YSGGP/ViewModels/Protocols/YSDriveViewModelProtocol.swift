@@ -44,4 +44,5 @@ protocol YSDriveViewModelProtocol
     func download(_ file : YSDriveFileProtocol)
     func indexOf(_ file : YSDriveFileProtocol) -> Int
     func deleteDownloadsFor(_ indexes : [IndexPath])
+    func downloadFilesFor(_ indexes : [IndexPath])
 }

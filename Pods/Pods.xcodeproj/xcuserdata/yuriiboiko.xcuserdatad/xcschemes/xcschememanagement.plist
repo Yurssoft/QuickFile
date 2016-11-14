@@ -39,11 +39,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MRProgress.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-YSGGP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,11 +72,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>188D1FE3BBA0F413BE1B252973421026</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>30B115280382A91561C47DB7DEAF0CD6</key>
 		<dict>
 			<key>primary</key>
@@ -97,12 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71FDC73CFD4D6C27083F7B6E0BB5D522</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9CAAB2A1855182D992E2945796B03B4D</key>
+		<key>92B1E291173007794C645AC9530A0379</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA4BD342E8531C4BCE4A4F999A506FE8</key>
+		<key>BBBE655DCD6C8FA05EB9BEEE89C962B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D468777BEC2DE5127A16239373FFD11F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF695F5E8F83E03096CF7975264CBB65</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -51,7 +51,7 @@
                                                 <constraint firstAttribute="width" constant="34" id="uYz-0S-DiY"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1km-m9-Gcg" customClass="MRCircularProgressView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1km-m9-Gcg">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="L0H-zK-tx2"/>

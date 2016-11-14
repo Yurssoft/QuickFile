@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MRProgress
+import FFCircularProgressView
 
 protocol YSDriveFileTableViewCellDelegate : class
 {
@@ -19,7 +19,8 @@ class YSDriveFileTableViewCell: UITableViewCell {
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var fileInfoLabel: UILabel!
     @IBOutlet weak var fileImageView: UIImageView!
-    @IBOutlet weak var progressView: MRCircularProgressView!
+    @IBOutlet weak var progressView: UIView!
+    var ffprogressView: FFCircularProgressView!
     @IBOutlet weak var downloadButton: UIButton!
     weak var delegate: YSDriveFileTableViewCellDelegate?
     
@@ -55,11 +56,13 @@ class YSDriveFileTableViewCell: UITableViewCell {
         {
             if let file = file
             {
-                progressView.mayStop = true
+                ffprogressView = FFCircularProgressView.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+                progressView.addSubview(ffprogressView)
+                ffprogressView.progress = CGFloat(0.5)
                 fileNameLabel?.text = file.fileName
                 fileInfoLabel?.text = file.fileSize
                 fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
-                downloadButton.isHidden = file.isFileOnDisk
+                downloadButton.isHidden = file.isFileOnDisk || !file.isAudio
             }
         }
     }
@@ -68,16 +71,17 @@ class YSDriveFileTableViewCell: UITableViewCell {
     {
         didSet
         {
-            if let download = download
-            {
-                progressView.isHidden = !download.isDownloading
-                downloadButton.isHidden = download.isDownloading
-                progressView.setProgress(download.progress, animated: true)
-            }
-            else
-            {
-                progressView.isHidden = true
-            }
+//            if let download = download
+//            {
+//                progressView.isHidden = !download.isDownloading || !(file?.isAudio)!
+//                downloadButton.isHidden = download.isDownloading || !(file?.isAudio)!
+//                progressView.startSpinProgressBackgroundLayer()
+//                progressView.progress = CGFloat(download.progress)
+//            }
+//            else
+//            {
+//                progressView.isHidden = true
+//            }
         }
     }
 }

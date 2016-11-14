@@ -38,9 +38,9 @@ class YSDriveFileDownloader : NSObject
     func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
     {
         //if file is folder
-        if progressHandler == nil || completionHandler == nil
+        if progressHandler == nil || completionHandler == nil || !file.isAudio
         {
-            print("NO HANDLERS!")
+            print("NO HANDLERS OR FILE IS FOLDER!")
             return
         }
         if file.localFileExists()
