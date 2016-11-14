@@ -80,8 +80,16 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         if let path = localFilePath()?.path
         {
             let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
+            self.isFileOnDisk = exists
             return exists
         }
+        self.isFileOnDisk = false
         return false
+    }
+    
+    func removeLocalFile()
+    {
+        try? FileManager.default.removeItem(at: localFilePath()!)
+        self.isFileOnDisk = false
     }
 }

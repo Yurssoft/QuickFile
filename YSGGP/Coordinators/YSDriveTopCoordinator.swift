@@ -75,7 +75,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
         }
     }
     
-    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
+    func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)
     {
         if (file.isAudio)
         {

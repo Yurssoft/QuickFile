@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol YSToolbarViewDelegate : class
+{
+    func selectAllButtonTapped(toolbar: YSToolbarView)
+    func downloadButtonTapped(toolbar: YSToolbarView)
+    func deleteButtonTapped(toolbar: YSToolbarView)
+}
+
 @IBDesignable class YSToolbarView: UIToolbar
 {
     // Our custom view from the XIB file
@@ -17,6 +24,23 @@ import UIKit
     @IBOutlet weak var selectAllButton: UIBarButtonItem!
     @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
+    weak var ysToolbarDelegate: YSToolbarViewDelegate?
+    
+    @IBAction func selectAllTapped(_ sender: UIBarButtonItem)
+    {
+        ysToolbarDelegate?.selectAllButtonTapped(toolbar: self)
+    }
+    
+    @IBAction func downloadTapped(_ sender: UIBarButtonItem)
+    {
+        ysToolbarDelegate?.downloadButtonTapped(toolbar: self)
+    }
+    
+    @IBAction func deleteTapped(_ sender: UIBarButtonItem)
+    {
+        ysToolbarDelegate?.deleteButtonTapped(toolbar: self)
+    }
+    
     
     public override init(frame: CGRect)
     {

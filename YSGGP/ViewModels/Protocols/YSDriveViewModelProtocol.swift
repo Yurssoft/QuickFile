@@ -10,15 +10,15 @@ import Foundation
 
 protocol YSDriveViewModelViewDelegate: class
 {
-    func filesDidChange(viewModel: YSDriveViewModel)
-    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModel)
-    func errorDidChange(viewModel: YSDriveViewModel, error: YSErrorProtocol)
-    func reloadFile(at index: Int, viewModel: YSDriveViewModel)
+    func filesDidChange(viewModel: YSDriveViewModelProtocol)
+    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
+    func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
+    func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
 }
 
 protocol YSDriveViewModelCoordinatorDelegate: class
 {
-    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModel, file: YSDriveFileProtocol)
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)
     func driveViewModelDidRequestedLogin()
     func driveViewModelDidFinish()
 }
@@ -42,4 +42,6 @@ protocol YSDriveViewModelProtocol
     func getFiles(completion: @escaping CompletionHandler)
     func driveViewControllerDidFinish()
     func download(_ file : YSDriveFileProtocol)
+    func indexOf(_ file : YSDriveFileProtocol) -> Int
+    func deleteDownloadsFor(_ indexes : [IndexPath])
 }

@@ -26,4 +26,5 @@ protocol YSDriveFileProtocol
     func localFilePath() -> URL?
     
     func localFileExists() -> Bool
+    func removeLocalFile()
 }

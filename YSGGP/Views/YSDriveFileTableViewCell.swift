@@ -51,7 +51,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 fileNameLabel?.text = file.fileName
                 fileInfoLabel?.text = file.fileSize
                 fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
-                downloadButton.isHidden = file.isFileOnDisk
+                downloadButton.isHidden = isEditing || file.isFileOnDisk
             }
         }
     }

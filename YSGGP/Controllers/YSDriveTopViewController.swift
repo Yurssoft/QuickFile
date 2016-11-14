@@ -30,6 +30,7 @@ class YSDriveTopViewController: UIViewController
     {
         super.viewDidLoad()
         driveVC?.toolbarView = toolbarView
+        driveVC?.toolbarView.ysToolbarDelegate = driveVC
         driveVC?.containingViewControllerViewDidLoad()
         driveVCReadyDelegate?.driveViewControllerDidLoaded(driveVC: driveVC!, navigationController: navigationController!)
     }

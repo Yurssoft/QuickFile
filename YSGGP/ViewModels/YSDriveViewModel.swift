@@ -139,4 +139,26 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             self.viewDelegate?.reloadFile(at: index!, viewModel: self)
         })
     }
+    
+    func indexOf(_ file : YSDriveFileProtocol) -> Int
+    {
+        return (files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier}))!
+    }
+    
+    func deleteDownloadsFor(_ indexes : [IndexPath])
+    {
+        for indexPath in indexes
+        {
+            let file = files?[indexPath.row]
+            file?.removeLocalFile()
+        }
+        viewDelegate?.filesDidChange(viewModel: self)
+    }
 }
+
+
+
+
+
+
+

@@ -15,7 +15,9 @@ class YSDriveViewController: UITableViewController
 {
     weak var toolbarView: YSToolbarView!
     
-    var viewModel: YSDriveViewModel?
+    fileprivate var selectedIndexes : [IndexPath] = []
+    
+    var viewModel: YSDriveViewModelProtocol?
     {
         willSet
         {
@@ -104,13 +106,24 @@ class YSDriveViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        viewModel?.useFile(at: (indexPath as NSIndexPath).row)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if isEditing
+        {
+            selectedIndexes.append(indexPath)
+        }
+        else
+        {
+            viewModel?.useFile(at: (indexPath as NSIndexPath).row)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
     {
-        
+        if isEditing
+        {
+            let indexOfIndex = selectedIndexes.index(where: {$0.row == indexPath.row})
+            selectedIndexes.remove(at: indexOfIndex!)
+        }
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
@@ -141,7 +154,7 @@ extension YSDriveViewController: YSDriveFileTableViewCellDelegate
 
 extension YSDriveViewController: YSDriveViewModelViewDelegate
 {
-    func filesDidChange(viewModel: YSDriveViewModel)
+    func filesDidChange(viewModel: YSDriveViewModelProtocol)
     {
         DispatchQueue.main.async
         {
@@ -149,7 +162,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
-    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModel)
+    func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     {
         DispatchQueue.main.async
         {
@@ -157,7 +170,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
-    func errorDidChange(viewModel: YSDriveViewModel, error: YSErrorProtocol)
+    func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     {
         let message = MessageView.viewFromNib(layout: .CardView)
         message.configureTheme(error.messageType)
@@ -204,7 +217,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         SwiftMessages.show(config: messageConfig, view: message)
     }
     
-    func reloadFile(at index: Int, viewModel: YSDriveViewModel)
+    func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
     {
         DispatchQueue.main.async
         {
@@ -213,3 +226,26 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
 }
+
+extension YSDriveViewController : YSToolbarViewDelegate
+{
+    func selectAllButtonTapped(toolbar: YSToolbarView)
+    {
+        print("selectAllButtonTapped")
+    }
+    
+    func downloadButtonTapped(toolbar: YSToolbarView)
+    {
+        print("downloadButtonTapped")
+    }
+    
+    func deleteButtonTapped(toolbar: YSToolbarView)
+    {
+        viewModel?.deleteDownloadsFor(selectedIndexes)
+    }
+}
+
+
+
+
+
