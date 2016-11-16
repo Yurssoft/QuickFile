@@ -47,5 +47,4 @@ class YSGGPUITests: XCTestCase
 //        expectation(for: logOutExistsPredicate, evaluatedWith: object, handler: nil)
 //        waitForExpectations(timeout: 150, handler: nil)
 //    }
-//}
 }

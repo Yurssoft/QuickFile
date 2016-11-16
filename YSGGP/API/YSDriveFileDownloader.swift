@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftMessages
+import Firebase
 
 class YSDriveFileDownloader : NSObject
 {
@@ -37,7 +38,6 @@ class YSDriveFileDownloader : NSObject
     
     func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
     {
-        //if file is folder
         if progressHandler == nil || completionHandler == nil || !file.isAudio
         {
             print("NO HANDLERS OR FILE IS FOLDER!")
@@ -46,16 +46,30 @@ class YSDriveFileDownloader : NSObject
         if file.localFileExists()
         {
             print("localFileExists")
-            //return
+            return
         }
+        
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
-        let downloadTask = session.downloadTask(with: URL.init(string: file.fileUrl)!)
-        downloadTask.taskDescription = UUID().uuidString
-        download.downloadTask = downloadTask
-        download.isDownloading = true
-        downloads[file.fileUrl] = download
-        downloadTask.resume()
-        download.progressHandler(download)
+        
+//        FIRAuth.auth()?.getTokenWithCompletion(_ completion: FirebaseAuth.FIRAuthTokenCallback? = nil)
+        FIRAuth.auth()?.currentUser?.getTokenWithCompletion({ (accessToken, error) in
+            var request = URLRequest.init(url: URL.init(string: file.fileUrl)!)
+            request.addValue(accessToken!, forHTTPHeaderField: "Authorization")
+            
+            let downloadTask = self.session.downloadTask(with: request)
+            downloadTask.taskDescription = UUID().uuidString
+            download.downloadTask = downloadTask
+            download.isDownloading = true
+            self.downloads[file.fileUrl] = download
+            downloadTask.resume()
+            download.progressHandler(download)
+
+            
+            
+            
+        })
+        
+        
     }
     
     func pauseDownloading(file: YSDriveFileProtocol)
@@ -118,6 +132,9 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
 {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
+        let response = downloadTask.response as! HTTPURLResponse
+        print(response.allHeaderFields)
+        print(response.statusCode)
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
             let fileManager = FileManager.default
@@ -143,11 +160,12 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     {
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
-            download.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
+            let progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
+            download.progress = progress
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
             download.progressHandler(download)
-            print("Progress \(download.progressString())")
+            print("Progress \(progress)")
         }
     }
     

@@ -110,9 +110,13 @@ class YSDriveViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let file = viewModel?.file(at: indexPath.row)
         if isEditing
         {
-            selectedIndexes.append(indexPath)
+            if (file?.isAudio)!
+            {
+                selectedIndexes.append(indexPath)
+            }
         }
         else
         {
@@ -128,6 +132,12 @@ class YSDriveViewController: UITableViewController
             let indexOfIndex = selectedIndexes.index(where: {$0.row == indexPath.row})
             selectedIndexes.remove(at: indexOfIndex!)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        let file = viewModel?.file(at: indexPath.row)
+        return (file?.isAudio)!
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
@@ -239,8 +249,12 @@ extension YSDriveViewController : YSToolbarViewDelegate
         for index in 0..<tableView.numberOfRows(inSection: 0)
         {
             let indexPath = IndexPath.init(row: index, section: 0)
-            selectedIndexes.append(indexPath)
-            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            let file = viewModel?.file(at: indexPath.row)
+            if (file?.isAudio)!
+            {
+                selectedIndexes.append(indexPath)
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
         }
     }
     

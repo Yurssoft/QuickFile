@@ -45,6 +45,7 @@ class YSAuthenticationCoordinator: YSCoordinatorProtocol
                                                                     
                                                                     let idToken = authResult?.parameters["id_token"] as? String
                                                                     let accessToken = authResult?.parameters["access_token"] as? String
+                                                                    
                                                                     if idToken != nil && accessToken != nil
                                                                     {
                                                                         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken!,

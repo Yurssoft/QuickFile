@@ -40,7 +40,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
             query.fields = "nextPageToken, files(id, name, size, mimeType)"
             query.spaces = "drive"
             query.orderBy = "folder,name"
-            query.q = "'\(currentFolderID)' in parents and (mimeType contains 'folder' or mimeType contains 'audio')"
+            query.q = "'\(currentFolderID)' in parents and (mimeType contains 'folder' or mimeType contains 'audio') and trashed=false"
             var ysfiles : [YSDriveFileProtocol] = []
             
             YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
