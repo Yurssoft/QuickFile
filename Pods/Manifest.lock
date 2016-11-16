@@ -36,11 +36,6 @@ PODS:
   - FirebaseDatabase (3.1.0):
     - FirebaseAnalytics (~> 3.4)
   - FirebaseInstanceID (1.0.8)
-  - GoogleAPIClientForREST/Core (1.1.1):
-    - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Drive (1.1.1):
-    - GoogleAPIClientForREST/Core
-    - GTMSessionFetcher (>= 1.1.7)
   - GoogleAppUtilities (1.1.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
@@ -70,7 +65,6 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
-  - HTTPStatusCodes (3.1.0)
   - M13ProgressSuite (1.2.9)
   - SwiftMessages (3.0.3)
 
@@ -81,10 +75,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crash
   - Firebase/Database
-  - GoogleAPIClientForREST/Drive
   - GoogleSignIn
-  - GTMOAuth2
-  - HTTPStatusCodes
   - M13ProgressSuite
   - SwiftMessages
 
@@ -98,7 +89,6 @@ SPEC CHECKSUMS:
   FirebaseCrash: bafd94cd9c9373b6eb8c631705680e891f54bdb3
   FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
@@ -106,10 +96,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  HTTPStatusCodes: e0747e2497f1c887944a306b7d7122cb2a01f553
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
 
-PODFILE CHECKSUM: 6f24f65052e683640e2595efefbf5c05154227de
+PODFILE CHECKSUM: c6ff08ebb06555c68bfd997c6986c70fd4d835fc
 
 COCOAPODS: 1.1.0.rc.3

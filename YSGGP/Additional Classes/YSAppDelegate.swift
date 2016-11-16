@@ -8,7 +8,6 @@
 
 import UIKit
 import GTMOAuth2
-import GoogleAPIClientForREST
 import Firebase
 import GoogleSignIn
 
@@ -46,7 +45,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         backgroundSessionCompletionHandler = completionHandler
     }
     
-    static func appDelegate() -> YSAppDelegate
+    class func appDelegate() -> YSAppDelegate
     {
         return UIApplication.shared.delegate as! YSAppDelegate
     }
@@ -62,6 +61,13 @@ extension YSAppDelegate : GIDSignInDelegate
             return
         }
         let authentication = user.authentication
+        
+        YSCredentialManager.shared.set(clientID: (authentication?.clientID)!)
+        
+        YSCredentialManager.shared.setToken(refreshToken: (authentication?.idToken)!,
+                                            accessToken: (authentication?.accessToken)!,
+                                            availableTo: (authentication?.accessTokenExpirationDate)!)
+        
         let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
                                                           accessToken: (authentication?.accessToken)!)
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in

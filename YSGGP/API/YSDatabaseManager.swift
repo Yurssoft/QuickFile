@@ -14,7 +14,7 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    static func save(filesDictionary: [String : [String: Any]],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
+    class func save(filesDictionary: [String : [String: Any]],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -58,7 +58,7 @@ class YSDatabaseManager
         }
     }
 
-    static func getFiles(folderID: String,_ error: YSError,_ completionHandler: DriveCompletionHandler? = nil)
+    class func getFiles(folderID: String,_ error: YSError,_ completionHandler: DriveCompletionHandler? = nil)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -90,7 +90,7 @@ class YSDatabaseManager
         }
     }
     
-    static func update(file: YSDriveFileProtocol)
+    class func update(file: YSDriveFileProtocol)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -103,7 +103,7 @@ class YSDatabaseManager
         }
     }
     
-    private static func sortFiles(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol]
+    private class func sortFiles(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol]
     {
         let sortedFiles = ysFiles.sorted(by: { (_ file1,_ file2) -> Bool in
             return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio
@@ -111,7 +111,7 @@ class YSDatabaseManager
         return sortedFiles
     }
     
-    private static func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
+    private class func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
     {
         let mirroredFile = Mirror(reflecting: ysFile)
         
@@ -126,7 +126,7 @@ class YSDatabaseManager
         return fileDict
     }
     
-    private static func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
+    private class func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
     {
         let ysFile = YSDriveFile()
         for key in fileDictionary.keys
@@ -141,7 +141,7 @@ class YSDatabaseManager
         return ysFile
     }
     
-    private static func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
+    private class func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
     {
         var databaseFilesDictionary = [String : [String: Any]]()
         for currentDatabaseFile in databaseFiles.children
@@ -155,7 +155,7 @@ class YSDatabaseManager
     }
     
     
-    private static func referenceForCurrentUser() -> FIRDatabaseReference?
+    private class func referenceForCurrentUser() -> FIRDatabaseReference?
     {
         if (FIRAuth.auth()?.currentUser) != nil, let uud = FIRAuth.auth()?.currentUser?.uid
         {
@@ -165,7 +165,7 @@ class YSDatabaseManager
         return nil
     }
     
-    private static func callCompletionHandler(_ completionHandler: DriveCompletionHandler?, files : [YSDriveFileProtocol], _ error: YSError)
+    private class func callCompletionHandler(_ completionHandler: DriveCompletionHandler?, files : [YSDriveFileProtocol], _ error: YSError)
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + completionBlockDelay)
         {

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GoogleAPIClientForREST
 
 protocol YSDriveFileProtocol
 {
@@ -20,8 +19,6 @@ protocol YSDriveFileProtocol
     var modifiedTime : String { get set}
     var fileUrl : String { get}
     var folder : String { get set}
-    
-    init(file: GTLRDrive_File, folder : String)
     
     func localFilePath() -> URL?
     

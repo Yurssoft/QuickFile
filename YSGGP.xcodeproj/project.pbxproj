@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C14B03DD75083FE55A5002B /* Pods_YSGGPUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD128DF4523C94D2288F545 /* Pods_YSGGPUnitTests.framework */; };
 		5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000501A1DBA7A19008D752E /* YSTabBarController.swift */; };
+		50083B6A1DDC9BEF009B306D /* YSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50083B691DDC9BEF009B306D /* YSToken.swift */; };
+		50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */; };
 		500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */; };
 		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
 		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
@@ -72,9 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F2172C0ABD4537440C844B5 /* Pods-YSGGPUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGPUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGPUnitTests/Pods-YSGGPUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
 		5000501A1DBA7A19008D752E /* YSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarController.swift; sourceTree = "<group>"; };
+		50083B691DDC9BEF009B306D /* YSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToken.swift; sourceTree = "<group>"; };
+		50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDateExtension.swift; sourceTree = "<group>"; };
 		500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTableViewController.swift; sourceTree = "<group>"; };
 		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
 		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -124,7 +126,6 @@
 		50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
 		50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopViewController.swift; sourceTree = "<group>"; };
 		90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
-		BED0F4AF3B0C805A98862AA8 /* Pods-YSGGPUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGPUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGPUnitTests/Pods-YSGGPUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		D384CA94A771E85F7758D51D /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD128DF4523C94D2288F545 /* Pods_YSGGPUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGPUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,7 +135,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C14B03DD75083FE55A5002B /* Pods_YSGGPUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +276,7 @@
 				50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */,
 				50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */,
 				50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */,
+				50083B691DDC9BEF009B306D /* YSToken.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -337,6 +338,7 @@
 				504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */,
 				5000501A1DBA7A19008D752E /* YSTabBarController.swift */,
 				502578101DC2044800C6EFFF /* YSTestViewController.swift */,
+				50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -355,8 +357,6 @@
 			children = (
 				3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */,
 				90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */,
-				0F2172C0ABD4537440C844B5 /* Pods-YSGGPUnitTests.debug.xcconfig */,
-				BED0F4AF3B0C805A98862AA8 /* Pods-YSGGPUnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -368,12 +368,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 505B4A361DAD36600055C180 /* Build configuration list for PBXNativeTarget "YSGGPUnitTests" */;
 			buildPhases = (
-				E3E298046EFEF8EB09FC6041 /* [CP] Check Pods Manifest.lock */,
 				505B4A2B1DAD36600055C180 /* Sources */,
 				505B4A2C1DAD36600055C180 /* Frameworks */,
 				505B4A2D1DAD36600055C180 /* Resources */,
-				FFC0E4E666EF66A21888CBBD /* [CP] Embed Pods Frameworks */,
-				E75BB5F757BFF4D2B067B968 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -567,51 +564,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E3E298046EFEF8EB09FC6041 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E75BB5F757BFF4D2B067B968 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGPUnitTests/Pods-YSGGPUnitTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FFC0E4E666EF66A21888CBBD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGPUnitTests/Pods-YSGGPUnitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -635,6 +587,7 @@
 				501DF04E1DBF412F0058D085 /* YSDriveTopCoordinator.swift in Sources */,
 				508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */,
 				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
+				50083B6A1DDC9BEF009B306D /* YSToken.swift in Sources */,
 				504110431D95691100BE3B0C /* YSDriveFile.swift in Sources */,
 				500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */,
 				504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */,
@@ -662,6 +615,7 @@
 				508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */,
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
 				508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */,
+				50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +666,6 @@
 /* Begin XCBuildConfiguration section */
 		505B4A371DAD36600055C180 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F2172C0ABD4537440C844B5 /* Pods-YSGGPUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -728,7 +681,6 @@
 		};
 		505B4A381DAD36600055C180 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BED0F4AF3B0C805A98862AA8 /* Pods-YSGGPUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";

@@ -10,10 +10,4 @@ target 'YSGGP' do
     pod 'Firebase/Crash'
     pod 'FFCircularProgressView'
     pod 'GoogleSignIn'
-    pod 'HTTPStatusCodes'
-end    
-
-target 'YSGGPUnitTests' do
-    pod 'GoogleAPIClientForREST/Drive'
-    pod 'GTMOAuth2'
 end

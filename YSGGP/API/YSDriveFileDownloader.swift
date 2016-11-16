@@ -132,11 +132,13 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
 {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
-        let response = downloadTask.response as! HTTPURLResponse
-        print(response.allHeaderFields)
-        print(response.statusCode)
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
+            if let err = YSNetworkResponseManager.validate(downloadTask.response!, error: nil)
+            {
+                download.completionHandler(download, err)
+                return
+            }
             let fileManager = FileManager.default
             
             try? fileManager.removeItem(at: download.file.localFilePath()!)

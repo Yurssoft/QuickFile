@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GoogleAPIClientForREST
 
 class YSDriveFile : NSObject, YSDriveFileProtocol
 {
@@ -43,18 +42,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.fileDriveIdentifier = ""
     }
     
-    required init(file: GTLRDrive_File, folder : String)
-    {
-        self.fileName = YSDriveFile.checkStringForNil(string: file.name)
-        self.fileSize = YSDriveFile.checkStringForNil(string: file.size == nil ? "" : file.size?.stringValue)
-        let isAudio = file.mimeType != nil && (file.mimeType?.contains("audio"))!
-        self.isAudio = isAudio
-        self.mimeType = YSDriveFile.checkStringForNil(string: file.mimeType)
-        self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: file.identifier)
-        self.folder = folder
-    }
-    
-    static func checkStringForNil(string : String?) -> String
+    class func checkStringForNil(string : String?) -> String
     {
         if string == nil
         {

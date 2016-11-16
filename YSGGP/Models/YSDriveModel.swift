@@ -35,8 +35,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         { filesDictionary, error in
             if let err = error
             {
-                print(err)
-                //error
+                completionHandler!([], err)
                 return
             }
             
