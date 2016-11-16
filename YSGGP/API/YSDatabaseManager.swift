@@ -14,13 +14,11 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    static func save(files: [YSDriveFileProtocol], _ completionHandler: DriveCompletionHandler? = nil)
+    static func save(filesDictionary: [String : [String: Any]],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
     {
         if let ref = referenceForCurrentUser()
         {
             ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
-                
-                let folder = files.first?.folder
                 
                 var dbFilesDict = databaseFilesDictionary(from: dbFiles)
                 var dbFilesForFolder = [String : [String: Any]]()
@@ -34,16 +32,21 @@ class YSDatabaseManager
                         dbFilesDict[key] = nil
                     }
                 }
-                
-                for file in files
+                var ysfiles : [YSDriveFileProtocol] = []
+                for fileIdentifier in filesDictionary.keys
                 {
-                    let fileDict = convert(ysFile: file)
-                    dbFilesDict[file.fileDriveIdentifier] = fileDict
+                    let fileDict = filesDictionary[fileIdentifier]
+                    
+                    var ysFile = convert(fileDictionary: fileDict!)
+                    ysFile.isFileOnDisk = ysFile.localFileExists()
+                    
+                    ysfiles.append(ysFile)
+                    dbFilesDict[fileIdentifier] = fileDict
                 }
 
                 ref.child("files").setValue(dbFilesDict)
 
-                completionHandler!(sortFiles(ysFiles: files), YSError())
+                completionHandler!(sortFiles(ysFiles: ysfiles), YSError())
                 
                 return FIRTransactionResult.abort()
             })

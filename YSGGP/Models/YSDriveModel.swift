@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import GoogleAPIClientForREST
-import GTMOAuth2
 import SwiftMessages
 
 class YSDriveModel: NSObject, YSDriveModelProtocol
 {
     var isLoggedIn : Bool
     {
-        return YSDriveManager.shared.isLoggedIn
+        return YSCredentialManager.isLoggedIn
     }
     
     fileprivate var currentFolderID : String = ""
@@ -32,52 +30,47 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
     {
-        YSDriveManager.shared.login()
-        if isLoggedIn
-        {
-            let query = GTLRDriveQuery_FilesList.query()
-            query.pageSize = 100
-            query.fields = "nextPageToken, files(id, name, size, mimeType)"
-            query.spaces = "drive"
-            query.orderBy = "folder,name"
-            query.q = "'\(currentFolderID)' in parents and (mimeType contains 'folder' or mimeType contains 'audio') and trashed=false"
-            var ysfiles : [YSDriveFileProtocol] = []
+        var url = ""
+        YSFilesMetadataDownloader.downloadFilesList(for: url)
+        { filesDictionary, error in
+            if let err = error
+            {
+                print(err)
+                //error
+                return
+            }
             
-            YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
-                if error != nil
-                {
-                    if (error?.localizedDescription.contains("appears to be offline"))!
-                    {
-                        let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list offline", buttonTitle: "Try again", debugInfo: error.debugDescription)
-                        YSDatabaseManager.getFiles(folderID: self.currentFolderID, errorMessage, completionHandler)
-                        return
-                    }
-                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
-                    completionHandler!(ysfiles, errorMessage)
-                    return
-                }
-                let response = response1 as? GTLRDrive_FileList
-                if let files = response?.files , !files.isEmpty
-                {
-                    for file in files
-                    {
-                        let ysfile = YSDriveFile(file: file, folder: self.currentFolderID)
-                        ysfile.isFileOnDisk = ysfile.localFileExists()
-                        ysfiles.append(ysfile)
-                    }
-                    YSDatabaseManager.save(files: ysfiles, completionHandler)
-                }
-                else
-                {
-                    completionHandler!([], YSError())
-                }
-            })
+            YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolderID, completionHandler)
         }
-        else
-        {
-            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
-            completionHandler!([], errorMessage)
-        }
+//            YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
+//                if error != nil
+//                {
+//                    if (error?.localizedDescription.contains("appears to be offline"))!
+//                    {
+//                        let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list offline", buttonTitle: "Try again", debugInfo: error.debugDescription)
+//                        YSDatabaseManager.getFiles(folderID: self.currentFolderID, errorMessage, completionHandler)
+//                        return
+//                    }
+//                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
+//                    completionHandler!(ysfiles, errorMessage)
+//                    return
+//                }
+//                let response = response1 as? GTLRDrive_FileList
+//                if let files = response?.files , !files.isEmpty
+//                {
+//                    for file in files
+//                    {
+//                        let ysfile = YSDriveFile(file: file, folder: self.currentFolderID)
+//                        ysfile.isFileOnDisk = ysfile.localFileExists()
+//                        ysfiles.append(ysfile)
+//                    }
+//                    YSDatabaseManager.save(files: ysfiles, completionHandler)
+//                }
+//                else
+//                {
+//                    completionHandler!([], YSError())
+//                }
+//            })
     }
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?

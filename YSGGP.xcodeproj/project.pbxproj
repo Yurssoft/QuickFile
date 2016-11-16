@@ -30,7 +30,6 @@
 		504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111001D9C00E200BE3B0C /* YSConstants.swift */; };
 		50788D8F1DC79350003DD1C7 /* YSDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */; };
 		508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */; };
-		508EFC191DB527C300ED5CFB /* YSDriveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC181DB527C300ED5CFB /* YSDriveManager.swift */; };
 		508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1B1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift */; };
 		508EFC1E1DB52B3600ED5CFB /* YSSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */; };
 		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
@@ -42,6 +41,9 @@
 		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
 		50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */; };
 		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
+		50C22DCF1DDC5D890029E399 /* YSFilesMetadataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */; };
+		50C22DD11DDC623D0029E399 /* YSCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */; };
+		50C22DD31DDC675B0029E399 /* YSNetworkResponseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */; };
 		50D326C61DC0BFC200F12A93 /* YSDriveFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */; };
 		50D326C81DC0C0EB00F12A93 /* YSDownloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */; };
 		50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C91DC0C18A00F12A93 /* YSDownload.swift */; };
@@ -96,7 +98,6 @@
 		505B4A331DAD36600055C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDatabaseManager.swift; sourceTree = "<group>"; };
 		508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsCoordinator.swift; sourceTree = "<group>"; };
-		508EFC181DB527C300ED5CFB /* YSDriveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveManager.swift; sourceTree = "<group>"; };
 		508EFC1B1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModelProtocol.swift; sourceTree = "<group>"; };
 		508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
 		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -112,6 +113,9 @@
 		50AB0DD71D8FF243008EDB0D /* YSGGPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSGGPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
 		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFilesMetadataDownloader.swift; sourceTree = "<group>"; };
+		50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCredentialManager.swift; sourceTree = "<group>"; };
+		50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNetworkResponseManager.swift; sourceTree = "<group>"; };
 		50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileDownloader.swift; sourceTree = "<group>"; };
 		50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownloadProtocol.swift; sourceTree = "<group>"; };
 		50D326C91DC0C18A00F12A93 /* YSDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownload.swift; sourceTree = "<group>"; };
@@ -267,9 +271,11 @@
 		508EFC1A1DB527C900ED5CFB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				508EFC181DB527C300ED5CFB /* YSDriveManager.swift */,
+				50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */,
+				50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */,
 				50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */,
 				50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */,
+				50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -628,7 +634,6 @@
 				5041104B1D95763000BE3B0C /* YSDriveFileTableViewCell.swift in Sources */,
 				501DF04E1DBF412F0058D085 /* YSDriveTopCoordinator.swift in Sources */,
 				508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */,
-				508EFC191DB527C300ED5CFB /* YSDriveManager.swift in Sources */,
 				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
 				504110431D95691100BE3B0C /* YSDriveFile.swift in Sources */,
 				500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */,
@@ -638,9 +643,11 @@
 				50D326C81DC0C0EB00F12A93 /* YSDownloadProtocol.swift in Sources */,
 				508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */,
 				5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */,
+				50C22DD31DDC675B0029E399 /* YSNetworkResponseManager.swift in Sources */,
 				502578111DC2044800C6EFFF /* YSTestViewController.swift in Sources */,
 				50D326C61DC0BFC200F12A93 /* YSDriveFileDownloader.swift in Sources */,
 				503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */,
+				50C22DCF1DDC5D890029E399 /* YSFilesMetadataDownloader.swift in Sources */,
 				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
 				503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */,
@@ -649,6 +656,7 @@
 				50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */,
 				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,
 				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
+				50C22DD11DDC623D0029E399 /* YSCredentialManager.swift in Sources */,
 				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
 				50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */,
 				508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */,
