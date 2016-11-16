@@ -36,13 +36,20 @@ PODS:
   - FirebaseDatabase (3.1.0):
     - FirebaseAnalytics (~> 3.4)
   - FirebaseInstanceID (1.0.8)
-  - GoogleAPIClientForREST/Core (1.1.0):
+  - GoogleAPIClientForREST/Core (1.1.1):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Drive (1.1.0):
+  - GoogleAPIClientForREST/Drive (1.1.1):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAppUtilities (1.1.2):
+    - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSignIn (4.0.1):
+    - GoogleAppUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMOAuth2 (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
   - GoogleToolboxForMac/DebugUtils (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
@@ -63,7 +70,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
-  - M13ProgressSuite (1.2.8)
+  - M13ProgressSuite (1.2.9)
   - SwiftMessages (3.0.3)
 
 DEPENDENCIES:
@@ -74,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - Firebase/Database
   - GoogleAPIClientForREST/Drive
+  - GoogleSignIn
   - GTMOAuth2
   - M13ProgressSuite
   - SwiftMessages
@@ -88,15 +96,17 @@ SPEC CHECKSUMS:
   FirebaseCrash: bafd94cd9c9373b6eb8c631705680e891f54bdb3
   FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  GoogleAPIClientForREST: 9db09345d9515b71ef8eb03aaf9503c11e2cc743
+  GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
+  GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  M13ProgressSuite: c357c8c163a59a7405e5a9ad7e9c63a19e5e5d20
+  M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
 
-PODFILE CHECKSUM: c99415eb8c3cc2ffba9d133fb18cb9993dd647db
+PODFILE CHECKSUM: 1043a982f8d8fa4fa994fdbd6f7b4e4461ab081e
 
 COCOAPODS: 1.1.0.rc.3

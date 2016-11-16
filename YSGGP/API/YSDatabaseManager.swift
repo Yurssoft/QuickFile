@@ -13,11 +13,6 @@ import SwiftMessages
 class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
-    static func initialize()
-    {
-        FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
-    }
     
     static func save(files: [YSDriveFileProtocol], _ completionHandler: DriveCompletionHandler? = nil)
     {

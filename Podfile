@@ -2,7 +2,6 @@ platform :ios, '10.0'
 use_frameworks!
 target 'YSGGP' do
     pod 'GoogleAPIClientForREST/Drive'
-    pod 'GTMOAuth2'
     pod 'SwiftMessages'
     pod 'DGElasticPullToRefresh'
     pod 'M13ProgressSuite'
@@ -11,6 +10,7 @@ target 'YSGGP' do
     pod 'Firebase/Auth'
     pod 'Firebase/Crash'
     pod 'FFCircularProgressView'
+    pod 'GoogleSignIn'
 end    
 
 target 'YSGGPUnitTests' do

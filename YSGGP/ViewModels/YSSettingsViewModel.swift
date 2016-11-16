@@ -28,12 +28,6 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
     
     weak var viewDelegate: YSSettingsViewModelViewDelegate?
     var model : YSSettingsModel?
-    var coordinatorDelegate: YSSettingsViewModelCoordinatorDelegate?
-    
-    func loginToDrive()
-    {
-        coordinatorDelegate?.settingsViewModelDidRequestedLogin()
-    }
     
     func logOut()
     {

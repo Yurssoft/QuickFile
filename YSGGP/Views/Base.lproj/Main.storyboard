@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coT-OD-vGT" id="SfY-jr-6Dt">
-                                    <frame key="frameInset" width="375" height="47"/>
+                                    <frame key="frameInset" width="375" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcr-bs-Zgo">
@@ -213,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQE-bM-Mg5" id="9yY-H7-MvI">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yurii.boiko.s@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-sc-99K">
@@ -230,7 +230,7 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90Z-7p-Phx" id="Rhp-xw-mrL">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="PsN-uQv-yKC-7Ck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qV5-Ts-kyB">
@@ -247,21 +247,33 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Actions" id="hKs-kZ-j4m">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logInOutCell" textLabel="r7M-MZ-C6J" style="IBUITableViewCellStyleDefault" id="Wlj-xh-ZjR" userLabel="Log Out Table View Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logInOutCell" id="Wlj-xh-ZjR" userLabel="Log Out Table View Cell">
                                         <rect key="frame" x="0.0" y="188" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wlj-xh-ZjR" id="UDw-cf-EMo">
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Log Out From Drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7M-MZ-C6J">
-                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0w-rO-aDT">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vy-b4-1Xq" customClass="GIDSignInButton">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="l3D-eO-5w2"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8vy-b4-1Xq" firstAttribute="top" secondItem="UDw-cf-EMo" secondAttribute="top" constant="8" id="7Bx-rs-SQb"/>
+                                                <constraint firstItem="8vy-b4-1Xq" firstAttribute="leading" secondItem="J0w-rO-aDT" secondAttribute="trailing" constant="8" id="HBO-rf-TJm"/>
+                                                <constraint firstItem="J0w-rO-aDT" firstAttribute="centerY" secondItem="UDw-cf-EMo" secondAttribute="centerY" id="LZb-Dz-gww"/>
+                                                <constraint firstAttribute="bottom" secondItem="8vy-b4-1Xq" secondAttribute="bottom" constant="8" id="POc-gy-gnL"/>
+                                                <constraint firstAttribute="trailing" secondItem="8vy-b4-1Xq" secondAttribute="trailing" constant="8" id="Par-hL-3bZ"/>
+                                                <constraint firstItem="J0w-rO-aDT" firstAttribute="leading" secondItem="UDw-cf-EMo" secondAttribute="leading" constant="8" id="Xbl-dM-O1Y"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -272,10 +284,14 @@
                             <outlet property="delegate" destination="QrU-hB-9h3" id="Ngi-7K-X2k"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="loginOutLabel" destination="J0w-rO-aDT" id="NvB-ae-lFm"/>
+                        <outlet property="signInButton" destination="8vy-b4-1Xq" id="cUf-aF-tR4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8E-uj-8J4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3598" y="255"/>
+            <point key="canvasLocation" x="3597.5999999999999" y="254.57271364317842"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="wg7-f3-ORb">
@@ -305,7 +321,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <frame key="frameInset" width="342" height="44"/>
+                                            <frame key="frameInset" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -416,7 +432,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Drive" image="cloud_filled" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zJC-2F-qqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -439,7 +455,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HFA-uc-86e" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Playlist" image="playlist_filled" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWb-jh-KUN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sWb-jh-KUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -458,7 +474,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EqB-Ql-L81" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings_filled" id="Nod-gL-rcB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMr-KK-yaH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rMr-KK-yaH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -476,7 +492,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TestNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="haG-DO-OjU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bjy-16-7xN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bjy-16-7xN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

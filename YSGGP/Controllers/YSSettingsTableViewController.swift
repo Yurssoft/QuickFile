@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftMessages
+import GoogleSignIn
 
 class YSSettingsTableViewController: UITableViewController
 {
@@ -26,8 +27,18 @@ class YSSettingsTableViewController: UITableViewController
             }
         }
     }
+    
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var loginOutLabel: UILabel!
+    
     let cellLogInOutIdentifier = "logInOutCell"
     let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -44,8 +55,8 @@ class YSSettingsTableViewController: UITableViewController
             break
             
             case cellLogInOutIdentifier:
-                 cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
-                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
+                 loginOutLabel.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
+                 loginOutLabel.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
             break
         default:
             break
@@ -61,17 +72,8 @@ class YSSettingsTableViewController: UITableViewController
             {
                 logOutFromDrive()
             }
-            else
-            {
-                loginToDrive()
-            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func loginToDrive()
-    {
-        viewModel?.loginToDrive()
     }
     
     func logOutFromDrive()
@@ -88,6 +90,23 @@ class YSSettingsTableViewController: UITableViewController
         alertController.addAction(destroyAction)
         
         present(alertController, animated: true)
+    }
+}
+
+extension YSSettingsTableViewController : GIDSignInUIDelegate
+{
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
+    {
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
+    {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
+    {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -111,7 +130,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
         case .cancelledLoginToDrive, .couldNotLoginToDrive:
             message.buttonTapHandler =
             { _ in
-                self.loginToDrive()
+                //call login
                 SwiftMessages.hide(id: message.id)
             }
             break

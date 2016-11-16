@@ -24,43 +24,5 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
         let viewModel =  YSSettingsViewModel()
         settingsViewController?.viewModel = viewModel
         viewModel.model = YSSettingsModel()
-        viewModel.coordinatorDelegate = self
-    }
-    
-    
-    fileprivate func start(error: YSError?)
-    {
-        let viewModel =  YSSettingsViewModel()
-        settingsViewController?.viewModel = viewModel
-        viewModel.model = YSSettingsModel()
-        viewModel.coordinatorDelegate = self
-        if error == nil
-        {
-            return
-        }
-        viewModel.viewDelegate?.errorDidChange(viewModel: viewModel, error: error!)
-    }
-}
-
-extension YSSettingsCoordinator : YSAuthenticationCoordinatorDelegate
-{
-    func showAuthentication()
-    {
-        let authenticationCoordinator = YSAuthenticationCoordinator(navigationController: navigationController!)
-        authenticationCoordinator.delegate = self
-        authenticationCoordinator.start()
-    }
-    
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSErrorProtocol?)
-    {
-        start(error:error as! YSError?)
-    }
-}
-
-extension YSSettingsCoordinator: YSSettingsViewModelCoordinatorDelegate
-{
-    func settingsViewModelDidRequestedLogin()
-    {
-        showAuthentication()
     }
 }

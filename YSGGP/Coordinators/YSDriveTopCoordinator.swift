@@ -22,20 +22,11 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
         driveTopVC.driveVCReadyDelegate = self
         storyboard = driveTopVC.storyboard
     }
-}
-
-extension YSDriveTopCoordinator : YSAuthenticationCoordinatorDelegate
-{
+    
     func driveCoordinatorDidRequestedLogin()
     {
-        let authenticationCoordinator = YSAuthenticationCoordinator(navigationController: navigationController!)
-        authenticationCoordinator.delegate = self
-        authenticationCoordinator.start()
-    }
-    
-    func authenticationCoordinatorDidFinish(authenticationCoordinator: YSAuthenticationCoordinator, error: YSErrorProtocol?)
-    {
-        driveCoordinators.last?.start()
+        print(navigationController?.tabBarController)
+        //navigate to settings
     }
 }
 

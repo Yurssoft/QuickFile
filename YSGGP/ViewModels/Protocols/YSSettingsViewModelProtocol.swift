@@ -13,15 +13,8 @@ protocol YSSettingsViewModelViewDelegate: class
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
 }
 
-protocol YSSettingsViewModelCoordinatorDelegate: class
-{
-    func settingsViewModelDidRequestedLogin()
-}
-
 protocol YSSettingsViewModelProtocol
 {
     var isLoggedIn : Bool {get}
-
-    func loginToDrive()
     func logOut()
 }
