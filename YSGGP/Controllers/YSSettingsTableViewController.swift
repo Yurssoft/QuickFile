@@ -85,10 +85,6 @@ class YSSettingsTableViewController: UITableViewController
     func loginToDrive()
     {
         GIDSignIn.sharedInstance().signInSilently()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
-//        {
-//            self.signInButton?.sendActions(for: UIControlEvents.touchUpInside)
-//        }
     }
     
     func logOutFromDrive()
@@ -122,15 +118,8 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
         dismiss(animated: true)
-//        {
-//            let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
-//            let messageLoggedOut = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
-//            self.errorDidChange(viewModel: self.viewModel!, error: (self.viewModel?.isLoggedIn)! ? messageLoggedIn : messageLoggedOut)
-//            print(signIn)
-//        }
     }
 }
-
 
 extension YSSettingsTableViewController : GIDSignInDelegate
 {
@@ -140,7 +129,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
         {
             let errorString = error.localizedDescription
             
-            //could not sign in silently, explicit sign in
+            //could not sign in silently, call explicit sign in
             if errorString.contains("error -4") || errorString.contains("couldn’t be completed") || errorString.contains("-4")
             {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
@@ -175,8 +164,6 @@ extension YSSettingsTableViewController : GIDSignInDelegate
         errorDidChange(viewModel: viewModel!, error: messageLoggedIn)
     }
 }
-
-
 
 extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
