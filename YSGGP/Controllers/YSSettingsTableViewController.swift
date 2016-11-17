@@ -9,6 +9,7 @@
 import UIKit
 import SwiftMessages
 import GoogleSignIn
+import Firebase
 
 class YSSettingsTableViewController: UITableViewController
 {
@@ -28,16 +29,17 @@ class YSSettingsTableViewController: UITableViewController
         }
     }
     
-    @IBOutlet weak var signInButton: GIDSignInButton!
-    @IBOutlet weak var loginOutLabel: UILabel!
+    fileprivate var signInButton: GIDSignInButton?
     
-    let cellLogInOutIdentifier = "logInOutCell"
-    let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
+    fileprivate let cellLogInOutIdentifier = "logInOutCell"
+    fileprivate let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        signInButton = GIDSignInButton.init()
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -55,8 +57,8 @@ class YSSettingsTableViewController: UITableViewController
             break
             
             case cellLogInOutIdentifier:
-                 loginOutLabel.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
-                 loginOutLabel.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
+                 cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
+                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
             break
         default:
             break
@@ -72,8 +74,21 @@ class YSSettingsTableViewController: UITableViewController
             {
                 logOutFromDrive()
             }
+            else
+            {
+                loginToDrive()
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func loginToDrive()
+    {
+        GIDSignIn.sharedInstance().signInSilently()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
+//        {
+//            self.signInButton?.sendActions(for: UIControlEvents.touchUpInside)
+//        }
     }
     
     func logOutFromDrive()
@@ -106,9 +121,62 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
+//        {
+//            let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
+//            let messageLoggedOut = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
+//            self.errorDidChange(viewModel: self.viewModel!, error: (self.viewModel?.isLoggedIn)! ? messageLoggedIn : messageLoggedOut)
+//            print(signIn)
+//        }
     }
 }
+
+
+extension YSSettingsTableViewController : GIDSignInDelegate
+{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
+    {
+        if let error = error
+        {
+            let errorString = error.localizedDescription
+            
+            //could not sign in silently, explicit sign in
+            if errorString.contains("error -4") || errorString.contains("couldn’t be completed") || errorString.contains("-4")
+            {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
+                {
+                    self.signInButton?.sendActions(for: UIControlEvents.touchUpInside)
+                }
+                return
+            }
+            if errorString.contains("Code=-5") || errorString.contains("canceled") || errorString.contains("-5")
+            {
+                let messageCancelled = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Cancelled login to Drive", buttonTitle: "Login", debugInfo: error.localizedDescription)
+                errorDidChange(viewModel: viewModel!, error: messageCancelled)
+                return
+            }
+            let messagecouldNotLogOut = YSError(errorType: YSErrorType.couldNotLogOutFromDrive, messageType: Theme.warning, title: "Warning", message: "Could not log out from drive", buttonTitle: "Try again", debugInfo: error.localizedDescription)
+            let messageCouldNotLogin = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.warning, title: "Warning", message: "Could not login to Drive", buttonTitle: "Try again", debugInfo: error.localizedDescription)
+            errorDidChange(viewModel: viewModel!, error: signIn.hasAuthInKeychain() ? messagecouldNotLogOut : messageCouldNotLogin)
+            return
+        }
+        let authentication = user.authentication
+        YSCredentialManager.shared.setToken(refreshToken: (authentication?.idToken)!,
+                                            accessToken: (authentication?.accessToken)!,
+                                            availableTo: (authentication?.accessTokenExpirationDate)!)
+        
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            
+        }
+        
+        let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
+        errorDidChange(viewModel: viewModel!, error: messageLoggedIn)
+    }
+}
+
+
 
 extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
@@ -127,28 +195,33 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
                 SwiftMessages.hide(id: message.id)
             }
             break
-        case .cancelledLoginToDrive, .couldNotLoginToDrive:
+        case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
             message.buttonTapHandler =
-            { _ in
-                //call login
+                { _ in
                 SwiftMessages.hide(id: message.id)
+                self.loginToDrive()
             }
             break
             
         case .couldNotLogOutFromDrive:
             message.buttonTapHandler =
             { _ in
-                self.logOutFromDrive()
                 SwiftMessages.hide(id: message.id)
+                self.logOutFromDrive()
             }
             break
             
         default: break
         }
         
-        var warningConfig = SwiftMessages.Config()
-        warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.show(config: warningConfig, view: message)
-        tableView.reloadData()
+        var messageConfig = SwiftMessages.Config()
+        messageConfig.duration = .forever
+        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: messageConfig, view: message)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
+        {
+            self.tableView.reloadData()
+        }
     }
 }

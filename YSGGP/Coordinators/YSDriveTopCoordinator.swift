@@ -25,8 +25,10 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
     
     func driveCoordinatorDidRequestedLogin()
     {
-        print(navigationController?.tabBarController)
-        //navigate to settings
+        if let tababarController = YSAppDelegate.appDelegate().window!.rootViewController as? UITabBarController
+        {
+            tababarController.selectedIndex = 2 //settings tab
+        }
     }
 }
 

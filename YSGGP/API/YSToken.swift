@@ -10,12 +10,6 @@ import Foundation
 
 struct YSToken
 {
-    struct RefreshToken
-    {
-        var refreshToken : String
-        var clientID : String
-    }
-    
     struct AccessToken
     {
         var accessToken : String
@@ -29,6 +23,6 @@ struct YSToken
 //        }
     }
     
-    var refreshToken : RefreshToken
+    var refreshToken : String
     var accessToken : AccessToken
 }

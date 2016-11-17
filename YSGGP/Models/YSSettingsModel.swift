@@ -15,8 +15,15 @@ class YSSettingsModel
         return YSCredentialManager.isLoggedIn
     }
     
-    func logOut()
+    func logOut() throws
     {
-        YSCredentialManager.logOut()
+        do
+        {
+            try YSCredentialManager.logOut()
+        }
+        catch
+        {
+            throw error
+        }
     }
 }

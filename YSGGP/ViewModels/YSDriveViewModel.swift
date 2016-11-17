@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftMessages
 
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
@@ -54,7 +55,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         didSet
         {
-            files = nil
+            files = []
+            if !isLoggedIn
+            {
+                return
+            }
             isDownloadingMetadata = true
             model?.getFiles()
             { (files, error) in

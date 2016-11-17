@@ -29,7 +29,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         
         FIRDatabase.database().persistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signInSilently()
         fileDownloader = YSDriveFileDownloader()
         return true
@@ -51,27 +50,3 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     }
 }
 
-extension YSAppDelegate : GIDSignInDelegate
-{
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
-    {
-        if let error = error
-        {
-            print(error.localizedDescription)
-            return
-        }
-        let authentication = user.authentication
-        
-        YSCredentialManager.shared.set(clientID: (authentication?.clientID)!)
-        
-        YSCredentialManager.shared.setToken(refreshToken: (authentication?.idToken)!,
-                                            accessToken: (authentication?.accessToken)!,
-                                            availableTo: (authentication?.accessTokenExpirationDate)!)
-        
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
-                                                          accessToken: (authentication?.accessToken)!)
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            
-        }
-    }
-}

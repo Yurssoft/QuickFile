@@ -52,7 +52,11 @@ class YSDriveViewController: UITableViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        metadataDownloadStatusDidChange(viewModel: viewModel!)
+        if !(viewModel?.isLoggedIn)!
+        {
+            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "")
+            errorDidChange(viewModel: viewModel!, error: errorMessage)
+        }
     }
     
     deinit

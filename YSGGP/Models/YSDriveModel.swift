@@ -30,7 +30,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     
     func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
     {
-        var url = ""
+        let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=100&q='\(currentFolderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
         YSFilesMetadataDownloader.downloadFilesList(for: url)
         { filesDictionary, error in
             if let err = error
@@ -38,38 +38,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
                 completionHandler!([], err)
                 return
             }
-            
             YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolderID, completionHandler)
         }
-//            YSDriveManager.shared.service.executeQuery(query, completionHandler: { (ticket, response1, error) in
-//                if error != nil
-//                {
-//                    if (error?.localizedDescription.contains("appears to be offline"))!
-//                    {
-//                        let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list offline", buttonTitle: "Try again", debugInfo: error.debugDescription)
-//                        YSDatabaseManager.getFiles(folderID: self.currentFolderID, errorMessage, completionHandler)
-//                        return
-//                    }
-//                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.error, title: "Error", message: "Couldn't get data from Drive", buttonTitle: "Try again", debugInfo: error.debugDescription)
-//                    completionHandler!(ysfiles, errorMessage)
-//                    return
-//                }
-//                let response = response1 as? GTLRDrive_FileList
-//                if let files = response?.files , !files.isEmpty
-//                {
-//                    for file in files
-//                    {
-//                        let ysfile = YSDriveFile(file: file, folder: self.currentFolderID)
-//                        ysfile.isFileOnDisk = ysfile.localFileExists()
-//                        ysfiles.append(ysfile)
-//                    }
-//                    YSDatabaseManager.save(files: ysfiles, completionHandler)
-//                }
-//                else
-//                {
-//                    completionHandler!([], YSError())
-//                }
-//            })
     }
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?

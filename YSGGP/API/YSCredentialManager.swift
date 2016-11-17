@@ -9,6 +9,7 @@
 import Foundation
 import GoogleSignIn
 import Firebase
+import SwiftMessages
 
 class YSCredentialManager
 {
@@ -20,9 +21,8 @@ class YSCredentialManager
     
     private init()
     {
-        let refreshToken = YSToken.RefreshToken( refreshToken : "", clientID : "")
         let accessToken = YSToken.AccessToken( accessToken : "", tokenType : "", availableTo: Date().addDays(days: -200))
-        token = YSToken(refreshToken: refreshToken, accessToken: accessToken)
+        token = YSToken(refreshToken: "", accessToken: accessToken)
     }
     
     private var token : YSToken
@@ -34,16 +34,21 @@ class YSCredentialManager
         return isTokenPresent && isNotTimedOut
     }
     
+    func isPresentRefreshToken() -> Bool
+    {
+        return !token.refreshToken.isEmpty
+    }
+    
     func setToken(refreshToken : String, accessToken : String, availableTo : Date)
     {
-        let refreshToken = YSToken.RefreshToken( refreshToken : refreshToken, clientID : token.refreshToken.clientID)
         let accessToken = YSToken.AccessToken( accessToken : accessToken, tokenType : token.accessToken.tokenType, availableTo: availableTo)
         token = YSToken(refreshToken: refreshToken, accessToken: accessToken)
     }
     
-    func set(clientID : String)
+    func setToken(tokenType : String, accessToken : String, availableTo : Date)
     {
-        token.refreshToken.clientID = clientID
+        let accessToken = YSToken.AccessToken( accessToken : accessToken, tokenType : tokenType, availableTo: availableTo)
+        token = YSToken(refreshToken: token.refreshToken, accessToken: accessToken)
     }
     
     func set(tokenType : String)
@@ -54,20 +59,21 @@ class YSCredentialManager
     func tokenDictionaryForRefresh() -> [String : String]
     {
         var dictionary = [String : String]()
-        dictionary["client_id"] = token.refreshToken.clientID
-        dictionary["refresh_token"] = token.refreshToken.refreshToken
+        dictionary["refresh_token"] = token.refreshToken
         dictionary["grant_type"] = "refresh_token"
         return dictionary
     }
     
     class var isLoggedIn : Bool
     {
-        return GIDSignIn.sharedInstance().currentUser != nil && FIRAuth.auth()!.currentUser != nil
+        return GIDSignIn.sharedInstance().currentUser != nil && FIRAuth.auth()!.currentUser != nil && GIDSignIn.sharedInstance().hasAuthInKeychain()
     }
     
-    class func logOut()
+    class func logOut() throws
     {
         GIDSignIn.sharedInstance().signOut()
         try? FIRAuth.auth()!.signOut()
+        let message = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
+        throw message
     }
 }
