@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="-462" y="278"/>
         </scene>
-        <!--Settings-->
+        <!--Title-->
         <scene sceneID="vye-Ga-tav">
             <objects>
                 <viewController id="oYa-Ou-BxW" customClass="YSSettingsTopViewController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,7 +185,13 @@
                             <constraint firstAttribute="trailing" secondItem="Bvn-9o-jJj" secondAttribute="trailing" id="fDZ-hP-SsY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="1ra-6A-B7r"/>
+                    <navigationItem key="navigationItem" title="Title" id="0lP-1j-ARf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="3R4-qZ-zfX">
+                            <connections>
+                                <action selector="refreshSettings:" destination="oYa-Ou-BxW" id="yRI-23-3ac"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUV-6i-S19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -23,6 +23,11 @@ class YSSettingsTopViewController: UIViewController
         settingsCoordinator.start()
     }
     
+    @IBAction func refreshSettings(_ sender: UIBarButtonItem)
+    {
+        settingsVC.tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let segueIdentifier = YSConstants.kSettingsEmbededSegue
