@@ -9,7 +9,7 @@
 import Foundation
 import SwiftMessages
 
-typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : [String: Any]]?,_ error: YSErrorProtocol?) -> Swift.Void
+typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
 
 class YSFilesMetadataDownloader
 {
@@ -25,9 +25,11 @@ class YSFilesMetadataDownloader
         if YSCredentialManager.shared.isValidAccessToken()
         {
             let reqURL = URL.init(string: requestURL)
-            let task = Foundation.URLSession.shared.dataTask(with: reqURL!)
+            var request = URLRequest.init(url: reqURL!)
+            YSCredentialManager.shared.addAccessTokenHeaders(request: &request)
+            let task = Foundation.URLSession.shared.dataTask(with: request)
             { data, response, error in
-                if let err = YSNetworkResponseManager.validate(response!, error: error)
+                if let err = YSNetworkResponseManager.validate(response, error: error)
                 {
                     completionHandler!(["" : ["": NSNull()]], err)
                     return
@@ -39,11 +41,8 @@ class YSFilesMetadataDownloader
         }
         else
         {
-            let refreshURL = "https://www.googleapis.com/oauth2/v4/token"
-            var request = URLRequest.init(url: URL.init(string: refreshURL)!)
+            var request = URLRequest.init(url: YSCredentialManager.shared.urlForAccessToken())
             request.httpMethod = "POST"
-            let postBodyDictionary = YSCredentialManager.shared.tokenDictionaryForRefresh()
-            request.httpBody = NSKeyedArchiver.archivedData(withRootObject: postBodyDictionary)
             
             let task = Foundation.URLSession.shared.dataTask(with: request)
             { data, response, error in
@@ -57,7 +56,8 @@ class YSFilesMetadataDownloader
                 if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
                 {
                     let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
-                    YSCredentialManager.shared.setToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
+                    YSCredentialManager.shared.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
+                    downloadFilesList(for: requestURL, completionHandler)
                 }
             }
             task.resume()

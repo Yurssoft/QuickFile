@@ -8,21 +8,13 @@
 
 import Foundation
 
-struct YSToken
+class YSToken : NSObject
 {
-    struct AccessToken
-    {
-        var accessToken : String
-        var tokenType : String
-        var availableTo : Date
-        
-//        {
-//            "access_token": "ya29.Ci8SAzMH13iQa1t1buFUtN_v8X5wirj-bEmUM4VaaHJwPrh4ZUF5SiBIqMlxOU_58g",
-//            "token_type": "Bearer",
-//            "expires_in": 3600 //(availableTo)
-//        }
-    }
+    //AccessToken
+    var accessToken : String = ""
+    var accessTokenTokenType : String = ""
+    var accessTokenAvailableTo : Date = Date().addDays(days: -200)
     
-    var refreshToken : String
-    var accessToken : AccessToken
+    //RefreshToken
+    var refreshToken : String = ""
 }

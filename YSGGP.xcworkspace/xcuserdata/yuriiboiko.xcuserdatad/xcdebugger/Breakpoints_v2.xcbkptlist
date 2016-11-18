@@ -18,59 +18,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YSGGP/API/YSFilesMetadataDownloader.swift"
-            timestampString = "501076847.476661"
+            timestampString = "501177793.076311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "downloadFilesList(for:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static YSGGP.YSFilesMetadataDownloader.(downloadFilesList (for : Swift.String, Swift.Optional&lt;(Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.Dictionary&lt;Swift.String, Any&gt;&gt;&gt;, Swift.Optional&lt;YSGGP.YSErrorProtocol&gt;) -&gt; ()&gt;) -&gt; ()).(closure #2)"
-                  moduleName = "YSGGP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuriiboiko/Desktop/YSGGP/YSGGP/API/YSFilesMetadataDownloader.swift"
-                  timestampString = "501094672.854264"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "1028">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static YSGGP.YSFilesMetadataDownloader.(downloadFilesList (for : Swift.String, Swift.Optional&lt;(Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.Dictionary&lt;Swift.String, Any&gt;&gt;&gt;, Swift.Optional&lt;YSGGP.YSErrorProtocol&gt;) -&gt; ()&gt;) -&gt; ()).(closure #2)"
-                  moduleName = "YSGGP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuriiboiko/Desktop/YSGGP/YSGGP/API/YSFilesMetadataDownloader.swift"
-                  timestampString = "501094672.856825"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "1336">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YSGGP/API/YSFilesMetadataDownloader.swift"
-            timestampString = "501076847.476661"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "downloadFilesList(for:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -82,11 +34,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YSGGP/API/YSFilesMetadataDownloader.swift"
-            timestampString = "501076847.476661"
+            timestampString = "501178192.791547"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "downloadFilesList(for:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YSGGP/API/YSFilesMetadataDownloader.swift"
+            timestampString = "501178398.809383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "downloadFilesList(for:_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -65,6 +65,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
+  - KeychainAccess (3.0.1)
   - M13ProgressSuite (1.2.9)
   - SwiftMessages (3.0.3)
 
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - Firebase/Database
   - GoogleSignIn
+  - KeychainAccess
   - M13ProgressSuite
   - SwiftMessages
 
@@ -96,9 +98,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
 
-PODFILE CHECKSUM: c6ff08ebb06555c68bfd997c6986c70fd4d835fc
+PODFILE CHECKSUM: cec7bf9d23a7fc56d19eba332ce4841a6274d19b
 
 COCOAPODS: 1.1.0.rc.3

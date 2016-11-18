@@ -10,4 +10,5 @@ target 'YSGGP' do
     pod 'Firebase/Crash'
     pod 'FFCircularProgressView'
     pod 'GoogleSignIn'
+    pod 'KeychainAccess'
 end

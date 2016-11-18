@@ -108,6 +108,7 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
 {
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
     {
+        signIn.scopes = YSConstants.kDriveScopes
     }
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
@@ -150,7 +151,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
             return
         }
         let authentication = user.authentication
-        YSCredentialManager.shared.setToken(refreshToken: (authentication?.idToken)!,
+        YSCredentialManager.shared.setTokens(refreshToken: (authentication?.refreshToken)!,
                                             accessToken: (authentication?.accessToken)!,
                                             availableTo: (authentication?.accessTokenExpirationDate)!)
         

@@ -10,6 +10,7 @@ import Foundation
 import GoogleSignIn
 import Firebase
 import SwiftMessages
+import KeychainAccess
 
 class YSCredentialManager
 {
@@ -21,17 +22,29 @@ class YSCredentialManager
     
     private init()
     {
-        let accessToken = YSToken.AccessToken( accessToken : "", tokenType : "", availableTo: Date().addDays(days: -200))
-        token = YSToken(refreshToken: "", accessToken: accessToken)
+        let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
+        let tokenData = keychain[data: YSConstants.kTokenKeychainItemKey]
+        if tokenData == nil
+        {
+            return
+        }
+        if (tokenData?.isEmpty)!
+        {
+            return
+        }
+        let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as! [String : Any]
+        print(tokenDictionary)
+        self.token = tokenDictionary.toYSToken()
+        print(self.token)
     }
     
-    private var token : YSToken
+    private var token : YSToken = YSToken()
     
     func isValidAccessToken() -> Bool
     {
-        let isTokenPresent = !token.accessToken.accessToken.isEmpty
-        let isNotTimedOut = token.accessToken.availableTo.isLessThanDate(date: Date())
-        return isTokenPresent && isNotTimedOut
+        let isTokenPresent = !token.accessToken.isEmpty
+        let isNotTimedOut = token.accessTokenAvailableTo.isLessThanDate(date: Date())
+        return isTokenPresent && !isNotTimedOut
     }
     
     func isPresentRefreshToken() -> Bool
@@ -39,40 +52,63 @@ class YSCredentialManager
         return !token.refreshToken.isEmpty
     }
     
-    func setToken(refreshToken : String, accessToken : String, availableTo : Date)
+    func setTokens(refreshToken : String, accessToken : String, availableTo : Date)
     {
-        let accessToken = YSToken.AccessToken( accessToken : accessToken, tokenType : token.accessToken.tokenType, availableTo: availableTo)
-        token = YSToken(refreshToken: refreshToken, accessToken: accessToken)
+        token.refreshToken = refreshToken
+        token.accessToken = accessToken
+        token.accessTokenAvailableTo = availableTo
+        saveTokenToKeychain()
     }
     
-    func setToken(tokenType : String, accessToken : String, availableTo : Date)
+    func setAccessToken(tokenType : String, accessToken : String, availableTo : Date)
     {
-        let accessToken = YSToken.AccessToken( accessToken : accessToken, tokenType : tokenType, availableTo: availableTo)
-        token = YSToken(refreshToken: token.refreshToken, accessToken: accessToken)
+        token.accessTokenTokenType = tokenType
+        token.accessToken = accessToken
+        token.accessTokenAvailableTo = availableTo
+        saveTokenToKeychain()
     }
     
-    func set(tokenType : String)
+    private func saveTokenToKeychain()
     {
-        token.accessToken.tokenType = tokenType
+        let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
+        let tokenDictionary = token.toDictionary()
+        let tokenData = NSKeyedArchiver.archivedData(withRootObject: tokenDictionary)
+        keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
     }
     
-    func tokenDictionaryForRefresh() -> [String : String]
+    func urlForAccessToken() -> URL
     {
-        var dictionary = [String : String]()
-        dictionary["refresh_token"] = token.refreshToken
-        dictionary["grant_type"] = "refresh_token"
-        return dictionary
+        let url = "\(YSConstants.kAccessTokenAPIEndpoint)?client_id=\(YSConstants.kDriveClientID)&refresh_token=\(token.refreshToken)&grant_type=refresh_token"
+        return URL.init(string: url)!
+    }
+    
+    func addAccessTokenHeaders( request: inout URLRequest)
+    {
+        if token.accessTokenTokenType.isEmpty
+        {
+            request.setValue("Authorization", forHTTPHeaderField: "Bearer \(token.accessToken)")
+            print("Request URL:  \(request.url)   Authorization:  Bearer \(token.accessToken)")
+        }
+        else
+        {
+            request.setValue("Authorization", forHTTPHeaderField: "\(token.accessTokenTokenType) \(token.accessToken)")
+            print("Request URL:  \(request.url)   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
+        }
     }
     
     class var isLoggedIn : Bool
     {
-        return GIDSignIn.sharedInstance().currentUser != nil && FIRAuth.auth()!.currentUser != nil && GIDSignIn.sharedInstance().hasAuthInKeychain()
+        // GIDSignIn.sharedInstance().currentUser != nil &&
+        let isLoggedIn = GIDSignIn.sharedInstance().currentUser != nil && FIRAuth.auth()!.currentUser != nil
+        return isLoggedIn
     }
     
     class func logOut() throws
     {
         GIDSignIn.sharedInstance().signOut()
         try? FIRAuth.auth()!.signOut()
+        let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
+        keychain[data: YSConstants.kTokenKeychainItemKey] = Data()
         let message = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
         throw message
     }

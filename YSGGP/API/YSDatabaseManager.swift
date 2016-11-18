@@ -14,7 +14,7 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    class func save(filesDictionary: [String : [String: Any]],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
+    class func save(filesDictionary: [String : Any],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -35,9 +35,9 @@ class YSDatabaseManager
                 var ysfiles : [YSDriveFileProtocol] = []
                 for fileIdentifier in filesDictionary.keys
                 {
-                    let fileDict = filesDictionary[fileIdentifier]
+                    let fileDict = filesDictionary[fileIdentifier] as! [String : Any]
                     
-                    var ysFile = convert(fileDictionary: fileDict!)
+                    var ysFile = fileDict.toYSFile()
                     ysFile.isFileOnDisk = ysFile.localFileExists()
                     
                     ysfiles.append(ysFile)
@@ -71,7 +71,7 @@ class YSDatabaseManager
                     {
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
-                        var ysFile = convert(fileDictionary: dbFile)
+                        var ysFile = dbFile.toYSFile()
                         if ysFile.folder == folderID
                         {
                             ysFile.isFileOnDisk = ysFile.localFileExists()
@@ -95,7 +95,7 @@ class YSDatabaseManager
         if let ref = referenceForCurrentUser()
         {
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-                let updatedFile = convert(ysFile: file)
+                let updatedFile = (file as! YSDriveFile).toDictionary()
                 
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
                 return FIRTransactionResult.abort()
@@ -111,35 +111,31 @@ class YSDatabaseManager
         return sortedFiles
     }
     
-    private class func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
-    {
-        let mirroredFile = Mirror(reflecting: ysFile)
-        
-        var fileDict = [String: Any]()
-        for (_, attr) in mirroredFile.children.enumerated()
-        {
-            if let property_name = attr.label as String!
-            {
-                fileDict[property_name] = attr.value
-            }
-        }
-        return fileDict
-    }
-    
-    private class func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
-    {
-        let ysFile = YSDriveFile()
-        for key in fileDictionary.keys
-        {
-            if key == "rules"
-            {
-                continue
-            }
-            let val = fileDictionary[key]
-            ysFile.setValue(val, forKey: key)
-        }
-        return ysFile
-    }
+//    private class func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
+//    {
+//        let mirroredFile = Mirror(reflecting: ysFile)
+//        
+//        var fileDict = [String: Any]()
+//        for (_, attr) in mirroredFile.children.enumerated()
+//        {
+//            if let property_name = attr.label as String!
+//            {
+//                fileDict[property_name] = attr.value
+//            }
+//        }
+//        return fileDict
+//    }
+//    
+//    private class func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
+//    {
+//        let ysFile = YSDriveFile()
+//        for key in fileDictionary.keys
+//        {
+//            let val = fileDictionary[key]
+//            ysFile.setValue(val, forKey: key)
+//        }
+//        return ysFile
+//    }
     
     private class func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
     {
