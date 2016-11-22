@@ -33,9 +33,7 @@ class YSCredentialManager
             return
         }
         let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as! [String : Any]
-        print(tokenDictionary)
         self.token = tokenDictionary.toYSToken()
-        print(self.token)
     }
     
     private var token : YSToken = YSToken()
@@ -86,20 +84,19 @@ class YSCredentialManager
     {
         if token.accessTokenTokenType.isEmpty
         {
-            request.setValue("Authorization", forHTTPHeaderField: "Bearer \(token.accessToken)")
+            request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
             print("Request URL:  \(request.url)   Authorization:  Bearer \(token.accessToken)")
         }
         else
         {
-            request.setValue("Authorization", forHTTPHeaderField: "\(token.accessTokenTokenType) \(token.accessToken)")
+            request.setValue("\(token.accessTokenTokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
             print("Request URL:  \(request.url)   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
         }
     }
     
     class var isLoggedIn : Bool
     {
-        // GIDSignIn.sharedInstance().currentUser != nil &&
-        let isLoggedIn = GIDSignIn.sharedInstance().currentUser != nil && FIRAuth.auth()!.currentUser != nil
+        let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty
         return isLoggedIn
     }
     
@@ -109,6 +106,7 @@ class YSCredentialManager
         try? FIRAuth.auth()!.signOut()
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         keychain[data: YSConstants.kTokenKeychainItemKey] = Data()
+        self.shared.token = YSToken()
         let message = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
         throw message
     }

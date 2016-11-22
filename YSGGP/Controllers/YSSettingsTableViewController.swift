@@ -37,9 +37,10 @@ class YSSettingsTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        signInButton = GIDSignInButton.init()
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().scopes = YSConstants.kDriveScopes
+        signInButton = GIDSignInButton.init()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -113,11 +114,13 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
     {
+        signIn.scopes = YSConstants.kDriveScopes
         present(viewController, animated: true, completion: nil)
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
+        signIn.scopes = YSConstants.kDriveScopes
         dismiss(animated: true)
     }
 }

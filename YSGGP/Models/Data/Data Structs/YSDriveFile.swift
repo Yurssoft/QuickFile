@@ -24,12 +24,20 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, isAudio : Bool, fileDriveIdentifier : String?)
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: fileName)
         self.fileSize = YSDriveFile.checkStringForNil(string: fileSize)
-        self.isAudio = isAudio
         self.mimeType = YSDriveFile.checkStringForNil(string: mimeType)
+        let mimeTypes = YSDriveFile.checkStringForNil(string: mimeType)
+        if !mimeTypes.isEmpty && (mimeTypes.contains("mp3") || mimeTypes.contains("audio") || mimeTypes.contains("mpeg"))
+        {
+            self.isAudio = true
+        }
+        else
+        {
+            self.isAudio = false
+        }
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
     }
     

@@ -33,15 +33,17 @@ class YSDatabaseManager
                     }
                 }
                 var ysfiles : [YSDriveFileProtocol] = []
-                for fileIdentifier in filesDictionary.keys
+                let filesDictArray = filesDictionary["files"] as! [[String: Any]]
+                for fileDict in filesDictArray
                 {
-                    let fileDict = filesDictionary[fileIdentifier] as! [String : Any]
+                    let ysFile = YSDriveFile.init(fileName: fileDict["name"] as! String?,
+                                                  fileSize: fileDict["mimeType"] as! String?,
+                                                  mimeType: fileDict["mimeType"] as! String?,
+                                                  fileDriveIdentifier: fileDict["id"] as! String?)
                     
-                    var ysFile = fileDict.toYSFile()
                     ysFile.isFileOnDisk = ysFile.localFileExists()
-                    
                     ysfiles.append(ysFile)
-                    dbFilesDict[fileIdentifier] = fileDict
+                    dbFilesDict[ysFile.fileDriveIdentifier] = ysFile.toDictionary()
                 }
 
                 ref.child("files").setValue(dbFilesDict)
@@ -111,32 +113,6 @@ class YSDatabaseManager
         return sortedFiles
     }
     
-//    private class func convert(ysFile: YSDriveFileProtocol) -> [String: Any]
-//    {
-//        let mirroredFile = Mirror(reflecting: ysFile)
-//        
-//        var fileDict = [String: Any]()
-//        for (_, attr) in mirroredFile.children.enumerated()
-//        {
-//            if let property_name = attr.label as String!
-//            {
-//                fileDict[property_name] = attr.value
-//            }
-//        }
-//        return fileDict
-//    }
-//    
-//    private class func convert(fileDictionary: [String : Any]) -> YSDriveFileProtocol
-//    {
-//        let ysFile = YSDriveFile()
-//        for key in fileDictionary.keys
-//        {
-//            let val = fileDictionary[key]
-//            ysFile.setValue(val, forKey: key)
-//        }
-//        return ysFile
-//    }
-    
     private class func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
     {
         var databaseFilesDictionary = [String : [String: Any]]()
@@ -144,8 +120,14 @@ class YSDatabaseManager
         {
             let databaseFile = currentDatabaseFile as! FIRMutableData
             let dbFile = databaseFile.value as! [String : Any]
-            let fileDriveIdentifier = dbFile["fileDriveIdentifier"] as! String
-            databaseFilesDictionary[fileDriveIdentifier] = dbFile
+            if let fileDriveIdentifier = dbFile["fileDriveIdentifier"] as? String
+            {
+                databaseFilesDictionary[fileDriveIdentifier] = dbFile
+            }
+            else
+            {
+                print("Something wrong with dbFile : \(dbFile)")
+            }
         }
         return databaseFilesDictionary
     }
