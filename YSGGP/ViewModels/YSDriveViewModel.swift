@@ -133,7 +133,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         model?.download(file, { (download) in
             let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
-            self.viewDelegate?.reloadFile(at: index!, viewModel: self)
+            self.viewDelegate?.reloadFileDownload(at: index!, viewModel: self)
         },
         completionHandler: { (download, error) in
             if let error = error

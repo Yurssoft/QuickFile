@@ -243,6 +243,20 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             self.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
+    
+    func reloadFileDownload(at index: Int, viewModel: YSDriveViewModelProtocol)
+    {
+        DispatchQueue.main.async
+        {
+            let indexPath = IndexPath.init(row: index, section: 0)
+            if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
+            {
+                let file = viewModel.file(at: indexPath.row)
+                let download = viewModel.download(for: file!)
+                cell.configure(file, self, download)
+            }
+        }
+    }
 }
 
 extension YSDriveViewController : YSToolbarViewDelegate

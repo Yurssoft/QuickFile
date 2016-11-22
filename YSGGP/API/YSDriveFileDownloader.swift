@@ -51,25 +51,16 @@ class YSDriveFileDownloader : NSObject
         
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
         
-//        FIRAuth.auth()?.getTokenWithCompletion(_ completion: FirebaseAuth.FIRAuthTokenCallback? = nil)
-        FIRAuth.auth()?.currentUser?.getTokenWithCompletion({ (accessToken, error) in
-            var request = URLRequest.init(url: URL.init(string: file.fileUrl)!)
-            request.addValue(accessToken!, forHTTPHeaderField: "Authorization")
-            
-            let downloadTask = self.session.downloadTask(with: request)
-            downloadTask.taskDescription = UUID().uuidString
-            download.downloadTask = downloadTask
-            download.isDownloading = true
-            self.downloads[file.fileUrl] = download
-            downloadTask.resume()
-            download.progressHandler(download)
-
-            
-            
-            
-        })
-        
-        
+        let reqURL = URL.init(string: file.fileUrl)
+        var request = URLRequest.init(url: reqURL!)
+        YSCredentialManager.shared.addAccessTokenHeaders(request: &request)
+        let downloadTask = self.session.downloadTask(with: request)
+        downloadTask.taskDescription = UUID().uuidString
+        download.downloadTask = downloadTask
+        download.isDownloading = true
+        self.downloads[file.fileUrl] = download
+        downloadTask.resume()
+        download.progressHandler(download)
     }
     
     func pauseDownloading(file: YSDriveFileProtocol)
@@ -166,8 +157,8 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             download.progress = progress
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
+            downloads[url] = download
             download.progressHandler(download)
-            print("Progress \(progress)")
         }
     }
     
