@@ -32,13 +32,50 @@ class YSDriveFileTableViewCell: UITableViewCell {
     
     func configure(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate, _ download : YSDownloadProtocol?)
     {
-        progressView.subviews.first?.removeFromSuperview()
-        ffprogressView = FFCircularProgressView.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        progressView.addSubview(ffprogressView)
-        ffprogressView.progress = 0.1
+        if let file = file
+        {
+            fileNameLabel?.text = file.fileName
+            fileInfoLabel?.text = file.fileSize
+            if file.isAudio
+            {
+                if let download = download
+                {
+                    if progressView.subviews.first == nil
+                    {
+                        progressView.isHidden = false
+                        ffprogressView = FFCircularProgressView.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+                        progressView.addSubview(ffprogressView)
+                    }
+                    ffprogressView.progress = CGFloat(download.progress)
+                    
+                    progressView.isHidden = !download.isDownloading
+                    downloadButton.isHidden = download.isDownloading
+                }
+                else
+                {
+                    progressView.subviews.first?.removeFromSuperview()
+                    progressView.isHidden = true
+                }
+                fileImageView?.image = UIImage(named:"song")
+                downloadButton.isHidden = file.isFileOnDisk
+            }
+            else
+            {
+                progressView.subviews.first?.removeFromSuperview()
+                progressView.isHidden = true
+                fileImageView?.image = UIImage(named:"folder")
+                downloadButton.isHidden = true
+            }
+        }
         self.file = file
         self.delegate = delegate
-        self.download = download
+    }
+    
+    override func prepareForReuse()
+    {
+        super.prepareForReuse()
+        progressView.isHidden = true
+        progressView.subviews.first?.removeFromSuperview()
     }
     
     @IBAction func downloadButtonTapped(_ sender: UIButton)
@@ -46,42 +83,5 @@ class YSDriveFileTableViewCell: UITableViewCell {
         delegate?.downloadButtonPressed(file!)
     }
     
-    override var isEditing: Bool
-    {
-        didSet
-        {
-            downloadButton.isHidden = isEditing
-        }
-    }
-    
     var file: YSDriveFileProtocol?
-    {
-        didSet
-        {
-            if let file = file
-            {
-                fileNameLabel?.text = file.fileName
-                fileInfoLabel?.text = file.fileSize
-                downloadButton.isHidden = file.isFileOnDisk || !file.isAudio
-                fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
-            }
-        }
-    }
-    
-    var download : YSDownloadProtocol?
-    {
-        didSet
-        {
-            if let download = download
-            {
-                progressView.isHidden = !download.isDownloading || !(file?.isAudio)!
-                downloadButton.isHidden = download.isDownloading || !(file?.isAudio)!
-                ffprogressView.progress = CGFloat(download.progress)
-            }
-            else
-            {
-                progressView.isHidden = true
-            }
-        }
-    }
 }
