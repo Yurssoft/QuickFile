@@ -18,7 +18,7 @@ class YSFilesMetadataDownloader
     {
         if !isInternetAvailable()
         {
-            let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try Again", debugInfo: "no internet")
+            let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try again", debugInfo: "no internet")
             completionHandler!(["" : ["": NSNull()]], errorMessage)
             return
         }
