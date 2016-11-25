@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftMessages
+import SystemConfiguration
 
 typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
 
@@ -15,10 +16,15 @@ class YSFilesMetadataDownloader
 {
     class func downloadFilesList(for requestURL: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
     {
-        //check if no internet return
+        if !isInternetAvailable()
+        {
+            let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try Again", debugInfo: "no internet")
+            completionHandler!(["" : ["": NSNull()]], errorMessage)
+            return
+        }
         if !YSCredentialManager.shared.isPresentRefreshToken() || !YSCredentialManager.isLoggedIn
         {
-            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "")
+            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "no refresh token or is not logged in")
             completionHandler!(["" : ["": NSNull()]], errorMessage)
             return
         }
@@ -62,5 +68,28 @@ class YSFilesMetadataDownloader
             }
             task.resume()
         }
+    }
+    
+    class func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress)
+        {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1)
+            { zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags)
+        {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }
