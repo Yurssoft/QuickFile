@@ -9,7 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FFCircularProgressView.xcscheme</key>
+		<key>DownloadButton-DownloadButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DownloadButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,12 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5757693A5F2005228DAAAD28B12EFFA5</key>
+		<key>141796DBA3CE87B499A356EF9B750024</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D14710B0B023CA732DEF35A4BAFF225</key>
+		<key>5D92BCD87382D1A58FA3E28BE213F8A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70D13F1AE7B20473AC9CEC6873F6013C</key>
+		<key>838A2C6DA366DE138E5FDF1AF19D94C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>838A2C6DA366DE138E5FDF1AF19D94C0</key>
+		<key>A78920E82CFD345133A37A71CAE0A6F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C6E29098392497E07DC60FAC6F1C804B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5FE7043DCD5223A6455BE9B2049A92A</key>
+		<key>D88061810F3B9244DA57523453F1752A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F86F0E59C444E8340E82D8EC45C16DA7</key>
+		<key>F5FE7043DCD5223A6455BE9B2049A92A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

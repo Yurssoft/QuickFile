@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '70D13F1AE7B20473AC9CEC6873F6013C'
-               BlueprintName = 'FFCircularProgressView'
+               BlueprintIdentifier = '141796DBA3CE87B499A356EF9B750024'
+               BlueprintName = 'DownloadButton-DownloadButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'FFCircularProgressView.framework'>
+               BuildableName = 'DownloadButton.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

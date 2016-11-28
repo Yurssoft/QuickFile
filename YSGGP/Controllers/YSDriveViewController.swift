@@ -253,7 +253,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             {
                 let file = viewModel.file(at: indexPath.row)
                 let download = viewModel.download(for: file!)
-                cell.configure(file, self, download)
+                cell.update(file, download)
             }
         }
     }

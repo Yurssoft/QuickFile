@@ -8,7 +8,7 @@ target 'YSGGP' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Crash'
-    pod 'FFCircularProgressView'
+    pod 'DownloadButton'
     pod 'GoogleSignIn'
     pod 'KeychainAccess'
 end

@@ -22,17 +22,17 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coT-OD-vGT" id="SfY-jr-6Dt">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcr-bs-Zgo">
-                                            <rect key="frame" x="50" y="16" width="44" height="492"/>
+                                            <rect key="frame" x="50" y="16" width="44" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1Z-32-zXO" userLabel="TitleLabel">
-                                            <rect key="frame" x="50" y="4" width="275" height="21"/>
+                                            <rect key="frame" x="50" y="4" width="33.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Pwp-Qu-yXd"/>
                                             </constraints>
@@ -40,46 +40,33 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsY-Jd-Feg">
-                                            <rect key="frame" x="333" y="4" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="34" id="Cxz-M6-0ee"/>
-                                                <constraint firstAttribute="height" constant="34" id="qYf-qW-eIe"/>
-                                            </constraints>
-                                            <state key="normal" image="cloud_download"/>
-                                            <connections>
-                                                <action selector="downloadButtonTapped:" destination="coT-OD-vGT" eventType="touchUpInside" id="cDi-Fq-qgI"/>
-                                            </connections>
-                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-SV-8xk" userLabel="IconImage">
-                                            <rect key="frame" x="8" y="4" width="34" height="500.5"/>
+                                            <rect key="frame" x="8" y="4" width="34" height="38.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="34" id="uYz-0S-DiY"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1km-m9-Gcg">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1km-m9-Gcg" customClass="PKDownloadButton">
                                             <rect key="frame" x="333" y="4" width="40" height="34"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="L0H-zK-tx2"/>
                                                 <constraint firstAttribute="height" constant="34" id="pRf-ZV-8NT"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="delegate" destination="coT-OD-vGT" id="pke-eK-FDQ"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="VKx-SV-8xk" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" id="2U5-mr-Stj"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZsY-Jd-Feg" secondAttribute="trailing" constant="8" id="3UB-i7-9wX"/>
-                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="leading" secondItem="B1Z-32-zXO" secondAttribute="trailing" constant="8" id="9rD-Nl-yO0"/>
                                         <constraint firstItem="1km-m9-Gcg" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="AZ7-tf-LaH"/>
                                         <constraint firstAttribute="bottom" secondItem="jcr-bs-Zgo" secondAttribute="bottom" constant="0.5" id="LeM-QK-zAg"/>
                                         <constraint firstItem="VKx-SV-8xk" firstAttribute="leading" secondItem="SfY-jr-6Dt" secondAttribute="leadingMargin" id="PJa-4A-uie"/>
                                         <constraint firstItem="VKx-SV-8xk" firstAttribute="bottom" secondItem="SfY-jr-6Dt" secondAttribute="bottomMargin" constant="4" id="TRK-c4-S6i"/>
-                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" id="Uc6-eW-9zr"/>
-                                        <constraint firstAttribute="bottom" secondItem="ZsY-Jd-Feg" secondAttribute="bottom" constant="4" id="ZH8-ov-Sfa"/>
                                         <constraint firstItem="B1Z-32-zXO" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="cPI-KB-NVi"/>
                                         <constraint firstAttribute="trailing" secondItem="1km-m9-Gcg" secondAttribute="trailing" constant="2" id="poC-LT-Byr"/>
                                         <constraint firstItem="jcr-bs-Zgo" firstAttribute="top" secondItem="B1Z-32-zXO" secondAttribute="bottom" constant="-8.5" id="qCj-D6-Ixn"/>
-                                        <constraint firstItem="ZsY-Jd-Feg" firstAttribute="top" secondItem="SfY-jr-6Dt" secondAttribute="top" constant="4" id="uJA-6m-VFW"/>
                                         <constraint firstAttribute="bottom" secondItem="1km-m9-Gcg" secondAttribute="bottom" constant="9" id="vYR-Dc-8as"/>
                                         <constraint firstItem="B1Z-32-zXO" firstAttribute="leading" secondItem="VKx-SV-8xk" secondAttribute="trailing" constant="8" id="wfz-va-7gv"/>
                                         <constraint firstItem="1km-m9-Gcg" firstAttribute="centerY" secondItem="SfY-jr-6Dt" secondAttribute="centerY" constant="-2.5" id="ykI-Gs-scJ"/>
@@ -87,11 +74,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="downloadButton" destination="ZsY-Jd-Feg" id="j7T-VE-cOz"/>
+                                    <outlet property="downloadButton" destination="1km-m9-Gcg" id="XAA-hL-bYg"/>
                                     <outlet property="fileImageView" destination="VKx-SV-8xk" id="Uq5-RN-x34"/>
                                     <outlet property="fileInfoLabel" destination="jcr-bs-Zgo" id="pN0-xX-emF"/>
                                     <outlet property="fileNameLabel" destination="B1Z-32-zXO" id="JM0-EU-Zzw"/>
-                                    <outlet property="progressView" destination="1km-m9-Gcg" id="1MZ-Th-lFg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -212,11 +198,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VM-lF-fvS" id="uu3-3P-Acc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="You are Logged in to Drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PHz-om-XfB">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -229,7 +215,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQE-bM-Mg5" id="9yY-H7-MvI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yurii.boiko.s@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-sc-99K">
@@ -246,7 +232,7 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90Z-7p-Phx" id="Rhp-xw-mrL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="YBs201sjsj" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qV5-Ts-kyB">
@@ -267,11 +253,11 @@
                                         <rect key="frame" x="0.0" y="188" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wlj-xh-ZjR" id="UDw-cf-EMo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bsc-of-fji">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -323,7 +309,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emN-G2-xSA" id="BkZ-nX-aOg">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-MG-VJt" userLabel="IconImage">
@@ -437,7 +423,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lio-Ep-l40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Drive" image="cloud_filled" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zJC-2F-qqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -460,7 +446,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HFA-uc-86e" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Playlist" image="playlist_filled" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWb-jh-KUN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sWb-jh-KUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -479,7 +465,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EqB-Ql-L81" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings_filled" id="Nod-gL-rcB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMr-KK-yaH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rMr-KK-yaH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -497,7 +483,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TestNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="haG-DO-OjU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bjy-16-7xN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bjy-16-7xN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -512,7 +498,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud_download" width="100" height="100"/>
         <image name="cloud_filled" width="20" height="20"/>
         <image name="folder" width="500" height="500"/>
         <image name="playlist_filled" width="20" height="20"/>
