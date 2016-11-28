@@ -168,6 +168,11 @@ extension YSDriveViewController: YSDriveFileTableViewCellDelegate
     {
         viewModel?.download(file)
     }
+    
+    func stopDownloadButtonPressed(_ file: YSDriveFileProtocol)
+    {
+        viewModel?.stopDownloading(file)
+    }
 }
 
 extension YSDriveViewController: YSDriveViewModelViewDelegate
@@ -253,7 +258,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             {
                 let file = viewModel.file(at: indexPath.row)
                 let download = viewModel.download(for: file!)
-                cell.update(file, download)
+                cell.configure(file, self, download)
             }
         }
     }

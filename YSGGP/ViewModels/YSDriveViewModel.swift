@@ -11,6 +11,7 @@ import SwiftMessages
 
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
+
     var isLoggedIn: Bool
     {
        return (model?.isLoggedIn)!
@@ -143,6 +144,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
             self.viewDelegate?.reloadFile(at: index!, viewModel: self)
         })
+    }
+    
+    func stopDownloading(_ file: YSDriveFileProtocol)
+    {
+        model?.stopDownload(file)
     }
     
     func indexOf(_ file : YSDriveFileProtocol) -> Int

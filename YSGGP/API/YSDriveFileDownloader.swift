@@ -78,9 +78,12 @@ class YSDriveFileDownloader : NSObject
     
     func cancelDownloading(file: YSDriveFileProtocol)
     {
-        var download = downloads[file.fileUrl]
-        download?.downloadTask?.cancel()
-        downloads[file.fileUrl] = nil
+        if let download = downloads[file.fileUrl]
+        {
+            download.downloadTask?.cancel()
+            download.completionHandler(download, nil)
+            downloads[file.fileUrl] = nil
+        }
     }
     
     func resumeDownloading(file: YSDriveFileProtocol)

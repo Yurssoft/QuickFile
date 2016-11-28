@@ -51,4 +51,9 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
     {
         YSAppDelegate.appDelegate().fileDownloader?.download(file: file, progressHandler, completionHandler: completionHandler)
     }
+    
+    func stopDownload(_ file : YSDriveFileProtocol)
+    {
+        YSAppDelegate.appDelegate().fileDownloader?.cancelDownloading(file: file)
+    }
 }

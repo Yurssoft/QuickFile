@@ -20,5 +20,7 @@ protocol YSDriveModelProtocol
     
     func download(_ file : YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler?, completionHandler : DownloadCompletionHandler?)
     
+    func stopDownload(_ file : YSDriveFileProtocol)
+    
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
 }
