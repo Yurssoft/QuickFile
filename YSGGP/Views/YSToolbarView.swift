@@ -17,14 +17,36 @@ protocol YSToolbarViewDelegate : class
 
 @IBDesignable class YSToolbarView: UIToolbar
 {
-    // Our custom view from the XIB file
-    var toolbarView: UIView!
+    var view: UIView!
     
-    // Outlets
     @IBOutlet weak var selectAllButton: UIBarButtonItem!
     @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     weak var ysToolbarDelegate: YSToolbarViewDelegate?
+    
+    @IBInspectable var SelectAllButtonText: String?
+    {
+        get
+        {
+            return self.selectAllButton.title
+        }
+        set(text)
+        {
+            self.selectAllButton.title = text
+        }
+    }
+    
+    @IBInspectable var DownloadButtonImage: UIImage?
+    {
+        get
+        {
+            return downloadButton.image
+        }
+        set(image)
+        {
+            downloadButton.image = image
+        }
+    }
     
     @IBAction func selectAllTapped(_ sender: UIBarButtonItem)
     {
@@ -41,29 +63,31 @@ protocol YSToolbarViewDelegate : class
         ysToolbarDelegate?.deleteButtonTapped(toolbar: self)
     }
     
-    
-    public override init(frame: CGRect)
+    override init(frame: CGRect)
     {
         super.init(frame: frame)
-        setupXib()
+        xibSetup()
     }
     
-    public required init?(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        setupXib()
+        xibSetup()
     }
     
-    func setupXib()
+    func xibSetup()
     {
-        toolbarView = Bundle.main.loadNibNamed(YSToolbarView.nameOfClass, owner: self, options: nil)?[0] as! UIView
-        
-        // use bounds not frame or it'll be offset
-        toolbarView.frame = bounds
-        // Make the view stretch with containing view
-        toolbarView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        
-        // Adding custom subview on top of our view (over any custom drawing)
-        addSubview(toolbarView)
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        addSubview(view)
+    }
+    
+    func loadViewFromNib() -> UIView
+    {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: YSToolbarView.nameOfClass, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        return view
     }
 }
