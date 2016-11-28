@@ -151,9 +151,10 @@ class YSDriveViewController: UITableViewController
     
     func getFiles()
     {
-         if (viewModel?.isLoggedIn)!
-         {
+        if !(viewModel?.isLoggedIn)!
+        {
             self.tableView.dg_stopLoading()
+            return
         }
         viewModel?.getFiles(completion:
         { _ in
