@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftMessages
-import DGElasticPullToRefresh
+import MJRefresh
 import M13ProgressSuite
 
 class YSDriveViewController: UITableViewController
@@ -40,13 +40,18 @@ class YSDriveViewController: UITableViewController
     
     func configurePullToRefresh()
     {
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+//        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+//        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+//        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+//            self?.getFiles()
+//            }, loadingView: loadingView)
+//        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+//        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
+        { [weak self] () -> Void in
             self?.getFiles()
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -56,14 +61,6 @@ class YSDriveViewController: UITableViewController
         {
             let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "")
             errorDidChange(viewModel: viewModel!, error: errorMessage)
-        }
-    }
-    
-    deinit
-    {
-        if tableView != nil
-        {
-            tableView.dg_removePullToRefresh()
         }
     }
     
@@ -153,12 +150,12 @@ class YSDriveViewController: UITableViewController
     {
         if !(viewModel?.isLoggedIn)!
         {
-            self.tableView.dg_stopLoading()
+            tableView.mj_header.endRefreshing()
             return
         }
         viewModel?.getFiles(completion:
         { _ in
-            self.tableView.dg_stopLoading()
+            self.tableView.mj_header.endRefreshing()
         })
     }
 }

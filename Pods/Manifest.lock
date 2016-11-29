@@ -1,5 +1,4 @@
 PODS:
-  - DGElasticPullToRefresh (1.1)
   - DownloadButton (0.1.0)
   - Firebase/Auth (3.10.0):
     - Firebase/Core
@@ -67,10 +66,10 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.7)
   - KeychainAccess (3.0.1)
   - M13ProgressSuite (1.2.9)
-  - SwiftMessages (3.0.3)
+  - MJRefresh (3.1.12)
+  - SwiftMessages (3.1.1)
 
 DEPENDENCIES:
-  - DGElasticPullToRefresh
   - DownloadButton
   - Firebase/Auth
   - Firebase/Core
@@ -79,10 +78,10 @@ DEPENDENCIES:
   - GoogleSignIn
   - KeychainAccess
   - M13ProgressSuite
+  - MJRefresh
   - SwiftMessages
 
 SPEC CHECKSUMS:
-  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
@@ -100,8 +99,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
-  SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SwiftMessages: 1216ea6bdf8d92ff0f6f98a23e5442711b1e71ac
 
-PODFILE CHECKSUM: cb9fae42a3a345b5d8627142ed8ad6dc8375f1e2
+PODFILE CHECKSUM: 030b8a2f3bd2588bfdf651663a831b1a17f09c81
 
 COCOAPODS: 1.1.0.rc.3
