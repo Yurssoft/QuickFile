@@ -40,14 +40,6 @@ class YSDriveViewController: UITableViewController
     
     func configurePullToRefresh()
     {
-//        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-//        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
-//        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-//            self?.getFiles()
-//            }, loadingView: loadingView)
-//        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
-//        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
-        
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
         { [weak self] () -> Void in
             self?.getFiles()
@@ -191,6 +183,31 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
+    {
+        let message = MessageView.viewFromNib(layout: .CardView)
+        message.configureTheme(error.messageType)
+        message.configureDropShadow()
+        message.configureContent(title: error.title, body: error.message)
+        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        switch error.errorType
+        {
+        case .couldNotDownloadFile:
+            message.buttonTapHandler =
+            { _ in
+                self.downloadButtonPressed(download.file)
+                SwiftMessages.hide()
+            }
+            break
+        default: break
+        }
+        var messageConfig = SwiftMessages.Config()
+        messageConfig.duration = .forever
+        messageConfig.ignoreDuplicates = false
+        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: messageConfig, view: message)
+    }
+    
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     {
         let message = MessageView.viewFromNib(layout: .CardView)
@@ -220,13 +237,6 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             { _ in
                 self.getFiles()
                 SwiftMessages.hide()
-            }
-            break
-        case .couldNotDownloadFile:
-            message.buttonTapHandler =
-                { _ in
-                    //redownload file
-                    SwiftMessages.hide()
             }
             break
         default: break

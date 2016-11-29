@@ -81,8 +81,6 @@ class YSDriveFileDownloader : NSObject
         if let download = downloads[file.fileUrl]
         {
             download.downloadTask?.cancel()
-            download.completionHandler(download, nil)
-            downloads[file.fileUrl] = nil
         }
     }
     
@@ -128,9 +126,10 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     {
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
-            if let err = YSNetworkResponseManager.validate(downloadTask.response!, error: nil)
+            if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: download.file.fileName)
             {
                 download.completionHandler(download, err)
+                downloads[url] = nil
                 return
             }
             let fileManager = FileManager.default
@@ -146,6 +145,12 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             catch let error as NSError
             {
                 print("Could not copy file to disk: \(error.localizedDescription)")
+                
+                let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(download.file.fileName)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
+                
+                download.completionHandler(download, errorMessage)
+                downloads[url] = nil
+                return
             }
             download.completionHandler(download, nil)
             downloads[url] = nil
@@ -169,9 +174,19 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     {
         if let url = task.originalRequest?.url?.absoluteString, let download = downloads[url]
         {
+            if let errStr = error?.localizedDescription
+            {
+                if errStr.contains("cancelled")
+                {
+                    download.completionHandler(download, nil)
+                    downloads[download.file.fileUrl] = nil
+                    return
+                }
+            }
             var yserror : YSErrorProtocol
             yserror = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.debugDescription)
             download.completionHandler(download, yserror)
+            downloads[download.file.fileUrl] = nil
         }
     }
 }

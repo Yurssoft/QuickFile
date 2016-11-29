@@ -13,6 +13,7 @@ protocol YSDriveViewModelViewDelegate: class
     func filesDidChange(viewModel: YSDriveViewModelProtocol)
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
     func reloadFileDownload(at index: Int, viewModel: YSDriveViewModelProtocol)
 }
