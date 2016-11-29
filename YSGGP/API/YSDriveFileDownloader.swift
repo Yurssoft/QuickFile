@@ -23,13 +23,11 @@ class YSDriveFileDownloader : NSObject
         super.init()
         
         let configuration = URLSessionConfiguration.background(withIdentifier: "drive_background_file_downloader_session")
-        sessionQueue.maxConcurrentOperationCount = 1
         sessionQueue.qualityOfService = .background
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
         self.session = backgroundSession
     }
-    
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     {
