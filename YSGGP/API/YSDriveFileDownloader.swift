@@ -175,19 +175,16 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
-        if let url = task.originalRequest?.url?.absoluteString, let download = downloads[url]
+        if let error = error, let url = task.originalRequest?.url?.absoluteString, let download = downloads[url]
         {
-            if let errStr = error?.localizedDescription
+            if error.localizedDescription.contains("cancelled")
             {
-                if errStr.contains("cancelled")
-                {
-                    download.completionHandler(download, nil)
-                    downloads[download.file.fileUrl] = nil
-                    return
-                }
+                download.completionHandler(download, nil)
+                downloads[download.file.fileUrl] = nil
+                return
             }
             var yserror : YSErrorProtocol
-            yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.debugDescription)
+            yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
             download.completionHandler(download, yserror)
             downloads[download.file.fileUrl] = nil
         }
