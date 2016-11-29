@@ -48,6 +48,11 @@ class YSDriveFileDownloader : NSObject
             print("localFileExists")
             return
         }
+        if let download = downloads[file.fileUrl]
+        {
+            print("already downloading \(download.file.fileName)")
+            return
+        }
         
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
         
@@ -57,10 +62,8 @@ class YSDriveFileDownloader : NSObject
         let downloadTask = self.session.downloadTask(with: request)
         downloadTask.taskDescription = UUID().uuidString
         download.downloadTask = downloadTask
-        download.isDownloading = true
-        self.downloads[file.fileUrl] = download
+        downloads[file.fileUrl] = download
         downloadTask.resume()
-        download.progressHandler(download)
     }
     
     func pauseDownloading(file: YSDriveFileProtocol)
@@ -144,6 +147,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             catch let error as NSError
             {
+                try? fileManager.removeItem(at: download.file.localFilePath()!)
                 print("Could not copy file to disk: \(error.localizedDescription)")
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(download.file.fileName)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
@@ -165,6 +169,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             download.progress = progress
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
+            download.isDownloading = true
             downloads[url] = download
             download.progressHandler(download)
         }
@@ -184,7 +189,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 }
             }
             var yserror : YSErrorProtocol
-            yserror = YSError(errorType: YSErrorType.couldNotLoginToDrive, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.debugDescription)
+            yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.debugDescription)
             download.completionHandler(download, yserror)
             downloads[download.file.fileUrl] = nil
         }

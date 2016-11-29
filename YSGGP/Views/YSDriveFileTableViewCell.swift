@@ -37,8 +37,16 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 }
                 if let download = download
                 {
-                    downloadButton.state = .downloading
-                    downloadButton.stopDownloadButton.progress = CGFloat(download.progress)
+                    if download.isDownloading
+                    {
+                        downloadButton.state = .downloading
+                        downloadButton.stopDownloadButton.progress = CGFloat(download.progress)
+                    }
+                    else
+                    {
+                        downloadButton.state = .pending
+                        downloadButton.pendingView.startSpin()
+                    }
                 }
                 else
                 {
@@ -70,12 +78,11 @@ extension YSDriveFileTableViewCell: PKDownloadButtonDelegate
         switch (state)
         {
         case .startDownload:
-            downloadButton.state = .downloading
+            downloadButton.state = .pending
+            downloadButton.pendingView.startSpin()
             delegate?.downloadButtonPressed(file!)
             break
-        case .pending:
-            break
-        case .downloading:
+        case .pending, .downloading:
             downloadButton.state = .startDownload
             delegate?.stopDownloadButtonPressed(file!)
             break
