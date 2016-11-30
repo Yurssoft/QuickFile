@@ -11,4 +11,5 @@ target 'YSGGP' do
     pod 'DownloadButton'
     pod 'GoogleSignIn'
     pod 'KeychainAccess'
+    pod 'ReachabilitySwift'
 end

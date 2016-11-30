@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftMessages-SwiftMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C500F8128A170F10955BB81472D7F6B</key>
+		<key>4C082409F08A5FDF0215B1FB652ADD77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>518F27AF1B23678A1EE5E5AD5F260F91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>940AFC1C4AD563D2BDBC154A6018CFC7</key>
+		<key>C6E29098392497E07DC60FAC6F1C804B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6E29098392497E07DC60FAC6F1C804B</key>
+		<key>CE35195CDD4738A138986F9DCF5B946A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,12 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1CE58D0F0FCAFBAE7923F41F3AABB7C</key>
+		<key>F5FE7043DCD5223A6455BE9B2049A92A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5FE7043DCD5223A6455BE9B2049A92A</key>
+		<key>F85F248E487794B8AC7F6A780DE849C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

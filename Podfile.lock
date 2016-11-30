@@ -67,6 +67,7 @@ PODS:
   - KeychainAccess (3.0.1)
   - M13ProgressSuite (1.2.9)
   - MJRefresh (3.1.12)
+  - ReachabilitySwift (3)
   - SwiftMessages (3.1.1)
 
 DEPENDENCIES:
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - KeychainAccess
   - M13ProgressSuite
   - MJRefresh
+  - ReachabilitySwift
   - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -100,8 +102,9 @@ SPEC CHECKSUMS:
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftMessages: 1216ea6bdf8d92ff0f6f98a23e5442711b1e71ac
 
-PODFILE CHECKSUM: 030b8a2f3bd2588bfdf651663a831b1a17f09c81
+PODFILE CHECKSUM: 87e44de41622a82d8e38b360159aff64df2e79b5
 
 COCOAPODS: 1.1.0.rc.3

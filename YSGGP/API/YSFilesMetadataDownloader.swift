@@ -9,14 +9,16 @@
 import Foundation
 import SwiftMessages
 import SystemConfiguration
+import ReachabilitySwift
 
 typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
+typealias AccessTokenRefreshedCompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
 
 class YSFilesMetadataDownloader
 {
     class func downloadFilesList(for requestURL: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
     {
-        if !isInternetAvailable()
+        if !Reachability()!.isReachable
         {
             let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try again", debugInfo: "no internet")
             completionHandler!(["" : ["": NSNull()]], errorMessage)
@@ -47,49 +49,46 @@ class YSFilesMetadataDownloader
         }
         else
         {
-            var request = URLRequest.init(url: YSCredentialManager.shared.urlForAccessToken())
-            request.httpMethod = "POST"
-            
-            let task = Foundation.URLSession.shared.dataTask(with: request)
-            { data, response, error in
-                
-                if let err = YSNetworkResponseManager.validate(response!, error: error)
+            YSFilesMetadataDownloader.refreshAccessToken()
+            { error in
+                if let err = error
                 {
-                    completionHandler!(["" : ["": NSNull()]], err)
+                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try again", debugInfo: err.debugInfo)
+                    completionHandler!(["" : ["": NSNull()]], errorMessage)
                     return
                 }
-                let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
-                if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
-                {
-                    let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
-                    YSCredentialManager.shared.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
-                    downloadFilesList(for: requestURL, completionHandler)
-                }
+                downloadFilesList(for: requestURL, completionHandler)
             }
-            task.resume()
         }
     }
     
-    class func isInternetAvailable() -> Bool
+    class func refreshAccessToken(_ completionHandler: AccessTokenRefreshedCompletionHandler? = nil)
     {
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress)
+        if !Reachability()!.isReachable
         {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1)
-            { zeroSockAddress in
-                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not refresh token, no internet", buttonTitle: "Try again", debugInfo: "no internet")
+            completionHandler!(errorMessage)
+            return
+        }
+        var request = URLRequest.init(url: YSCredentialManager.shared.urlForAccessToken())
+        request.httpMethod = "POST"
+        
+        let task = Foundation.URLSession.shared.dataTask(with: request)
+        { data, response, error in
+            
+            if let err = YSNetworkResponseManager.validate(response!, error: error)
+            {
+                completionHandler!(err)
+                return
+            }
+            let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
+            if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
+            {
+                let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
+                YSCredentialManager.shared.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
+                completionHandler!(nil)
             }
         }
-        var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags)
-        {
-            return false
-        }
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        return (isReachable && !needsConnection)
+        task.resume()
     }
 }

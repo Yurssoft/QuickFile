@@ -9,6 +9,7 @@
 import UIKit
 import SwiftMessages
 import Firebase
+import ReachabilitySwift
 
 class YSDriveFileDownloader : NSObject
 {
@@ -22,7 +23,7 @@ class YSDriveFileDownloader : NSObject
         sessionQueue = OperationQueue()
         super.init()
         
-        let configuration = URLSessionConfiguration.background(withIdentifier: "drive_background_file_downloader_session")
+        let configuration = URLSessionConfiguration.background(withIdentifier: "com.yurssoft.YSGGP.drive_background_file_downloader_session")
         sessionQueue.qualityOfService = .background
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
