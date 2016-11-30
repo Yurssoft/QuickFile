@@ -21,14 +21,14 @@ class YSDatabaseManager
             ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
                 
                 var dbFilesDict = databaseFilesDictionary(from: dbFiles)
-                var dbFilesForFolder = [String : [String: Any]]()
+                var dbFilesForFolderToBeDeleted = [String : [String: Any]]()
                 for key in dbFilesDict.keys
                 {
                     var dbFile = dbFilesDict[key]
                     let dbFileFolder = dbFile?["folder"] as! String
                     if dbFileFolder == folder
                     {
-                        dbFilesForFolder[key] = dbFile
+                        dbFilesForFolderToBeDeleted[key] = dbFile
                         dbFilesDict[key] = nil
                     }
                 }
@@ -39,11 +39,21 @@ class YSDatabaseManager
                     let ysFile = YSDriveFile.init(fileName: fileDict["name"] as! String?,
                                                   fileSize: fileDict["mimeType"] as! String?,
                                                   mimeType: fileDict["mimeType"] as! String?,
-                                                  fileDriveIdentifier: fileDict["id"] as! String?)
+                                                  fileDriveIdentifier: fileDict["id"] as! String?,
+                                                  folder: folder)
                     
                     ysFile.isFileOnDisk = ysFile.localFileExists()
                     ysfiles.append(ysFile)
+                    dbFilesForFolderToBeDeleted[ysFile.fileDriveIdentifier] = nil
                     dbFilesDict[ysFile.fileDriveIdentifier] = ysFile.toDictionary()
+                }
+                
+                for key in dbFilesForFolderToBeDeleted.keys
+                {
+                    var dbFileToBeDeleted = dbFilesForFolderToBeDeleted[key]
+                    let ysFile = dbFileToBeDeleted?.toYSFile()
+                    ysFile?.removeLocalFile()
+                    dbFileToBeDeleted?[key] = nil
                 }
 
                 ref.child("files").setValue(dbFilesDict)

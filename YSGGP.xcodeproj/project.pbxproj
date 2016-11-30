@@ -395,6 +395,7 @@
 				07CB881B3B1C2E24B034515F /* [CP] Embed Pods Frameworks */,
 				007B97F269BEA38879F14D2A /* [CP] Copy Pods Resources */,
 				502578121DC3513300C6EFFF /* ShellScript */,
+				507016191DEDE56400A7CAEF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -553,6 +554,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:5bf14ac216ee97dc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/YSGGP/Additional Classes/ServiceAccount.json\"";
+		};
+		507016191DEDE56400A7CAEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
 		};
 		8AAE1B2F875A9DC262D22F9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -802,7 +816,7 @@
 				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -822,7 +836,7 @@
 				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGP;
 				PRODUCT_NAME = "$(TARGET_NAME)";

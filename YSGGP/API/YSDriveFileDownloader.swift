@@ -51,6 +51,7 @@ class YSDriveFileDownloader : NSObject
             print("already downloading \(download.file.fileName)")
             return
         }
+        //FIXME: ADD CHECK FOR INTERNET AND VALID TOKEN AND ADD FILES TO DOWNLOAD QUEUE
         
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
         

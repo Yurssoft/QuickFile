@@ -24,7 +24,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?)
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folder : String?)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: fileName)
         self.fileSize = YSDriveFile.checkStringForNil(string: fileSize)
@@ -39,6 +39,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
             self.isAudio = false
         }
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
+        self.folder = YSDriveFile.checkStringForNil(string: folder)
     }
     
     override init()

@@ -26,8 +26,13 @@ class YSDriveFileTableViewCell: UITableViewCell {
     
     func configure(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate?, _ download : YSDownloadProtocol?)
     {
+        self.file = file
+        self.delegate = delegate
         if let file = file
         {
+            fileNameLabel?.text = file.fileName
+            fileInfoLabel?.text = file.fileSize
+            fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
             if file.isAudio
             {
                 if file.isFileOnDisk
@@ -60,12 +65,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
             {
                 downloadButton.isHidden = true
             }
-            fileNameLabel?.text = file.fileName
-            fileInfoLabel?.text = file.fileSize
-            fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
         }
-        self.file = file
-        self.delegate = delegate
     }
     
     var file: YSDriveFileProtocol?
