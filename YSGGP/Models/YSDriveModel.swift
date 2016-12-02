@@ -35,13 +35,8 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         { filesDictionary, error in
             if let err = error
             {
-                if err.debugInfo.contains("no internet")
-                {
-                    let yserror = err as! YSError
-                    YSDatabaseManager.getFiles(folderID: self.currentFolderID, yserror, completionHandler)
-                    return
-                }
-                completionHandler!([], err)
+                let yserror = err as! YSError
+                YSDatabaseManager.getFiles(folderID: self.currentFolderID, yserror, completionHandler)
                 return
             }
             YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolderID, completionHandler)

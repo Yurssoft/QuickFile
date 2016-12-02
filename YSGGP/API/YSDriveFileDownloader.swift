@@ -46,7 +46,7 @@ class YSDriveFileDownloader : NSObject
             }
             return false
         }
-        if downloads.count > 0 && activeDownloads.count == 0 && reachability.isReachable, var download = downloads.first?.value
+        if downloads.count > 0 && activeDownloads.count == 0, var download = downloads.first?.value
         {
             if case .downloading(_) = download.downloadStatus
             {

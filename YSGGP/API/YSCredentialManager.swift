@@ -87,12 +87,6 @@ class YSCredentialManager
     {
         if !isValidAccessToken
         {
-            if !Reachability()!.isReachable
-            {
-                let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not refresh token, no internet", buttonTitle: "Try again", debugInfo: "no internet")
-                completionHandler(request, errorMessage)
-                return
-            }
             var requestForToken = URLRequest.init(url: urlForAccessToken())
             requestForToken.httpMethod = "POST"
             
@@ -136,7 +130,7 @@ class YSCredentialManager
     
     class var isLoggedIn : Bool
     {
-        let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty
+        let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty && FIRAuth.auth()?.currentUser != nil
         return isLoggedIn
     }
     

@@ -160,9 +160,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
         
         let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
                                                           accessToken: (authentication?.accessToken)!)
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            
-        }
+        FIRAuth.auth()?.signIn(with: credential)
         
         let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
         errorDidChange(viewModel: viewModel!, error: messageLoggedIn)
