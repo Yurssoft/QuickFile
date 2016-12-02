@@ -11,10 +11,10 @@ import SwiftMessages
 
 struct YSError : YSErrorProtocol
 {
-    let errorType : YSErrorType
-    let messageType: Theme
-    let title: String
-    let message : String
+    var errorType : YSErrorType
+    var messageType: Theme
+    var title: String
+    var message : String
     let buttonTitle : String
     let debugInfo : String
     
@@ -52,6 +52,14 @@ struct YSError : YSErrorProtocol
         self.message = ""
         self.buttonTitle = ""
         self.debugInfo = ""
+    }
+    
+    mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String)
+    {
+        self.errorType = errorType
+        self.messageType = messageType
+        self.title = title
+        self.message = message
     }
     
     func isEmpty() -> Bool

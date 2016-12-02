@@ -11,6 +11,9 @@ import GoogleSignIn
 import Firebase
 import SwiftMessages
 import KeychainAccess
+import ReachabilitySwift
+
+typealias AccessTokenAddedCompletionHandler = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
 
 class YSCredentialManager
 {
@@ -38,7 +41,7 @@ class YSCredentialManager
     
     private var token : YSToken = YSToken()
     
-    func isValidAccessToken() -> Bool
+    private var isValidAccessToken : Bool
     {
         let isTokenPresent = !token.accessToken.isEmpty
         let isNotTimedOut = token.accessTokenAvailableTo.isLessThanDate(date: Date())
@@ -74,23 +77,60 @@ class YSCredentialManager
         keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
     }
     
-    func urlForAccessToken() -> URL
+    private func urlForAccessToken() -> URL
     {
         let url = "\(YSConstants.kAccessTokenAPIEndpoint)?client_id=\(YSConstants.kDriveClientID)&refresh_token=\(token.refreshToken)&grant_type=refresh_token"
         return URL.init(string: url)!
     }
     
-    func addAccessTokenHeaders( request: inout URLRequest)
+    func addAccessTokenHeaders(_ request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
     {
+        if !isValidAccessToken
+        {
+            if !Reachability()!.isReachable
+            {
+                let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not refresh token, no internet", buttonTitle: "Try again", debugInfo: "no internet")
+                completionHandler(request, errorMessage)
+                return
+            }
+            var requestForToken = URLRequest.init(url: urlForAccessToken())
+            requestForToken.httpMethod = "POST"
+            
+            let task = Foundation.URLSession.shared.dataTask(with: requestForToken)
+            { data, response, error in
+                
+                if let err = YSNetworkResponseManager.validate(response!, error: error)
+                {
+                    completionHandler(request, err)
+                    return
+                }
+                let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
+                if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
+                {
+                    let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
+                    self.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
+                    self.addHeaders(to: request, completionHandler)
+                }
+            }
+            task.resume()
+        }
+        self.addHeaders(to: request, completionHandler)
+    }
+    
+    private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
+    {
+        var request = request
         if token.accessTokenTokenType.isEmpty
         {
             request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
             print("Request URL:  \(request.url)   Authorization:  Bearer \(token.accessToken)")
+            completionHandler(request, nil)
         }
         else
         {
             request.setValue("\(token.accessTokenTokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
             print("Request URL:  \(request.url)   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
+            completionHandler(request, nil)
         }
     }
     

@@ -19,4 +19,5 @@ protocol YSErrorProtocol : Error
     var debugInfo : String { get }
     
     func isEmpty() -> Bool
+    mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String)
 }

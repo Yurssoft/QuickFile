@@ -42,15 +42,17 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 }
                 if let download = download
                 {
-                    if download.isDownloading
+                    downloadButton.isHidden = false
+                    switch download.downloadStatus
                     {
+                    case .downloading(let progress):
                         downloadButton.state = .downloading
-                        downloadButton.stopDownloadButton.progress = CGFloat(download.progress)
-                    }
-                    else
-                    {
+                        downloadButton.stopDownloadButton.progress = CGFloat(progress)
+                        break
+                    case .pending:
                         downloadButton.state = .pending
                         downloadButton.pendingView.startSpin()
+                        break
                     }
                 }
                 else

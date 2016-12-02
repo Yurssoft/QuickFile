@@ -8,11 +8,17 @@
 
 import Foundation
 
+enum YSDownloadStatus
+{
+    case downloading(
+        progress : Float
+    )
+    case pending
+}
+
 protocol YSDownloadProtocol
 {
     var file : YSDriveFileProtocol { get set}
-    var isDownloading : Bool { get set }
-    var progress : Float { get set }
     var totalSize : String? { get set }
     
     var downloadTask : Foundation.NSURLSessionDownloadTask? { get set }
@@ -20,6 +26,5 @@ protocol YSDownloadProtocol
     
     var progressHandler : DownloadFileProgressHandler { get set }
     var completionHandler : DownloadCompletionHandler { get set }
-    
-    func progressString() -> String
+    var downloadStatus : YSDownloadStatus { get set }
 }

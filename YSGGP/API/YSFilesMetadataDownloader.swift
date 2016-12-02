@@ -30,65 +30,28 @@ class YSFilesMetadataDownloader
             completionHandler!(["" : ["": NSNull()]], errorMessage)
             return
         }
-        if YSCredentialManager.shared.isValidAccessToken()
-        {
             let reqURL = URL.init(string: requestURL)
-            var request = URLRequest.init(url: reqURL!)
-            YSCredentialManager.shared.addAccessTokenHeaders(request: &request)
-            let task = Foundation.URLSession.shared.dataTask(with: request)
-            { data, response, error in
-                if let err = YSNetworkResponseManager.validate(response, error: error)
+            let request = URLRequest.init(url: reqURL!)
+            YSCredentialManager.shared.addAccessTokenHeaders(request)
+            {  request, error in
+                if var err = error
                 {
+                    err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get file list")
                     completionHandler!(["" : ["": NSNull()]], err)
                     return
                 }
-                let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
-                completionHandler!(dict, nil)
-            }
-            task.resume()
-        }
-        else
-        {
-            YSFilesMetadataDownloader.refreshAccessToken()
-            { error in
-                if let err = error
-                {
-                    let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list, no internet", buttonTitle: "Try again", debugInfo: err.debugInfo)
-                    completionHandler!(["" : ["": NSNull()]], errorMessage)
-                    return
+                let task = Foundation.URLSession.shared.dataTask(with: request)
+                { data, response, error in
+                    if var err = YSNetworkResponseManager.validate(response, error: error)
+                    {
+                        err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get file list")
+                        completionHandler!(["" : ["": NSNull()]], err)
+                        return
+                    }
+                    let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
+                    completionHandler!(dict, nil)
                 }
-                downloadFilesList(for: requestURL, completionHandler)
+                task.resume()
             }
-        }
-    }
-    
-    class func refreshAccessToken(_ completionHandler: AccessTokenRefreshedCompletionHandler? = nil)
-    {
-        if !Reachability()!.isReachable
-        {
-            let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not refresh token, no internet", buttonTitle: "Try again", debugInfo: "no internet")
-            completionHandler!(errorMessage)
-            return
-        }
-        var request = URLRequest.init(url: YSCredentialManager.shared.urlForAccessToken())
-        request.httpMethod = "POST"
-        
-        let task = Foundation.URLSession.shared.dataTask(with: request)
-        { data, response, error in
-            
-            if let err = YSNetworkResponseManager.validate(response!, error: error)
-            {
-                completionHandler!(err)
-                return
-            }
-            let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
-            if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
-            {
-                let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
-                YSCredentialManager.shared.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
-                completionHandler!(nil)
-            }
-        }
-        task.resume()
     }
 }

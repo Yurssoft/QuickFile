@@ -16,6 +16,7 @@ class YSDriveFileDownloader : NSObject
     fileprivate var downloads : [String : YSDownloadProtocol] = [String : YSDownloadProtocol]()
     fileprivate var session : Foundation.URLSession
     fileprivate var sessionQueue : OperationQueue
+    fileprivate var reachability : Reachability = Reachability()!
     
     required override init()
     {
@@ -28,6 +29,46 @@ class YSDriveFileDownloader : NSObject
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
         self.session = backgroundSession
+        reachability.whenReachable =
+        { reachability in
+            self.downloadNextFile()
+        }
+        try? reachability.startNotifier()
+    }
+    
+    func downloadNextFile()
+    {
+        let activeDownloads = downloads.values.filter
+        {
+            if case .downloading(_) = $0.downloadStatus
+            {
+                return true
+            }
+            return false
+        }
+        if downloads.count > 0 && activeDownloads.count == 0 && reachability.isReachable, var download = downloads.first?.value
+        {
+            if case .downloading(_) = download.downloadStatus
+            {
+                return
+            }
+            let url = download.file.fileUrl
+            let reqURL = URL.init(string: url)
+            let request = URLRequest.init(url: reqURL!)
+            YSCredentialManager.shared.addAccessTokenHeaders(request)
+            {  request, error in
+                if error != nil
+                {
+                    return
+                }
+                let downloadTask = self.session.downloadTask(with: request)
+                download.downloadTask = downloadTask
+                downloadTask.resume()
+                download.downloadStatus = .downloading(progress: 0.0)
+                self.downloads[url] = download
+                download.progressHandler(download)
+            }
+        }
     }
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
@@ -37,70 +78,27 @@ class YSDriveFileDownloader : NSObject
     
     func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
     {
-        if progressHandler == nil || completionHandler == nil || !file.isAudio
+        if progressHandler == nil || completionHandler == nil || !file.isAudio || file.localFileExists() || downloads[file.fileUrl] != nil
         {
-            print("NO HANDLERS OR FILE IS FOLDER!")
+            print("ERROR DOWNLOAD FILE")
             return
         }
-        if file.localFileExists()
-        {
-            print("localFileExists")
-            return
-        }
-        if let download = downloads[file.fileUrl]
-        {
-            print("already downloading \(download.file.fileName)")
-            return
-        }
-        //FIXME: ADD CHECK FOR INTERNET AND VALID TOKEN AND ADD FILES TO DOWNLOAD QUEUE
-        
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
-        
-        let reqURL = URL.init(string: file.fileUrl)
-        var request = URLRequest.init(url: reqURL!)
-        YSCredentialManager.shared.addAccessTokenHeaders(request: &request)
-        let downloadTask = self.session.downloadTask(with: request)
-        downloadTask.taskDescription = UUID().uuidString
-        download.downloadTask = downloadTask
+        download.downloadStatus = .pending
         downloads[file.fileUrl] = download
-        downloadTask.resume()
+        download.progressHandler(download)
+        downloadNextFile()
     }
     
-    func pauseDownloading(file: YSDriveFileProtocol)
-    {
-        var download = downloads[file.fileUrl]
-        if (download?.isDownloading)!
-        {
-            download?.downloadTask?.cancel()
-            { (data) in
-                download?.resumeData = data
-            }
-            download?.isDownloading = false
-        }
-    }
     
     func cancelDownloading(file: YSDriveFileProtocol)
     {
         if let download = downloads[file.fileUrl]
         {
             download.downloadTask?.cancel()
-        }
-    }
-    
-    func resumeDownloading(file: YSDriveFileProtocol)
-    {
-        var download = downloads[file.fileUrl]
-        download?.isDownloading = true
-        if let resumeData = download?.resumeData
-        {
-            download?.downloadTask = session.downloadTask(withResumeData: resumeData)
-            download?.downloadTask!.resume()
-        }
-        else
-        {
-            let downloadTask = session.downloadTask(with: URL.init(string: file.fileUrl)!)
-            download?.downloadTask = downloadTask
-            downloadTask.resume()
+            download.completionHandler(download, nil)
+            downloads[file.fileUrl] = nil
+            downloadNextFile()
         }
     }
 }
@@ -158,6 +156,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             download.completionHandler(download, nil)
             downloads[url] = nil
+            downloadNextFile()
         }
     }
     
@@ -166,10 +165,9 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
             let progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-            download.progress = progress
+            download.downloadStatus = .downloading(progress: progress)
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
-            download.isDownloading = true
             downloads[url] = download
             download.progressHandler(download)
         }
@@ -177,12 +175,14 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
-        if let error = error, let url = task.originalRequest?.url?.absoluteString, let download = downloads[url]
+        if let error = error, let url = task.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
-            if error.localizedDescription.contains("cancelled")
+            if error.localizedDescription.contains("cancelled") || error.localizedDescription.contains("connection was lost") || error.localizedDescription.contains("No such file or directory")
             {
-                download.completionHandler(download, nil)
-                downloads[download.file.fileUrl] = nil
+                let url = download.file.fileUrl
+                download.downloadStatus = .pending
+                downloads[url] = download
+                downloadNextFile()
                 return
             }
             var yserror : YSErrorProtocol
