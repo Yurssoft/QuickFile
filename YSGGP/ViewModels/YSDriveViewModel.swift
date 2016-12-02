@@ -163,6 +163,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             let file = files?[indexPath.row]
             if (file?.isAudio)!
             {
+                stopDownloading(file!)
                 file?.removeLocalFile()
                 files?[indexPath.row] = file!
             }
