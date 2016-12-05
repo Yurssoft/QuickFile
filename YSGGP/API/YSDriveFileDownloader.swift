@@ -52,7 +52,7 @@ class YSDriveFileDownloader : NSObject
             {
                 return
             }
-            let url = download.file.fileUrl
+            let url = download.file.fileUrl()
             let reqURL = URL.init(string: url)
             let request = URLRequest.init(url: reqURL!)
             YSCredentialManager.shared.addAccessTokenHeaders(request)
@@ -73,19 +73,19 @@ class YSDriveFileDownloader : NSObject
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     {
-        return downloads[file.fileUrl]
+        return downloads[file.fileUrl()]
     }
     
     func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
     {
-        if progressHandler == nil || completionHandler == nil || !file.isAudio || file.localFileExists() || downloads[file.fileUrl] != nil
+        if progressHandler == nil || completionHandler == nil || !file.isAudio || file.localFileExists() || downloads[file.fileUrl()] != nil
         {
             print("ERROR DOWNLOAD FILE")
             return
         }
         var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
         download.downloadStatus = .pending
-        downloads[file.fileUrl] = download
+        downloads[file.fileUrl()] = download
         download.progressHandler(download)
         downloadNextFile()
     }
@@ -93,11 +93,11 @@ class YSDriveFileDownloader : NSObject
     
     func cancelDownloading(file: YSDriveFileProtocol)
     {
-        if let download = downloads[file.fileUrl]
+        if let download = downloads[file.fileUrl()]
         {
             download.downloadTask?.cancel()
             download.completionHandler(download, nil)
-            downloads[file.fileUrl] = nil
+            downloads[file.fileUrl()] = nil
             downloadNextFile()
         }
     }
@@ -179,7 +179,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
         {
             if error.localizedDescription.contains("cancelled") || error.localizedDescription.contains("connection was lost") || error.localizedDescription.contains("No such file or directory")
             {
-                let url = download.file.fileUrl
+                let url = download.file.fileUrl()
                 download.downloadStatus = .pending
                 downloads[url] = download
                 downloadNextFile()
@@ -188,7 +188,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             var yserror : YSErrorProtocol
             yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
             download.completionHandler(download, yserror)
-            downloads[download.file.fileUrl] = nil
+            downloads[download.file.fileUrl()] = nil
         }
     }
 }

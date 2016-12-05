@@ -814,7 +814,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yurii Boyko (4GN4BBVJ9U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yurii Boyko (4GN4BBVJ9U)";
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -834,7 +837,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = A2PX8YZMXY;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

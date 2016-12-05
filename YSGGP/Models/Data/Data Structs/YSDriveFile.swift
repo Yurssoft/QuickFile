@@ -19,11 +19,6 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     var isFileOnDisk : Bool = false
     var folder : String = ""
     
-    var fileUrl : String
-    {
-        return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
-    }
-    
     init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folder : String?)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: fileName)
@@ -60,10 +55,15 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         return string!
     }
     
+    func fileUrl() -> String
+    {
+        return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
+    }
+    
     func localFilePath() -> URL?
     {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        if let url = URL(string: fileUrl)
+        if let url = URL(string: fileUrl())
         {
             if url.lastPathComponent.isEmpty
             {

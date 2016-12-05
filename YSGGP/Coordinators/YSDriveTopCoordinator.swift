@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
+import SwiftMessages
 
 class YSDriveTopCoordinator: YSCoordinatorProtocol
 {
@@ -70,9 +73,24 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
     
     func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)
     {
-        if (file.isAudio)
+        if file.isAudio
         {
-            print("open player")
+            if let url = file.localFilePath(), file.isFileOnDisk
+            {
+                
+                let player = AVPlayer(url: url as URL)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                navigationController?.present(playerViewController, animated: true)
+                {
+                    playerViewController.player!.play()
+                }
+            }
+            else
+            {
+                let error = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.warning, title: "Could not play song", message: "No local copy", buttonTitle: "Download")
+                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, file: file)
+            }
         }
         else
         {

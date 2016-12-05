@@ -183,7 +183,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
-    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
     {
         let message = MessageView.viewFromNib(layout: .CardView)
         message.configureTheme(error.messageType)
@@ -194,9 +194,9 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         {
         case .couldNotDownloadFile:
             message.buttonTapHandler =
-            { _ in
-                self.downloadButtonPressed(download.file)
-                SwiftMessages.hide()
+                { _ in
+                    self.downloadButtonPressed(file)
+                    SwiftMessages.hide()
             }
             break
         default: break
@@ -206,6 +206,11 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
+    }
+    
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
+    {
+        downloadErrorDidChange(viewModel: viewModel, error: error, file: download.file)
     }
     
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
