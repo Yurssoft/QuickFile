@@ -103,13 +103,9 @@ class YSDriveViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let file = viewModel?.file(at: indexPath.row)
-        if isEditing
+        if isEditing, let file = viewModel?.file(at: indexPath.row), file.isAudio
         {
-            if (file?.isAudio)!
-            {
-                selectedIndexes.append(indexPath)
-            }
+            selectedIndexes.append(indexPath)
         }
         else
         {
@@ -135,7 +131,11 @@ class YSDriveViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
     {
-        return .insert
+        if let file = viewModel?.file(at: indexPath.row), file.isAudio
+        {
+            return .insert
+        }
+        return .none
     }
     
     func getFiles()
