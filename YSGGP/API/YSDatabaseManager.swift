@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 import SwiftMessages
 
+typealias AllDownloadsDeletedCompletionHandler = (YSErrorProtocol) -> Swift.Void
+
 class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
@@ -65,8 +67,7 @@ class YSDatabaseManager
         }
         else
         {
-            let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.info, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
-            completionHandler!([], error)
+            completionHandler!([], notLoggedInError())
         }
     }
 
@@ -100,6 +101,39 @@ class YSDatabaseManager
         {
             callCompletionHandler(completionHandler, files: [], error)
         }
+    }
+    
+    class func deleteAllDownloads(_ completionHandler: @escaping AllDownloadsDeletedCompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+                if dbFiles.hasChildren()
+                {
+                    for currentDatabaseFile in dbFiles.children
+                    {
+                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let dbFile = databaseFile.value as! [String : Any]
+                        let ysFile = dbFile.toYSFile()
+                        ysFile.removeLocalFile()
+                        YSAppDelegate.appDelegate().fileDownloader?.cancelDownloading(file: ysFile)
+                    }
+                }
+                let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
+                completionHandler(error)
+                return FIRTransactionResult.abort()
+            })
+        }
+        else
+        {
+            completionHandler(notLoggedInError())
+        }
+    }
+    
+    private class func notLoggedInError() -> YSErrorProtocol
+    {
+        let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
+        return error
     }
     
     class func update(file: YSDriveFileProtocol)

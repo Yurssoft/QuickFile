@@ -160,12 +160,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         for indexPath in indexes
         {
-            let file = files?[indexPath.row]
-            if (file?.isAudio)!
+            if let file = files?[indexPath.row], file.isAudio
             {
-                stopDownloading(file!)
-                file?.removeLocalFile()
-                files?[indexPath.row] = file!
+                stopDownloading(file)
+                file.removeLocalFile()
+                files?[indexPath.row] = file
             }
         }
         viewDelegate?.filesDidChange(viewModel: self)

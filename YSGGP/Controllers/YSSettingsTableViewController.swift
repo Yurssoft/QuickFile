@@ -33,6 +33,7 @@ class YSSettingsTableViewController: UITableViewController
     
     fileprivate let cellLogInOutIdentifier = "logInOutCell"
     fileprivate let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
+    fileprivate let cellDeleteAllIdentifier = "deleteAllCell"
     
     override func viewDidLoad()
     {
@@ -56,7 +57,9 @@ class YSSettingsTableViewController: UITableViewController
             case cellLogInOutInfoIdentifier:
                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "You are logged in to Drive" : "You are not logged in to Drive"
             break
-            
+            case cellDeleteAllIdentifier:
+                cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
+            break
             case cellLogInOutIdentifier:
                  cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
                  cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
@@ -68,16 +71,25 @@ class YSSettingsTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let cell = tableView.cellForRow(at: indexPath)
-        if cell?.reuseIdentifier == cellLogInOutIdentifier
+        if let cell = tableView.cellForRow(at: indexPath), let identifier = cell.reuseIdentifier, let viewModel = viewModel
         {
-            if (viewModel?.isLoggedIn)!
+            switch identifier
             {
-                logOutFromDrive()
-            }
-            else
-            {
-                loginToDrive()
+            case cellLogInOutIdentifier:
+                if viewModel.isLoggedIn
+                {
+                    logOutFromDrive()
+                }
+                else
+                {
+                    loginToDrive()
+                }
+                break
+            case cellDeleteAllIdentifier:
+                deleteAllDownloads()
+                break
+            default:
+                break
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -86,6 +98,22 @@ class YSSettingsTableViewController: UITableViewController
     func loginToDrive()
     {
         GIDSignIn.sharedInstance().signInSilently()
+    }
+    
+    func deleteAllDownloads()
+    {
+        let alertController = UIAlertController(title: "Delete all downloads?", message: "This will delete all local copies.", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
+        { (action) in
+            self.viewModel?.deleteAllFiles()
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
     }
     
     func logOutFromDrive()
@@ -200,7 +228,12 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
             }
             break
             
-        default: break
+        default:
+            message.buttonTapHandler =
+            { _ in
+                SwiftMessages.hide(id: message.id)
+            }
+            break
         }
         
         var messageConfig = SwiftMessages.Config()

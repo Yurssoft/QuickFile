@@ -17,4 +17,5 @@ protocol YSSettingsViewModelProtocol
 {
     var isLoggedIn : Bool {get}
     func logOut()
+    func deleteAllFiles()
 }

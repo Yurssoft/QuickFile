@@ -40,4 +40,14 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
             viewDelegate?.errorDidChange(viewModel: self, error: error as! YSErrorProtocol)
         }
     }
+    
+    func deleteAllFiles()
+    {
+        YSDatabaseManager.deleteAllDownloads { (error) in
+            DispatchQueue.main.async
+            {
+                self.viewDelegate?.errorDidChange(viewModel: self, error: error)
+            }
+        }
+    }
 }
