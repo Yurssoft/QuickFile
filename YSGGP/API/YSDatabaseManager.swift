@@ -11,12 +11,13 @@ import Firebase
 import SwiftMessages
 
 typealias AllDownloadsDeletedCompletionHandler = (YSErrorProtocol) -> Swift.Void
+typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -> Swift.Void
 
 class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    class func save(filesDictionary: [String : Any],_ folder : String, _ completionHandler: DriveCompletionHandler? = nil)
+    class func save(filesDictionary: [String : Any],_ folder : String, _ completionHandler: @escaping DriveCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -60,18 +61,18 @@ class YSDatabaseManager
 
                 ref.child("files").setValue(dbFilesDict)
 
-                completionHandler!(sortFiles(ysFiles: ysfiles), YSError())
+                completionHandler(sort(ysFiles: ysfiles), YSError())
                 
                 return FIRTransactionResult.abort()
             })
         }
         else
         {
-            completionHandler!([], notLoggedInError())
+            completionHandler([], notLoggedInError())
         }
     }
 
-    class func getFiles(folderID: String,_ error: YSError,_ completionHandler: DriveCompletionHandler? = nil)
+    class func files(for folderID: String,_ error: YSError,_ completionHandler: @escaping DriveCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -91,7 +92,7 @@ class YSDatabaseManager
                             files.append(ysFile)
                         }
                     }
-                    sortedFiles = sortFiles(ysFiles: files)
+                    sortedFiles = sort(ysFiles: files)
                 }
                 callCompletionHandler(completionHandler, files: sortedFiles, error)
                 return FIRTransactionResult.abort()
@@ -130,6 +131,35 @@ class YSDatabaseManager
         }
     }
     
+    class func allFiles(completionHandler: @escaping AllFilesCompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+                var sortedFiles : [YSDriveFileProtocol] = []
+                if dbFiles.hasChildren()
+                {
+                    var files = [YSDriveFileProtocol]()
+                    for currentDatabaseFile in dbFiles.children
+                    {
+                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let dbFile = databaseFile.value as! [String : Any]
+                        var ysFile = dbFile.toYSFile()
+                        ysFile.isFileOnDisk = ysFile.localFileExists()
+                        files.append(ysFile)
+                    }
+                    sortedFiles = sort(ysFiles: files)
+                }
+                completionHandler(sortedFiles, nil)
+                return FIRTransactionResult.abort()
+            })
+        }
+        else
+        {
+            completionHandler([], notLoggedInError())
+        }
+    }
+    
     private class func notLoggedInError() -> YSErrorProtocol
     {
         let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
@@ -149,7 +179,7 @@ class YSDatabaseManager
         }
     }
     
-    private class func sortFiles(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol]
+    private class func sort(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol]
     {
         let sortedFiles = ysFiles.sorted(by: { (_ file1,_ file2) -> Bool in
             return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio

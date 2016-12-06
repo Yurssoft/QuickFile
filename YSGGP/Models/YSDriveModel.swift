@@ -9,7 +9,7 @@
 import Foundation
 import SwiftMessages
 
-class YSDriveModel: NSObject, YSDriveModelProtocol
+class YSDriveModel: YSDriveModelProtocol
 {
     var isLoggedIn : Bool
     {
@@ -28,7 +28,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         self.currentFolderID = folID
     }
     
-    func getFiles(_ completionHandler: DriveCompletionHandler? = nil)
+    func getFiles(_ completionHandler: @escaping DriveCompletionHandler)
     {
         let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=100&q='\(currentFolderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
         YSFilesMetadataDownloader.downloadFilesList(for: url)
@@ -48,7 +48,7 @@ class YSDriveModel: NSObject, YSDriveModelProtocol
         return YSAppDelegate.appDelegate().fileDownloader?.download(for: file)
     }
     
-    func download(_ file : YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
+    func download(_ file : YSDriveFileProtocol, _ progressHandler: @escaping DownloadFileProgressHandler, completionHandler : @escaping DownloadCompletionHandler)
     {
         YSAppDelegate.appDelegate().fileDownloader?.download(file: file, progressHandler, completionHandler: completionHandler)
     }
