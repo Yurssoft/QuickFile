@@ -23,10 +23,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         FIRApp.configure()
-        
-//        try? FIRAuth.auth()!.signOut()
-//        GIDSignIn.sharedInstance().signOut()
-        
         FIRDatabase.database().persistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()

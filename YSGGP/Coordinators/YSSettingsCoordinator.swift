@@ -11,12 +11,10 @@ import UIKit
 class YSSettingsCoordinator: YSCoordinatorProtocol
 {
     fileprivate var settingsViewController: YSSettingsTableViewController?
-    fileprivate var navigationController: UINavigationController?
     
     init(settingsViewController: YSSettingsTableViewController, navigationController: UINavigationController)
     {
         self.settingsViewController = settingsViewController
-        self.navigationController = navigationController
     }
     
     func start()

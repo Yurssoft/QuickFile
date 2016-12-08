@@ -36,7 +36,7 @@ class YSDriveModel: YSDriveModelProtocol
             if let err = error
             {
                 let yserror = err as! YSError
-                YSDatabaseManager.getFiles(folderID: self.currentFolderID, yserror, completionHandler)
+                YSDatabaseManager.files(for: self.currentFolderID, yserror, completionHandler)
                 return
             }
             YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolderID, completionHandler)

@@ -50,6 +50,11 @@ class YSSettingsTableViewController: UITableViewController
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return YSConstants.kCellHeight
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         switch cell.reuseIdentifier!

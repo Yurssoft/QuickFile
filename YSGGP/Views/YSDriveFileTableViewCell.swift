@@ -24,7 +24,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var downloadButton: PKDownloadButton!
     
-    func configure(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate?, _ download : YSDownloadProtocol?)
+    func configureForDrive(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate?, _ download : YSDownloadProtocol?)
     {
         self.file = file
         self.delegate = delegate
@@ -68,6 +68,18 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 downloadButton.isHidden = true
             }
         }
+    }
+    
+    
+    func configureForPlaylist(_ file : YSDriveFileProtocol?)
+    {
+        if let file = file
+        {
+            fileNameLabel?.text = file.fileName
+            fileInfoLabel?.text = file.fileSize
+        }
+        fileImageView?.image = UIImage(named:"song")
+        downloadButton.isHidden = true
     }
     
     var file: YSDriveFileProtocol?

@@ -107,6 +107,7 @@ class YSCredentialManager
                 }
             }
             task.resume()
+            return
         }
         self.addHeaders(to: request, completionHandler)
     }

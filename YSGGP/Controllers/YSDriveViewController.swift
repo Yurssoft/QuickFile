@@ -30,6 +30,15 @@ class YSDriveViewController: UITableViewController
         }
     }
     
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        let bundle = Bundle(for: YSDriveFileTableViewCell.self)
+        let nib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: bundle)
+        
+        tableView.register(nib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
+    }
+    
     func containingViewControllerViewDidLoad()
     {
         refreshDisplay()
@@ -88,12 +97,17 @@ class YSDriveViewController: UITableViewController
         return 0
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return YSConstants.kCellHeight
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
         let file = viewModel?.file(at: indexPath.row)
         let download = viewModel?.download(for: file!)
-        cell.configure(file, self, download)
+        cell.configureForDrive(file, self, download)
         if isEditing && selectedIndexes.contains(indexPath)
         {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
@@ -271,7 +285,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             {
                 let file = viewModel.file(at: indexPath.row)
                 let download = viewModel.download(for: file!)
-                cell.configure(file, self, download)
+                cell.configureForDrive(file, self, download)
             }
         }
     }

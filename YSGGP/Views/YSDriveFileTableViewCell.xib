@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YSDriveFileTableViewCell" id="PUd-FV-DST" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PUd-FV-DST" id="QEC-Xv-rsl">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="OrE-cw-9gu">
+                        <rect key="frame" x="8" y="8" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="OrE-cw-9gu" secondAttribute="height" multiplier="1:1" id="Dzz-T8-1u5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rk8-Bj-aZj">
+                        <rect key="frame" x="43" y="6" width="289" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="CO9-vI-n1K"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDG-ng-8UF">
+                        <rect key="frame" x="43" y="25.5" width="289" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj0-8O-6hV" customClass="PKDownloadButton">
+                        <rect key="frame" x="340" y="8" width="27" height="27"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Aj0-8O-6hV" secondAttribute="height" multiplier="1:1" id="qXb-cj-Sx0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="trailing" secondItem="QEC-Xv-rsl" secondAttribute="trailingMargin" id="3kt-DB-bF8"/>
+                    <constraint firstItem="OrE-cw-9gu" firstAttribute="centerY" secondItem="QEC-Xv-rsl" secondAttribute="centerY" id="7j1-7g-zFp"/>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="leading" secondItem="NDG-ng-8UF" secondAttribute="trailing" constant="8" id="QD7-BS-3gm"/>
+                    <constraint firstItem="OrE-cw-9gu" firstAttribute="bottom" secondItem="QEC-Xv-rsl" secondAttribute="bottomMargin" id="UiS-Cf-bXQ"/>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="leading" secondItem="Rk8-Bj-aZj" secondAttribute="trailing" constant="8" id="YLF-X8-rlb"/>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="top" secondItem="QEC-Xv-rsl" secondAttribute="topMargin" id="ZSq-fj-nPf"/>
+                    <constraint firstItem="OrE-cw-9gu" firstAttribute="top" secondItem="QEC-Xv-rsl" secondAttribute="topMargin" id="bkN-qp-5WT"/>
+                    <constraint firstAttribute="bottom" secondItem="NDG-ng-8UF" secondAttribute="bottom" constant="4" id="eQv-eb-swC"/>
+                    <constraint firstItem="Rk8-Bj-aZj" firstAttribute="leading" secondItem="OrE-cw-9gu" secondAttribute="trailing" constant="8" id="ede-HL-VtT"/>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="bottom" secondItem="QEC-Xv-rsl" secondAttribute="bottomMargin" id="gZl-AC-OGj"/>
+                    <constraint firstItem="Rk8-Bj-aZj" firstAttribute="top" secondItem="QEC-Xv-rsl" secondAttribute="top" constant="6" id="uhI-Mj-hp8"/>
+                    <constraint firstItem="NDG-ng-8UF" firstAttribute="leading" secondItem="OrE-cw-9gu" secondAttribute="trailing" constant="8" id="vhl-5k-6ps"/>
+                    <constraint firstItem="OrE-cw-9gu" firstAttribute="leading" secondItem="QEC-Xv-rsl" secondAttribute="leadingMargin" id="xQs-aE-OhP"/>
+                    <constraint firstItem="Aj0-8O-6hV" firstAttribute="centerY" secondItem="QEC-Xv-rsl" secondAttribute="centerY" id="zkk-Kx-mG4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="downloadButton" destination="Aj0-8O-6hV" id="MAz-xz-c2C"/>
+                <outlet property="fileImageView" destination="OrE-cw-9gu" id="p4R-F5-jcx"/>
+                <outlet property="fileInfoLabel" destination="NDG-ng-8UF" id="OC0-Z7-sqb"/>
+                <outlet property="fileNameLabel" destination="Rk8-Bj-aZj" id="4F0-IN-asT"/>
+            </connections>
+            <point key="canvasLocation" x="-24.5" y="-9"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="folder" width="500" height="500"/>
+    </resources>
+</document>

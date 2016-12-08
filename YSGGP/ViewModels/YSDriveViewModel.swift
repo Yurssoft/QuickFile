@@ -19,7 +19,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     var isFilesPresent: Bool
     {
-        return files != nil && !(files?.isEmpty)!
+        return !files.isEmpty
     }
     
     var error : YSErrorProtocol = YSError()
@@ -36,7 +36,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     weak var viewDelegate: YSDriveViewModelViewDelegate?
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
-    fileprivate var files: [YSDriveFileProtocol]?
+    fileprivate var files: [YSDriveFileProtocol] = []
     {
         didSet
         {
@@ -73,16 +73,12 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     var numberOfFiles: Int
     {
-        if let files = files
-        {
-            return files.count
-        }
-        return 0
+        return files.count
     }
     
     func file(at index: Int) -> YSDriveFileProtocol?
     {
-        if let files = files , files.count > index
+        if files.count > index
         {
             return files[index]
         }
@@ -96,7 +92,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     func useFile(at index: Int)
     {
-        if let files = files, let coordinatorDelegate = coordinatorDelegate, index < files.count
+        if let coordinatorDelegate = coordinatorDelegate, index < files.count
         {
             coordinatorDelegate.driveViewModelDidSelectFile(self, file: files[index])
         }
@@ -109,7 +105,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     func removeDownloads()
     {
-        files?.removeAll()
+        files.removeAll()
         viewDelegate?.filesDidChange(viewModel: self)
     }
     
@@ -133,7 +129,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     func download(_ file : YSDriveFileProtocol)
     {
         model?.download(file, { (download) in
-            let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+            let index = self.files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
             self.viewDelegate?.reloadFileDownload(at: index!, viewModel: self)
         },
         completionHandler: { (download, error) in
@@ -141,7 +137,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             {
                 self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
             }
-            let index = self.files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+            let index = self.files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
             self.viewDelegate?.reloadFile(at: index!, viewModel: self)
         })
     }
@@ -151,20 +147,25 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         model?.stopDownload(file)
     }
     
-    func indexOf(_ file : YSDriveFileProtocol) -> Int
+    func index(of file : YSDriveFileProtocol) -> Int
     {
-        return (files?.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier}))!
+        if let index = files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+        {
+            return index
+        }
+        return 0
     }
     
     func deleteDownloadsFor(_ indexes : [IndexPath])
     {
         for indexPath in indexes
         {
-            if let file = files?[indexPath.row], file.isAudio
+            let file = files[indexPath.row]
+            if file.isAudio
             {
                 stopDownloading(file)
                 file.removeLocalFile()
-                files?[indexPath.row] = file
+                files[indexPath.row] = file
             }
         }
         viewDelegate?.filesDidChange(viewModel: self)
@@ -174,10 +175,10 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         for indexPath in indexes
         {
-            let file = files?[indexPath.row]
-            if (file?.isAudio)!
+            let file = files[indexPath.row]
+            if file.isAudio
             {
-                download(file!)
+                download(file)
             }
         }
     }

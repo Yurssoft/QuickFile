@@ -16,9 +16,9 @@ protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func getFiles(_ completionHandler: DriveCompletionHandler)
+    func getFiles(_ completionHandler: @escaping DriveCompletionHandler)
     
-    func download(_ file : YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler, completionHandler : DownloadCompletionHandler)
+    func download(_ file : YSDriveFileProtocol, _ progressHandler: @escaping DownloadFileProgressHandler, completionHandler : @escaping DownloadCompletionHandler)
     
     func stopDownload(_ file : YSDriveFileProtocol)
     

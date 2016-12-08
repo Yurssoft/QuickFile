@@ -11,6 +11,7 @@ import UIKit
 class YSSettingsTopViewController: UIViewController
 {
     var settingsVC: YSSettingsTableViewController!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

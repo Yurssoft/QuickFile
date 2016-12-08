@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias CompletionHandler = (YSErrorProtocol?) -> Swift.Void
 
@@ -22,6 +23,7 @@ struct YSConstants
     static let kTokenKeychainKey = "kTokenKeychainKey"
     static let kTokenKeychainItemKey = "kTokenKeychainItemKey"
     static let kDriveScopes = ["https://www.googleapis.com/auth/drive.readonly"]
+    static let kCellHeight = CGFloat(50.0)
 }
 
 enum YSErrorType
