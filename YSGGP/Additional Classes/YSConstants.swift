@@ -24,6 +24,7 @@ struct YSConstants
     static let kTokenKeychainItemKey = "kTokenKeychainItemKey"
     static let kDriveScopes = ["https://www.googleapis.com/auth/drive.readonly"]
     static let kCellHeight = CGFloat(50.0)
+    static let kHeaderHeight = CGFloat(28.0)
 }
 
 enum YSErrorType

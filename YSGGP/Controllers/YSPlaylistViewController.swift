@@ -27,12 +27,18 @@ class YSPlaylistViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        tableView.delegate = self
         tableView.dataSource = self
-        let bundle = Bundle(for: YSDriveFileTableViewCell.self)
-        let nib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: bundle)
+        tableView.delegate = self
+        let cellBundle = Bundle(for: YSDriveFileTableViewCell.self)
+        let cellNib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: cellBundle)
         
-        tableView.register(nib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
+        tableView.register(cellNib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
+        
+        let headerBundle = Bundle(for: YSHeaderForSection.self)
+        let headerNib = UINib(nibName: YSHeaderForSection.nameOfClass, bundle: headerBundle)
+        
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: YSHeaderForSection.nameOfClass)
+        
         setupCoordinator()
     }
     
@@ -63,6 +69,12 @@ extension YSPlaylistViewController : UITableViewDataSource
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+//    {
+//        let folder = viewModel?.folder(at: section)
+//        return folder?.fileName
+//    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return YSConstants.kCellHeight
@@ -71,7 +83,18 @@ extension YSPlaylistViewController : UITableViewDataSource
 
 extension YSPlaylistViewController : UITableViewDelegate
 {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: YSHeaderForSection.nameOfClass) as! YSHeaderForSection
+        let folder = viewModel?.folder(at: section)
+        headerView.configure(title: folder?.fileName)
+        return headerView
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return YSConstants.kHeaderHeight
+    }
 }
 
 extension YSPlaylistViewController : YSPlaylistViewModelViewDelegate
