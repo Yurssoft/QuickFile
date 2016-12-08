@@ -10,13 +10,13 @@ import Foundation
 
 class YSPlaylistModel : YSPlaylistModelProtocol
 {
-    func allFiles(_ completionHandler: @escaping ([YSDriveFileProtocol], [YSDriveFileProtocol], YSErrorProtocol?) -> Void)
+    func allFiles(_ completionHandler: @escaping PlaylistCompletionHandler)
     {
         YSDatabaseManager.allFiles
             { (databaseYSFiles, yserror) in
                 if let error = yserror
                 {
-                    completionHandler([],[], error)
+                    completionHandler([:], error)
                 }
                 var folders = [YSDriveFileProtocol]()
                 var files = [YSDriveFileProtocol]()
@@ -26,8 +26,14 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                 }
                 let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folder: "root")
                 folders.append(rootFolder)
-//                var playlistDictionary = [String, YSDriveFileProtocol]
-                completionHandler(folders, files, nil)
+                var playlistDictionary = [String : [YSDriveFileProtocol]]()
+                for folder in folders
+                {
+                    var filesInFolder = files.filter { return $0.folder == folder.folder }
+                    filesInFolder.append(folder)
+                    playlistDictionary[folder.folder] = filesInFolder
+                }
+                completionHandler(playlistDictionary, nil)
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias PlaylistCompletionHandler = ([YSDriveFileProtocol], [YSDriveFileProtocol], YSErrorProtocol?) -> Swift.Void
+typealias PlaylistCompletionHandler = ([String : [YSDriveFileProtocol]], YSErrorProtocol?) -> Swift.Void
 
 protocol YSPlaylistModelProtocol
 {
