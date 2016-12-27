@@ -79,7 +79,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         if var filesInFolder = playlist[folderKey]
         {
             filesInFolder = filesInFolder.filter({ return !$0.isAudio })
-            return filesInFolder.first!
+            return filesInFolder.first ?? nil
         }
         return nil
     }

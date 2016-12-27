@@ -22,10 +22,21 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                 var files = [YSDriveFileProtocol]()
                 for dbFile in databaseYSFiles
                 {
-                    dbFile.isAudio ? files.append(dbFile) : folders.append(dbFile)
+                    if dbFile.isAudio && dbFile.isFileOnDisk
+                    {
+                        files.append(dbFile)
+                    }
+                    if dbFile.isAudio
+                    {
+                        folders.append(dbFile)
+                    }
                 }
-                let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folder: "root")
-                folders.append(rootFolder)
+                let filesInRootFolder = files.filter { return $0.folder == "root" }
+                if filesInRootFolder.count > 0
+                {
+                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folder: "root")
+                    folders.append(rootFolder)
+                }
                 var playlistDictionary = [String : [YSDriveFileProtocol]]()
                 for folder in folders
                 {
