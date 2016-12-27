@@ -1,0 +1,83 @@
+//
+//  DemoMusicPlayerController.swift
+//  LNPopupControllerExample
+//
+//  Created by Leo Natan on 8/8/15.
+//  Copyright © 2015 Leo Natan. All rights reserved.
+//
+
+import UIKit
+import LNPopupController
+
+class YSMusicPlayerController: UIViewController {
+
+	@IBOutlet weak var songNameLabel: UILabel!
+	@IBOutlet weak var albumNameLabel: UILabel!
+	@IBOutlet weak var progressView: UIProgressView!
+	
+	@IBOutlet weak var albumArtImageView: UIImageView!
+	
+	var timer : Timer?
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+
+		let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
+		pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
+		let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
+		next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
+		
+		self.popupItem.leftBarButtonItems = [ pause ]
+		self.popupItem.rightBarButtonItems = [ next ]
+		
+		timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(YSMusicPlayerController._timerTicked(_:)), userInfo: nil, repeats: true)
+	}
+	
+	var songTitle: String = "" {
+		didSet {
+			if isViewLoaded {
+				songNameLabel.text = songTitle
+			}
+			
+			popupItem.title = songTitle
+		}
+	}
+	var albumTitle: String = "" {
+		didSet {
+			if isViewLoaded {
+				albumNameLabel.text = albumTitle
+			}
+			if ProcessInfo.processInfo.operatingSystemVersion.majorVersion <= 9 {
+				popupItem.subtitle = albumTitle
+			}
+		}
+	}
+	var albumArt: UIImage = UIImage() {
+		didSet {
+			if isViewLoaded {
+				albumArtImageView.image = albumArt
+			}
+			popupItem.image = albumArt
+			popupItem.accessibilityImageLabel = NSLocalizedString("Album Art", comment: "")
+		}
+	}
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+		songNameLabel.text = songTitle
+		albumNameLabel.text = albumTitle
+		albumArtImageView.image = albumArt
+	}
+	
+	func _timerTicked(_ timer: Timer) {
+		popupItem.progress += 0.0002;
+		
+		progressView.progress = popupItem.progress
+		
+		if popupItem.progress >= 1.0 {
+			timer.invalidate()
+			popupPresentationContainer?.dismissPopupBar(animated: true, completion: nil)
+		}
+	}
+}

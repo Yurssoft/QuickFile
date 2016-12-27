@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -312,7 +314,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zJC-2F-qqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -337,7 +339,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWb-jh-KUN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sWb-jh-KUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -358,7 +360,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMr-KK-yaH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rMr-KK-yaH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -371,10 +373,139 @@
             </objects>
             <point key="canvasLocation" x="2270" y="278"/>
         </scene>
+        <!--Music Player Controller-->
+        <scene sceneID="86U-qt-NFr">
+            <objects>
+                <viewController storyboardIdentifier="YSMusicPlayerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XKT-fX-xn1" customClass="YSMusicPlayerController" customModule="YSGGP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iIv-4R-qTV"/>
+                        <viewControllerLayoutGuide type="bottom" id="hxG-gH-dj6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c5h-ge-I5E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="FMm-2f-2m1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZEc-WQ-ITC">
+                                        <rect key="frame" x="32" y="55" width="311" height="311"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ZEc-WQ-ITC" secondAttribute="height" multiplier="1:1" priority="900" id="rEe-8b-d0A"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eIw-jF-GpB">
+                                        <rect key="frame" x="32" y="398" width="311" height="2.5"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="aco-WA-uwO"/>
+                                        </constraints>
+                                    </progressView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfD-29-12N">
+                                        <rect key="frame" x="0.0" y="400" width="375" height="267"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbx-OI-2ab" userLabel="Play">
+                                                <rect key="frame" x="180" y="123" width="16" height="22"/>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="nowPlaying_pause"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwy-Em-99q" userLabel="Next">
+                                                <rect key="frame" x="273" y="123" width="16" height="22"/>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="nowPlaying_next"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWb-3a-LWC" userLabel="Prev">
+                                                <rect key="frame" x="86" y="123" width="16" height="22"/>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="nowPlaying_prev"/>
+                                            </button>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volDown" maximumValueImage="volUp" translatesAutoresizingMaskIntoConstraints="NO" id="dzo-kN-7yN">
+                                                <rect key="frame" x="30" y="185" width="315" height="31"/>
+                                            </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-7q-Tvz">
+                                                <rect key="frame" x="32" y="30" width="311" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfg-vl-aFj">
+                                                <rect key="frame" x="32" y="62" width="311" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                <color key="textColor" red="0.91372549020000005" green="0.27058823529999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ZWb-3a-LWC" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" multiplier="3:6" id="6It-H6-3s6"/>
+                                            <constraint firstItem="kwy-Em-99q" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" id="8A8-Fl-q6q"/>
+                                            <constraint firstItem="dzo-kN-7yN" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" multiplier="1.5:1" id="DRA-oG-9tI"/>
+                                            <constraint firstItem="dbx-OI-2ab" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" id="I4i-1V-4C1"/>
+                                            <constraint firstItem="Jfg-vl-aFj" firstAttribute="leading" secondItem="MfD-29-12N" secondAttribute="leading" constant="32" id="IWu-Tx-shR"/>
+                                            <constraint firstItem="dzo-kN-7yN" firstAttribute="leading" secondItem="MfD-29-12N" secondAttribute="leading" constant="32" id="Idy-Ay-hzC"/>
+                                            <constraint firstItem="sD8-7q-Tvz" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" id="JWh-9e-uxy"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="Las-gC-nES"/>
+                                            <constraint firstItem="sD8-7q-Tvz" firstAttribute="leading" secondItem="MfD-29-12N" secondAttribute="leading" constant="32" id="VEw-DC-EwX"/>
+                                            <constraint firstItem="ZWb-3a-LWC" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" id="Yw2-91-AlB"/>
+                                            <constraint firstItem="Jfg-vl-aFj" firstAttribute="top" secondItem="sD8-7q-Tvz" secondAttribute="bottom" constant="4" id="ZJa-Xj-JAz"/>
+                                            <constraint firstItem="kwy-Em-99q" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" multiplier="1.5:1" id="fE2-cI-J9i"/>
+                                            <constraint firstAttribute="trailing" secondItem="dzo-kN-7yN" secondAttribute="trailing" constant="32" id="fMM-y7-azo"/>
+                                            <constraint firstItem="dbx-OI-2ab" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" id="jeI-U0-X9l"/>
+                                            <constraint firstAttribute="trailing" secondItem="sD8-7q-Tvz" secondAttribute="trailing" constant="32" id="mJF-0I-Qft"/>
+                                            <constraint firstItem="sD8-7q-Tvz" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" multiplier="1:3" id="vxc-qD-bkv"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jfg-vl-aFj" secondAttribute="trailing" constant="32" id="z49-q6-jYX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eIw-jF-GpB" firstAttribute="leading" secondItem="FMm-2f-2m1" secondAttribute="leading" constant="32" id="M26-hc-G1X"/>
+                                    <constraint firstAttribute="trailing" secondItem="MfD-29-12N" secondAttribute="trailing" id="MEz-Cx-4Bb"/>
+                                    <constraint firstAttribute="trailing" secondItem="eIw-jF-GpB" secondAttribute="trailing" constant="32" id="Sgz-k0-PsV"/>
+                                    <constraint firstItem="MfD-29-12N" firstAttribute="top" secondItem="eIw-jF-GpB" secondAttribute="bottom" id="ULG-rX-UdM"/>
+                                    <constraint firstAttribute="bottom" secondItem="MfD-29-12N" secondAttribute="bottom" id="X9m-rY-iyO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZEc-WQ-ITC" secondAttribute="trailing" constant="32" id="XTI-rF-LrX"/>
+                                    <constraint firstItem="eIw-jF-GpB" firstAttribute="top" secondItem="ZEc-WQ-ITC" secondAttribute="bottom" constant="32" id="dDG-ap-bah"/>
+                                    <constraint firstItem="ZEc-WQ-ITC" firstAttribute="leading" secondItem="FMm-2f-2m1" secondAttribute="leading" constant="32" id="fMi-jq-Qcz"/>
+                                    <constraint firstItem="ZEc-WQ-ITC" firstAttribute="top" secondItem="FMm-2f-2m1" secondAttribute="top" constant="55" id="hUf-zS-pOq"/>
+                                    <constraint firstItem="MfD-29-12N" firstAttribute="leading" secondItem="FMm-2f-2m1" secondAttribute="leading" id="tZu-Hj-DBy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="FMm-2f-2m1" secondAttribute="top" id="36Z-tR-PZL"/>
+                            <constraint firstItem="FMm-2f-2m1" firstAttribute="leading" secondItem="c5h-ge-I5E" secondAttribute="leading" id="8qv-KD-mrm"/>
+                            <constraint firstAttribute="bottom" secondItem="FMm-2f-2m1" secondAttribute="bottom" id="SFR-4g-n0L"/>
+                            <constraint firstAttribute="trailing" secondItem="FMm-2f-2m1" secondAttribute="trailing" id="brH-mw-S6v"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumArtImageView" destination="ZEc-WQ-ITC" id="hGH-Ko-gsi"/>
+                        <outlet property="albumNameLabel" destination="Jfg-vl-aFj" id="Kpn-y4-1N9"/>
+                        <outlet property="progressView" destination="eIw-jF-GpB" id="0Ai-dZ-8Ff"/>
+                        <outlet property="songNameLabel" destination="sD8-7q-Tvz" id="Omr-6C-6AV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Uf-6s-jLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="-482"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cloud_filled" width="20" height="20"/>
+        <image name="nowPlaying_next" width="16" height="16"/>
+        <image name="nowPlaying_pause" width="16" height="16"/>
+        <image name="nowPlaying_prev" width="16" height="16"/>
         <image name="playlist_filled" width="20" height="20"/>
         <image name="settings_filled" width="20" height="20"/>
+        <image name="volDown" width="16" height="16"/>
+        <image name="volUp" width="16" height="16"/>
     </resources>
 </document>

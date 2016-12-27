@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LNPopupController
 
 class YSPlaylistViewController: UIViewController
 {
@@ -79,7 +80,42 @@ extension YSPlaylistViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        viewModel?.useFile(at: indexPath.section, file: indexPath.row)
+        
+        
+        
+        
+        
+        
+        
+        
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: YSMusicPlayerController.nameOfClass) as! YSMusicPlayerController
+        popupContentController.songTitle = "song"
+        popupContentController.albumTitle = "Album"
+        popupContentController.albumArt = UIImage()
+        
+        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
+        tabBarController?.popupBar?.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //TODO: viewModel?.useFile(at: indexPath.section, file: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
