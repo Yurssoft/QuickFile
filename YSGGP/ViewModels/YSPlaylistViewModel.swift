@@ -84,9 +84,10 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         return nil
     }
     
-    func useFile(at index: Int)
+    func useFile(at folder: Int, file: Int)
     {
-        
+        let audio = self.file(at: file, folderIndex: folder)
+        coordinatorDelegate?.playlistViewModelDidSelectFile(self, file: audio!)
     }
     
     func removeDownloads()

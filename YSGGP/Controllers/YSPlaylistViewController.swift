@@ -44,7 +44,7 @@ class YSPlaylistViewController: UIViewController
     
     func setupCoordinator()
     {
-        let playlistCoordinator = YSPlaylistCoordinator.init(playlistViewController: self)
+        let playlistCoordinator = YSPlaylistCoordinator.init(playlistViewController: self, navigationController: navigationController!)
         playlistCoordinator.start()
     }
 }
@@ -69,12 +69,6 @@ extension YSPlaylistViewController : UITableViewDataSource
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-//    {
-//        let folder = viewModel?.folder(at: section)
-//        return folder?.fileName
-//    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return YSConstants.kCellHeight
@@ -83,6 +77,12 @@ extension YSPlaylistViewController : UITableViewDataSource
 
 extension YSPlaylistViewController : UITableViewDelegate
 {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        viewModel?.useFile(at: indexPath.section, file: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: YSHeaderForSection.nameOfClass) as! YSHeaderForSection

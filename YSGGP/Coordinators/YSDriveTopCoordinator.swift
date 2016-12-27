@@ -77,7 +77,6 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
         {
             if let url = file.localFilePath(), file.isFileOnDisk
             {
-                
                 let player = AVPlayer(url: url as URL)
                 let playerViewController = AVPlayerViewController()
                 playerViewController.player = player
