@@ -41,50 +41,10 @@ class YSPlayerController: UIViewController {
             viewModel?.viewDelegate = self
         }
     }
-	var songTitle: String = ""
-    {
-		didSet
-        {
-			if isViewLoaded
-            {
-				songNameLabel.text = songTitle
-			}
-			popupItem.title = songTitle
-		}
-	}
-	var albumTitle: String = ""
-    {
-		didSet
-        {
-			if isViewLoaded
-            {
-				albumNameLabel.text = albumTitle
-			}
-		}
-	}
-	var albumArt: UIImage = UIImage()
-    {
-		didSet
-        {
-			if isViewLoaded
-            {
-				albumArtImageView.image = albumArt
-			}
-			popupItem.image = albumArt
-		}
-	}
     
     @IBAction func playPauseTapped(_ sender: UIButton)
     {
         viewModel?.playPause()
-    }
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        songNameLabel.text = songTitle
-        albumNameLabel.text = albumTitle
-        albumArtImageView.image = albumArt
     }
 }
 
@@ -92,7 +52,20 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
 {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     {
-        payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
+        DispatchQueue.main.async
+            {
+                let file = viewModel.currentFile()
+                self.popupItem.title = file.fileName
+                self.popupItem.subtitle = file.folder
+                if self.isViewLoaded
+                {
+                    self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
+                    let file = viewModel.currentFile()
+                    self.songNameLabel.text = file.fileName
+                    self.albumNameLabel.text = file.folder
+                    self.albumArtImageView.image = UIImage()
+                }
+        }
     }
     
     func filesDidChange(viewModel: YSPlayerViewModelProtocol)

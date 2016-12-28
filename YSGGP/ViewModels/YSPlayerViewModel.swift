@@ -35,6 +35,7 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
                 audioItems.append(item)
             }
             player = AVQueuePlayer(items: audioItems)
+            viewDelegate?.playerDidChange(viewModel: self)
         }
     }
     
@@ -81,8 +82,25 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
     
     func currentFile() -> YSDriveFileProtocol
     {
-        let item = player.currentItem
+        if let itemURL = currentItemUrl()
+        {
+            let filesOfURL = files.filter { $0.localFilePath() == itemURL }
+            return filesOfURL.first!
+        }
         return YSDriveFile()
+    }
+    
+    func currentItemUrl() -> URL? {
+        let asset = player.currentItem?.asset
+        if asset == nil
+        {
+            return nil
+        }
+        if let urlAsset = asset as? AVURLAsset
+        {
+            return urlAsset.url
+        }
+        return nil
     }
     
 }

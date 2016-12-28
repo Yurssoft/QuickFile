@@ -94,7 +94,7 @@ extension YSPlaylistViewController : UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        return YSConstants.kHeaderHeight
+        return viewModel?.folder(at: section) == nil ? 0 : YSConstants.kHeaderHeight
     }
 }
 
