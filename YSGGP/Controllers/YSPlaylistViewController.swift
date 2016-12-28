@@ -88,7 +88,7 @@ extension YSPlaylistViewController : UITableViewDelegate
         
         
         
-        let popupContentController = storyboard?.instantiateViewController(withIdentifier: YSMusicPlayerController.nameOfClass) as! YSMusicPlayerController
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as! YSPlayerController
         popupContentController.configure(files: [(viewModel?.file(at: 0, folderIndex: 0))!], songTitle: "asd", albumTitle: "4545", albumArt: UIImage())
         
         tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
