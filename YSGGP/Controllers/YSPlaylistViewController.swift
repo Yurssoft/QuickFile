@@ -80,40 +80,7 @@ extension YSPlaylistViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
-        
-        
-        
-        
-        
-        
-        
-        let popupContentController = storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as! YSPlayerController
-        popupContentController.configure(files: [(viewModel?.file(at: 0, folderIndex: 0))!], songTitle: "asd", albumTitle: "4545", albumArt: UIImage())
-        
-        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
-        tabBarController?.popupBar?.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //TODO: viewModel?.useFile(at: indexPath.section, file: indexPath.row)
+        viewModel?.useFile(at: indexPath.section, file: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

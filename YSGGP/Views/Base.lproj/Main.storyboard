@@ -414,6 +414,9 @@
                                                 <rect key="frame" x="180" y="123" width="16" height="22"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="nowPlaying_pause"/>
+                                                <connections>
+                                                    <action selector="playPauseTapped:" destination="XKT-fX-xn1" eventType="touchUpInside" id="97b-uq-cSL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwy-Em-99q" userLabel="Next">
                                                 <rect key="frame" x="273" y="123" width="16" height="22"/>

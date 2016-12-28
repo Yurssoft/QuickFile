@@ -27,52 +27,77 @@ class YSPlayerController: UIViewController {
 		self.popupItem.leftBarButtonItems = [ pause ]
 		self.popupItem.rightBarButtonItems = [ next ]
 	}
-	
-	var songTitle: String = "" {
-		didSet {
-			if isViewLoaded {
+    
+    var viewModel: YSPlayerViewModelProtocol?
+    {
+        willSet
+        {
+            viewModel?.viewDelegate = nil
+        }
+        didSet
+        {
+            viewModel?.viewDelegate = self
+        }
+    }
+	var songTitle: String = ""
+    {
+		didSet
+        {
+			if isViewLoaded
+            {
 				songNameLabel.text = songTitle
 			}
 			popupItem.title = songTitle
 		}
 	}
-	var albumTitle: String = "" {
-		didSet {
-			if isViewLoaded {
+	var albumTitle: String = ""
+    {
+		didSet
+        {
+			if isViewLoaded
+            {
 				albumNameLabel.text = albumTitle
 			}
 		}
 	}
-	var albumArt: UIImage = UIImage() {
-		didSet {
-			if isViewLoaded {
+	var albumArt: UIImage = UIImage()
+    {
+		didSet
+        {
+			if isViewLoaded
+            {
 				albumArtImageView.image = albumArt
 			}
 			popupItem.image = albumArt
 		}
 	}
     
-    override func viewDidLoad() {
+    @IBAction func playPauseTapped(_ sender: UIButton)
+    {
+        viewModel?.playPause()
+    }
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
         songNameLabel.text = songTitle
         albumNameLabel.text = albumTitle
         albumArtImageView.image = albumArt
     }
-    
-    func configure(files:[YSDriveFileProtocol], songTitle: String, albumTitle: String, albumArt: UIImage)
+}
+
+extension YSPlayerController : YSPlayerViewModelViewDelegate
+{
+    func progressDidChange(viewModel: YSPlayerViewModelProtocol)
     {
-        self.songTitle = songTitle
-        self.albumTitle = albumTitle
-        self.albumArt = albumArt
-        var audioItems: [AVPlayerItem] = []
-        for file in files {
-            let item = AVPlayerItem(url: file.localFilePath()!)
-            audioItems.append(item)
-        }
         
-        player = AVQueuePlayer(items: audioItems)
-        player.play()
     }
-    
+    func filesDidChange(viewModel: YSPlayerViewModelProtocol)
+    {
+        
+    }
+    func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
+    {
+        
+    }
 }

@@ -107,27 +107,4 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
                 }
         }
     }
-    
-    func index(of file : YSDriveFileProtocol, inFolder index : Int) -> Int
-    {
-//        let folder = folders[index]
-//        let filesInFolder = files.filter
-//        {
-//            return $0.folder == folder.folder
-//        }
-//        if let index = filesInFolder.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
-//        {
-//            return index
-//        }
-        return 0
-    }
-    
-    func index(of folder : YSDriveFileProtocol) -> Int
-    {
-//        if let index = folders.index(where: {$0.fileDriveIdentifier == folder.fileDriveIdentifier})
-//        {
-//            return index
-//        }
-        return 0
-    }
 }
