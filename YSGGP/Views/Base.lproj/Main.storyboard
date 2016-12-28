@@ -422,6 +422,9 @@
                                                 <rect key="frame" x="273" y="123" width="16" height="22"/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="nowPlaying_next"/>
+                                                <connections>
+                                                    <action selector="nextTapped:" destination="XKT-fX-xn1" eventType="touchDragInside" id="AuD-n8-ZVU"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWb-3a-LWC" userLabel="Prev">
                                                 <rect key="frame" x="86" y="123" width="16" height="22"/>
@@ -492,6 +495,7 @@
                     <connections>
                         <outlet property="albumArtImageView" destination="ZEc-WQ-ITC" id="hGH-Ko-gsi"/>
                         <outlet property="albumNameLabel" destination="Jfg-vl-aFj" id="Kpn-y4-1N9"/>
+                        <outlet property="nextButton" destination="kwy-Em-99q" id="qre-iz-KCh"/>
                         <outlet property="payPauseButton" destination="dbx-OI-2ab" id="LPy-3D-JNL"/>
                         <outlet property="progressView" destination="eIw-jF-GpB" id="0Ai-dZ-8Ff"/>
                         <outlet property="songNameLabel" destination="sD8-7q-Tvz" id="Omr-6C-6AV"/>

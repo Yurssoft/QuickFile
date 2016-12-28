@@ -18,16 +18,12 @@ class YSPlayerController: UIViewController {
     var player: AVQueuePlayer = AVQueuePlayer(items: [])
 	@IBOutlet weak var albumArtImageView: UIImageView!
     @IBOutlet weak var payPauseButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
 	
 	required init?(coder aDecoder: NSCoder)
     {
 		super.init(coder: aDecoder)
-
-		let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
-		let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
-		
-		self.popupItem.leftBarButtonItems = [ pause ]
-		self.popupItem.rightBarButtonItems = [ next ]
+        updateBarButtons()
 	}
     
     var viewModel: YSPlayerViewModelProtocol?
@@ -42,9 +38,26 @@ class YSPlayerController: UIViewController {
         }
     }
     
+    @IBAction func nextTapped(_ sender: Any)
+    {
+        viewModel?.next()
+    }
+    
     @IBAction func playPauseTapped(_ sender: UIButton)
     {
         viewModel?.playPause()
+    }
+    
+    func updateBarButtons()
+    {
+        guard let viewModel = viewModel  else {
+            return
+        }
+        let pause = UIBarButtonItem(image: UIImage(named: viewModel.isPlaying ? "pause" : "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
+        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(nextTapped(_:)))
+        
+        self.popupItem.leftBarButtonItems = [ pause ]
+        self.popupItem.rightBarButtonItems = [ next ]
     }
 }
 
@@ -54,6 +67,8 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
     {
         DispatchQueue.main.async
             {
+                self.updateBarButtons()
+                
                 let file = viewModel.currentFile()
                 self.popupItem.title = file.fileName
                 self.popupItem.subtitle = file.folder
