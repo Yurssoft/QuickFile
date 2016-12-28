@@ -10,7 +10,7 @@ import UIKit
 import LNPopupController
 import AVFoundation
 
-class YSMusicPlayerController: UIViewController {
+class YSPlayerController: UIViewController {
 
 	@IBOutlet weak var songNameLabel: UILabel!
 	@IBOutlet weak var albumNameLabel: UILabel!

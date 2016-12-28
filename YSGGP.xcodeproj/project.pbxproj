@@ -44,7 +44,7 @@
 		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
 		508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */; };
 		508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */; };
-		509E557F1E12CFE800C22489 /* YSMusicPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E557E1E12CFE800C22489 /* YSMusicPlayerController.swift */; };
+		509E557F1E12CFE800C22489 /* YSPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E557E1E12CFE800C22489 /* YSPlayerController.swift */; };
 		509E55811E12D1BA00C22489 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508899F61E12AD4300A10B0D /* LNPopupController.framework */; };
 		50A157171DC0F3E1008AD787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */; };
 		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
@@ -132,7 +132,7 @@
 		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
 		508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
 		508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
-		509E557E1E12CFE800C22489 /* YSMusicPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMusicPlayerController.swift; sourceTree = "<group>"; };
+		509E557E1E12CFE800C22489 /* YSPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerController.swift; sourceTree = "<group>"; };
 		50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		505B4A3F1DAE601F0055C180 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				509E557E1E12CFE800C22489 /* YSMusicPlayerController.swift */,
+				509E557E1E12CFE800C22489 /* YSPlayerController.swift */,
 				50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */,
 				503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */,
 				503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */,
@@ -691,7 +691,7 @@
 				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
 				503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */,
 				503189CA1DDF3DA2001F51B8 /* YSDictionaryExtension.swift in Sources */,
-				509E557F1E12CFE800C22489 /* YSMusicPlayerController.swift in Sources */,
+				509E557F1E12CFE800C22489 /* YSPlayerController.swift in Sources */,
 				50E49FBA1D9D3ED300A6FAAC /* YSNSObjectExtension.swift in Sources */,
 				504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */,
 				50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */,
