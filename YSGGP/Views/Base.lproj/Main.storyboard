@@ -492,6 +492,7 @@
                     <connections>
                         <outlet property="albumArtImageView" destination="ZEc-WQ-ITC" id="hGH-Ko-gsi"/>
                         <outlet property="albumNameLabel" destination="Jfg-vl-aFj" id="Kpn-y4-1N9"/>
+                        <outlet property="payPauseButton" destination="dbx-OI-2ab" id="LPy-3D-JNL"/>
                         <outlet property="progressView" destination="eIw-jF-GpB" id="0Ai-dZ-8Ff"/>
                         <outlet property="songNameLabel" destination="sD8-7q-Tvz" id="Omr-6C-6AV"/>
                     </connections>

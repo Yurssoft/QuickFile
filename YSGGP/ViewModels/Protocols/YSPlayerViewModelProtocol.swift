@@ -10,7 +10,7 @@ import Foundation
 
 protocol YSPlayerViewModelViewDelegate: class
 {
-    func progressDidChange(viewModel: YSPlayerViewModelProtocol)
+    func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     func filesDidChange(viewModel: YSPlayerViewModelProtocol)
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
 }
@@ -20,6 +20,7 @@ protocol YSPlayerViewModelProtocol
     var model: YSPlayerModelProtocol? { get set }
     var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
     var error : YSErrorProtocol { get }
+    var isPlaying : Bool { get }
     
     func playPause()
     func next()

@@ -55,9 +55,18 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
 
     var player: AVQueuePlayer = AVQueuePlayer(items: [])
     
+    var isPlaying : Bool = false
+    {
+        didSet
+        {
+            viewDelegate?.playerDidChange(viewModel: self)
+        }
+    }
+    
     func playPause()
     {
         player.rate == 0 ? player.play() : player.pause()
+        isPlaying = player.rate != 0
     }
     
     func next()

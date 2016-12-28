@@ -17,8 +17,10 @@ class YSPlayerController: UIViewController {
 	@IBOutlet weak var progressView: UIProgressView!
     var player: AVQueuePlayer = AVQueuePlayer(items: [])
 	@IBOutlet weak var albumArtImageView: UIImageView!
+    @IBOutlet weak var payPauseButton: UIButton!
 	
-	required init?(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder)
+    {
 		super.init(coder: aDecoder)
 
 		let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
@@ -88,14 +90,16 @@ class YSPlayerController: UIViewController {
 
 extension YSPlayerController : YSPlayerViewModelViewDelegate
 {
-    func progressDidChange(viewModel: YSPlayerViewModelProtocol)
+    func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     {
-        
+        payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
     }
+    
     func filesDidChange(viewModel: YSPlayerViewModelProtocol)
     {
         
     }
+    
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
     {
         
