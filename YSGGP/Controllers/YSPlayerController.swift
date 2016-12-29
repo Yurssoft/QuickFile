@@ -9,10 +9,11 @@
 import UIKit
 import LNPopupController
 import AVFoundation
+import MarqueeLabel
 
 class YSPlayerController: UIViewController {
 
-	@IBOutlet weak var songNameLabel: UILabel!
+	@IBOutlet weak var songNameLabel: MarqueeLabel!
 	@IBOutlet weak var albumNameLabel: UILabel!
 	@IBOutlet weak var progressView: UIProgressView!
     var player: AVQueuePlayer = AVQueuePlayer(items: [])
@@ -46,6 +47,12 @@ class YSPlayerController: UIViewController {
     @IBAction func playPauseTapped(_ sender: UIButton)
     {
         viewModel?.playPause()
+    }
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
     }
     
     func updateBarButtons()

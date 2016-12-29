@@ -12,4 +12,5 @@ target 'YSGGP' do
     pod 'GoogleSignIn'
     pod 'KeychainAccess'
     pod 'ReachabilitySwift'
+    pod 'MarqueeLabel/Swift'
 end

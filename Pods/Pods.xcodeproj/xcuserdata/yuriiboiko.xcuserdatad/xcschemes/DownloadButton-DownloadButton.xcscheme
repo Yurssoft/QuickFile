@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '141796DBA3CE87B499A356EF9B750024'
+               BlueprintIdentifier = '9333FDBD138CBFCB10665133664BE29F'
                BlueprintName = 'DownloadButton-DownloadButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'DownloadButton.bundle'>
