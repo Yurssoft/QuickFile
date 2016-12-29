@@ -105,6 +105,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
                 {
                     self.error = error
                 }
+                completion(error)
         }
     }
 }

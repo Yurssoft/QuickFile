@@ -102,5 +102,4 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
         }
         return nil
     }
-    
 }

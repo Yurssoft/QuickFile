@@ -8,6 +8,7 @@
 
 import UIKit
 import LNPopupController
+import MJRefresh
 
 class YSPlaylistViewController: UIViewController
 {
@@ -41,12 +42,29 @@ class YSPlaylistViewController: UIViewController
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: YSHeaderForSection.nameOfClass)
         
         setupCoordinator()
+        configurePullToRefresh()
     }
     
     func setupCoordinator()
     {
         let playlistCoordinator = YSPlaylistCoordinator.init(playlistViewController: self, navigationController: navigationController!)
         playlistCoordinator.start()
+    }
+    
+    func configurePullToRefresh()
+    {
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
+            { [weak self] () -> Void in
+                self?.getFiles()
+        })
+    }
+    
+    func getFiles()
+    {
+        viewModel?.getFiles(completion:
+        { _ in
+            self.tableView.mj_header.endRefreshing()
+        })
     }
 }
 
