@@ -16,7 +16,19 @@ public extension Dictionary
         for key in self.keys
         {
             let val = self[key]
-            object.setValue(val, forKey: key as! String)
+            let propertyKey = key as! String
+            if propertyKey == "folder"
+            {
+                let folder = YSFolder()
+                let value = val as! [String : String]
+                folder.folderID = value["folderID"]!
+                folder.folderName = value["folderName"]!
+                object.setValue(folder, forKey: propertyKey)
+            }
+            else
+            {
+                object.setValue(val, forKey: propertyKey)
+            }
         }
         return object
     }

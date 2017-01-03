@@ -16,30 +16,25 @@ class YSDriveModel: YSDriveModelProtocol
         return YSCredentialManager.isLoggedIn
     }
     
-    fileprivate var currentFolderID : String = ""
+    fileprivate var currentFolder : YSFolder = YSFolder()
     
-    init(folderID: String)
+    init(folder: YSFolder)
     {
-        var folID = folderID
-        if folID.isEmpty
-        {
-            folID = "root"
-        }
-        self.currentFolderID = folID
+        self.currentFolder = folder
     }
     
     func getFiles(_ completionHandler: @escaping DriveCompletionHandler)
     {
-        let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=100&q='\(currentFolderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
+        let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=100&q='\(currentFolder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
         YSFilesMetadataDownloader.downloadFilesList(for: url)
         { filesDictionary, error in
             if let err = error
             {
                 let yserror = err as! YSError
-                YSDatabaseManager.files(for: self.currentFolderID, yserror, completionHandler)
+                YSDatabaseManager.files(for: self.currentFolder, yserror, completionHandler)
                 return
             }
-            YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolderID, completionHandler)
+            YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolder, completionHandler)
         }
     }
     

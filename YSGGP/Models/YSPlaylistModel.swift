@@ -26,23 +26,30 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                     {
                         files.append(dbFile)
                     }
-                    if dbFile.isAudio
+                    if !dbFile.isAudio
                     {
-                        folders.append(dbFile)
+                        let filesInFolder = databaseYSFiles.filter { return $0.folder == dbFile.folder && $0.isAudio && $0.isFileOnDisk }
+                        if filesInFolder.count > 0
+                        {
+                            folders.append(dbFile)
+                        }
                     }
                 }
-                let filesInRootFolder = files.filter { return $0.folder == "root" }
+                let filesInRootFolder = files.filter { return $0.folder.folderID == "Root" }
                 if filesInRootFolder.count > 0
                 {
-                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folder: "root")
+                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folderName: "Root", folderID: "root")
                     folders.append(rootFolder)
                 }
                 var playlistDictionary = [String : [YSDriveFileProtocol]]()
                 for folder in folders
                 {
-                    var filesInFolder = files.filter { return $0.folder == folder.folder }
+                    var filesInFolder = files.filter { return $0.folder == folder.folder && $0.isAudio && $0.isFileOnDisk }
                     filesInFolder.append(folder)
-                    playlistDictionary[folder.folder] = filesInFolder
+                    if filesInFolder.count > 0
+                    {
+                        playlistDictionary[folder.folder.folderID] = filesInFolder
+                    }
                 }
                 completionHandler(playlistDictionary, nil)
         }

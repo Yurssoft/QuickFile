@@ -15,7 +15,7 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
 {
     fileprivate var driveCoordinators : [YSDriveCoordinator] = []
     fileprivate var navigationController: UINavigationController?
-    fileprivate var folderID : String = ""
+    fileprivate var folder : YSFolder = YSFolder.rootFolder()
     fileprivate var storyboard: UIStoryboard?
     
     func start() { }
@@ -40,7 +40,7 @@ extension YSDriveTopCoordinator : YSDriveViewControllerDidFinishedLoading
     func driveViewControllerDidLoaded(driveVC: YSDriveViewController, navigationController: UINavigationController)
     {
         self.navigationController = navigationController
-        let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC, folderID: folderID)
+        let driveCoordinator = YSDriveCoordinator(driveViewController: driveVC, folder: folder)
         driveCoordinator.start()
         driveCoordinator.delegate = self
         driveCoordinators.append(driveCoordinator)
@@ -62,11 +62,11 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
             navigationController?.setViewControllers(viewControllers, animated: false)
             if let lastCoordinator = driveCoordinators.last
             {
-                folderID = lastCoordinator.folderID
+                folder = lastCoordinator.folder
             }
             else
             {
-                folderID = ""
+                folder = YSFolder.rootFolder()
             }
         }
     }
@@ -93,7 +93,10 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
         }
         else
         {
-            folderID = file.fileDriveIdentifier
+            let ysfolder = YSFolder()
+            ysfolder.folderID = file.fileDriveIdentifier
+            ysfolder.folderName = file.fileName
+            folder = ysfolder
             let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
             driveTopVC.driveVCReadyDelegate = self
             navigationController?.pushViewController(driveTopVC, animated: true)

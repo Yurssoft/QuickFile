@@ -275,9 +275,7 @@
                             <constraint firstAttribute="trailing" secondItem="gQ3-SS-Jj2" secondAttribute="trailing" id="xnQ-NC-slq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Playlist" id="C6d-IY-BJB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fx7-cY-cLI"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Playlist" id="C6d-IY-BJB"/>
                     <connections>
                         <outlet property="tableView" destination="gQ3-SS-Jj2" id="ugW-qr-Hu3"/>
                     </connections>
@@ -314,7 +312,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zJC-2F-qqI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJC-2F-qqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -339,7 +337,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sWb-jh-KUN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWb-jh-KUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -360,7 +358,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rMr-KK-yaH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMr-KK-yaH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

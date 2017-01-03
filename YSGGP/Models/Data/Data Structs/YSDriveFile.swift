@@ -17,9 +17,9 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     var fileDriveIdentifier : String
     var modifiedTime : String = ""
     var isFileOnDisk : Bool = false
-    var folder : String = ""
+    var folder : YSFolder = YSFolder()
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folder : String?)
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: fileName)
         self.fileSize = YSDriveFile.checkStringForNil(string: fileSize)
@@ -34,7 +34,8 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
             self.isAudio = false
         }
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
-        self.folder = YSDriveFile.checkStringForNil(string: folder)
+        self.folder.folderName = YSDriveFile.checkStringForNil(string: folderName)
+        self.folder.folderID = YSDriveFile.checkStringForNil(string: folderID)
     }
     
     override init()

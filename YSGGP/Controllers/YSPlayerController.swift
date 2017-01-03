@@ -77,13 +77,13 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
                 
                 let file = viewModel.currentFile()
                 self.popupItem.title = file.fileName
-                self.popupItem.subtitle = file.folder
+                self.popupItem.subtitle = file.folder.folderName
                 if self.isViewLoaded
                 {
                     self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
                     let file = viewModel.currentFile()
                     self.songNameLabel.text = file.fileName
-                    self.albumNameLabel.text = file.folder
+                    self.albumNameLabel.text = file.folder.folderName
                     self.albumArtImageView.image = UIImage()
                 }
         }

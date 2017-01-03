@@ -51,6 +51,7 @@
 		509E55871E13FB8500C22489 /* YSPlayerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55861E13FB8500C22489 /* YSPlayerModelProtocol.swift */; };
 		509E55891E13FCF600C22489 /* YSPlayerViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */; };
 		509E558B1E13FE5700C22489 /* YSPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E558A1E13FE5700C22489 /* YSPlayerViewModel.swift */; };
+		509E558F1E1BDDB300C22489 /* YSFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E558E1E1BDDB300C22489 /* YSFolder.swift */; };
 		50A157171DC0F3E1008AD787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */; };
 		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
 		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
@@ -143,6 +144,7 @@
 		509E55861E13FB8500C22489 /* YSPlayerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerModelProtocol.swift; sourceTree = "<group>"; };
 		509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModelProtocol.swift; sourceTree = "<group>"; };
 		509E558A1E13FE5700C22489 /* YSPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModel.swift; sourceTree = "<group>"; };
+		509E558E1E1BDDB300C22489 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YSFolder.swift; path = ../../YSFolder.swift; sourceTree = "<group>"; };
 		50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* YSGGP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSGGP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				504110421D95691100BE3B0C /* YSDriveFile.swift */,
 				50D326C91DC0C18A00F12A93 /* YSDownload.swift */,
+				509E558E1E1BDDB300C22489 /* YSFolder.swift */,
 				503BC17B1DB79F1C000D5BA1 /* YSError.swift */,
 			);
 			path = "Data Structs";
@@ -724,6 +727,7 @@
 				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
 				508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */,
 				509E55891E13FCF600C22489 /* YSPlayerViewModelProtocol.swift in Sources */,
+				509E558F1E1BDDB300C22489 /* YSFolder.swift in Sources */,
 				50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */,
 				509E55831E13F4C300C22489 /* YSPlayerCoordinator.swift in Sources */,
 			);

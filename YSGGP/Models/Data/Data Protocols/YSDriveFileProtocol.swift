@@ -17,7 +17,7 @@ protocol YSDriveFileProtocol
     var isFileOnDisk : Bool { get set}
     var fileDriveIdentifier : String { get set}
     var modifiedTime : String { get set}
-    var folder : String { get set}
+    var folder : YSFolder { get set}
     
     func fileUrl() -> String
     func localFilePath() -> URL?

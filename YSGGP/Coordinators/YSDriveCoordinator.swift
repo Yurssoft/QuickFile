@@ -19,19 +19,19 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
 {
     fileprivate let driveViewController: YSDriveViewController
     weak var delegate : YSDriveCoordinatorDelegate?
-    var folderID : String = ""
+    var folder : YSFolder = YSFolder()
     
-    init(driveViewController: YSDriveViewController, folderID: String)
+    init(driveViewController: YSDriveViewController, folder: YSFolder)
     {
         self.driveViewController = driveViewController
-        self.folderID = folderID
+        self.folder = folder
     }
     
     func start()
     {
         let viewModel = YSDriveViewModel()
         driveViewController.viewModel = viewModel
-        viewModel.model = YSDriveModel(folderID: folderID)
+        viewModel.model = YSDriveModel(folder: folder)
         viewModel.coordinatorDelegate = self
     }
     
@@ -39,7 +39,7 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
     {
         let viewModel =  YSDriveViewModel()
         driveViewController.viewModel = viewModel
-        viewModel.model = YSDriveModel(folderID: folderID)
+        viewModel.model = YSDriveModel(folder: folder)
         viewModel.coordinatorDelegate = self
         if error == nil
         {

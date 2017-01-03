@@ -17,7 +17,7 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    class func save(filesDictionary: [String : Any],_ folder : String, _ completionHandler: @escaping DriveCompletionHandler)
+    class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping DriveCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -28,8 +28,9 @@ class YSDatabaseManager
                 for key in dbFilesDict.keys
                 {
                     var dbFile = dbFilesDict[key]
-                    let dbFileFolder = dbFile?["folder"] as! String
-                    if dbFileFolder == folder
+                    let folderObj = dbFile?["folder"] as! [String: String]
+                    let dbFileFolderID = folderObj["folderID"]
+                    if dbFileFolderID == folder.folderID
                     {
                         dbFilesForFolderToBeDeleted[key] = dbFile
                         dbFilesDict[key] = nil
@@ -43,7 +44,8 @@ class YSDatabaseManager
                                                   fileSize: fileDict["mimeType"] as! String?,
                                                   mimeType: fileDict["mimeType"] as! String?,
                                                   fileDriveIdentifier: fileDict["id"] as! String?,
-                                                  folder: folder)
+                                                  folderName: folder.folderName,
+                                                  folderID: folder.folderID)
                     
                     ysFile.isFileOnDisk = ysFile.localFileExists()
                     ysfiles.append(ysFile)
@@ -72,7 +74,7 @@ class YSDatabaseManager
         }
     }
 
-    class func files(for folderID: String,_ error: YSError,_ completionHandler: @escaping DriveCompletionHandler)
+    class func files(for folder: YSFolder,_ error: YSError,_ completionHandler: @escaping DriveCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -86,7 +88,7 @@ class YSDatabaseManager
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         var ysFile = dbFile.toYSFile()
-                        if ysFile.folder == folderID
+                        if ysFile.folder.folderID == folder.folderID
                         {
                             ysFile.isFileOnDisk = ysFile.localFileExists()
                             files.append(ysFile)

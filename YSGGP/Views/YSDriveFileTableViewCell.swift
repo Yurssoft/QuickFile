@@ -24,10 +24,17 @@ class YSDriveFileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var downloadButton: PKDownloadButton!
     
+    override func prepareForReuse()
+    {
+        super.prepareForReuse()
+        downloadButton.delegate = nil
+    }
+    
     func configureForDrive(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate?, _ download : YSDownloadProtocol?)
     {
         self.file = file
         self.delegate = delegate
+        downloadButton.delegate = self
         if let file = file
         {
             fileNameLabel?.text = file.fileName

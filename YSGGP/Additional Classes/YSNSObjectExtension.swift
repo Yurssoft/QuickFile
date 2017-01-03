@@ -26,6 +26,11 @@ public extension NSObject
             {
                 objectDictionary[property_name] = attr.value
             }
+            if let property_name = attr.label as String!, property_name == "folder"
+            {
+                let folderObj = attr.value as! YSFolder
+                objectDictionary[property_name] = folderObj.toDictionary()
+            }
         }
         return objectDictionary
     }
