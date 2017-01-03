@@ -95,4 +95,9 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         try? FileManager.default.removeItem(at: localFilePath()!)
         self.isFileOnDisk = false
     }
+    
+    override var debugDescription: String
+    {
+        return "File name: \(fileName) ID: \(fileDriveIdentifier) FolderID: \(folder.folderID) Folder name: \(folder.folderName) IS AUDIO: \(isAudio)\t"
+    }
 }

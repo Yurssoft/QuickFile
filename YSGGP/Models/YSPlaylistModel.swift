@@ -20,6 +20,7 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                 }
                 var folders = [YSDriveFileProtocol]()
                 var files = [YSDriveFileProtocol]()
+                let databaseYSFiles = databaseYSFiles.filter { return $0.isFileOnDisk || !$0.isAudio }
                 for dbFile in databaseYSFiles
                 {
                     if dbFile.isAudio && dbFile.isFileOnDisk
@@ -28,14 +29,14 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                     }
                     if !dbFile.isAudio
                     {
-                        let filesInFolder = databaseYSFiles.filter { return $0.folder == dbFile.folder && $0.isAudio && $0.isFileOnDisk }
+                        let filesInFolder = databaseYSFiles.filter { return $0.folder.folderID == dbFile.fileDriveIdentifier && $0.isAudio }
                         if filesInFolder.count > 0
                         {
                             folders.append(dbFile)
                         }
                     }
                 }
-                let filesInRootFolder = files.filter { return $0.folder.folderID == "Root" }
+                let filesInRootFolder = files.filter { return $0.folder.folderID == YSFolder.rootFolder().folderID }
                 if filesInRootFolder.count > 0
                 {
                     let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folderName: "Root", folderID: "root")
@@ -44,11 +45,11 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                 var playlistDictionary = [String : [YSDriveFileProtocol]]()
                 for folder in folders
                 {
-                    var filesInFolder = files.filter { return $0.folder == folder.folder && $0.isAudio && $0.isFileOnDisk }
+                    var filesInFolder = files.filter { return $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
                     filesInFolder.append(folder)
                     if filesInFolder.count > 0
                     {
-                        playlistDictionary[folder.folder.folderID] = filesInFolder
+                        playlistDictionary[folder.fileDriveIdentifier] = filesInFolder
                     }
                 }
                 completionHandler(playlistDictionary, nil)
