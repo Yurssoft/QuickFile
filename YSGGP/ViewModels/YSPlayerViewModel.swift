@@ -34,6 +34,8 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
                 let item = AVPlayerItem(url: file.localFilePath()!)
                 audioItems.append(item)
             }
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try? AVAudioSession.sharedInstance().setActive(true)
             player = AVQueuePlayer(items: audioItems)
             viewDelegate?.playerDidChange(viewModel: self)
         }
