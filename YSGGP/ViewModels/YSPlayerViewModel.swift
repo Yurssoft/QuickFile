@@ -6,8 +6,10 @@
 //  Copyright © 2016 Yurii Boiko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
+import AVKit
+import MediaPlayer
 
 class YSPlayerViewModel: YSPlayerViewModelProtocol
 {
@@ -20,6 +22,11 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
                 viewDelegate?.errorDidChange(viewModel: self, error: error)
             }
         }
+    }
+    
+    deinit
+    {
+        player.pause()
     }
     
     var viewDelegate: YSPlayerViewModelViewDelegate?
@@ -36,6 +43,10 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
             }
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try? AVAudioSession.sharedInstance().setActive(true)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            let commandCenter = MPRemoteCommandCenter.shared()
+            commandCenter.nextTrackCommand.isEnabled = true
+            //commandCenter.nextTrackCommand.addTarget(self, action:#selector(nextTrackCommandSelector()))
             player = AVQueuePlayer(items: audioItems)
             viewDelegate?.playerDidChange(viewModel: self)
         }
