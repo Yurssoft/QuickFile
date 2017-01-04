@@ -61,6 +61,8 @@
 		50C22DCF1DDC5D890029E399 /* YSFilesMetadataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */; };
 		50C22DD11DDC623D0029E399 /* YSCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */; };
 		50C22DD31DDC675B0029E399 /* YSNetworkResponseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */; };
+		50CBD14D1E1D0680006789EF /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508899F61E12AD4300A10B0D /* LNPopupController.framework */; };
+		50CBD14E1E1D0680006789EF /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 508899F61E12AD4300A10B0D /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50D326C61DC0BFC200F12A93 /* YSDriveFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */; };
 		50D326C81DC0C0EB00F12A93 /* YSDownloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */; };
 		50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C91DC0C18A00F12A93 /* YSDownload.swift */; };
@@ -93,7 +95,28 @@
 			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
 			remoteInfo = YSGGP;
 		};
+		50CBD14F1E1D0680006789EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 508899F11E12AD4300A10B0D /* LNPopupController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 39DB52E41B5823330061C589;
+			remoteInfo = LNPopupController;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		50CBD1511E1D0680006789EF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50CBD14E1E1D0680006789EF /* LNPopupController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +207,7 @@
 			files = (
 				509E55811E12D1BA00C22489 /* LNPopupController.framework in Frameworks */,
 				E790E87B4EA652E8071032EF /* Pods_YSGGP.framework in Frameworks */,
+				50CBD14D1E1D0680006789EF /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,10 +484,12 @@
 				007B97F269BEA38879F14D2A /* [CP] Copy Pods Resources */,
 				502578121DC3513300C6EFFF /* ShellScript */,
 				507016191DEDE56400A7CAEF /* ShellScript */,
+				50CBD1511E1D0680006789EF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				50CBD1501E1D0680006789EF /* PBXTargetDependency */,
 			);
 			name = YSGGP;
 			productName = YSGGP;
@@ -753,6 +779,11 @@
 			isa = PBXTargetDependency;
 			target = 50AB0DB51D8FF242008EDB0D /* YSGGP */;
 			targetProxy = 50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */;
+		};
+		50CBD1501E1D0680006789EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LNPopupController;
+			targetProxy = 50CBD14F1E1D0680006789EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
