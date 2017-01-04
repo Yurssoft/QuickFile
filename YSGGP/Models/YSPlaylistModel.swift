@@ -39,7 +39,7 @@ class YSPlaylistModel : YSPlaylistModelProtocol
                 let filesInRootFolder = files.filter { return $0.folder.folderID == YSFolder.rootFolder().folderID }
                 if filesInRootFolder.count > 0
                 {
-                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: UUID().uuidString, folderName: "Root", folderID: "root")
+                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/yurssoft.root.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "Root", folderID: "root")
                     folders.append(rootFolder)
                 }
                 var playlistDictionary = [String : [YSDriveFileProtocol]]()
