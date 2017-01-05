@@ -43,6 +43,7 @@ class YSCredentialManager
     
     private var isValidAccessToken : Bool
     {
+        //TODO:Remode it and refresh it only after request fails
         let isTokenPresent = !token.accessToken.isEmpty
         let isNotTimedOut = token.accessTokenAvailableTo.isLessThanDate(date: Date())
         return isTokenPresent && !isNotTimedOut

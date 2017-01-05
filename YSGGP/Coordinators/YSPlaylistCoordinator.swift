@@ -43,7 +43,6 @@ extension YSPlaylistCoordinator : YSPlaylistViewModelCoordinatorDelegate
 {
     func playlistViewModelDidSelectFile(_ viewModel: YSPlaylistViewModelProtocol, file: YSDriveFileProtocol)
     {
-        playerCoordinator = YSPlayerCoordinator()
-        playerCoordinator?.start(tabBarController: navigationController.tabBarController!, firstFile: file)
+        YSAppDelegate.appDelegate().playerCoordinator.play(file: file)
     }
 }

@@ -21,9 +21,11 @@ protocol YSPlayerViewModelProtocol
     var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
     var error : YSErrorProtocol { get }
     var isPlaying : Bool { get }
+    var currentFile: YSDriveFileProtocol? { get }
     
-    func playPause()
+    func togglePlayPause()
+    func play(file: YSDriveFileProtocol?)
+    func pause()
     func next()
     func previous()
-    func currentFile() -> YSDriveFileProtocol
 }

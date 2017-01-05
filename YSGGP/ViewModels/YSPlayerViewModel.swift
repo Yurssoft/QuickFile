@@ -11,8 +11,10 @@ import AVFoundation
 import AVKit
 import MediaPlayer
 
-class YSPlayerViewModel: YSPlayerViewModelProtocol
+class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate
 {
+    let commandCenter = MPRemoteCommandCenter.shared()
+    
     var error: YSErrorProtocol = YSError.init()
     {
         didSet
@@ -26,7 +28,7 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
     
     deinit
     {
-        player.pause()
+        player?.pause()
     }
     
     var viewDelegate: YSPlayerViewModelViewDelegate?
@@ -35,19 +37,6 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
     {
         didSet
         {
-            var audioItems: [AVPlayerItem] = []
-            for file in files
-            {
-                let item = AVPlayerItem(url: file.localFilePath()!)
-                audioItems.append(item)
-            }
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try? AVAudioSession.sharedInstance().setActive(true)
-            UIApplication.shared.beginReceivingRemoteControlEvents()
-            let commandCenter = MPRemoteCommandCenter.shared()
-            commandCenter.nextTrackCommand.isEnabled = true
-            //commandCenter.nextTrackCommand.addTarget(self, action:#selector(nextTrackCommandSelector()))
-            player = AVQueuePlayer(items: audioItems)
             viewDelegate?.playerDidChange(viewModel: self)
         }
     }
@@ -56,6 +45,29 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
     {
         didSet
         {
+            commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+                guard let sself = self else { return .commandFailed }
+                sself.play()
+                return .success
+            })
+            
+            commandCenter.pauseCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+                guard let sself = self else { return .commandFailed }
+                sself.pause()
+                return .success
+            })
+            
+            commandCenter.nextTrackCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+                guard let sself = self else { return .commandFailed }
+                sself.next()
+                return .success
+            })
+            
+            commandCenter.previousTrackCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+                guard let sself = self else { return .commandFailed }
+                sself.previous()
+                return .success
+            })
             model?.allFiles()
             { (files, error) in
                 self.files = files
@@ -67,52 +79,155 @@ class YSPlayerViewModel: YSPlayerViewModelProtocol
         }
     }
 
-    var player: AVQueuePlayer = AVQueuePlayer(items: [])
+    var player: AVAudioPlayer?
     
-    var isPlaying : Bool = false
+    var isPlaying : Bool
     {
-        didSet
-        {
-            viewDelegate?.playerDidChange(viewModel: self)
-        }
+        return player?.isPlaying ?? false
     }
     
-    func playPause()
+    var currentFile: YSDriveFileProtocol?
+    
+    var nextFile: YSDriveFileProtocol?
     {
-        player.rate == 0 ? player.play() : player.pause()
-        isPlaying = player.rate != 0
+        guard let currentPlaybackFile = currentFile else { return nil }
+        
+        let nextItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! + 1
+        if nextItemIndex >= files.count { return nil }
+        
+        return files[nextItemIndex]
+    }
+    
+    var previousFile: YSDriveFileProtocol?
+    {
+        guard let currentPlaybackFile = currentFile else { return nil }
+        
+        let previousItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! - 1
+        if previousItemIndex < 0 { return nil }
+        
+        return files[previousItemIndex]
+    }
+    
+    var nowPlayingInfo: [String : AnyObject]?
+    
+    func togglePlayPause()
+    {
+        isPlaying ? self.pause() : self.play()
+    }
+    
+    func play(file: YSDriveFileProtocol?)
+    {
+        if file == nil
+        {
+            currentFile = files.first
+        }
+        guard let fileUrl = file?.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else
+        {
+            endPlayback()
+            return
+        }
+        
+        audioPlayer.delegate = self
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        player = audioPlayer
+        currentFile = file
+        updateNowPlayingInfoElapsedTime()
+    }
+    
+    func play()
+    {
+        guard let player = player else
+        {
+            play(file: currentFile)
+            return
+        }
+        updateNowPlayingInfoElapsedTime()
+        player.play()
+    }
+    
+    func pause()
+    {
+        player?.pause()
+        updateNowPlayingInfoElapsedTime()
     }
     
     func next()
     {
-        player.advanceToNextItem()
+        updateNowPlayingInfoElapsedTime()
     }
     
     func previous()
     {
-        
+        updateNowPlayingInfoElapsedTime()
     }
     
-    func currentFile() -> YSDriveFileProtocol
+    //MARK: - Now Playing Info
+    
+    func updateNowPlayingInfoForCurrentPlaybackItem()
     {
-        if let itemURL = currentItemUrl()
+        guard let player = player, let currentPlaybackItem = currentFile else
         {
-            let filesOfURL = files.filter { $0.localFilePath() == itemURL }
-            return filesOfURL.first!
+            configureNowPlayingInfo(nil)
+            return
         }
-        return YSDriveFile()
+        
+        var nowPlayingInfo = [MPMediaItemPropertyTitle: currentPlaybackItem.fileName,
+                              MPMediaItemPropertyAlbumTitle: currentPlaybackItem.folder.folderName,
+                              MPMediaItemPropertyArtist: "Artist?",
+                              MPMediaItemPropertyPlaybackDuration: player.duration,
+                              MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float)] as [String : Any]
+        
+        if let image = UIImage(named: "song")
+        {
+            let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+                return image
+            })
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+        }
+        
+        self.configureNowPlayingInfo(nowPlayingInfo as [String : AnyObject]?)
+        
+        self.updateNowPlayingInfoElapsedTime()
     }
     
-    func currentItemUrl() -> URL? {
-        let asset = player.currentItem?.asset
-        if asset == nil
+    func updateNowPlayingInfoElapsedTime()
+    {
+        guard let player = player, var nowPlayingInfo = nowPlayingInfo else { return }
+        
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: player.currentTime as Double)
+        
+        configureNowPlayingInfo(nowPlayingInfo)
+    }
+    
+    func configureNowPlayingInfo(_ nowPlayingInfo: [String: AnyObject]?)
+    {
+        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+        self.nowPlayingInfo = nowPlayingInfo
+    }
+    
+    //MARK: - AVAudioPlayerDelegate
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
+    {
+        nextFile == nil ? endPlayback() : next()
+    }
+    
+    func endPlayback()
+    {
+        currentFile = nil
+    }
+    
+    func audioPlayerBeginInterruption(_ player: AVAudioPlayer)
+    {
+    }
+    
+    func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int)
+    {
+        if AVAudioSessionInterruptionOptions(rawValue: UInt(flags)) == .shouldResume
         {
-            return nil
+            play()
         }
-        if let urlAsset = asset as? AVURLAsset
-        {
-            return urlAsset.url
-        }
-        return nil
     }
 }

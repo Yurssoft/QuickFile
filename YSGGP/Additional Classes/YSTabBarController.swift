@@ -28,4 +28,10 @@ class YSTabBarController: UITabBarController
         YSAppDelegate.appDelegate().driveTopCoordinator = coordinator
         coordinator.start(driveTopVC: driveTopViewController!)
     }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        YSAppDelegate.appDelegate().playerCoordinator.start(tabBarController: self)
+    }
 }
