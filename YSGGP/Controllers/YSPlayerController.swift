@@ -15,11 +15,13 @@ class YSPlayerController: UIViewController {
 
 	@IBOutlet weak var songNameLabel: MarqueeLabel!
 	@IBOutlet weak var albumNameLabel: UILabel!
-	@IBOutlet weak var progressView: UIProgressView!
-    var player: AVQueuePlayer = AVQueuePlayer(items: [])
 	@IBOutlet weak var albumArtImageView: UIImageView!
     @IBOutlet weak var payPauseButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var songSeekSlider: UISlider!
+    @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var elapsedTimeLabel: UILabel!
+    @IBOutlet weak var remainingTimeLabel: UILabel!
 	
 	required init?(coder aDecoder: NSCoder)
     {
@@ -65,28 +67,58 @@ class YSPlayerController: UIViewController {
         self.popupItem.leftBarButtonItems = [ pause ]
         self.popupItem.rightBarButtonItems = [ next ]
     }
+    
+    func updateTime()
+    {
+        updateTimeLabels()
+        updateSlider()
+    }
+    
+    func updateTimeLabels()
+    {
+        self.elapsedTimeLabel.text = self.humanReadableTimeInterval(viewModel?.fileCurrentTime ?? 0)
+        self.remainingTimeLabel.text = "-" + self.humanReadableTimeInterval((viewModel?.fileDuration ?? 0) - (viewModel?.fileCurrentTime ?? 0))
+    }
+    
+    func updateSlider()
+    {
+        songSeekSlider.minimumValue = 0
+        songSeekSlider.maximumValue = Float(viewModel?.fileDuration ?? 0)
+    }
+    
+    func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String
+    {
+        let timeInt = Int(round(timeInterval))
+        let (hh, mm, ss) = (timeInt / 3600, (timeInt % 3600) / 60, (timeInt % 3600) % 60)
+        
+        let hhString: String? = hh > 0 ? String(hh) : nil
+        let mmString = (hh > 0 && mm < 10 ? "0" : "") + String(mm)
+        let ssString = (ss < 10 ? "0" : "") + String(ss)
+        
+        return (hhString != nil ? (hhString! + ":") : "") + mmString + ":" + ssString
+    }
 }
 
 extension YSPlayerController : YSPlayerViewModelViewDelegate
 {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     {
-//        DispatchQueue.main.async
-//            {
-//                self.updateBarButtons()
-//                
-//                let file = viewModel.currentFile()
-//                self.popupItem.title = file.fileName
-//                self.popupItem.subtitle = file.folder.folderName
-//                if self.isViewLoaded
-//                {
-//                    self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
-//                    let file = viewModel.currentFile()
-//                    self.songNameLabel.text = file.fileName
-//                    self.albumNameLabel.text = file.folder.folderName
-//                    self.albumArtImageView.image = UIImage()
-//                }
-//        }
+        DispatchQueue.main.async
+        {
+            self.updateBarButtons()
+            
+            guard let file = viewModel.currentFile else { return }
+            self.popupItem.title = file.fileName
+            self.popupItem.subtitle = file.folder.folderName
+            if self.isViewLoaded
+            {
+                self.updateTime()
+                self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
+                self.songNameLabel.text = file.fileName
+                self.albumNameLabel.text = file.folder.folderName
+                self.albumArtImageView.image = UIImage()
+            }
+        }
     }
     
     func filesDidChange(viewModel: YSPlayerViewModelProtocol)

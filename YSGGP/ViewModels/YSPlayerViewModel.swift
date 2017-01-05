@@ -110,6 +110,16 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var nowPlayingInfo: [String : AnyObject]?
     
+    var fileDuration: TimeInterval
+    {
+        return player?.duration ?? 0
+    }
+    
+    var fileCurrentTime: TimeInterval
+    {
+        return player?.currentTime ?? 0
+    }
+    
     func togglePlayPause()
     {
         isPlaying ? self.pause() : self.play()
@@ -132,7 +142,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         audioPlayer.play()
         player = audioPlayer
         currentFile = file
-        updateNowPlayingInfoElapsedTime()
+        updateNowPlayingInfoForCurrentPlaybackItem()
+        viewDelegate?.playerDidChange(viewModel: self)
     }
     
     func play()
@@ -144,12 +155,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
         updateNowPlayingInfoElapsedTime()
         player.play()
+        viewDelegate?.playerDidChange(viewModel: self)
     }
     
     func pause()
     {
         player?.pause()
         updateNowPlayingInfoElapsedTime()
+        viewDelegate?.playerDidChange(viewModel: self)
     }
     
     func next()
@@ -174,7 +187,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         
         var nowPlayingInfo = [MPMediaItemPropertyTitle: currentPlaybackItem.fileName,
                               MPMediaItemPropertyAlbumTitle: currentPlaybackItem.folder.folderName,
-                              MPMediaItemPropertyArtist: "Artist?",
                               MPMediaItemPropertyPlaybackDuration: player.duration,
                               MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float)] as [String : Any]
         
@@ -217,6 +229,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     func endPlayback()
     {
         currentFile = nil
+        updateNowPlayingInfoForCurrentPlaybackItem()
     }
     
     func audioPlayerBeginInterruption(_ player: AVAudioPlayer)

@@ -15,7 +15,7 @@ class YSFolder : NSObject
     
     static func rootFolder() -> YSFolder
     {
-        var folder = YSFolder()
+        let folder = YSFolder()
         folder.folderID = "root"
         folder.folderName = "Root"
         return folder

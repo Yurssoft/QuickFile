@@ -650,20 +650,20 @@
 		};
 		502578121DC3513300C6EFFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:5bf14ac216ee97dc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/YSGGP/Additional Classes/ServiceAccount.json\"";
 		};
 		507016191DEDE56400A7CAEF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

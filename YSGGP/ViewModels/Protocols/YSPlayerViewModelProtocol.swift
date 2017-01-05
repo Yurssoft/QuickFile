@@ -22,6 +22,8 @@ protocol YSPlayerViewModelProtocol
     var error : YSErrorProtocol { get }
     var isPlaying : Bool { get }
     var currentFile: YSDriveFileProtocol? { get }
+    var fileDuration: TimeInterval { get }
+    var fileCurrentTime: TimeInterval { get }
     
     func togglePlayPause()
     func play(file: YSDriveFileProtocol?)
