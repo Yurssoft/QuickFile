@@ -79,6 +79,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             })
             model?.allFiles()
             { (files, error) in
+                self.currentFile = files.first
                 self.files = files
                 if let error = error
                 {
@@ -176,6 +177,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func next()
     {
+        play(file: nextFile)
         updateNowPlayingInfoElapsedTime()
     }
     
@@ -251,5 +253,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         {
             play()
         }
+    }
+    
+    func seek(to time:Float)
+    {
+        player?.currentTime = Double(time)
+        viewDelegate?.timeDidChange(viewModel: self)
     }
 }

@@ -41,6 +41,11 @@ class YSPlayerController: UIViewController {
         }
     }
     
+    @IBAction func songSeekSliderValueChanged(_ sender: UISlider)
+    {
+        viewModel?.seek(to: sender.value)
+    }
+    
     @IBAction func nextTapped(_ sender: Any)
     {
         viewModel?.next()
@@ -91,6 +96,7 @@ class YSPlayerController: UIViewController {
         }
         songSeekSlider.minimumValue = 0
         songSeekSlider.maximumValue = Float(viewModel?.fileDuration ?? 0)
+        songSeekSlider.value = Float(viewModel?.fileCurrentTime ?? 0)
     }
     
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String
