@@ -54,6 +54,9 @@ class YSPlayerController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        updateTime()
+        updateBarButtons()
+        updateSlider()
     }
     
     func updateBarButtons()
@@ -82,6 +85,10 @@ class YSPlayerController: UIViewController {
     
     func updateSlider()
     {
+        if songSeekSlider.isTracking
+        {
+            return
+        }
         songSeekSlider.minimumValue = 0
         songSeekSlider.maximumValue = Float(viewModel?.fileDuration ?? 0)
     }
@@ -121,9 +128,15 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
         }
     }
     
-    func filesDidChange(viewModel: YSPlayerViewModelProtocol)
+    func timeDidChange(viewModel: YSPlayerViewModelProtocol)
     {
-        
+        DispatchQueue.main.async
+        {
+            if self.isViewLoaded
+            {
+                self.updateTime()
+            }
+        }
     }
     
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)

@@ -25,6 +25,7 @@
 		501F14611DF96F4B009FB868 /* YSHeaderForSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14601DF96F4B009FB868 /* YSHeaderForSection.swift */; };
 		502578141DC3521D00C6EFFF /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 502578131DC3521D00C6EFFF /* ServiceAccount.json */; };
 		503189CA1DDF3DA2001F51B8 /* YSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503189C91DDF3DA2001F51B8 /* YSDictionaryExtension.swift */; };
+		503AF1691E1FDBF9000E5493 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */; };
 		503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */; };
 		503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC17B1DB79F1C000D5BA1 /* YSError.swift */; };
 		503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */; };
@@ -137,6 +138,7 @@
 		501F14601DF96F4B009FB868 /* YSHeaderForSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSHeaderForSection.swift; sourceTree = "<group>"; };
 		502578131DC3521D00C6EFFF /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		503189C91DDF3DA2001F51B8 /* YSDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDictionaryExtension.swift; sourceTree = "<group>"; };
+		503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
 		503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSErrorProtocol.swift; sourceTree = "<group>"; };
 		503BC17B1DB79F1C000D5BA1 /* YSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSError.swift; sourceTree = "<group>"; };
 		503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */,
 				5000501A1DBA7A19008D752E /* YSTabBarController.swift */,
 				50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */,
+				503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				509E558F1E1BDDB300C22489 /* YSFolder.swift in Sources */,
 				50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */,
 				509E55831E13F4C300C22489 /* YSPlayerCoordinator.swift in Sources */,
+				503AF1691E1FDBF9000E5493 /* SwiftyTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

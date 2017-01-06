@@ -15,6 +15,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
 {
     let commandCenter = MPRemoteCommandCenter.shared()
     
+    var timer : Timer?
+    
     var error: YSErrorProtocol = YSError.init()
     {
         didSet
@@ -29,6 +31,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     deinit
     {
         player?.pause()
+        timer?.invalidate()
     }
     
     var viewDelegate: YSPlayerViewModelViewDelegate?
@@ -45,6 +48,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     {
         didSet
         {
+            timer = Timer.every(0.1.seconds)
+            { [weak self] in
+                guard let sself = self else { return }
+                sself.viewDelegate?.timeDidChange(viewModel: sself)
+            }
+            
             commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
                 sself.play()

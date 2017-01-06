@@ -11,7 +11,7 @@ import Foundation
 protocol YSPlayerViewModelViewDelegate: class
 {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
-    func filesDidChange(viewModel: YSPlayerViewModelProtocol)
+    func timeDidChange(viewModel: YSPlayerViewModelProtocol)
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
 }
 
