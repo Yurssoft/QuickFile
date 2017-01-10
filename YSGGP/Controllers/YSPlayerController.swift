@@ -45,8 +45,7 @@ class YSPlayerController: UIViewController {
     {
         viewModel?.seek(to: sender.value)
     }
-    
-    @IBAction func nextTapped(_ sender: Any)
+    @IBAction func nextTapped(_ sender: UIButton)
     {
         viewModel?.next()
     }
@@ -110,6 +109,14 @@ class YSPlayerController: UIViewController {
         
         return (hhString != nil ? (hhString! + ":") : "") + mmString + ":" + ssString
     }
+    
+    func updatePopubButtons()
+    {
+        updateBarButtons()
+        guard let file = viewModel?.currentFile else { return }
+        self.popupItem.title = file.fileName
+        self.popupItem.subtitle = file.folder.folderName
+    }
 }
 
 extension YSPlayerController : YSPlayerViewModelViewDelegate
@@ -118,12 +125,8 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
     {
         DispatchQueue.main.async
         {
-            self.updateBarButtons()
-            
-            guard let file = viewModel.currentFile else { return }
-            self.popupItem.title = file.fileName
-            self.popupItem.subtitle = file.folder.folderName
-            if self.isViewLoaded
+            self.updatePopubButtons()
+            if self.isViewLoaded, let file = viewModel.currentFile
             {
                 self.updateTime()
                 self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)

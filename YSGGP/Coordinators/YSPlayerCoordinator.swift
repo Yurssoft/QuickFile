@@ -16,26 +16,39 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
 {
     func start() { }
     
-    private var viewModel = YSPlayerViewModel()
+    fileprivate var viewModel = YSPlayerViewModel()
+    fileprivate var tabBarController: UITabBarController?
+    fileprivate var popupContentController: YSPlayerController?
     
     func start(tabBarController: UITabBarController)
     {
-        let popupContentController = tabBarController.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as! YSPlayerController
+        self.tabBarController = tabBarController
         let model = YSPlayerModel()
+        viewModel.coordinatorDelegate = self
         viewModel.model = model
-        popupContentController.viewModel = viewModel
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        try! audioSession.setActive(true)
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        
-        tabBarController.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
-        tabBarController.popupBar?.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
     }
     
     func play(file: YSDriveFileProtocol)
     {
         viewModel.play(file: file)
+    }
+}
+
+extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
+{
+    func showPlayer()
+    {
+        DispatchQueue.main.async
+        {
+            let audioSession = AVAudioSession.sharedInstance()
+            try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try! audioSession.setActive(true)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            
+            self.popupContentController = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as? YSPlayerController
+            self.popupContentController?.viewModel = self.viewModel
+            self.tabBarController?.presentPopupBar(withContentViewController: self.popupContentController!, animated: true, completion: nil)
+            self.tabBarController?.popupBar?.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
+        }
     }
 }

@@ -15,10 +15,16 @@ protocol YSPlayerViewModelViewDelegate: class
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
 }
 
+protocol YSPlayerViewModelCoordinatorDelegate: class
+{
+    func showPlayer()
+}
+
 protocol YSPlayerViewModelProtocol
 {
     var model: YSPlayerModelProtocol? { get set }
     var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
+    var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }
     var error : YSErrorProtocol { get }
     var isPlaying : Bool { get }
     var currentFile: YSDriveFileProtocol? { get }

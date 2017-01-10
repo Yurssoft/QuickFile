@@ -34,12 +34,21 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         timer?.invalidate()
     }
     
-    var viewDelegate: YSPlayerViewModelViewDelegate?
+    weak var viewDelegate: YSPlayerViewModelViewDelegate?
+    weak var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate?
     
     var files : [YSDriveFileProtocol] = []
     {
         didSet
         {
+            if currentFile == nil
+            {
+                currentFile = files.first
+            }
+            if files.count > 0
+            {
+                coordinatorDelegate?.showPlayer()
+            }
             viewDelegate?.playerDidChange(viewModel: self)
         }
     }
@@ -48,7 +57,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     {
         didSet
         {
-            timer = Timer.every(0.1.seconds)
+            timer = Timer.every(1.seconds)
             { [weak self] in
                 guard let sself = self else { return }
                 sself.viewDelegate?.timeDidChange(viewModel: sself)
@@ -178,11 +187,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     func next()
     {
         play(file: nextFile)
+        viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoElapsedTime()
     }
     
     func previous()
     {
+        play(file: previousFile)
+        viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoElapsedTime()
     }
     
