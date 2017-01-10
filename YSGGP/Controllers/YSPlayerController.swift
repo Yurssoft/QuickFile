@@ -58,9 +58,7 @@ class YSPlayerController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        updateTime()
-        updateBarButtons()
-        updateSlider()
+        playerDidChange(viewModel: viewModel!)
     }
     
     func updateBarButtons()

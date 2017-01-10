@@ -61,6 +61,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             { [weak self] in
                 guard let sself = self else { return }
                 sself.viewDelegate?.timeDidChange(viewModel: sself)
+                sself.updateNowPlayingInfoElapsedTime()
             }
             
             commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
@@ -109,7 +110,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var nextFile: YSDriveFileProtocol?
     {
-        guard let currentPlaybackFile = currentFile else { return nil }
+        guard let currentPlaybackFile = currentFile, files.count > 0 else { return nil }
         
         let nextItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! + 1
         if nextItemIndex >= files.count { return nil }
@@ -119,7 +120,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var previousFile: YSDriveFileProtocol?
     {
-        guard let currentPlaybackFile = currentFile else { return nil }
+        guard let currentPlaybackFile = currentFile, files.count > 0 else { return nil }
         
         let previousItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! - 1
         if previousItemIndex < 0 { return nil }
@@ -146,23 +147,23 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func play(file: YSDriveFileProtocol?)
     {
+        var file = file
         if file == nil
         {
-            currentFile = files.first
+            file = files.first
         }
         guard let fileUrl = file?.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else
         {
             endPlayback()
             return
         }
+        coordinatorDelegate?.showPlayer()
         
         audioPlayer.delegate = self
         audioPlayer.prepareToPlay()
-        audioPlayer.play()
         player = audioPlayer
         currentFile = file
-        updateNowPlayingInfoForCurrentPlaybackItem()
-        viewDelegate?.playerDidChange(viewModel: self)
+        play()
     }
     
     func play()
@@ -172,30 +173,36 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             play(file: currentFile)
             return
         }
-        updateNowPlayingInfoElapsedTime()
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
+        updateNowPlayingInfoForCurrentPlaybackItem()
     }
     
     func pause()
     {
         player?.pause()
-        updateNowPlayingInfoElapsedTime()
         viewDelegate?.playerDidChange(viewModel: self)
+        updateNowPlayingInfoForCurrentPlaybackItem()
     }
     
     func next()
     {
+        guard let nextFile = nextFile  else {
+            return
+        }
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
-        updateNowPlayingInfoElapsedTime()
+        updateNowPlayingInfoForCurrentPlaybackItem()
     }
     
     func previous()
     {
+        guard let previousFile = previousFile  else {
+            return
+        }
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
-        updateNowPlayingInfoElapsedTime()
+        updateNowPlayingInfoForCurrentPlaybackItem()
     }
     
     //MARK: - Now Playing Info
@@ -204,14 +211,16 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     {
         guard let player = player, let currentPlaybackItem = currentFile else
         {
-            configureNowPlayingInfo(nil)
+            let emptyPlayingInfo = [:] as [String : AnyObject]
+            set(emptyPlayingInfo)
             return
         }
         
         var nowPlayingInfo = [MPMediaItemPropertyTitle: currentPlaybackItem.fileName,
                               MPMediaItemPropertyAlbumTitle: currentPlaybackItem.folder.folderName,
                               MPMediaItemPropertyPlaybackDuration: player.duration,
-                              MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float)] as [String : Any]
+                              MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float),
+                              MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: player.currentTime as Double) ] as [String : Any]
         
         if let image = UIImage(named: "song")
         {
@@ -221,9 +230,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
         }
         
-        self.configureNowPlayingInfo(nowPlayingInfo as [String : AnyObject]?)
-        
-        self.updateNowPlayingInfoElapsedTime()
+        set(nowPlayingInfo as [String : AnyObject]?)
     }
     
     func updateNowPlayingInfoElapsedTime()
@@ -232,10 +239,10 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: player.currentTime as Double)
         
-        configureNowPlayingInfo(nowPlayingInfo)
+        set(nowPlayingInfo)
     }
     
-    func configureNowPlayingInfo(_ nowPlayingInfo: [String: AnyObject]?)
+    func set(_ nowPlayingInfo: [String: AnyObject]?)
     {
         let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo

@@ -30,6 +30,8 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
     
     func play(file: YSDriveFileProtocol)
     {
+        let model = YSPlayerModel()
+        viewModel.model = model
         viewModel.play(file: file)
     }
 }
@@ -40,6 +42,10 @@ extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
     {
         DispatchQueue.main.async
         {
+            if self.tabBarController?.popupPresentationState != .hidden
+            {
+                return
+            }
             let audioSession = AVAudioSession.sharedInstance()
             try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
             try! audioSession.setActive(true)
