@@ -10,6 +10,7 @@ import Foundation
 
 class YSPlayerModel : YSPlayerModelProtocol
 {
+    //TODO: make the same sorting as in playlist
     func allFiles(_ completionHandler: @escaping YSPlayerCompletionHandler)
     {
         YSDatabaseManager.allFiles
