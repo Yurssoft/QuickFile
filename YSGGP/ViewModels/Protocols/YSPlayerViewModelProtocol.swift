@@ -22,7 +22,7 @@ protocol YSPlayerViewModelCoordinatorDelegate: class
 
 protocol YSPlayerViewModelProtocol
 {
-    var model: YSPlayerModelProtocol? { get set }
+    var model: YSPlaylistAndPlayerModelProtocol? { get set }
     var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
     var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }
     var error : YSErrorProtocol { get }

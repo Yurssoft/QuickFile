@@ -10,7 +10,7 @@ import Foundation
 
 class YSPlaylistViewModel : YSPlaylistViewModelProtocol
 {
-    var model: YSPlaylistModelProtocol?
+    var model: YSPlaylistAndPlayerModelProtocol?
     {
         didSet
         {
@@ -20,13 +20,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         }
     }
     
-    fileprivate var playlist: [String : [YSDriveFileProtocol]] = [:]
-    {
-        didSet
-        {
-            viewDelegate?.filesDidChange(viewModel: self)
-        }
-    }
+    fileprivate var files: [YSDriveFileProtocol] = [YSDriveFileProtocol]()
     
     var viewDelegate: YSPlaylistViewModelViewDelegate?
     
@@ -34,19 +28,18 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func numberOfFiles(in folder: Int) -> Int
     {
-        let playlistFoldersKeys = [String](playlist.keys)
-        let folderKey = playlistFoldersKeys[folder]
-        if let filesInFolder = playlist[folderKey]
-        {
-            return filesInFolder.count - 1
-        }
-        return 0
+        let folders = files.filter{ !$0.isAudio }
+        guard folders.count > folder else { return 0 }
+        let folderFile = folders[folder]
+        let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+        return filesInFolder.count
     }
     
     var numberOfFolders: Int
     {
-        let playlistFoldersKeys = [String](playlist.keys)
-        return playlistFoldersKeys.count
+        let folders = files.filter{ !$0.isAudio }
+        //TODO: do not show folder if no files in there
+        return folders.count
     }
     
     var error : YSErrorProtocol = YSError.init()
@@ -62,26 +55,21 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func file(at index: Int, folderIndex: Int) -> YSDriveFileProtocol?
     {
-        let playlistFoldersKeys = [String](playlist.keys)
-        let folderKey = playlistFoldersKeys[folderIndex]
-        if var filesInFolder = playlist[folderKey]
-        {
-            filesInFolder = filesInFolder.filter({ return $0.isAudio })
-            return filesInFolder[index]
-        }
-        return nil
+        let folders = files.filter{ !$0.isAudio }
+        guard folders.count > folderIndex else { return nil }
+        let folderFile = folders[folderIndex]
+        let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+        guard filesInFolder.count > index else { return nil }
+        let file = filesInFolder[index]
+        return file
     }
     
     func folder(at index: Int) -> YSDriveFileProtocol?
     {
-        let playlistFoldersKeys = [String](playlist.keys)
-        let folderKey = playlistFoldersKeys[index]
-        if var filesInFolder = playlist[folderKey]
-        {
-            filesInFolder = filesInFolder.filter({ return !$0.isAudio })
-            return filesInFolder.first ?? nil
-        }
-        return nil
+        let folders = files.filter{ !$0.isAudio }
+        guard folders.count > index else { return nil }
+        let folderFile = folders[index]
+        return folderFile
     }
     
     func useFile(at folder: Int, file: Int)
@@ -97,15 +85,18 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func getFiles(completion: @escaping CompletionHandler)
     {
-        playlist = [:]
+        files = []
         model?.allFiles()
-            { (playlist, error) in
-                self.playlist = playlist
+            { (files, error) in
+                self.files = files
                 if let error = error
                 {
                     self.error = error
                 }
-                completion(error)
+                DispatchQueue.main.async
+                {
+                    completion(error)
+                }
         }
     }
 }

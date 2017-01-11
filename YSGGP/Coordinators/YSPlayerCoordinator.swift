@@ -14,6 +14,7 @@ import MediaPlayer
 
 class YSPlayerCoordinator: YSCoordinatorProtocol
 {
+    //TODO: Consider using Carthage or git submodule for LNPopupController
     func start() { }
     
     fileprivate var viewModel = YSPlayerViewModel()
@@ -23,14 +24,14 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
     func start(tabBarController: UITabBarController)
     {
         self.tabBarController = tabBarController
-        let model = YSPlayerModel()
+        let model = YSPlaylistAndPlayerModel()
         viewModel.coordinatorDelegate = self
         viewModel.model = model
     }
     
     func play(file: YSDriveFileProtocol)
     {
-        let model = YSPlayerModel()
+        let model = YSPlaylistAndPlayerModel()
         viewModel.model = model
         viewModel.play(file: file)
     }

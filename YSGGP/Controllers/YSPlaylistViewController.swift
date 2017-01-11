@@ -43,6 +43,7 @@ class YSPlaylistViewController: UIViewController
         
         setupCoordinator()
         configurePullToRefresh()
+        getFiles()
     }
     
     func setupCoordinator()
@@ -62,8 +63,9 @@ class YSPlaylistViewController: UIViewController
     func getFiles()
     {
         viewModel?.getFiles(completion:
-        { _ in
-            self.tableView.mj_header.endRefreshing()
+            { [weak self] _ in
+                        self?.tableView.mj_header.endRefreshing()
+                        self?.tableView.reloadData()
         })
     }
 }

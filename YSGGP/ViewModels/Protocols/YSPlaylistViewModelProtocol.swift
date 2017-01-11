@@ -21,7 +21,7 @@ protocol YSPlaylistViewModelCoordinatorDelegate: class
 
 protocol YSPlaylistViewModelProtocol
 {
-    var model: YSPlaylistModelProtocol? { get set }
+    var model: YSPlaylistAndPlayerModelProtocol? { get set }
     var viewDelegate: YSPlaylistViewModelViewDelegate? { get set }
     var coordinatorDelegate: YSPlaylistViewModelCoordinatorDelegate? { get set}
     var numberOfFolders: Int { get }

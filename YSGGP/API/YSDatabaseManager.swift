@@ -15,6 +15,7 @@ typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -
 
 class YSDatabaseManager
 {
+    //TODO: add root folder if not created
     private static let completionBlockDelay = 0.3
     
     class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping DriveCompletionHandler)

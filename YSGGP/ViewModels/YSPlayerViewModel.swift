@@ -53,7 +53,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
     }
     
-    var model: YSPlayerModelProtocol?
+    var model: YSPlaylistAndPlayerModelProtocol?
     {
         didSet
         {
