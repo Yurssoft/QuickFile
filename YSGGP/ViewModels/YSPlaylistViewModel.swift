@@ -28,18 +28,34 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func numberOfFiles(in folder: Int) -> Int
     {
-        let folders = files.filter{ !$0.isAudio }
-        guard folders.count > folder else { return 0 }
-        let folderFile = folders[folder]
+        let allFolders = folders()
+        guard allFolders.count > folder else { return 0 }
+        let folderFile = allFolders[folder]
         let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
         return filesInFolder.count
     }
     
     var numberOfFolders: Int
     {
-        let folders = files.filter{ !$0.isAudio }
-        //TODO: do not show folder if no files in there
-        return folders.count
+        return folders().count
+    }
+    
+    func folders() -> [YSDriveFileProtocol]
+    {
+        let folders = files.filter()
+            {
+                let folderFile = $0
+                if !folderFile.isAudio
+                {
+                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+                    return filesInFolder.count > 0
+                }
+                else
+                {
+                    return false
+                }
+        }
+        return folders
     }
     
     var error : YSErrorProtocol = YSError.init()
@@ -55,9 +71,9 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func file(at index: Int, folderIndex: Int) -> YSDriveFileProtocol?
     {
-        let folders = files.filter{ !$0.isAudio }
-        guard folders.count > folderIndex else { return nil }
-        let folderFile = folders[folderIndex]
+        let allFolders = folders()
+        guard allFolders.count > folderIndex else { return nil }
+        let folderFile = allFolders[folderIndex]
         let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
         guard filesInFolder.count > index else { return nil }
         let file = filesInFolder[index]
@@ -66,9 +82,9 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func folder(at index: Int) -> YSDriveFileProtocol?
     {
-        let folders = files.filter{ !$0.isAudio }
-        guard folders.count > index else { return nil }
-        let folderFile = folders[index]
+        let allFolders = folders()
+        guard allFolders.count > index else { return nil }
+        let folderFile = allFolders[index]
         return folderFile
     }
     
