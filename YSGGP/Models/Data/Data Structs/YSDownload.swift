@@ -11,8 +11,6 @@ import Foundation
 struct YSDownload : YSDownloadProtocol
 {
     var file : YSDriveFileProtocol
-    var progressHandler : DownloadFileProgressHandler
-    var completionHandler : DownloadCompletionHandler
     
     var downloadTask : Foundation.NSURLSessionDownloadTask?
     var resumeData : Data?
@@ -21,10 +19,8 @@ struct YSDownload : YSDownloadProtocol
     
     internal var downloadStatus : YSDownloadStatus = .pending
     
-    init(file : YSDriveFileProtocol, progressHandler : @escaping DownloadFileProgressHandler, completionHandler : @escaping DownloadCompletionHandler)
+    init(file : YSDriveFileProtocol)
     {
         self.file = file
-        self.progressHandler = progressHandler
-        self.completionHandler = completionHandler
     }
 }

@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias DownloadFileProgressHandler = (_ download : YSDownloadProtocol) -> Swift.Void
-typealias DownloadCompletionHandler = (_ download : YSDownloadProtocol,_ error: YSErrorProtocol?) -> Swift.Void
 typealias DriveCompletionHandler = ([YSDriveFileProtocol], YSErrorProtocol?) -> Swift.Void
 
 protocol YSDriveModelProtocol
@@ -18,7 +16,7 @@ protocol YSDriveModelProtocol
     
     func getFiles(_ completionHandler: @escaping DriveCompletionHandler)
     
-    func download(_ file : YSDriveFileProtocol, _ progressHandler: @escaping DownloadFileProgressHandler, completionHandler : @escaping DownloadCompletionHandler)
+    func download(_ file : YSDriveFileProtocol)
     
     func stopDownload(_ file : YSDriveFileProtocol)
     

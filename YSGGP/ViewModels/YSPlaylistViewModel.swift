@@ -21,6 +21,14 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     }
     
     fileprivate var files: [YSDriveFileProtocol] = [YSDriveFileProtocol]()
+    {
+        didSet
+        {
+            folders = selectFolders()
+        }
+    }
+    
+    var folders: [YSDriveFileProtocol] = [YSDriveFileProtocol]()
     
     var viewDelegate: YSPlaylistViewModelViewDelegate?
     
@@ -28,19 +36,18 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func numberOfFiles(in folder: Int) -> Int
     {
-        let allFolders = folders()
-        guard allFolders.count > folder else { return 0 }
-        let folderFile = allFolders[folder]
+        guard folders.count > folder else { return 0 }
+        let folderFile = folders[folder]
         let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
         return filesInFolder.count
     }
     
     var numberOfFolders: Int
     {
-        return folders().count
+        return folders.count
     }
     
-    func folders() -> [YSDriveFileProtocol]
+    func selectFolders() -> [YSDriveFileProtocol]
     {
         let folders = files.filter()
             {
@@ -71,9 +78,8 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func file(at index: Int, folderIndex: Int) -> YSDriveFileProtocol?
     {
-        let allFolders = folders()
-        guard allFolders.count > folderIndex else { return nil }
-        let folderFile = allFolders[folderIndex]
+        guard folders.count > folderIndex else { return nil }
+        let folderFile = folders[folderIndex]
         let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
         guard filesInFolder.count > index else { return nil }
         let file = filesInFolder[index]
@@ -82,9 +88,8 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     
     func folder(at index: Int) -> YSDriveFileProtocol?
     {
-        let allFolders = folders()
-        guard allFolders.count > index else { return nil }
-        let folderFile = allFolders[index]
+        guard folders.count > index else { return nil }
+        let folderFile = folders[index]
         return folderFile
     }
     

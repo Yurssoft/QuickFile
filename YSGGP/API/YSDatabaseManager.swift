@@ -48,7 +48,6 @@ class YSDatabaseManager
                                                   folderName: folder.folderName,
                                                   folderID: folder.folderID)
                     
-                    ysFile.isFileOnDisk = ysFile.localFileExists()
                     ysfiles.append(ysFile)
                     dbFilesForFolderToBeDeleted[ysFile.fileDriveIdentifier] = nil
                     dbFilesDict[ysFile.fileDriveIdentifier] = ysFile.toDictionary()
@@ -91,7 +90,6 @@ class YSDatabaseManager
                         var ysFile = dbFile.toYSFile()
                         if ysFile.folder.folderID == folder.folderID
                         {
-                            ysFile.isFileOnDisk = ysFile.localFileExists()
                             files.append(ysFile)
                         }
                     }
@@ -147,8 +145,7 @@ class YSDatabaseManager
                     {
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
-                        var ysFile = dbFile.toYSFile()
-                        ysFile.isFileOnDisk = ysFile.localFileExists()
+                        let ysFile = dbFile.toYSFile()
                         files.append(ysFile)
                     }
                     sortedFiles = sort(ysFiles: files)

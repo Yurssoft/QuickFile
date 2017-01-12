@@ -11,12 +11,18 @@ import SwiftMessages
 import Firebase
 import ReachabilitySwift
 
+protocol YSDriveFileDownloaderDelegate: class
+{
+    func downloadDidChanged(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+}
+
 class YSDriveFileDownloader : NSObject
 {
     fileprivate var downloads : [String : YSDownloadProtocol] = [String : YSDownloadProtocol]()
     fileprivate var session : Foundation.URLSession
     fileprivate var sessionQueue : OperationQueue
     fileprivate var reachability : Reachability = Reachability()!
+    weak var downloadsDelegate: YSDriveFileDownloaderDelegate?
     
     required override init()
     {
@@ -66,7 +72,7 @@ class YSDriveFileDownloader : NSObject
                 downloadTask.resume()
                 download.downloadStatus = .downloading(progress: 0.0)
                 self.downloads[url] = download
-                download.progressHandler(download)
+                self.downloadsDelegate?.downloadDidChanged(download, nil)
             }
         }
     }
@@ -76,27 +82,47 @@ class YSDriveFileDownloader : NSObject
         return downloads[file.fileUrl()]
     }
     
-    func download(file: YSDriveFileProtocol, _ progressHandler: DownloadFileProgressHandler? = nil, completionHandler : DownloadCompletionHandler? = nil)
+    func download(file: YSDriveFileProtocol)
     {
-        if progressHandler == nil || completionHandler == nil || !file.isAudio || file.localFileExists() || downloads[file.fileUrl()] != nil
+        if !file.isAudio
+        {
+            downloadFolder(file: file)
+            return
+        }
+        if file.localFileExists() || downloads[file.fileUrl()] != nil //|| !file.isAudio
         {
             print("ERROR DOWNLOAD FILE")
             return
         }
-        var download = YSDownload(file: file, progressHandler: progressHandler!, completionHandler: completionHandler!)
+        var download = YSDownload(file: file)
         download.downloadStatus = .pending
         downloads[file.fileUrl()] = download
-        download.progressHandler(download)
+        downloadsDelegate?.downloadDidChanged(download, nil)
         downloadNextFile()
     }
     
+    func downloadFolder(file: YSDriveFileProtocol)
+    {
+        let folder = YSFolder()
+        folder.folderID = file.fileDriveIdentifier
+        folder.folderName = file.fileName
+        YSDatabaseManager.files(for: folder, YSError()) { (filesToDownload, error) in
+            for fileToDownload in filesToDownload
+            {
+                if fileToDownload.isAudio
+                {
+                    self.download(file: fileToDownload)
+                }
+            }
+        }
+    }
     
     func cancelDownloading(file: YSDriveFileProtocol)
     {
         if let download = downloads[file.fileUrl()]
         {
             download.downloadTask?.cancel()
-            download.completionHandler(download, nil)
+            downloadsDelegate?.downloadDidChanged(download, nil)
             downloads[file.fileUrl()] = nil
             downloadNextFile()
         }
@@ -129,7 +155,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
         {
             if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: download.file.fileName)
             {
-                download.completionHandler(download, err)
+                downloadsDelegate?.downloadDidChanged(download, err)
                 downloads[url] = nil
                 return
             }
@@ -140,7 +166,6 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             do
             {
                 try fileManager.copyItem(at: location, to: download.file.localFilePath()!)
-                download.file.isFileOnDisk = true
                 YSDatabaseManager.update(file: download.file)
             }
             catch let error as NSError
@@ -150,11 +175,11 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(download.file.fileName)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 
-                download.completionHandler(download, errorMessage)
+                downloadsDelegate?.downloadDidChanged(download, errorMessage)
                 downloads[url] = nil
                 return
             }
-            download.completionHandler(download, nil)
+            downloadsDelegate?.downloadDidChanged(download, nil)
             downloads[url] = nil
             downloadNextFile()
         }
@@ -169,7 +194,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
             downloads[url] = download
-            download.progressHandler(download)
+            downloadsDelegate?.downloadDidChanged(download, nil)
         }
     }
     
@@ -187,7 +212,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             var yserror : YSErrorProtocol
             yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
-            download.completionHandler(download, yserror)
+            downloadsDelegate?.downloadDidChanged(download, yserror)
             downloads[download.file.fileUrl()] = nil
         }
     }

@@ -30,6 +30,7 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
     func start()
     {
         let viewModel = YSDriveViewModel()
+        YSAppDelegate.appDelegate().fileDownloader?.downloadsDelegate = viewModel
         driveViewController.viewModel = viewModel
         viewModel.model = YSDriveModel(folder: folder)
         viewModel.coordinatorDelegate = self

@@ -18,7 +18,7 @@ class YSPlaylistAndPlayerModel : YSPlaylistAndPlayerModelProtocol
             {
                 completionHandler([], error)
             }
-            let allFiles = databaseYSFiles.filter { $0.isFileOnDisk || !$0.isAudio }
+            let allFiles = databaseYSFiles.filter { $0.localFileExists() || !$0.isAudio }
             completionHandler(allFiles, nil)
         }
     }

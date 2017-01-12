@@ -24,7 +24,5 @@ protocol YSDownloadProtocol
     var downloadTask : Foundation.NSURLSessionDownloadTask? { get set }
     var resumeData : Data? { get set }
     
-    var progressHandler : DownloadFileProgressHandler { get set }
-    var completionHandler : DownloadCompletionHandler { get set }
     var downloadStatus : YSDownloadStatus { get set }
 }

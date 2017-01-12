@@ -43,9 +43,9 @@ class YSDriveModel: YSDriveModelProtocol
         return YSAppDelegate.appDelegate().fileDownloader?.download(for: file)
     }
     
-    func download(_ file : YSDriveFileProtocol, _ progressHandler: @escaping DownloadFileProgressHandler, completionHandler : @escaping DownloadCompletionHandler)
+    func download(_ file : YSDriveFileProtocol)
     {
-        YSAppDelegate.appDelegate().fileDownloader?.download(file: file, progressHandler, completionHandler: completionHandler)
+        YSAppDelegate.appDelegate().fileDownloader?.download(file: file)
     }
     
     func stopDownload(_ file : YSDriveFileProtocol)

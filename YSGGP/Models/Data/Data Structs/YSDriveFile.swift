@@ -16,7 +16,6 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     var isAudio : Bool
     var fileDriveIdentifier : String
     var modifiedTime : String = ""
-    var isFileOnDisk : Bool = false
     var folder : YSFolder = YSFolder()
     
     init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?)
@@ -83,17 +82,14 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         if let path = localFilePath()?.path
         {
             let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
-            self.isFileOnDisk = exists
             return exists
         }
-        self.isFileOnDisk = false
         return false
     }
     
     func removeLocalFile()
     {
         try? FileManager.default.removeItem(at: localFilePath()!)
-        self.isFileOnDisk = false
     }
     
     override var debugDescription: String

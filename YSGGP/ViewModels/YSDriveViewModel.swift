@@ -128,18 +128,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     func download(_ file : YSDriveFileProtocol)
     {
-        model?.download(file, { (download) in
-            let index = self.files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
-            self.viewDelegate?.reloadFileDownload(at: index!, viewModel: self)
-        },
-        completionHandler: { (download, error) in
-            if let error = error
-            {
-                self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
-            }
-            let index = self.files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
-            self.viewDelegate?.reloadFile(at: index!, viewModel: self)
-        })
+        model?.download(file)
     }
     
     func stopDownloading(_ file: YSDriveFileProtocol)
@@ -176,10 +165,27 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         for indexPath in indexes
         {
             let file = files[indexPath.row]
-            if file.isAudio
-            {
+//            if file.isAudio
+//            {
                 download(file)
-            }
+            //}
+        }
+    }
+}
+
+extension YSDriveViewModel : YSDriveFileDownloaderDelegate
+{
+    func downloadDidChanged(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+    {
+        DispatchQueue.main.async
+            {
+                if let error = error
+                {
+                    self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
+                }
+                let index = self.files.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
+                guard let indexx = index, self.files.count > indexx else { return }
+                self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
         }
     }
 }

@@ -42,9 +42,9 @@ class YSDriveFileTableViewCell: UITableViewCell {
             fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
             if file.isAudio
             {
-                if file.isFileOnDisk
+                if file.localFileExists()
                 {
-                    downloadButton.isHidden = file.isFileOnDisk
+                    downloadButton.isHidden = true
                     return
                 }
                 if let download = download
