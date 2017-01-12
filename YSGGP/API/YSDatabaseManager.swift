@@ -15,7 +15,6 @@ typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -
 
 class YSDatabaseManager
 {
-    //TODO: add root folder if not created
     private static let completionBlockDelay = 0.3
     
     class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping DriveCompletionHandler)
@@ -26,9 +25,14 @@ class YSDatabaseManager
                 
                 var dbFilesDict = databaseFilesDictionary(from: dbFiles)
                 var dbFilesForFolderToBeDeleted = [String : [String: Any]]()
+                var isRootFolderAdded = false
                 for key in dbFilesDict.keys
                 {
                     var dbFile = dbFilesDict[key]
+                    if let ID = dbFile?["fileDriveIdentifier"] as! String?, ID == "root"
+                    {
+                        isRootFolderAdded = true
+                    }
                     let folderObj = dbFile?["folder"] as! [String: String]
                     let dbFileFolderID = folderObj["folderID"]
                     if dbFileFolderID == folder.folderID
@@ -36,6 +40,11 @@ class YSDatabaseManager
                         dbFilesForFolderToBeDeleted[key] = dbFile
                         dbFilesDict[key] = nil
                     }
+                }
+                if !isRootFolderAdded
+                {
+                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "")
+                    dbFilesDict[rootFolder.fileDriveIdentifier] = rootFolder.toDictionary()
                 }
                 var ysfiles : [YSDriveFileProtocol] = []
                 let filesDictArray = filesDictionary["files"] as! [[String: Any]]
