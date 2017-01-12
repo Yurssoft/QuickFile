@@ -117,7 +117,7 @@ class YSDriveViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if isEditing, let file = viewModel?.file(at: indexPath.row)
+        if isEditing
         {
             selectedIndexes.append(indexPath)
         }
