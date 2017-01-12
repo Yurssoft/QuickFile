@@ -45,6 +45,8 @@
 		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
 		508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */; };
 		508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */; };
+		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
+		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		509E557F1E12CFE800C22489 /* YSPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E557E1E12CFE800C22489 /* YSPlayerController.swift */; };
 		509E55831E13F4C300C22489 /* YSPlayerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55821E13F4C300C22489 /* YSPlayerCoordinator.swift */; };
 		509E55891E13FCF600C22489 /* YSPlayerViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */; };
@@ -77,6 +79,20 @@
 			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
 			remoteInfo = YSGGP;
 		};
+		509B474E1E27ED25005E39F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39DB52E51B5823330061C589;
+			remoteInfo = LNPopupController;
+		};
+		509B47521E27ED35005E39F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 39DB52E41B5823330061C589;
+			remoteInfo = LNPopupController;
+		};
 		50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 50AB0DAE1D8FF242008EDB0D /* Project object */;
@@ -93,6 +109,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +159,7 @@
 		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
 		508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
 		508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
+		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		509E557E1E12CFE800C22489 /* YSPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerController.swift; sourceTree = "<group>"; };
 		509E55821E13F4C300C22489 /* YSPlayerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerCoordinator.swift; sourceTree = "<group>"; };
 		509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -185,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E790E87B4EA652E8071032EF /* Pods_YSGGP.framework in Frameworks */,
+				509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,9 +355,18 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		509B474B1E27ED25005E39F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509B474F1E27ED25005E39F2 /* LNPopupController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		50AB0DAD1D8FF242008EDB0D = {
 			isa = PBXGroup;
 			children = (
+				509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */,
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
@@ -456,6 +484,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				509B47531E27ED35005E39F2 /* PBXTargetDependency */,
 			);
 			name = YSGGP;
 			productName = YSGGP;
@@ -528,6 +557,12 @@
 			mainGroup = 50AB0DAD1D8FF242008EDB0D;
 			productRefGroup = 50AB0DB71D8FF242008EDB0D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 509B474B1E27ED25005E39F2 /* Products */;
+					ProjectRef = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				50AB0DB51D8FF242008EDB0D /* YSGGP */,
@@ -536,6 +571,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		509B474F1E27ED25005E39F2 /* LNPopupController.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LNPopupController.framework;
+			remoteRef = 509B474E1E27ED25005E39F2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		505B4A2D1DAD36600055C180 /* Resources */ = {
@@ -723,6 +768,11 @@
 			isa = PBXTargetDependency;
 			target = 50AB0DB51D8FF242008EDB0D /* YSGGP */;
 			targetProxy = 505B4A341DAD36600055C180 /* PBXContainerItemProxy */;
+		};
+		509B47531E27ED35005E39F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LNPopupController;
+			targetProxy = 509B47521E27ED35005E39F2 /* PBXContainerItemProxy */;
 		};
 		50AB0DD91D8FF243008EDB0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

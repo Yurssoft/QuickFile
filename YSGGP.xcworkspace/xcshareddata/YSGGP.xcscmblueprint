@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F522CBFCBDBA935B1CE5EE8353A95AE17A044429",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "257CE67051CBED0DB533F1CDEF25F0E952C93CEA" : 9223372036854775807,
+    "F522CBFCBDBA935B1CE5EE8353A95AE17A044429" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DAC6386D-36AD-4C4D-8099-B0E6D2CE9236",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "257CE67051CBED0DB533F1CDEF25F0E952C93CEA" : "YSGGP\/LNPopupController\/",
+    "F522CBFCBDBA935B1CE5EE8353A95AE17A044429" : "YSGGP\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "YSGGP",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "YSGGP.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LeoNatan\/LNPopupController",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "257CE67051CBED0DB533F1CDEF25F0E952C93CEA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Yurssoft\/YSGGP.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F522CBFCBDBA935B1CE5EE8353A95AE17A044429"
+    }
+  ]
+}
