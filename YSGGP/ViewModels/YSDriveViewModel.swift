@@ -165,10 +165,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         for indexPath in indexes
         {
             let file = files[indexPath.row]
-//            if file.isAudio
-//            {
-                download(file)
-            //}
+            download(file)
         }
     }
 }

@@ -89,7 +89,7 @@ class YSDriveFileDownloader : NSObject
             downloadFolder(file: file)
             return
         }
-        if file.localFileExists() || downloads[file.fileUrl()] != nil //|| !file.isAudio
+        if file.localFileExists() || downloads[file.fileUrl()] != nil
         {
             print("ERROR DOWNLOAD FILE")
             return
