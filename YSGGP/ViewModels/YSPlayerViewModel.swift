@@ -41,6 +41,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     {
         didSet
         {
+            //TODO:save last played file
             if currentFile == nil
             {
                 currentFile = files.first
@@ -89,14 +90,38 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             })
             model?.allFiles()
             { (files, error) in
-                self.currentFile = files.first
-                self.files = files
+                var playerFiles = [YSDriveFileProtocol]()
+                let folders = self.selectFolders(from: files)
+                for folder in folders
+                {
+                    let filesInFolder = files.filter{ $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
+                    playerFiles.append(contentsOf: filesInFolder)
+                }
+                self.files = playerFiles
                 if let error = error
                 {
                     self.error = error
                 }
             }
         }
+    }
+    
+    func selectFolders(from files: [YSDriveFileProtocol]) -> [YSDriveFileProtocol]
+    {
+        let folders = files.filter()
+            {
+                let folderFile = $0
+                if !folderFile.isAudio
+                {
+                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+                    return filesInFolder.count > 0
+                }
+                else
+                {
+                    return false
+                }
+        }
+        return folders
     }
 
     var player: AVAudioPlayer?
@@ -187,9 +212,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func next()
     {
-        guard let nextFile = nextFile  else {
-            return
-        }
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -197,9 +219,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func previous()
     {
-        guard let previousFile = previousFile  else {
-            return
-        }
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()

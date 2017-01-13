@@ -91,9 +91,12 @@ class YSPlayerController: UIViewController {
         {
             return
         }
+        let fileDuration = Float(viewModel?.fileDuration ?? 0)
+        let currentTime = Float(viewModel?.fileCurrentTime ?? 0)
         songSeekSlider.minimumValue = 0
-        songSeekSlider.maximumValue = Float(viewModel?.fileDuration ?? 0)
-        songSeekSlider.value = Float(viewModel?.fileCurrentTime ?? 0)
+        songSeekSlider.maximumValue = fileDuration
+        songSeekSlider.value = currentTime
+        popupItem.progress = currentTime / fileDuration
     }
     
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String
@@ -112,8 +115,8 @@ class YSPlayerController: UIViewController {
     {
         updateBarButtons()
         guard let file = viewModel?.currentFile else { return }
-        self.popupItem.title = file.fileName
-        self.popupItem.subtitle = file.folder.folderName
+        popupItem.title = file.fileName
+        popupItem.subtitle = file.folder.folderName
     }
 }
 
