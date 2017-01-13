@@ -118,6 +118,33 @@ extension YSPlaylistViewController : UITableViewDelegate
     }
 }
 
+extension YSPlaylistViewController : YSPlayerDelegate
+{
+    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
+    {
+        guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
+        for indexPath in indexPaths
+        {
+            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
+            {
+                cell.configureForPlaylist(file)
+            }
+        }
+        if let playingFile = viewModel?.currentFile
+        {
+            DispatchQueue.main.async
+                {
+                    if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
+                    {
+                        let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
+                        cell.configureForPlaylist(file)
+                    }
+                    
+            }
+        }
+    }
+}
+
 extension YSPlaylistViewController : YSPlaylistViewModelViewDelegate
 {
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol)

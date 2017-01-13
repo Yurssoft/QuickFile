@@ -62,6 +62,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
             navigationController?.setViewControllers(viewControllers, animated: false)
             if let lastCoordinator = driveCoordinators.last
             {
+                lastCoordinator.updateDownloadDelegate()
                 folder = lastCoordinator.folder
             }
             else

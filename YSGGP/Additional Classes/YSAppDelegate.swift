@@ -21,6 +21,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var fileDownloader : YSDriveFileDownloader?
     var playerCoordinator : YSPlayerCoordinator = YSPlayerCoordinator()
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         FIRApp.configure()

@@ -1,9 +1,9 @@
 //
-//  DemoMusicPlayerController.swift
-//  LNPopupControllerExample
+//  YSDriveTopViewController.swift
+//  YSGGP
 //
-//  Created by Leo Natan on 8/8/15.
-//  Copyright © 2015 Leo Natan. All rights reserved.
+//  Created by Yurii Boiko on 10/4/16.
+//  Copyright © 2016 Yurii Boiko. All rights reserved.
 //
 
 import UIKit

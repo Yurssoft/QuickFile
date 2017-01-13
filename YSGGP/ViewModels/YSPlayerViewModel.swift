@@ -11,9 +11,13 @@ import AVFoundation
 import AVKit
 import MediaPlayer
 
+
+
 class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate
 {
     let commandCenter = MPRemoteCommandCenter.shared()
+    
+    weak var playerDelegate: YSPlayerDelegate?
     
     var timer : Timer?
     
@@ -64,7 +68,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 sself.viewDelegate?.timeDidChange(viewModel: sself)
                 sself.updateNowPlayingInfoElapsedTime()
             }
-            
+            //TODO:fix multiple times next
             commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
                 sself.play()
@@ -132,6 +136,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
     
     var currentFile: YSDriveFileProtocol?
+    {
+        didSet
+        {
+            playerDelegate?.currentFilePlayingDidChange(viewModel: self)
+        }
+    }
     
     var nextFile: YSDriveFileProtocol?
     {
@@ -177,11 +187,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         {
             file = files.first
         }
-        guard let fileUrl = file?.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else
-        {
-            endPlayback()
-            return
-        }
+        guard let fileUrl = file?.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
+        endPlayback()
+        player?.stop()
         coordinatorDelegate?.showPlayer()
         
         audioPlayer.delegate = self

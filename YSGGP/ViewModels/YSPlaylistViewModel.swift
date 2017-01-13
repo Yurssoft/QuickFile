@@ -120,4 +120,13 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
                 }
         }
     }
+    
+    func indexPath(of file : YSDriveFileProtocol) -> IndexPath
+    {
+        let fileFolderIndex = folders.index(where: { $0.fileDriveIdentifier == file.folder.folderID })
+        let filesInFolder = files.filter { $0.folder.folderID == file.folder.folderID && $0.isAudio }
+        let fileIndex = filesInFolder.index(where: { $0.fileDriveIdentifier == file.fileDriveIdentifier })
+        let indexPath = IndexPath.init(row: fileIndex ?? 0, section: fileFolderIndex ?? 0)
+        return indexPath
+    }
 }

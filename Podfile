@@ -13,4 +13,5 @@ target 'YSGGP' do
     pod 'KeychainAccess'
     pod 'ReachabilitySwift'
     pod 'MarqueeLabel/Swift'
+    pod 'AudioIndicatorBars'
 end

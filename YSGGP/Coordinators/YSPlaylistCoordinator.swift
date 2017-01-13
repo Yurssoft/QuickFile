@@ -34,6 +34,7 @@ class YSPlaylistCoordinator: YSCoordinatorProtocol
     {
         let viewModel =  YSPlaylistViewModel()
         playlistViewController.viewModel = viewModel
+        YSAppDelegate.appDelegate().playerCoordinator.viewModel.playerDelegate = playlistViewController
         viewModel.model = YSPlaylistAndPlayerModel()
         viewModel.coordinatorDelegate = self
     }

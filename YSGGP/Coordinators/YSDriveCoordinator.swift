@@ -36,6 +36,11 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
         viewModel.coordinatorDelegate = self
     }
     
+    func updateDownloadDelegate()
+    {
+        YSAppDelegate.appDelegate().fileDownloader?.downloadsDelegate = driveViewController.viewModel as? YSDriveFileDownloaderDelegate
+    }
+    
     fileprivate func start(folderID: String,error: YSError?)
     {
         let viewModel =  YSDriveViewModel()

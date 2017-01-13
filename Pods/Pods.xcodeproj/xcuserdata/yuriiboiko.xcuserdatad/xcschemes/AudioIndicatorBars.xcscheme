@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2560FF3017EF4619094CA0A41ED01502'
-               BlueprintName = 'ReachabilitySwift'
+               BlueprintIdentifier = '2CFD2FB5087958F19AB59C479BB4C7BC'
+               BlueprintName = 'AudioIndicatorBars'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'ReachabilitySwift.framework'>
+               BuildableName = 'AudioIndicatorBars.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

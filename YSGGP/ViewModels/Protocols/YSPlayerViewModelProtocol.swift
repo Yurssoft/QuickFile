@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol YSPlayerDelegate: class
+{
+    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
+}
+
 protocol YSPlayerViewModelViewDelegate: class
 {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
@@ -22,6 +27,7 @@ protocol YSPlayerViewModelCoordinatorDelegate: class
 
 protocol YSPlayerViewModelProtocol
 {
+    var playerDelegate: YSPlayerDelegate? { get set }
     var model: YSPlaylistAndPlayerModelProtocol? { get set }
     var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
     var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }

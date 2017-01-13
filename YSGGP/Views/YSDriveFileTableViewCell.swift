@@ -8,6 +8,7 @@
 
 import UIKit
 import DownloadButton
+import AudioIndicatorBars
 
 protocol YSDriveFileTableViewCellDelegate : class
 {
@@ -22,6 +23,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
     @IBOutlet weak var fileImageView: UIImageView!
     weak var delegate: YSDriveFileTableViewCellDelegate?
     
+    @IBOutlet weak var audioIndicatorView: AudioIndicatorBarsView!
     @IBOutlet weak var downloadButton: PKDownloadButton!
     
     override func prepareForReuse()
@@ -47,9 +49,10 @@ class YSDriveFileTableViewCell: UITableViewCell {
                     downloadButton.isHidden = true
                     return
                 }
+                downloadButton.superview?.bringSubview(toFront: downloadButton)
+                downloadButton.isHidden = false
                 if let download = download
                 {
-                    downloadButton.isHidden = false
                     switch download.downloadStatus
                     {
                     case .downloading(let progress):
@@ -65,7 +68,6 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 else
                 {
                     downloadButton.state = .startDownload
-                    downloadButton.isHidden = false
                     downloadButton.startDownloadButton.cleanDefaultAppearance()
                     downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
                 }
@@ -77,11 +79,21 @@ class YSDriveFileTableViewCell: UITableViewCell {
         }
     }
     
-    
     func configureForPlaylist(_ file : YSDriveFileProtocol?)
     {
         if let file = file
         {
+            if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier
+            {
+                audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
+                audioIndicatorView.isHidden = false
+                audioIndicatorView.start()
+            }
+            else
+            {
+                audioIndicatorView.stop()
+                audioIndicatorView.isHidden = true
+            }
             fileNameLabel?.text = file.fileName
             fileInfoLabel?.text = file.fileSize
         }

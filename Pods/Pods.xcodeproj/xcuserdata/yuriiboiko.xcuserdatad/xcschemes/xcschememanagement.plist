@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AudioIndicatorBars.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DownloadButton-DownloadButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,17 +77,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1AF7D7D5B0F57E79B1DEC2F641C63814</key>
+		<key>1B12913D702ED3A3ECA2943CCF143BB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D7FB4437452F11BD199F89DA4F591F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1E6C0BCEB12E79B0C849F5A8C65C6656</key>
+		<key>1E3F512C251D316F86367E21FFCADB29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
+		<key>2560FF3017EF4619094CA0A41ED01502</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B3FF856F9333B5A5C2E6E958F564851</key>
+		<key>2CFD2FB5087958F19AB59C479BB4C7BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,6 +123,11 @@
 			<true/>
 		</dict>
 		<key>8905DB6521F8FDC34752B69DEE3FDEB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8EA502E0EE72690ECBDD2FF8E1DF08A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
