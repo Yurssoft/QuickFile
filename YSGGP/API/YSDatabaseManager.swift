@@ -12,6 +12,7 @@ import SwiftMessages
 
 typealias AllDownloadsDeletedCompletionHandler = (YSErrorProtocol) -> Swift.Void
 typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -> Swift.Void
+typealias CurrentPlayingFileCompletionHandler = (YSDriveFileProtocol?) -> Swift.Void
 
 class YSDatabaseManager
 {
@@ -43,19 +44,32 @@ class YSDatabaseManager
                 }
                 if !isRootFolderAdded
                 {
-                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "")
+                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false)
                     dbFilesDict[rootFolder.fileDriveIdentifier] = rootFolder.toDictionary()
                 }
                 var ysfiles : [YSDriveFileProtocol] = []
                 let filesDictArray = filesDictionary["files"] as! [[String: Any]]
                 for fileDict in filesDictArray
                 {
+                    var playedTime = ""
+                    var isPlayed = false
+                    var isCurrentlyPlaying = false
+                    if let id = fileDict["name"] as! String?, let dbFile = dbFilesForFolderToBeDeleted[id]
+                    {
+                        let dbysFile = dbFile.toYSFile()
+                        playedTime = dbysFile.playedTime
+                        isCurrentlyPlaying = dbysFile.isCurrentlyPlaying
+                        isPlayed = dbysFile.isPlayed
+                    }
                     let ysFile = YSDriveFile.init(fileName: fileDict["name"] as! String?,
                                                   fileSize: fileDict["mimeType"] as! String?,
                                                   mimeType: fileDict["mimeType"] as! String?,
                                                   fileDriveIdentifier: fileDict["id"] as! String?,
                                                   folderName: folder.folderName,
-                                                  folderID: folder.folderID)
+                                                  folderID: folder.folderID,
+                                                  playedTime : playedTime,
+                                                  isPlayed : isPlayed,
+                                                  isCurrentlyPlaying : isCurrentlyPlaying)
                     
                     ysfiles.append(ysFile)
                     dbFilesForFolderToBeDeleted[ysFile.fileDriveIdentifier] = nil
@@ -181,8 +195,32 @@ class YSDatabaseManager
         {
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 let updatedFile = (file as! YSDriveFile).toDictionary()
-                
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
+                return FIRTransactionResult.abort()
+            })
+        }
+    }
+    
+    class func currentlyPlayingFile(completionHandler: @escaping CurrentPlayingFileCompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+                var dbFilesDict = databaseFilesDictionary(from: dbFiles)
+                for key in dbFilesDict.keys
+                {
+                    if let dbFile = dbFilesDict[key], let isCurPlay = dbFile["isCurrentlyPlaying"] as? Bool, isCurPlay == true
+                    {
+                        completionHandler(dbFile.toYSFile())
+                        return FIRTransactionResult.abort()
+                    }
+                }
+                if let key = dbFilesDict.keys.first, let dbFile = dbFilesDict[key]
+                {
+                    completionHandler(dbFile.toYSFile())
+                    return FIRTransactionResult.abort()
+                }
+                completionHandler(nil)
                 return FIRTransactionResult.abort()
             })
         }

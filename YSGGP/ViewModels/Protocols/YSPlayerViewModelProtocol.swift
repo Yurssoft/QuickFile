@@ -42,5 +42,6 @@ protocol YSPlayerViewModelProtocol
     func pause()
     func next()
     func previous()
-    func seek(to time:Float)
+    func seek(to time:Double)
+    func seekFloat(to time:Float)
 }

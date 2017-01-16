@@ -16,7 +16,7 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
 {
     func start() { }
     
-    var viewModel = YSPlayerViewModel()
+    var viewModel = YSPlayerViewModel.init()
     fileprivate var tabBarController: UITabBarController?
     fileprivate var popupContentController: YSPlayerController?
     

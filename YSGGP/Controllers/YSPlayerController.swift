@@ -43,8 +43,9 @@ class YSPlayerController: UIViewController {
     
     @IBAction func songSeekSliderValueChanged(_ sender: UISlider)
     {
-        viewModel?.seek(to: sender.value)
+        viewModel?.seekFloat(to: sender.value)
     }
+    
     @IBAction func nextTapped(_ sender: UIButton)
     {
         viewModel?.next()

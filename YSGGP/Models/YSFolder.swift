@@ -8,6 +8,8 @@
 
 import Foundation
 
+//TODO:make protocols for classes and private accessors
+
 class YSFolder : NSObject
 {
     var folderName: String = ""

@@ -18,7 +18,11 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     var modifiedTime : String = ""
     var folder : YSFolder = YSFolder()
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?)
+    var playedTime : String
+    var isPlayed : Bool
+    var isCurrentlyPlaying : Bool
+    
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool)
     {
         self.fileName = YSDriveFile.checkStringForNil(string: fileName)
         self.fileSize = YSDriveFile.checkStringForNil(string: fileSize)
@@ -35,6 +39,10 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
         self.folder.folderName = YSDriveFile.checkStringForNil(string: folderName)
         self.folder.folderID = YSDriveFile.checkStringForNil(string: folderID)
+        
+        self.playedTime = YSDriveFile.checkStringForNil(string: playedTime)
+        self.isPlayed = isPlayed
+        self.isCurrentlyPlaying = isCurrentlyPlaying
     }
     
     override init()
@@ -44,6 +52,9 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.isAudio = false
         self.mimeType = ""
         self.fileDriveIdentifier = ""
+        self.playedTime = ""
+        self.isPlayed = false
+        self.isCurrentlyPlaying = false
     }
     
     class func checkStringForNil(string : String?) -> String
@@ -62,6 +73,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     
     func localFilePath() -> URL?
     {
+        //TODO:check file size
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         if let url = URL(string: fileUrl())
         {
@@ -78,6 +90,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     
     func localFileExists() -> Bool
     {
+        //TODO:check file size
         var isDir : ObjCBool = false
         if let path = localFilePath()?.path
         {

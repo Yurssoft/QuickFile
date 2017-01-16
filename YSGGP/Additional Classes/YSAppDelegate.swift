@@ -21,7 +21,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var fileDownloader : YSDriveFileDownloader?
     var playerCoordinator : YSPlayerCoordinator = YSPlayerCoordinator()
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         FIRApp.configure()
@@ -46,5 +45,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     {
         return UIApplication.shared.delegate as! YSAppDelegate
     }
+    
+    //TODO: in will destroy save current playing file and time
 }
 
