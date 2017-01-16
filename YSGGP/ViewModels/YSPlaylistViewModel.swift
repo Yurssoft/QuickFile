@@ -108,7 +108,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
     {
         files = []
         model?.allFiles()
-            { (files, error) in
+            { (files, _, error) in
                 self.files = files
                 if let error = error
                 {

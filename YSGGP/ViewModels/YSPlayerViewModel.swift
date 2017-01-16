@@ -13,18 +13,6 @@ import MediaPlayer
 
 class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate
 {
-    override init()
-    {
-        super.init()
-        YSDatabaseManager.currentlyPlayingFile { (currentPlayingFile) in
-            if self.currentFile == nil
-            {
-                self.currentFile = currentPlayingFile
-                self.viewDelegate?.playerDidChange(viewModel: self)
-            }
-        }
-    }
-    
     let commandCenter = MPRemoteCommandCenter.shared()
     
     weak var playerDelegate: YSPlayerDelegate?
@@ -55,11 +43,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     {
         didSet
         {
-            //TODO:save last played file
-//            if currentFile == nil
-//            {
-//                currentFile = files.first
-//            }
             if files.count > 0 || currentFile != nil
             {
                 coordinatorDelegate?.showPlayer()
@@ -103,7 +86,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 return .success
             })
             model?.allFiles()
-            { (files, error) in
+            { (files, currentPlaying, error) in
                 var playerFiles = [YSDriveFileProtocol]()
                 let folders = self.selectFolders(from: files)
                 for folder in folders
@@ -112,6 +95,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     playerFiles.append(contentsOf: filesInFolder)
                 }
                 self.files = playerFiles
+                self.currentFile = currentPlaying
                 if let error = error
                 {
                     self.error = error
@@ -152,8 +136,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             if var currentFile = currentFile
             {
                 guard let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
-                endPlayback()
+                updateNowPlayingInfoForCurrentPlaybackItem()
                 player?.stop()
+                player?.delegate = nil
                 audioPlayer.delegate = self
                 audioPlayer.prepareToPlay()
                 player = audioPlayer
@@ -319,13 +304,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
     {
-        nextFile == nil ? endPlayback() : next()
-    }
-    
-    func endPlayback()
-    {
-        currentFile = nil
-        updateNowPlayingInfoForCurrentPlaybackItem()
+        nextFile == nil ? updateNowPlayingInfoForCurrentPlaybackItem() : next()
     }
     
     func audioPlayerBeginInterruption(_ player: AVAudioPlayer)

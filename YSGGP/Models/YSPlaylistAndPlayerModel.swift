@@ -10,16 +10,15 @@ import Foundation
 
 class YSPlaylistAndPlayerModel : YSPlaylistAndPlayerModelProtocol
 {
-    func allFiles(_ completionHandler: @escaping DriveCompletionHandler)
+    func allFiles(_ completionHandler: @escaping PlaylistAndPlayerCompletionHandler)
     {
-        YSDatabaseManager.allFiles
-        { (databaseYSFiles, yserror) in
+        YSDatabaseManager.allFilesWithCurrentPlaying { (databaseYSFiles, currentPlaying, yserror) in
             if let error = yserror
             {
-                completionHandler([], error)
+                completionHandler([], nil, error)
             }
             let allFiles = databaseYSFiles.filter { $0.localFileExists() || !$0.isAudio }
-            completionHandler(allFiles, nil)
+            completionHandler(allFiles, currentPlaying, nil)
         }
     }
 }

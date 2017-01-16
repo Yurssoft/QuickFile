@@ -12,7 +12,7 @@ import SwiftMessages
 
 typealias AllDownloadsDeletedCompletionHandler = (YSErrorProtocol) -> Swift.Void
 typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -> Swift.Void
-typealias CurrentPlayingFileCompletionHandler = (YSDriveFileProtocol?) -> Swift.Void
+typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
 
 class YSDatabaseManager
 {
@@ -155,12 +155,13 @@ class YSDatabaseManager
         }
     }
     
-    class func allFiles(completionHandler: @escaping AllFilesCompletionHandler)
+    class func allFilesWithCurrentPlaying(completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
             ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
                 var sortedFiles : [YSDriveFileProtocol] = []
+                var currentPlayingFile : YSDriveFileProtocol? = nil
                 if dbFiles.hasChildren()
                 {
                     var files = [YSDriveFileProtocol]()
@@ -169,17 +170,21 @@ class YSDatabaseManager
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
+                        if ysFile.isCurrentlyPlaying
+                        {
+                            currentPlayingFile = ysFile
+                        }
                         files.append(ysFile)
                     }
                     sortedFiles = sort(ysFiles: files)
                 }
-                completionHandler(sortedFiles, nil)
+                completionHandler(sortedFiles, currentPlayingFile, nil)
                 return FIRTransactionResult.abort()
             })
         }
         else
         {
-            completionHandler([], notLoggedInError())
+            completionHandler([], nil, notLoggedInError())
         }
     }
     
@@ -196,31 +201,6 @@ class YSDatabaseManager
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 let updatedFile = (file as! YSDriveFile).toDictionary()
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
-                return FIRTransactionResult.abort()
-            })
-        }
-    }
-    
-    class func currentlyPlayingFile(completionHandler: @escaping CurrentPlayingFileCompletionHandler)
-    {
-        if let ref = referenceForCurrentUser()
-        {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
-                var dbFilesDict = databaseFilesDictionary(from: dbFiles)
-                for key in dbFilesDict.keys
-                {
-                    if let dbFile = dbFilesDict[key], let isCurPlay = dbFile["isCurrentlyPlaying"] as? Bool, isCurPlay == true
-                    {
-                        completionHandler(dbFile.toYSFile())
-                        return FIRTransactionResult.abort()
-                    }
-                }
-                if let key = dbFilesDict.keys.first, let dbFile = dbFilesDict[key]
-                {
-                    completionHandler(dbFile.toYSFile())
-                    return FIRTransactionResult.abort()
-                }
-                completionHandler(nil)
                 return FIRTransactionResult.abort()
             })
         }

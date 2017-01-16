@@ -8,7 +8,9 @@
 
 import Foundation
 
+typealias PlaylistAndPlayerCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?, YSErrorProtocol?) -> Swift.Void
+
 protocol YSPlaylistAndPlayerModelProtocol
 {
-    func allFiles(_ completionHandler: @escaping DriveCompletionHandler)
+    func allFiles(_ completionHandler: @escaping PlaylistAndPlayerCompletionHandler)
 }
