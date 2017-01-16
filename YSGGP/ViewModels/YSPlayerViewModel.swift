@@ -16,7 +16,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     let commandCenter = MPRemoteCommandCenter.shared()
     
     weak var playerDelegate: YSPlayerDelegate?
-    
+    //TODO:save time each 10 seconds
     var timer : Timer?
     
     var error: YSErrorProtocol = YSError.init()
@@ -95,7 +95,10 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     playerFiles.append(contentsOf: filesInFolder)
                 }
                 self.files = playerFiles
-                self.currentFile = currentPlaying
+                if currentPlaying != nil
+                {
+                    self.currentFile = currentPlaying
+                }
                 if let error = error
                 {
                     self.error = error
@@ -191,12 +194,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func play(file: YSDriveFileProtocol?)
     {
-        var file = file
-        if file == nil
+        if file == nil && currentFile == nil
         {
-            file = files.first
+            currentFile = files.first
         }
-        currentFile = file
+        else
+        {
+            currentFile = file
+        }
         coordinatorDelegate?.showPlayer()
         
         play()
@@ -209,11 +214,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             play(file: currentFile)
             return
         }
-        if var currentFile = currentFile
-        {
-            currentFile.isCurrentlyPlaying = true
-            YSDatabaseManager.update(file: currentFile)
-        }
+        update(file: currentFile, isCurrent: true)
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -221,12 +222,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func pause()
     {
-        if var currentFile = currentFile
-        {
-            currentFile.isCurrentlyPlaying = true
-            currentFile.playedTime = String(describing: player?.currentTime)
-            YSDatabaseManager.update(file: currentFile)
-        }
+        update(file: currentFile, isCurrent: true)
         player?.pause()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -234,11 +230,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func next()
     {
-        if var currentFile = currentFile
-        {
-            currentFile.playedTime = String(describing: player?.currentTime)
-            YSDatabaseManager.update(file: currentFile)
-        }
+        update(file: currentFile, isCurrent: false)
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -321,6 +313,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func seek(to time:Double)
     {
+        update(file: currentFile, isCurrent: true)
         player?.currentTime = Double(time)
         viewDelegate?.timeDidChange(viewModel: self)
     }
@@ -328,5 +321,15 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     func seekFloat(to time:Float)
     {
         seek(to: Double(time))
+    }
+    
+    private func update(file: YSDriveFileProtocol?, isCurrent:Bool)
+    {
+        if var currentFile = currentFile
+        {
+            currentFile.isCurrentlyPlaying = isCurrent
+            currentFile.playedTime = String(describing: player?.currentTime)
+            YSDatabaseManager.update(file: currentFile)
+        }
     }
 }
