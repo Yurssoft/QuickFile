@@ -46,6 +46,11 @@ class YSPlayerController: UIViewController {
         viewModel?.seekFloat(to: sender.value)
     }
     
+    @IBAction func volumeSliderValueChanged(_ sender: UISlider)
+    {
+        viewModel?.set(volume: sender.value)
+    }
+    
     @IBAction func nextTapped(_ sender: UIButton)
     {
         viewModel?.next()
@@ -82,7 +87,8 @@ class YSPlayerController: UIViewController {
     func updateTime()
     {
         updateTimeLabels()
-        updateSlider()
+        updateSongSlider()
+        updateVolumeSlider()
     }
     
     func updateTimeLabels()
@@ -91,7 +97,7 @@ class YSPlayerController: UIViewController {
         self.remainingTimeLabel.text = "-" + self.humanReadableTimeInterval((viewModel?.fileDuration ?? 0) - (viewModel?.fileCurrentTime ?? 0))
     }
     
-    func updateSlider()
+    func updateSongSlider()
     {
         if songSeekSlider.isTracking
         {
@@ -103,6 +109,17 @@ class YSPlayerController: UIViewController {
         songSeekSlider.maximumValue = fileDuration
         songSeekSlider.value = currentTime
         popupItem.progress = currentTime / fileDuration
+    }
+    
+    func updateVolumeSlider()
+    {
+        if volumeSlider.isTracking
+        {
+            return
+        }
+        songSeekSlider.minimumValue = 0
+        songSeekSlider.maximumValue = 1
+        songSeekSlider.value = viewModel?.playerVolume ?? 0
     }
     
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String

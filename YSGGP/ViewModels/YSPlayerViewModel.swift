@@ -137,6 +137,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         return player?.isPlaying ?? false
     }
     
+    var playerVolume: Float
+    {
+        return player?.volume ?? 0.0
+    }
+    
     var currentFile: YSDriveFileProtocol?
     {
         didSet
@@ -247,6 +252,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
+    }
+    
+    func set(volume: Float)
+    {
+        player?.volume = volume
     }
     
     //MARK: - Now Playing Info
