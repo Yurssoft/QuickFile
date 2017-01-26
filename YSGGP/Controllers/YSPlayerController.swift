@@ -51,6 +51,11 @@ class YSPlayerController: UIViewController {
         viewModel?.next()
     }
     
+    @IBAction func previousTapped(_ sender: UIButton)
+    {
+        viewModel?.previous()
+    }
+    
     @IBAction func playPauseTapped(_ sender: UIButton)
     {
         viewModel?.togglePlayPause()

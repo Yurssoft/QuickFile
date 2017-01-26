@@ -94,11 +94,16 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     let filesInFolder = files.filter{ $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
                     playerFiles.append(contentsOf: filesInFolder)
                 }
-                self.files = playerFiles
-                if currentPlaying != nil
+                if  let localFileExists = currentPlaying?.localFileExists(), currentPlaying != nil && self.currentFile == nil && localFileExists
                 {
                     self.currentFile = currentPlaying
                 }
+                if self.currentFile == nil && currentPlaying == nil
+                {
+                    self.currentFile = files.first
+                    self.update(file: self.currentFile, isCurrent: true)
+                }
+                self.files = playerFiles
                 if let error = error
                 {
                     self.error = error
@@ -157,20 +162,20 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var nextFile: YSDriveFileProtocol?
     {
-        guard let currentPlaybackFile = currentFile, files.count > 0 else { return nil }
+        guard let currentPlaybackFile = currentFile, files.count > 0 else { return files.first }
         
         let nextItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! + 1
-        if nextItemIndex >= files.count { return nil }
+        if nextItemIndex >= files.count { return files.first }
         
         return files[nextItemIndex]
     }
     
     var previousFile: YSDriveFileProtocol?
     {
-        guard let currentPlaybackFile = currentFile, files.count > 0 else { return nil }
+        guard let currentPlaybackFile = currentFile, files.count > 0 else { return files.last }
         
         let previousItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})! - 1
-        if previousItemIndex < 0 { return nil }
+        if previousItemIndex < 0 { return files.last }
         
         return files[previousItemIndex]
     }
@@ -238,11 +243,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func previous()
     {
-        if var currentFile = currentFile
-        {
-            currentFile.playedTime = String(describing: player?.currentTime)
-            YSDatabaseManager.update(file: currentFile)
-        }
+        update(file: currentFile, isCurrent: false)
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()

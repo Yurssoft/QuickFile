@@ -34,6 +34,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
     
     func configureForDrive(_ file : YSDriveFileProtocol?,_ delegate : YSDriveFileTableViewCellDelegate?, _ download : YSDownloadProtocol?)
     {
+        //TODO:wrong download status displaying
         self.file = file
         self.delegate = delegate
         downloadButton.delegate = self

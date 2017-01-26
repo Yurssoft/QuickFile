@@ -200,6 +200,7 @@ class YSDatabaseManager
         {
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
                 let updatedFile = (file as! YSDriveFile).toDictionary()
+                //TODO: check check if all other files are not current playing
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
                 return FIRTransactionResult.abort()
             })

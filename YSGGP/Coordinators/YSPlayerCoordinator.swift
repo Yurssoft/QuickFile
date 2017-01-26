@@ -30,8 +30,6 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
     
     func play(file: YSDriveFileProtocol)
     {
-        let model = YSPlaylistAndPlayerModel()
-        viewModel.model = model
         viewModel.play(file: file)
     }
 }
