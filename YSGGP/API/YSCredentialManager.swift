@@ -94,7 +94,7 @@ class YSCredentialManager
             let task = Foundation.URLSession.shared.dataTask(with: requestForToken)
             { data, response, error in
                 
-                if let err = YSNetworkResponseManager.validate(response!, error: error)
+                if let err = YSNetworkResponseManager.validate(response, error: error)
                 {
                     completionHandler(request, err)
                     return

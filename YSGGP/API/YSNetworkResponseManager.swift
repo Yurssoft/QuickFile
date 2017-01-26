@@ -31,7 +31,8 @@ class YSNetworkResponseManager
             let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list", buttonTitle: "Try again", debugInfo: er.localizedDescription)
             return errorMessage
         }
-        return nil
+        let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Error", message: "Unkown error", buttonTitle: "Try again", debugInfo: "UNKOWN ERROR !!! ___---+++111")
+        return errorMessage
     }
     
     class func validateDownloadTask(_ response : URLResponse?, error: Error?, fileName : String) -> YSErrorProtocol?
