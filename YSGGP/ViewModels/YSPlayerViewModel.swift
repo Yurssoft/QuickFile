@@ -16,8 +16,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     let commandCenter = MPRemoteCommandCenter.shared()
     
     weak var playerDelegate: YSPlayerDelegate?
-    //TODO:save time each 10 seconds
-    var timer : Timer?
+    
+    var elapsedTimeTimer : Timer?
+    var savingPlayedTimeTimer : Timer?
     
     var error: YSErrorProtocol = YSError.init()
     {
@@ -33,7 +34,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     deinit
     {
         player?.pause()
-        timer?.invalidate()
+        elapsedTimeTimer?.invalidate()
     }
     
     weak var viewDelegate: YSPlayerViewModelViewDelegate?
@@ -53,15 +54,28 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var model: YSPlaylistAndPlayerModelProtocol?
     {
+        willSet
+        {
+            elapsedTimeTimer?.invalidate()
+            elapsedTimeTimer = nil
+            savingPlayedTimeTimer?.invalidate()
+            savingPlayedTimeTimer = nil
+        }
         didSet
         {
-            timer = Timer.every(1.seconds)
+            savingPlayedTimeTimer = Timer.every(10.seconds)
+            { [weak self] in
+                guard let sself = self else { return }
+                sself.update(file: sself.currentFile, isCurrent: true)
+            }
+            
+            elapsedTimeTimer = Timer.every(1.seconds)
             { [weak self] in
                 guard let sself = self else { return }
                 sself.viewDelegate?.timeDidChange(viewModel: sself)
                 sself.updateNowPlayingInfoElapsedTime()
             }
-            //TODO:fix multiple times next
+            
             commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
                 sself.play()
@@ -231,6 +245,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             return
         }
         update(file: currentFile, isCurrent: true)
+        player.currentTime = Double((currentFile?.playedTime ?? "0.0")) ?? 0.0
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -340,7 +355,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         if var currentFile = currentFile
         {
             currentFile.isCurrentlyPlaying = isCurrent
-            currentFile.playedTime = String(describing: player?.currentTime)
+            if let player = player
+            {
+                let interval = player.currentTime
+                let intervalSting = String(describing: interval)
+                currentFile.playedTime = intervalSting
+            }
             YSDatabaseManager.update(file: currentFile)
         }
     }
