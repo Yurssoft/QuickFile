@@ -146,12 +146,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         return player?.isPlaying ?? false
     }
     
-    //TODO: synchronize volume with system and create variable for volume
-    var playerVolume: Float
-    {
-        return player?.volume ?? 0.0
-    }
-    
     var currentFile: YSDriveFileProtocol?
     {
         didSet
@@ -164,6 +158,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 player?.delegate = nil
                 audioPlayer.delegate = self
                 audioPlayer.prepareToPlay()
+                let audioSession = AVAudioSession.sharedInstance()
+                audioPlayer.volume = audioSession.outputVolume
                 player = audioPlayer
                 let fileTime = Double(currentFile.playedTime) ?? 0
                 if fileTime > 1.0.seconds
@@ -262,11 +258,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
-    }
-    
-    func set(volume: Float)
-    {
-        player?.volume = volume
     }
     
     //MARK: - Now Playing Info

@@ -10,6 +10,7 @@ import UIKit
 import LNPopupController
 import AVFoundation
 import MarqueeLabel
+import MediaPlayer
 
 class YSPlayerController: UIViewController {
 
@@ -48,7 +49,11 @@ class YSPlayerController: UIViewController {
     
     @IBAction func volumeSliderValueChanged(_ sender: UISlider)
     {
-        viewModel?.set(volume: sender.value)
+        let volumeView = MPVolumeView()
+        if let view = volumeView.subviews.first as? UISlider
+        {
+            view.value = sender.value
+        }
     }
     
     @IBAction func nextTapped(_ sender: UIButton)
@@ -119,7 +124,8 @@ class YSPlayerController: UIViewController {
         }
         volumeSlider.minimumValue = 0
         volumeSlider.maximumValue = 1
-        volumeSlider.value = viewModel?.playerVolume ?? 0
+        let audioSession = AVAudioSession.sharedInstance()
+        volumeSlider.value = audioSession.outputVolume
     }
     
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String

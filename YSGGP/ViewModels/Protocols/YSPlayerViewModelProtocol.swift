@@ -36,14 +36,12 @@ protocol YSPlayerViewModelProtocol
     var currentFile: YSDriveFileProtocol? { get }
     var fileDuration: TimeInterval { get }
     var fileCurrentTime: TimeInterval { get }
-    var playerVolume: Float { get }
     
     func togglePlayPause()
     func play(file: YSDriveFileProtocol?)
     func pause()
     func next()
     func previous()
-    func set(volume: Float)
     func seek(to time:Double)
     func seekFloat(to time:Float)
 }
