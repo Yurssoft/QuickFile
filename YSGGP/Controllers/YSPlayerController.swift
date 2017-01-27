@@ -117,9 +117,9 @@ class YSPlayerController: UIViewController {
         {
             return
         }
-        songSeekSlider.minimumValue = 0
-        songSeekSlider.maximumValue = 1
-        songSeekSlider.value = viewModel?.playerVolume ?? 0
+        volumeSlider.minimumValue = 0
+        volumeSlider.maximumValue = 1
+        volumeSlider.value = viewModel?.playerVolume ?? 0
     }
     
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String
