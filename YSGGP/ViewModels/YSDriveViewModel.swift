@@ -153,6 +153,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             if file.isAudio
             {
                 stopDownloading(file)
+                //TODO: after removing update player and playlist
                 file.removeLocalFile()
                 files[indexPath.row] = file
             }

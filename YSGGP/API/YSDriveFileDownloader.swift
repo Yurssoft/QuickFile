@@ -22,7 +22,11 @@ class YSDriveFileDownloader : NSObject
     fileprivate var session : Foundation.URLSession
     fileprivate var sessionQueue : OperationQueue
     fileprivate var reachability : Reachability = Reachability()!
+    
+    //TODO: maybe add some blocks for notifications? or maybe notification center?
     weak var downloadsDelegate: YSDriveFileDownloaderDelegate?
+    weak var playlistDelegate: YSDriveFileDownloaderDelegate?
+    weak var playerDelegate: YSDriveFileDownloaderDelegate?
     
     required override init()
     {
@@ -179,6 +183,8 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 downloads[url] = nil
                 return
             }
+            playlistDelegate?.downloadDidChanged(download, nil)
+            playerDelegate?.downloadDidChanged(download, nil)
             downloadsDelegate?.downloadDidChanged(download, nil)
             downloads[url] = nil
             downloadNextFile()

@@ -85,7 +85,13 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 sself.previous()
                 return .success
             })
-            model?.allFiles()
+            self.getFiles()
+        }
+    }
+    
+    func getFiles()
+    {
+        model?.allFiles()
             { (files, currentPlaying, error) in
                 var playerFiles = [YSDriveFileProtocol]()
                 let folders = self.selectFolders(from: files)
@@ -112,7 +118,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 {
                     self.error = error
                 }
-            }
         }
     }
     
@@ -141,6 +146,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         return player?.isPlaying ?? false
     }
     
+    //TODO: synchronize volume with system and create variable for volume
     var playerVolume: Float
     {
         return player?.volume ?? 0.0
@@ -346,5 +352,13 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             currentFile.playedTime = String(describing: player?.currentTime)
             YSDatabaseManager.update(file: currentFile)
         }
+    }
+}
+
+extension YSPlayerViewModel : YSDriveFileDownloaderDelegate
+{
+    func downloadDidChanged(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+    {
+        getFiles()
     }
 }

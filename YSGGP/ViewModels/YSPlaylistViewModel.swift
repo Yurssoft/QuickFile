@@ -15,7 +15,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         didSet
         {
             getFiles { (_) in
-                
+                self.viewDelegate?.filesDidChange(viewModel: self)
             }
         }
     }
@@ -128,5 +128,13 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         let fileIndex = filesInFolder.index(where: { $0.fileDriveIdentifier == file.fileDriveIdentifier })
         let indexPath = IndexPath.init(row: fileIndex ?? 0, section: fileFolderIndex ?? 0)
         return indexPath
+    }
+}
+
+extension YSPlaylistViewModel : YSDriveFileDownloaderDelegate
+{
+    func downloadDidChanged(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+    {
+        model = YSPlaylistAndPlayerModel()
     }
 }
