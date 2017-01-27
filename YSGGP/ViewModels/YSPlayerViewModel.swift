@@ -100,8 +100,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 }
                 if self.currentFile == nil && currentPlaying == nil
                 {
-                    self.currentFile = files.first
-                    self.update(file: self.currentFile, isCurrent: true)
+                    let audioFiles = files.filter { $0.isAudio }
+                    if let firstAudio = audioFiles.first
+                    {
+                        self.currentFile = firstAudio
+                        self.update(file: self.currentFile, isCurrent: true)
+                    }
                 }
                 self.files = playerFiles
                 if let error = error

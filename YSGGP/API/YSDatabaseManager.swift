@@ -170,7 +170,7 @@ class YSDatabaseManager
                         let databaseFile = currentDatabaseFile as! FIRMutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
-                        if ysFile.isCurrentlyPlaying
+                        if ysFile.isCurrentlyPlaying && ysFile.localFileExists()
                         {
                             currentPlayingFile = ysFile
                         }
