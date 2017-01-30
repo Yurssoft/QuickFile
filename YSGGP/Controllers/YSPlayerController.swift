@@ -85,8 +85,8 @@ class YSPlayerController: UIViewController {
         let pause = UIBarButtonItem(image: UIImage(named: viewModel.isPlaying ? "pause" : "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
         let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(nextTapped(_:)))
         
-        self.popupItem.leftBarButtonItems = [ pause ]
-        self.popupItem.rightBarButtonItems = [ next ]
+        popupItem.leftBarButtonItems = [ pause ]
+        popupItem.rightBarButtonItems = [ next ]
     }
     
     func updateTime()
@@ -98,8 +98,8 @@ class YSPlayerController: UIViewController {
     
     func updateTimeLabels()
     {
-        self.elapsedTimeLabel.text = self.humanReadableTimeInterval(viewModel?.fileCurrentTime ?? 0)
-        self.remainingTimeLabel.text = "-" + self.humanReadableTimeInterval((viewModel?.fileDuration ?? 0) - (viewModel?.fileCurrentTime ?? 0))
+        elapsedTimeLabel.text = humanReadableTimeInterval(viewModel?.fileCurrentTime ?? 0)
+        remainingTimeLabel.text = "-" + humanReadableTimeInterval((viewModel?.fileDuration ?? 0) - (viewModel?.fileCurrentTime ?? 0))
     }
     
     func updateSongSlider()

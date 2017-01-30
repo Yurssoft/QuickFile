@@ -79,7 +79,7 @@ class YSDriveViewController: UITableViewController
     {
         if (viewIfLoaded != nil)
         {
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
@@ -236,7 +236,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         switch error.errorType
         {
         case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
-            self.loginButtonTapped(UIBarButtonItem())
+            loginButtonTapped(UIBarButtonItem())
             return
             
         case .loggedInToToDrive:

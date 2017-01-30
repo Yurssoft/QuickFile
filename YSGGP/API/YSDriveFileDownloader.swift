@@ -30,7 +30,7 @@ class YSDriveFileDownloader : NSObject
     
     required override init()
     {
-        self.session = Foundation.URLSession()
+        session = Foundation.URLSession()
         sessionQueue = OperationQueue()
         super.init()
         
@@ -38,7 +38,7 @@ class YSDriveFileDownloader : NSObject
         sessionQueue.qualityOfService = .background
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
-        self.session = backgroundSession
+        session = backgroundSession
         reachability.whenReachable =
         { reachability in
             self.downloadNextFile()

@@ -99,7 +99,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 sself.previous()
                 return .success
             })
-            self.getFiles()
+            getFiles()
         }
     }
     
@@ -219,7 +219,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func togglePlayPause()
     {
-        isPlaying ? self.pause() : self.play()
+        isPlaying ? pause() : play()
     }
     
     func play(file: YSDriveFileProtocol?)

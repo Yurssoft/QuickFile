@@ -125,7 +125,7 @@ extension YSPlaylistViewController : YSPlayerDelegate
         guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
         for indexPath in indexPaths
         {
-            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
+            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
             {
                 cell.configureForPlaylist(file)
             }

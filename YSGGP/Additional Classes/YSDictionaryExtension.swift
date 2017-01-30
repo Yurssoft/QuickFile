@@ -13,7 +13,7 @@ public extension Dictionary
     internal func toYSFile() -> YSDriveFileProtocol
     {
         let object = YSDriveFile()
-        for key in self.keys
+        for key in keys
         {
             let val = self[key]
             let propertyKey = key as! String
@@ -36,7 +36,7 @@ public extension Dictionary
     internal func toYSToken() -> YSToken
     {
         let object = YSToken()
-        for key in self.keys
+        for key in keys
         {
             let val = self[key]
             object.setValue(val, forKey: key as! String)

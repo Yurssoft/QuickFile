@@ -109,7 +109,7 @@ class YSCredentialManager
             task.resume()
             return
         }
-        self.addHeaders(to: request, completionHandler)
+        addHeaders(to: request, completionHandler)
     }
     
     private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
@@ -141,7 +141,7 @@ class YSCredentialManager
         try? FIRAuth.auth()!.signOut()
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         keychain[data: YSConstants.kTokenKeychainItemKey] = Data()
-        self.shared.token = YSToken()
+        shared.token = YSToken()
         let message = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.success, title: "Success", message: "Logged out from Drive", buttonTitle: "Login", debugInfo: "")
         throw message
     }

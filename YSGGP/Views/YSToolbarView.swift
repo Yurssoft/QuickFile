@@ -28,11 +28,11 @@ protocol YSToolbarViewDelegate : class
     {
         get
         {
-            return self.selectAllButton.title
+            return selectAllButton.title
         }
         set(text)
         {
-            self.selectAllButton.title = text
+            selectAllButton.title = text
         }
     }
     

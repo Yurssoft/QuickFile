@@ -20,7 +20,7 @@ class YSDriveModel: YSDriveModelProtocol
     
     init(folder: YSFolder)
     {
-        self.currentFolder = folder
+        currentFolder = folder
     }
     
     func getFiles(_ completionHandler: @escaping DriveCompletionHandler)

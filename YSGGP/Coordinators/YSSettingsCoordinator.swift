@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//TODO:show settings if first time
+
 class YSSettingsCoordinator: YSCoordinatorProtocol
 {
     fileprivate var settingsViewController: YSSettingsTableViewController?
