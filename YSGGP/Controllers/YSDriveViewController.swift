@@ -236,12 +236,8 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         switch error.errorType
         {
         case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
-            message.buttonTapHandler =
-            { _ in
-                self.loginButtonTapped(UIBarButtonItem())
-                SwiftMessages.hide()
-            }
-            break
+            self.loginButtonTapped(UIBarButtonItem())
+            return
             
         case .loggedInToToDrive:
             message.buttonTapHandler =
