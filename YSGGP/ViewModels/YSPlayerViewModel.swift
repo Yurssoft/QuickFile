@@ -232,6 +232,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         {
             currentFile = file
         }
+        guard currentFile != nil else { return }
         coordinatorDelegate?.showPlayer()
         
         play()
