@@ -90,6 +90,7 @@ extension YSPlaylistViewController : UITableViewDataSource
         return cell
     }
     
+    @objc(tableView:heightForRowAtIndexPath:)
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return YSConstants.kCellHeight
