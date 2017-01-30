@@ -183,7 +183,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 downloads[url] = nil
                 return
             }
-            download.file.updateFileSize()
+            _ = download.file.updateFileSize()
             playlistDelegate?.downloadDidChanged(download, nil)
             playerDelegate?.downloadDidChanged(download, nil)
             downloadsDelegate?.downloadDidChanged(download, nil)
