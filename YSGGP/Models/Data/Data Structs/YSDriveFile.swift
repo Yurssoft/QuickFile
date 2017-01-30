@@ -73,7 +73,6 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     
     func localFilePath() -> URL?
     {
-        //TODO:check file size
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         if let url = URL(string: fileUrl())
         {
@@ -90,7 +89,6 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     
     func localFileExists() -> Bool
     {
-        //TODO:check file size
         var isDir : ObjCBool = false
         if let path = localFilePath()?.path
         {
@@ -98,6 +96,22 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
             return exists
         }
         return false
+    }
+    
+    func updateFileSize() -> UInt64
+    {
+        var fileSize : UInt64 = 0
+        guard let filePath = localFilePath()?.path else { return fileSize }
+        do {
+            let attr = try FileManager.default.attributesOfItem(atPath: filePath)
+            fileSize = attr[FileAttributeKey.size] as! UInt64
+            let dict = attr as NSDictionary
+            fileSize = dict.fileSize()
+            self.fileSize = String(fileSize)
+        } catch {
+            print("Error: \(error)")
+        }
+        return fileSize
     }
     
     func removeLocalFile()

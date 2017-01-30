@@ -45,7 +45,5 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     {
         return UIApplication.shared.delegate as! YSAppDelegate
     }
-    
-    //TODO: in will destroy save current playing file and time
 }
 
