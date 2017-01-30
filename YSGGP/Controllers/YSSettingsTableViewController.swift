@@ -63,7 +63,7 @@ class YSSettingsTableViewController: UITableViewController
                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "You are logged in to Drive" : "You are not logged in to Drive"
             break
             case cellDeleteAllIdentifier:
-                cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
+                cell.textLabel?.textColor = UIColor.red
             break
             case cellLogInOutIdentifier:
                  cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
