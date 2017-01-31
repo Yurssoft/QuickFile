@@ -62,7 +62,7 @@ class YSDatabaseManager
                         isPlayed = dbysFile.isPlayed
                     }
                     let ysFile = YSDriveFile.init(fileName: fileDict["name"] as! String?,
-                                                  fileSize: fileDict["mimeType"] as! String?,
+                                                  fileSize: fileDict["size"] as! String?,
                                                   mimeType: fileDict["mimeType"] as! String?,
                                                   fileDriveIdentifier: fileDict["id"] as! String?,
                                                   folderName: folder.folderName,
