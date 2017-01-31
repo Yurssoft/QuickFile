@@ -37,69 +37,80 @@ class YSDriveFileTableViewCell: UITableViewCell {
         self.file = file
         self.delegate = delegate
         downloadButton.delegate = self
-        if let file = file
+        guard let file = file else { return }
+        fileNameLabel?.text = file.fileName
+        fileInfoLabel?.text = infoLabelString
+        fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
+        if file.isAudio
         {
-            fileNameLabel?.text = file.fileName
-            fileInfoLabel?.text = file.fileSize
-            fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
-            if file.isAudio
+            //TODO: fix performance - do not check for file existing every time
+            if file.localFileExists()
             {
-                //TODO: fix performance - do not check for file existing every time
-                if file.localFileExists()
+                downloadButton.isHidden = true
+                return
+            }
+            downloadButton.superview?.bringSubview(toFront: downloadButton)
+            downloadButton.isHidden = false
+            if let download = download
+            {
+                switch download.downloadStatus
                 {
-                    downloadButton.isHidden = true
-                    return
-                }
-                downloadButton.superview?.bringSubview(toFront: downloadButton)
-                downloadButton.isHidden = false
-                if let download = download
-                {
-                    switch download.downloadStatus
-                    {
-                    case .downloading(let progress):
-                        downloadButton.state = .downloading
-                        downloadButton.stopDownloadButton.progress = CGFloat(progress)
-                        break
-                    case .pending:
-                        downloadButton.state = .pending
-                        downloadButton.pendingView.startSpin()
-                        break
-                    }
-                }
-                else
-                {
-                    downloadButton.state = .startDownload
-                    downloadButton.startDownloadButton.cleanDefaultAppearance()
-                    downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
+                case .downloading(let progress):
+                    downloadButton.state = .downloading
+                    downloadButton.stopDownloadButton.progress = CGFloat(progress)
+                    break
+                case .pending:
+                    downloadButton.state = .pending
+                    downloadButton.pendingView.startSpin()
+                    break
                 }
             }
             else
             {
-                downloadButton.isHidden = true
+                downloadButton.state = .startDownload
+                downloadButton.startDownloadButton.cleanDefaultAppearance()
+                downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
             }
+        }
+        else
+        {
+            downloadButton.isHidden = true
         }
     }
     
     func configureForPlaylist(_ file : YSDriveFileProtocol?)
     {
-        if let file = file
-        {
-            if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier
-            {
-                audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
-                audioIndicatorView.isHidden = false
-                audioIndicatorView.start()
-            }
-            else
-            {
-                audioIndicatorView.stop()
-                audioIndicatorView.isHidden = true
-            }
-            fileNameLabel?.text = file.fileName
-            fileInfoLabel?.text = file.fileSize
-        }
+        self.file = file
         fileImageView?.image = UIImage(named:"song")
         downloadButton.isHidden = true
+        guard let file = file else { return }
+        if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier
+        {
+            audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
+            audioIndicatorView.isHidden = false
+            audioIndicatorView.start()
+        }
+        else
+        {
+            audioIndicatorView.stop()
+            audioIndicatorView.isHidden = true
+        }
+        fileNameLabel?.text = file.fileName
+        fileInfoLabel?.text = infoLabelString
+    }
+    
+    var infoLabelString: String
+    {
+        guard let file = file else { return "" }
+        if file.isAudio, file.fileSize.characters.count > 0, var sizeInt = Int(file.fileSize)
+        {
+            sizeInt = sizeInt / 1024 / 1024
+            return sizeInt > 0 ? "\(sizeInt) MB" : file.mimeType
+        }
+        else
+        {
+            return  file.mimeType
+        }
     }
     
     var file: YSDriveFileProtocol?
