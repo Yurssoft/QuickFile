@@ -295,10 +295,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         
         if let image = UIImage(named: "song")
         {
-            let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
-                return image
-            })
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+            if #available(iOS 10.0, *) {
+                let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+                    return image
+                })
+                nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+            }
         }
         
         set(nowPlayingInfo as [String : AnyObject]?)

@@ -110,6 +110,7 @@ class YSDriveFileDownloader : NSObject
         let folder = YSFolder()
         folder.folderID = file.fileDriveIdentifier
         folder.folderName = file.fileName
+        //TODO: try to fetch all metadata needed for files downloading
         YSDatabaseManager.files(for: folder, YSError()) { (filesToDownload, error) in
             for fileToDownload in filesToDownload
             {
