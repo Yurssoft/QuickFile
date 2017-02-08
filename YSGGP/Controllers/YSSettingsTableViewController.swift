@@ -57,17 +57,15 @@ class YSSettingsTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
-        switch cell.reuseIdentifier!
+        guard let identifier = cell.reuseIdentifier, let viewModel = viewModel else { return }
+        switch identifier
         {
             case cellLogInOutInfoIdentifier:
-                cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "You are logged in to Drive" : "You are not logged in to Drive"
-            break
-            case cellDeleteAllIdentifier:
-                cell.textLabel?.textColor = UIColor.red
+                cell.textLabel?.text = viewModel.isLoggedIn ? "You are logged in to Drive" : "You are not logged in to Drive"
             break
             case cellLogInOutIdentifier:
-                 cell.textLabel?.textColor = (viewModel?.isLoggedIn)! ? UIColor.red : UIColor.black
-                 cell.textLabel?.text = (viewModel?.isLoggedIn)! ? "Log Out From Drive" : "Log In To Drive"
+                 cell.textLabel?.textColor = viewModel.isLoggedIn ? UIColor.red : UIColor.black
+                 cell.textLabel?.text = viewModel.isLoggedIn ? "Log Out From Drive" : "Log In To Drive"
             break
         default:
             break

@@ -39,7 +39,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
         downloadButton.delegate = self
         guard let file = file else { return }
         fileNameLabel?.text = file.fileName
-        fileInfoLabel?.text = infoLabelString
+        fileInfoLabel?.text = fileSize
         fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
         if file.isAudio
         {
@@ -86,20 +86,30 @@ class YSDriveFileTableViewCell: UITableViewCell {
         guard let file = file else { return }
         if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier
         {
+            if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font
+            {
+                fileNameLabel?.font = UIFont.boldSystemFont(ofSize: fileNameLabelFont.pointSize)
+                fileInfoLabel?.font = UIFont.boldSystemFont(ofSize: fileInfoLabelFont.pointSize)
+            }
             audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
             audioIndicatorView.isHidden = false
             audioIndicatorView.start()
         }
         else
         {
+            if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font
+            {
+                fileNameLabel?.font = UIFont.systemFont(ofSize: fileNameLabelFont.pointSize)
+                fileInfoLabel?.font = UIFont.systemFont(ofSize: fileInfoLabelFont.pointSize)
+            }
             audioIndicatorView.stop()
             audioIndicatorView.isHidden = true
         }
         fileNameLabel?.text = file.fileName
-        fileInfoLabel?.text = infoLabelString
+        fileInfoLabel?.text = fileSize
     }
     
-    var infoLabelString: String
+    var fileSize: String
     {
         guard let file = file else { return "" }
         if file.isAudio, file.fileSize.characters.count > 0, var sizeInt = Int(file.fileSize)
