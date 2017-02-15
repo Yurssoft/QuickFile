@@ -12,8 +12,8 @@ import AVFoundation
 import MarqueeLabel
 import MediaPlayer
 
-class YSPlayerController: UIViewController {
-
+class YSPlayerController: UIViewController
+{
 	@IBOutlet weak var songNameLabel: MarqueeLabel!
 	@IBOutlet weak var albumNameLabel: UILabel!
 	@IBOutlet weak var albumArtImageView: UIImageView!
@@ -162,7 +162,6 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
                 self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
                 self.songNameLabel.text = file.fileName
                 self.albumNameLabel.text = file.folder.folderName
-                self.albumArtImageView.image = UIImage()
             }
         }
     }

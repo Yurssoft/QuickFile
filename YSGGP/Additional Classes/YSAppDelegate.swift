@@ -23,6 +23,13 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
+        UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
+        //UITabBar.appearance().barTintColor = YSConstants.kDefaultBarColor
+        
+        //UINavigationBar.appearance().barTintColor = YSConstants.kDefaultBarColor
+        //UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor]
+        
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
