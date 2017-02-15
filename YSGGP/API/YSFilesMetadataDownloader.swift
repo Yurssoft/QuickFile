@@ -15,7 +15,6 @@ typealias AccessTokenRefreshedCompletionHandler = (_ error: YSErrorProtocol?) ->
 
 class YSFilesMetadataDownloader
 {
-    //TODO: send request and after failure do something
     class func downloadFilesList(for requestURL: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
     {
         let reqURL = URL.init(string: requestURL)

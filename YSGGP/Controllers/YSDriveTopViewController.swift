@@ -25,7 +25,7 @@ class YSDriveTopViewController: UIViewController
     
     fileprivate let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
     fileprivate let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
-    //TODO: add button for moving to settings and implement search
+    //TODO: implement search
     override func viewDidLoad()
     {
         super.viewDidLoad()

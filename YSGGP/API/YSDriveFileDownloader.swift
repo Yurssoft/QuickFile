@@ -23,7 +23,6 @@ class YSDriveFileDownloader : NSObject
     fileprivate var sessionQueue : OperationQueue
     fileprivate var reachability : Reachability = Reachability()!
     
-    //TODO: maybe add some blocks for notifications? or maybe notification center?
     weak var downloadsDelegate: YSDriveFileDownloaderDelegate?
     weak var playlistDelegate: YSDriveFileDownloaderDelegate?
     weak var playerDelegate: YSDriveFileDownloaderDelegate?
@@ -110,7 +109,7 @@ class YSDriveFileDownloader : NSObject
         let folder = YSFolder()
         folder.folderID = file.fileDriveIdentifier
         folder.folderName = file.fileName
-        //TODO: try to fetch all metadata needed for files downloading
+        
         YSDatabaseManager.files(for: folder, YSError()) { (filesToDownload, error) in
             for fileToDownload in filesToDownload
             {
