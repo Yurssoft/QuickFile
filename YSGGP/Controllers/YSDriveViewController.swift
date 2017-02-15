@@ -10,6 +10,7 @@ import UIKit
 import SwiftMessages
 import MJRefresh
 import M13ProgressSuite
+import DZNEmptyDataSet
 
 class YSDriveViewController: UITableViewController
 {
@@ -35,8 +36,11 @@ class YSDriveViewController: UITableViewController
         super.viewDidLoad()
         let bundle = Bundle(for: YSDriveFileTableViewCell.self)
         let nib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: bundle)
-        
         tableView.register(nib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     func containingViewControllerViewDidLoad()
@@ -330,7 +334,44 @@ extension YSDriveViewController : YSToolbarViewDelegate
     }
 }
 
+extension YSDriveViewController : DZNEmptyDataSetSource
+{
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString!
+    {
+        let promptText = "Browse your audio files from Google Drive"
+        let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
+        let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
+        return attributedString
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString!
+    {
+        let promptText = "Login"
+        let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
+        let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
+        return attributedString
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage!
+    {
+        return UIImage.init(named: "drive")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor!
+    {
+        return UIColor.white
+    }
+}
 
-
-
-
+extension YSDriveViewController : DZNEmptyDataSetDelegate
+{
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
+    {
+        viewModel?.loginToDrive()
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool
+    {
+        return true
+    }
+}
