@@ -58,11 +58,14 @@ class YSDriveViewController: UITableViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        if !(viewModel?.isLoggedIn)!
-        {
-            let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "")
-            errorDidChange(viewModel: viewModel!, error: errorMessage)
-        }
+        showNotLoggedInMessage()
+    }
+    
+    func showNotLoggedInMessage()
+    {
+        guard let viewModel = viewModel, !viewModel.isLoggedIn else { return }
+        let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please login", buttonTitle: "Login", debugInfo: "")
+        errorDidChange(viewModel: viewModel, error: errorMessage)
     }
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
@@ -153,8 +156,9 @@ class YSDriveViewController: UITableViewController
     
     func getFiles()
     {
-        if !(viewModel?.isLoggedIn)!
+        if let viewModel = viewModel, !viewModel.isLoggedIn
         {
+            showNotLoggedInMessage()
             tableView.mj_header.endRefreshing()
             return
         }
@@ -236,8 +240,12 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         switch error.errorType
         {
         case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
-            loginButtonTapped(UIBarButtonItem())
-            return
+            message.buttonTapHandler =
+                { _ in
+                self.viewModel?.loginToDrive()
+                SwiftMessages.hide()
+            }
+            break
             
         case .loggedInToToDrive:
             message.buttonTapHandler =
