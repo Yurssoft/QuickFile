@@ -14,4 +14,5 @@ target 'YSGGP' do
     pod 'ReachabilitySwift'
     pod 'MarqueeLabel/Swift'
     pod 'AudioIndicatorBars'
+    pod 'DZNEmptyDataSet'
 end

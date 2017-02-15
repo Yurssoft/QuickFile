@@ -148,6 +148,36 @@ extension MessageView {
 }
 
 /*
+ MARK: - Layout adjustments
+
+ This extention provides a few convenience functions for adjusting the layout.
+ */
+
+extension MessageView {
+    @available(iOS 9, *)
+    /**
+     Constrains the image view to a specified size. By default, the size of the
+     image view is determined by its `intrinsicContentSize`.
+     
+     - Parameter size: The size to be translated into Auto Layout constraints.
+     - Parameter contentMode: The optional content mode to apply.
+     */
+    public func configureIcon(withSize size: CGSize, contentMode: UIViewContentMode? = nil) {
+        var views: [UIView] = []
+        if let iconImageView = iconImageView { views.append(iconImageView) }
+        if let iconLabel = iconLabel { views.append(iconLabel) }
+        views.forEach {
+            let constraints = [$0.heightAnchor.constraint(equalToConstant: size.height),
+                               $0.widthAnchor.constraint(equalToConstant: size.width)]
+            $0.addConstraints(constraints)
+            if let contentMode = contentMode {
+                $0.contentMode = contentMode
+            }
+        }
+    }
+}
+
+/*
  MARK: - Theming
  
  This extention provides a few convenience functions for setting styles,
