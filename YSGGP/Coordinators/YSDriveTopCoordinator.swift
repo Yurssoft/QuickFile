@@ -15,7 +15,7 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
 {
     fileprivate var driveCoordinators : [YSDriveCoordinator] = []
     fileprivate var navigationController: UINavigationController?
-    fileprivate var folder : YSFolder = YSFolder.rootFolder()
+    var folder : YSFolder = YSFolder.rootFolder()
     fileprivate var storyboard: UIStoryboard?
     
     func start() { }
@@ -102,5 +102,12 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
             driveTopVC.driveVCReadyDelegate = self
             navigationController?.pushViewController(driveTopVC, animated: true)
         }
+    }
+    
+    func driveViewControllerDidRequestedSearch()
+    {
+        let searchCoordinator = YSDriveSearchCoordinator()
+        YSAppDelegate.appDelegate().searchCoordinator = searchCoordinator
+        searchCoordinator.start(navigationController: navigationController, storyboard: storyboard)
     }
 }

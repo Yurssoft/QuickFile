@@ -11,7 +11,6 @@ import SwiftMessages
 
 class YSDriveViewModel: YSDriveViewModelProtocol
 {
-
     var isLoggedIn: Bool
     {
        return (model?.isLoggedIn)!
@@ -34,6 +33,13 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     }
 
     weak var viewDelegate: YSDriveViewModelViewDelegate?
+    {
+        didSet
+        {
+            viewDelegate?.metadataDownloadStatusDidChange(viewModel: self)
+        }
+    }
+    
     var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
     fileprivate var files: [YSDriveFileProtocol] = []
@@ -126,6 +132,11 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         coordinatorDelegate?.driveViewModelDidFinish()
     }
     
+    func driveViewControllerDidRequestedSearch()
+    {
+        coordinatorDelegate?.driveViewControllerDidRequestedSearch()
+    }
+    
     func download(_ file : YSDriveFileProtocol)
     {
         model?.download(file)
@@ -173,7 +184,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
 
 extension YSDriveViewModel : YSDriveFileDownloaderDelegate
 {
-    func downloadDidChanged(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+    func downloadDidChange(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
     {
         DispatchQueue.main.async
             {
@@ -187,10 +198,3 @@ extension YSDriveViewModel : YSDriveFileDownloaderDelegate
         }
     }
 }
-
-
-
-
-
-
-
