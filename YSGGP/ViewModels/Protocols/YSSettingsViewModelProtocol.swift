@@ -13,9 +13,16 @@ protocol YSSettingsViewModelViewDelegate: class
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
 }
 
+protocol YSSettingsCoordinatorDelegate: class
+{
+    func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel)
+}
+
 protocol YSSettingsViewModelProtocol
 {
-    var isLoggedIn : Bool {get}
+    var isLoggedIn : Bool { get }
+    var coordinatorDelegate: YSSettingsCoordinatorDelegate? { get set }
     func logOut()
     func deleteAllFiles()
+    func successfullyLoggedIn()
 }

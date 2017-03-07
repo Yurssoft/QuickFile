@@ -12,7 +12,7 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
 {
     fileprivate var settingsViewController: YSSettingsTableViewController?
     
-    init(settingsViewController: YSSettingsTableViewController, navigationController: UINavigationController)
+    init(settingsViewController: YSSettingsTableViewController)
     {
         self.settingsViewController = settingsViewController
     }
@@ -22,5 +22,17 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
         let viewModel = YSSettingsViewModel()
         settingsViewController?.viewModel = viewModel
         viewModel.model = YSSettingsModel()
+        viewModel.coordinatorDelegate = self
+    }
+}
+
+extension YSSettingsCoordinator : YSSettingsCoordinatorDelegate
+{
+    func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel)
+    {
+        if let tababarController = YSAppDelegate.appDelegate().window!.rootViewController as? UITabBarController
+        {
+            tababarController.selectedIndex = 0 //drive tab
+        }
     }
 }

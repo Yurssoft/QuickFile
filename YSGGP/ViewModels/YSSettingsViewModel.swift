@@ -28,6 +28,7 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
     
     weak var viewDelegate: YSSettingsViewModelViewDelegate?
     var model : YSSettingsModel?
+    weak var coordinatorDelegate: YSSettingsCoordinatorDelegate?
     
     func logOut()
     {
@@ -49,5 +50,10 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
                 self.viewDelegate?.errorDidChange(viewModel: self, error: error)
             }
         }
+    }
+    
+    func successfullyLoggedIn()
+    {
+        coordinatorDelegate?.viewModelSuccessfullyLoggedIn(viewModel: self)
     }
 }

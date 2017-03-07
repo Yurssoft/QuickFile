@@ -36,7 +36,7 @@ protocol YSDriveSearchViewModelProtocol
 {
     var model: YSDriveSearchModelProtocol? { get set }
     var viewDelegate: YSDriveSearchViewModelViewDelegate? { get set }
-    var coordinatorDelegate: YSDriveSearchViewModelCoordinatorDelegate? { get set}
+    var coordinatorDelegate: YSDriveSearchViewModelCoordinatorDelegate? { get set }
     var numberOfFiles: Int { get }
     var isDownloadingMetadata: Bool { get }
     var error : YSErrorProtocol { get }

@@ -11,6 +11,7 @@ import UIKit
 class YSSettingsTopViewController: UIViewController
 {
     var settingsVC: YSSettingsTableViewController!
+    var settingsCoordinator: YSSettingsCoordinator!
     
     override func viewDidLoad()
     {
@@ -20,7 +21,7 @@ class YSSettingsTopViewController: UIViewController
     
     func setupCoordinator()
     {
-        let settingsCoordinator = YSSettingsCoordinator(settingsViewController: settingsVC!, navigationController: navigationController!)
+        settingsCoordinator = YSSettingsCoordinator(settingsViewController: settingsVC!)
         settingsCoordinator.start()
     }
     

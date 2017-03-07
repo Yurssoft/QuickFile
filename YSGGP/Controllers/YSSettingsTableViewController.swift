@@ -195,8 +195,8 @@ extension YSSettingsTableViewController : GIDSignInDelegate
         { [weak self] (user, error) in
             guard let sself = self else { return }
             let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
-            //TODO: when logged in send user to files list and download files list
             sself.errorDidChange(viewModel: sself.viewModel!, error: messageLoggedIn)
+            sself.viewModel?.successfullyLoggedIn()
         }
     }
 }
