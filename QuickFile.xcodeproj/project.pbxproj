@@ -7,74 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000501A1DBA7A19008D752E /* YSTabBarController.swift */; };
-		50083B6A1DDC9BEF009B306D /* YSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50083B691DDC9BEF009B306D /* YSToken.swift */; };
-		50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */; };
-		500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */; };
-		500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C231D93ED98003996CA /* YSDriveViewModel.swift */; };
-		500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */; };
-		500B6C2C1D93F083003996CA /* YSDriveFileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B6C2B1D93F083003996CA /* YSDriveFileProtocol.swift */; };
-		501DF04E1DBF412F0058D085 /* YSDriveTopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501DF04D1DBF412F0058D085 /* YSDriveTopCoordinator.swift */; };
-		501F14531DF71C09009FB868 /* YSPlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14521DF71C09009FB868 /* YSPlaylistViewModel.swift */; };
-		501F14551DF71C3C009FB868 /* YSPlaylistViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14541DF71C3C009FB868 /* YSPlaylistViewModelProtocol.swift */; };
-		501F14571DF71D77009FB868 /* YSPlaylistAndPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14561DF71D77009FB868 /* YSPlaylistAndPlayerProtocol.swift */; };
-		501F14591DF71ECB009FB868 /* YSPlaylistAndPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14581DF71ECB009FB868 /* YSPlaylistAndPlayerModel.swift */; };
-		501F145B1DF855E9009FB868 /* YSPlaylistCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F145A1DF855E9009FB868 /* YSPlaylistCoordinator.swift */; };
-		501F145D1DF869F7009FB868 /* YSDriveFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F145C1DF869F7009FB868 /* YSDriveFileTableViewCell.xib */; };
-		501F145F1DF96E4B009FB868 /* YSHeaderForSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F145E1DF96E4B009FB868 /* YSHeaderForSection.xib */; };
-		501F14611DF96F4B009FB868 /* YSHeaderForSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F14601DF96F4B009FB868 /* YSHeaderForSection.swift */; };
-		502578141DC3521D00C6EFFF /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 502578131DC3521D00C6EFFF /* ServiceAccount.json */; };
-		503189CA1DDF3DA2001F51B8 /* YSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503189C91DDF3DA2001F51B8 /* YSDictionaryExtension.swift */; };
-		503AF1691E1FDBF9000E5493 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */; };
-		503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */; };
-		503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC17B1DB79F1C000D5BA1 /* YSError.swift */; };
-		503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */; };
-		503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */; };
-		504110431D95691100BE3B0C /* YSDriveFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110421D95691100BE3B0C /* YSDriveFile.swift */; };
-		504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */; };
-		504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110481D956DEF00BE3B0C /* YSDriveModel.swift */; };
-		5041104B1D95763000BE3B0C /* YSDriveFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */; };
-		504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */; };
-		504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */; };
-		504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */; };
-		504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504111001D9C00E200BE3B0C /* YSConstants.swift */; };
-		50788D8F1DC79350003DD1C7 /* YSDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */; };
-		508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */; };
-		508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1B1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift */; };
-		508EFC1E1DB52B3600ED5CFB /* YSSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */; };
-		508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */; };
-		508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */; };
-		508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */; };
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		509E557F1E12CFE800C22489 /* YSPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E557E1E12CFE800C22489 /* YSPlayerController.swift */; };
-		509E55831E13F4C300C22489 /* YSPlayerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55821E13F4C300C22489 /* YSPlayerCoordinator.swift */; };
-		509E55891E13FCF600C22489 /* YSPlayerViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */; };
-		509E558B1E13FE5700C22489 /* YSPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E558A1E13FE5700C22489 /* YSPlayerViewModel.swift */; };
-		509E558F1E1BDDB300C22489 /* YSFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509E558E1E1BDDB300C22489 /* YSFolder.swift */; };
-		50A157171DC0F3E1008AD787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */; };
-		50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */; };
-		50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DBF1D8FF242008EDB0D /* Main.storyboard */; };
-		50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC21D8FF242008EDB0D /* Assets.xcassets */; };
-		50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */; };
 		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
-		50BDD15F1E5603C300ECA29D /* YSDriveSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD15E1E5603C300ECA29D /* YSDriveSearchController.swift */; };
-		50BDD1611E57191C00ECA29D /* YSDriveSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD1601E57191C00ECA29D /* YSDriveSearchCoordinator.swift */; };
-		50BDD1631E571C4F00ECA29D /* YSDriveSearchModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD1621E571C4F00ECA29D /* YSDriveSearchModelProtocol.swift */; };
-		50BDD1651E571D6B00ECA29D /* YSDriveSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD1641E571D6B00ECA29D /* YSDriveSearchModel.swift */; };
-		50BDD1671E5B083900ECA29D /* YSDriveSearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD1661E5B083900ECA29D /* YSDriveSearchViewModelProtocol.swift */; };
-		50BDD1691E5B0BD400ECA29D /* YSDriveSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDD1681E5B0BD400ECA29D /* YSDriveSearchViewModel.swift */; };
-		50C22DCF1DDC5D890029E399 /* YSFilesMetadataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */; };
-		50C22DD11DDC623D0029E399 /* YSCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */; };
-		50C22DD31DDC675B0029E399 /* YSNetworkResponseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */; };
-		50D326C61DC0BFC200F12A93 /* YSDriveFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */; };
-		50D326C81DC0C0EB00F12A93 /* YSDownloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */; };
-		50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D326C91DC0C18A00F12A93 /* YSDownload.swift */; };
-		50E49FBA1D9D3ED300A6FAAC /* YSNSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FB91D9D3ED300A6FAAC /* YSNSObjectExtension.swift */; };
-		50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */; };
-		50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */; };
-		50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */; };
-		E790E87B4EA652E8071032EF /* Pods_YSGGP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D384CA94A771E85F7758D51D /* Pods_YSGGP.framework */; };
+		50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562221E71BA90004E47A2 /* GoogleService-Info.plist */; };
+		50E562731E71BA90004E47A2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562231E71BA90004E47A2 /* Info.plist */; };
+		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
+		50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562251E71BA90004E47A2 /* SwiftyTimer.swift */; };
+		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
+		50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562271E71BA90004E47A2 /* YSConstants.swift */; };
+		50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562281E71BA90004E47A2 /* YSDateExtension.swift */; };
+		50E562791E71BA90004E47A2 /* YSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */; };
+		50E5627A1E71BA90004E47A2 /* YSNSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */; };
+		50E5627B1E71BA90004E47A2 /* YSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */; };
+		50E5627C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */; };
+		50E5627D1E71BA90004E47A2 /* YSCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5622E1E71BA90004E47A2 /* YSCredentialManager.swift */; };
+		50E5627E1E71BA90004E47A2 /* YSDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5622F1E71BA90004E47A2 /* YSDatabaseManager.swift */; };
+		50E5627F1E71BA90004E47A2 /* YSDriveFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562301E71BA90004E47A2 /* YSDriveFileDownloader.swift */; };
+		50E562801E71BA90004E47A2 /* YSFilesMetadataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562311E71BA90004E47A2 /* YSFilesMetadataDownloader.swift */; };
+		50E562811E71BA90004E47A2 /* YSNetworkResponseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562321E71BA90004E47A2 /* YSNetworkResponseManager.swift */; };
+		50E562821E71BA90004E47A2 /* YSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562331E71BA90004E47A2 /* YSToken.swift */; };
+		50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562361E71BA90004E47A2 /* YSDriveSearchController.swift */; };
+		50E562851E71BA90004E47A2 /* YSDriveTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562371E71BA90004E47A2 /* YSDriveTopViewController.swift */; };
+		50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562381E71BA90004E47A2 /* YSDriveViewController.swift */; };
+		50E562871E71BA90004E47A2 /* YSPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562391E71BA90004E47A2 /* YSPlayerController.swift */; };
+		50E562881E71BA90004E47A2 /* YSPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5623A1E71BA90004E47A2 /* YSPlaylistViewController.swift */; };
+		50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5623B1E71BA90004E47A2 /* YSSettingsTableViewController.swift */; };
+		50E5628A1E71BA90004E47A2 /* YSSettingsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5623C1E71BA90004E47A2 /* YSSettingsTopViewController.swift */; };
+		50E5628B1E71BA90004E47A2 /* YSCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5623E1E71BA90004E47A2 /* YSCoordinatorProtocol.swift */; };
+		50E5628C1E71BA90004E47A2 /* YSDriveCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5623F1E71BA90004E47A2 /* YSDriveCoordinator.swift */; };
+		50E5628D1E71BA90004E47A2 /* YSDriveSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562401E71BA90004E47A2 /* YSDriveSearchCoordinator.swift */; };
+		50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562411E71BA90004E47A2 /* YSDriveTopCoordinator.swift */; };
+		50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562421E71BA90004E47A2 /* YSPlayerCoordinator.swift */; };
+		50E562901E71BA90004E47A2 /* YSPlaylistCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562431E71BA90004E47A2 /* YSPlaylistCoordinator.swift */; };
+		50E562911E71BA90004E47A2 /* YSSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562441E71BA90004E47A2 /* YSSettingsCoordinator.swift */; };
+		50E562921E71BA90004E47A2 /* YSDownloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562481E71BA90004E47A2 /* YSDownloadProtocol.swift */; };
+		50E562931E71BA90004E47A2 /* YSDriveFileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562491E71BA90004E47A2 /* YSDriveFileProtocol.swift */; };
+		50E562941E71BA90004E47A2 /* YSErrorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5624A1E71BA90004E47A2 /* YSErrorProtocol.swift */; };
+		50E562951E71BA90004E47A2 /* YSDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5624C1E71BA90004E47A2 /* YSDownload.swift */; };
+		50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5624D1E71BA90004E47A2 /* YSDriveFile.swift */; };
+		50E562971E71BA90004E47A2 /* YSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5624E1E71BA90004E47A2 /* YSError.swift */; };
+		50E562981E71BA90004E47A2 /* YSDriveModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562501E71BA90004E47A2 /* YSDriveModelProtocol.swift */; };
+		50E562991E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562511E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift */; };
+		50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562521E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift */; };
+		50E5629B1E71BA90004E47A2 /* YSSettingsModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562531E71BA90004E47A2 /* YSSettingsModelProtocol.swift */; };
+		50E5629C1E71BA90004E47A2 /* YSDriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562541E71BA90004E47A2 /* YSDriveModel.swift */; };
+		50E5629D1E71BA90004E47A2 /* YSDriveSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */; };
+		50E5629E1E71BA90004E47A2 /* YSFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562561E71BA90004E47A2 /* YSFolder.swift */; };
+		50E5629F1E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */; };
+		50E562A01E71BA90004E47A2 /* YSSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562581E71BA90004E47A2 /* YSSettingsModel.swift */; };
+		50E562A11E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5625B1E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift */; };
+		50E562A21E71BA90004E47A2 /* YSDriveViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5625C1E71BA90004E47A2 /* YSDriveViewModelProtocol.swift */; };
+		50E562A31E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5625D1E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift */; };
+		50E562A41E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5625E1E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift */; };
+		50E562A51E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5625F1E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift */; };
+		50E562A61E71BA90004E47A2 /* YSDriveSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562601E71BA90004E47A2 /* YSDriveSearchViewModel.swift */; };
+		50E562A71E71BA90004E47A2 /* YSDriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562611E71BA90004E47A2 /* YSDriveViewModel.swift */; };
+		50E562A81E71BA90004E47A2 /* YSPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562621E71BA90004E47A2 /* YSPlayerViewModel.swift */; };
+		50E562A91E71BA90004E47A2 /* YSPlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562631E71BA90004E47A2 /* YSPlaylistViewModel.swift */; };
+		50E562AA1E71BA90004E47A2 /* YSSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562641E71BA90004E47A2 /* YSSettingsViewModel.swift */; };
+		50E562AB1E71BA90004E47A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E562661E71BA90004E47A2 /* Assets.xcassets */; };
+		50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50E562671E71BA90004E47A2 /* LaunchScreen.storyboard */; };
+		50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50E562691E71BA90004E47A2 /* Main.storyboard */; };
+		50E562AE1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5626B1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift */; };
+		50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E5626C1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib */; };
+		50E562B01E71BA90004E47A2 /* YSHeaderForSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5626D1E71BA90004E47A2 /* YSHeaderForSection.swift */; };
+		50E562B11E71BA90004E47A2 /* YSHeaderForSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E5626E1E71BA90004E47A2 /* YSHeaderForSection.xib */; };
+		50E562B21E71BA90004E47A2 /* YSToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5626F1E71BA90004E47A2 /* YSToolbarView.swift */; };
+		50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E562701E71BA90004E47A2 /* YSToolbarView.xib */; };
+		58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,82 +125,83 @@
 
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
-		5000501A1DBA7A19008D752E /* YSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarController.swift; sourceTree = "<group>"; };
-		50083B691DDC9BEF009B306D /* YSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToken.swift; sourceTree = "<group>"; };
-		50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDateExtension.swift; sourceTree = "<group>"; };
-		500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTableViewController.swift; sourceTree = "<group>"; };
-		500B6C231D93ED98003996CA /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
-		500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
-		500B6C2B1D93F083003996CA /* YSDriveFileProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileProtocol.swift; sourceTree = "<group>"; };
-		501DF04D1DBF412F0058D085 /* YSDriveTopCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopCoordinator.swift; sourceTree = "<group>"; };
-		501F14521DF71C09009FB868 /* YSPlaylistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewModel.swift; sourceTree = "<group>"; };
-		501F14541DF71C3C009FB868 /* YSPlaylistViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewModelProtocol.swift; sourceTree = "<group>"; };
-		501F14561DF71D77009FB868 /* YSPlaylistAndPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerProtocol.swift; sourceTree = "<group>"; };
-		501F14581DF71ECB009FB868 /* YSPlaylistAndPlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerModel.swift; sourceTree = "<group>"; };
-		501F145A1DF855E9009FB868 /* YSPlaylistCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistCoordinator.swift; sourceTree = "<group>"; };
-		501F145C1DF869F7009FB868 /* YSDriveFileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSDriveFileTableViewCell.xib; sourceTree = "<group>"; };
-		501F145E1DF96E4B009FB868 /* YSHeaderForSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSHeaderForSection.xib; sourceTree = "<group>"; };
-		501F14601DF96F4B009FB868 /* YSHeaderForSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSHeaderForSection.swift; sourceTree = "<group>"; };
-		502578131DC3521D00C6EFFF /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
-		503189C91DDF3DA2001F51B8 /* YSDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDictionaryExtension.swift; sourceTree = "<group>"; };
-		503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
-		503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSErrorProtocol.swift; sourceTree = "<group>"; };
-		503BC17B1DB79F1C000D5BA1 /* YSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSError.swift; sourceTree = "<group>"; };
-		503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
-		503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewController.swift; sourceTree = "<group>"; };
-		504110421D95691100BE3B0C /* YSDriveFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFile.swift; sourceTree = "<group>"; };
-		504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelProtocol.swift; sourceTree = "<group>"; };
-		504110481D956DEF00BE3B0C /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
-		5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileTableViewCell.swift; sourceTree = "<group>"; };
-		504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCoordinatorProtocol.swift; sourceTree = "<group>"; };
-		504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinator.swift; sourceTree = "<group>"; };
-		504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarControllerExtension.swift; sourceTree = "<group>"; };
-		504111001D9C00E200BE3B0C /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
 		505B4A2F1DAD36600055C180 /* QuickFileUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickFileUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		505B4A331DAD36600055C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		507016181DEDD47200A7CAEF /* YSGGP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YSGGP.entitlements; sourceTree = "<group>"; };
-		50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDatabaseManager.swift; sourceTree = "<group>"; };
-		508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsCoordinator.swift; sourceTree = "<group>"; };
-		508EFC1B1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModelProtocol.swift; sourceTree = "<group>"; };
-		508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
-		508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
-		508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
-		508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
 		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
-		509E557E1E12CFE800C22489 /* YSPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerController.swift; sourceTree = "<group>"; };
-		509E55821E13F4C300C22489 /* YSPlayerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerCoordinator.swift; sourceTree = "<group>"; };
-		509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModelProtocol.swift; sourceTree = "<group>"; };
-		509E558A1E13FE5700C22489 /* YSPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModel.swift; sourceTree = "<group>"; };
-		509E558E1E1BDDB300C22489 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YSFolder.swift; path = ../../YSFolder.swift; sourceTree = "<group>"; };
-		50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
-		50AB0DC01D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		50AB0DC21D8FF242008EDB0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		50AB0DC51D8FF242008EDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		50AB0DC71D8FF242008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50AB0DD71D8FF243008EDB0D /* QuickFileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickFileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
 		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50BDD15E1E5603C300ECA29D /* YSDriveSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchController.swift; sourceTree = "<group>"; };
-		50BDD1601E57191C00ECA29D /* YSDriveSearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchCoordinator.swift; sourceTree = "<group>"; };
-		50BDD1621E571C4F00ECA29D /* YSDriveSearchModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModelProtocol.swift; sourceTree = "<group>"; };
-		50BDD1641E571D6B00ECA29D /* YSDriveSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModel.swift; sourceTree = "<group>"; };
-		50BDD1661E5B083900ECA29D /* YSDriveSearchViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModelProtocol.swift; sourceTree = "<group>"; };
-		50BDD1681E5B0BD400ECA29D /* YSDriveSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModel.swift; sourceTree = "<group>"; };
-		50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFilesMetadataDownloader.swift; sourceTree = "<group>"; };
-		50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCredentialManager.swift; sourceTree = "<group>"; };
-		50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNetworkResponseManager.swift; sourceTree = "<group>"; };
-		50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileDownloader.swift; sourceTree = "<group>"; };
-		50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownloadProtocol.swift; sourceTree = "<group>"; };
-		50D326C91DC0C18A00F12A93 /* YSDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownload.swift; sourceTree = "<group>"; };
-		50E49FB91D9D3ED300A6FAAC /* YSNSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNSObjectExtension.swift; sourceTree = "<group>"; };
-		50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
-		50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
-		50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopViewController.swift; sourceTree = "<group>"; };
+		50E562221E71BA90004E47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50E562241E71BA90004E47A2 /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
+		50E562251E71BA90004E47A2 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
+		50E562261E71BA90004E47A2 /* YSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
+		50E562271E71BA90004E47A2 /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
+		50E562281E71BA90004E47A2 /* YSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDateExtension.swift; sourceTree = "<group>"; };
+		50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDictionaryExtension.swift; sourceTree = "<group>"; };
+		50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNSObjectExtension.swift; sourceTree = "<group>"; };
+		50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarController.swift; sourceTree = "<group>"; };
+		50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSTabBarControllerExtension.swift; sourceTree = "<group>"; };
+		50E5622E1E71BA90004E47A2 /* YSCredentialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCredentialManager.swift; sourceTree = "<group>"; };
+		50E5622F1E71BA90004E47A2 /* YSDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDatabaseManager.swift; sourceTree = "<group>"; };
+		50E562301E71BA90004E47A2 /* YSDriveFileDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileDownloader.swift; sourceTree = "<group>"; };
+		50E562311E71BA90004E47A2 /* YSFilesMetadataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFilesMetadataDownloader.swift; sourceTree = "<group>"; };
+		50E562321E71BA90004E47A2 /* YSNetworkResponseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSNetworkResponseManager.swift; sourceTree = "<group>"; };
+		50E562331E71BA90004E47A2 /* YSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToken.swift; sourceTree = "<group>"; };
+		50E562361E71BA90004E47A2 /* YSDriveSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchController.swift; sourceTree = "<group>"; };
+		50E562371E71BA90004E47A2 /* YSDriveTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopViewController.swift; sourceTree = "<group>"; };
+		50E562381E71BA90004E47A2 /* YSDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewController.swift; sourceTree = "<group>"; };
+		50E562391E71BA90004E47A2 /* YSPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerController.swift; sourceTree = "<group>"; };
+		50E5623A1E71BA90004E47A2 /* YSPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewController.swift; sourceTree = "<group>"; };
+		50E5623B1E71BA90004E47A2 /* YSSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTableViewController.swift; sourceTree = "<group>"; };
+		50E5623C1E71BA90004E47A2 /* YSSettingsTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsTopViewController.swift; sourceTree = "<group>"; };
+		50E5623E1E71BA90004E47A2 /* YSCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		50E5623F1E71BA90004E47A2 /* YSDriveCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveCoordinator.swift; sourceTree = "<group>"; };
+		50E562401E71BA90004E47A2 /* YSDriveSearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchCoordinator.swift; sourceTree = "<group>"; };
+		50E562411E71BA90004E47A2 /* YSDriveTopCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveTopCoordinator.swift; sourceTree = "<group>"; };
+		50E562421E71BA90004E47A2 /* YSPlayerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerCoordinator.swift; sourceTree = "<group>"; };
+		50E562431E71BA90004E47A2 /* YSPlaylistCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistCoordinator.swift; sourceTree = "<group>"; };
+		50E562441E71BA90004E47A2 /* YSSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsCoordinator.swift; sourceTree = "<group>"; };
+		50E562481E71BA90004E47A2 /* YSDownloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownloadProtocol.swift; sourceTree = "<group>"; };
+		50E562491E71BA90004E47A2 /* YSDriveFileProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileProtocol.swift; sourceTree = "<group>"; };
+		50E5624A1E71BA90004E47A2 /* YSErrorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSErrorProtocol.swift; sourceTree = "<group>"; };
+		50E5624C1E71BA90004E47A2 /* YSDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDownload.swift; sourceTree = "<group>"; };
+		50E5624D1E71BA90004E47A2 /* YSDriveFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFile.swift; sourceTree = "<group>"; };
+		50E5624E1E71BA90004E47A2 /* YSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSError.swift; sourceTree = "<group>"; };
+		50E562501E71BA90004E47A2 /* YSDriveModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModelProtocol.swift; sourceTree = "<group>"; };
+		50E562511E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModelProtocol.swift; sourceTree = "<group>"; };
+		50E562521E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerProtocol.swift; sourceTree = "<group>"; };
+		50E562531E71BA90004E47A2 /* YSSettingsModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModelProtocol.swift; sourceTree = "<group>"; };
+		50E562541E71BA90004E47A2 /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
+		50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModel.swift; sourceTree = "<group>"; };
+		50E562561E71BA90004E47A2 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFolder.swift; sourceTree = "<group>"; };
+		50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerModel.swift; sourceTree = "<group>"; };
+		50E562581E71BA90004E47A2 /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
+		50E5625B1E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModelProtocol.swift; sourceTree = "<group>"; };
+		50E5625C1E71BA90004E47A2 /* YSDriveViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModelProtocol.swift; sourceTree = "<group>"; };
+		50E5625D1E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModelProtocol.swift; sourceTree = "<group>"; };
+		50E5625E1E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewModelProtocol.swift; sourceTree = "<group>"; };
+		50E5625F1E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModelProtocol.swift; sourceTree = "<group>"; };
+		50E562601E71BA90004E47A2 /* YSDriveSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModel.swift; sourceTree = "<group>"; };
+		50E562611E71BA90004E47A2 /* YSDriveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveViewModel.swift; sourceTree = "<group>"; };
+		50E562621E71BA90004E47A2 /* YSPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlayerViewModel.swift; sourceTree = "<group>"; };
+		50E562631E71BA90004E47A2 /* YSPlaylistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistViewModel.swift; sourceTree = "<group>"; };
+		50E562641E71BA90004E47A2 /* YSSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsViewModel.swift; sourceTree = "<group>"; };
+		50E562661E71BA90004E47A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50E562681E71BA90004E47A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50E5626A1E71BA90004E47A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50E5626B1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveFileTableViewCell.swift; sourceTree = "<group>"; };
+		50E5626C1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSDriveFileTableViewCell.xib; sourceTree = "<group>"; };
+		50E5626D1E71BA90004E47A2 /* YSHeaderForSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSHeaderForSection.swift; sourceTree = "<group>"; };
+		50E5626E1E71BA90004E47A2 /* YSHeaderForSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSHeaderForSection.xib; sourceTree = "<group>"; };
+		50E5626F1E71BA90004E47A2 /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
+		50E562701E71BA90004E47A2 /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
+		50E562711E71BA90004E47A2 /* YSGGP.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = YSGGP.entitlements; sourceTree = "<group>"; };
+		700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
-		D384CA94A771E85F7758D51D /* Pods_YSGGP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAD128DF4523C94D2288F545 /* Pods_YSGGPUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSGGPUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile.debug.xcconfig"; sourceTree = "<group>"; };
+		C48E5DE7F722C2E89B93FDA8 /* Pods-QuickFile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFile.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +216,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E790E87B4EA652E8071032EF /* Pods_YSGGP.framework in Frameworks */,
 				509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */,
+				58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,148 +231,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		500B6C271D93EDD8003996CA /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C251D93EDCF003996CA /* YSDriveViewModelProtocol.swift */,
-				50BDD1661E5B083900ECA29D /* YSDriveSearchViewModelProtocol.swift */,
-				501F14541DF71C3C009FB868 /* YSPlaylistViewModelProtocol.swift */,
-				508EFC1F1DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift */,
-				509E55881E13FCF600C22489 /* YSPlayerViewModelProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		500B6C281D93F048003996CA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C291D93F052003996CA /* Data */,
-				504110471D956B3500BE3B0C /* Protocols */,
-				504110481D956DEF00BE3B0C /* YSDriveModel.swift */,
-				50BDD1641E571D6B00ECA29D /* YSDriveSearchModel.swift */,
-				501F14581DF71ECB009FB868 /* YSPlaylistAndPlayerModel.swift */,
-				508EFC1D1DB52B3600ED5CFB /* YSSettingsModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		500B6C291D93F052003996CA /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C2A1D93F060003996CA /* Data Protocols */,
-				504110441D95699500BE3B0C /* Data Structs */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		500B6C2A1D93F060003996CA /* Data Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C2B1D93F083003996CA /* YSDriveFileProtocol.swift */,
-				50D326C71DC0C0EB00F12A93 /* YSDownloadProtocol.swift */,
-				503BC1791DB79ED4000D5BA1 /* YSErrorProtocol.swift */,
-			);
-			path = "Data Protocols";
-			sourceTree = "<group>";
-		};
-		503FB7451D914E7E001F66F6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				500B6C271D93EDD8003996CA /* Protocols */,
-				500B6C231D93ED98003996CA /* YSDriveViewModel.swift */,
-				50BDD1681E5B0BD400ECA29D /* YSDriveSearchViewModel.swift */,
-				501F14521DF71C09009FB868 /* YSPlaylistViewModel.swift */,
-				508EFC211DB52D7C00ED5CFB /* YSSettingsViewModel.swift */,
-				509E558A1E13FE5700C22489 /* YSPlayerViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		504110441D95699500BE3B0C /* Data Structs */ = {
-			isa = PBXGroup;
-			children = (
-				504110421D95691100BE3B0C /* YSDriveFile.swift */,
-				50D326C91DC0C18A00F12A93 /* YSDownload.swift */,
-				509E558E1E1BDDB300C22489 /* YSFolder.swift */,
-				503BC17B1DB79F1C000D5BA1 /* YSError.swift */,
-			);
-			path = "Data Structs";
-			sourceTree = "<group>";
-		};
-		504110471D956B3500BE3B0C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				504110451D956B2A00BE3B0C /* YSDriveModelProtocol.swift */,
-				50BDD1621E571C4F00ECA29D /* YSDriveSearchModelProtocol.swift */,
-				501F14561DF71D77009FB868 /* YSPlaylistAndPlayerProtocol.swift */,
-				508EFC1B1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		504110FB1D9BE59F00BE3B0C /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				504110F51D9BE35100BE3B0C /* YSCoordinatorProtocol.swift */,
-				509E55821E13F4C300C22489 /* YSPlayerCoordinator.swift */,
-				50BDD1601E57191C00ECA29D /* YSDriveSearchCoordinator.swift */,
-				501DF04D1DBF412F0058D085 /* YSDriveTopCoordinator.swift */,
-				504110FC1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift */,
-				501F145A1DF855E9009FB868 /* YSPlaylistCoordinator.swift */,
-				508EFC161DB51CB100ED5CFB /* YSSettingsCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
 		505B4A301DAD36600055C180 /* YSGGPUnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				505B4A331DAD36600055C180 /* Info.plist */,
 			);
 			path = YSGGPUnitTests;
-			sourceTree = "<group>";
-		};
-		505B4A3F1DAE601F0055C180 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				509E557E1E12CFE800C22489 /* YSPlayerController.swift */,
-				50BDD15E1E5603C300ECA29D /* YSDriveSearchController.swift */,
-				50E49FD31DA3EE2D00A6FAAC /* YSDriveTopViewController.swift */,
-				503FB7471D914ED6001F66F6 /* YSDriveViewController.swift */,
-				503FB7491D914F88001F66F6 /* YSPlaylistViewController.swift */,
-				508EFC251DB61DDF00ED5CFB /* YSSettingsTopViewController.swift */,
-				500B6BF91D92CA0C003996CA /* YSSettingsTableViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		505B4A401DAE602D0055C180 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DC21D8FF242008EDB0D /* Assets.xcassets */,
-				50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */,
-				50AB0DBF1D8FF242008EDB0D /* Main.storyboard */,
-				501F145E1DF96E4B009FB868 /* YSHeaderForSection.xib */,
-				501F14601DF96F4B009FB868 /* YSHeaderForSection.swift */,
-				5041104A1D95763000BE3B0C /* YSDriveFileTableViewCell.swift */,
-				501F145C1DF869F7009FB868 /* YSDriveFileTableViewCell.xib */,
-				50E49FCF1DA3A8E800A6FAAC /* YSToolbarView.swift */,
-				50E49FD11DA3DABD00A6FAAC /* YSToolbarView.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		508EFC1A1DB527C900ED5CFB /* API */ = {
-			isa = PBXGroup;
-			children = (
-				50C22DD21DDC675B0029E399 /* YSNetworkResponseManager.swift */,
-				50C22DCE1DDC5D890029E399 /* YSFilesMetadataDownloader.swift */,
-				50D326C51DC0BFC200F12A93 /* YSDriveFileDownloader.swift */,
-				50788D8E1DC79350003DD1C7 /* YSDatabaseManager.swift */,
-				50C22DD01DDC623D0029E399 /* YSCredentialManager.swift */,
-				50083B691DDC9BEF009B306D /* YSToken.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		509B474B1E27ED25005E39F2 /* Products */ = {
@@ -388,7 +254,7 @@
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
-				50AB0DB81D8FF242008EDB0D /* YSGGP */,
+				50E562201E71BA90004E47A2 /* QuickFile */,
 				50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */,
 				505B4A301DAD36600055C180 /* YSGGPUnitTests */,
 			);
@@ -404,21 +270,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		50AB0DB81D8FF242008EDB0D /* YSGGP */ = {
-			isa = PBXGroup;
-			children = (
-				507016181DEDD47200A7CAEF /* YSGGP.entitlements */,
-				508EFC1A1DB527C900ED5CFB /* API */,
-				50E49FCE1DA3A84E00A6FAAC /* Additional Classes */,
-				505B4A3F1DAE601F0055C180 /* Controllers */,
-				504110FB1D9BE59F00BE3B0C /* Coordinators */,
-				500B6C281D93F048003996CA /* Models */,
-				503FB7451D914E7E001F66F6 /* ViewModels */,
-				505B4A401DAE602D0055C180 /* Views */,
-			);
-			path = YSGGP;
-			sourceTree = "<group>";
-		};
 		50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,29 +279,179 @@
 			path = YSGGPUITests;
 			sourceTree = "<group>";
 		};
-		50E49FCE1DA3A84E00A6FAAC /* Additional Classes */ = {
+		50E562201E71BA90004E47A2 /* QuickFile */ = {
 			isa = PBXGroup;
 			children = (
-				502578131DC3521D00C6EFFF /* ServiceAccount.json */,
-				50AB0DC71D8FF242008EDB0D /* Info.plist */,
-				50A157161DC0F3E1008AD787 /* GoogleService-Info.plist */,
-				50AB0DB91D8FF242008EDB0D /* YSAppDelegate.swift */,
-				504111001D9C00E200BE3B0C /* YSConstants.swift */,
-				50E49FB91D9D3ED300A6FAAC /* YSNSObjectExtension.swift */,
-				503189C91DDF3DA2001F51B8 /* YSDictionaryExtension.swift */,
-				504110FE1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift */,
-				5000501A1DBA7A19008D752E /* YSTabBarController.swift */,
-				50083B6B1DDCA2CD009B306D /* YSDateExtension.swift */,
-				503AF1681E1FDBF9000E5493 /* SwiftyTimer.swift */,
+				50E562211E71BA90004E47A2 /* Additional Classes */,
+				50E5622D1E71BA90004E47A2 /* API */,
+				50E562351E71BA90004E47A2 /* Controllers */,
+				50E5623D1E71BA90004E47A2 /* Coordinators */,
+				50E562451E71BA90004E47A2 /* Models */,
+				50E562591E71BA90004E47A2 /* ViewModels */,
+				50E562651E71BA90004E47A2 /* Views */,
+				50E562711E71BA90004E47A2 /* YSGGP.entitlements */,
+			);
+			path = QuickFile;
+			sourceTree = "<group>";
+		};
+		50E562211E71BA90004E47A2 /* Additional Classes */ = {
+			isa = PBXGroup;
+			children = (
+				50E562221E71BA90004E47A2 /* GoogleService-Info.plist */,
+				50E562231E71BA90004E47A2 /* Info.plist */,
+				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
+				50E562251E71BA90004E47A2 /* SwiftyTimer.swift */,
+				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
+				50E562271E71BA90004E47A2 /* YSConstants.swift */,
+				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
+				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
+				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
+				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
+				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
 			);
 			path = "Additional Classes";
+			sourceTree = "<group>";
+		};
+		50E5622D1E71BA90004E47A2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				50E5622E1E71BA90004E47A2 /* YSCredentialManager.swift */,
+				50E5622F1E71BA90004E47A2 /* YSDatabaseManager.swift */,
+				50E562301E71BA90004E47A2 /* YSDriveFileDownloader.swift */,
+				50E562311E71BA90004E47A2 /* YSFilesMetadataDownloader.swift */,
+				50E562321E71BA90004E47A2 /* YSNetworkResponseManager.swift */,
+				50E562331E71BA90004E47A2 /* YSToken.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		50E562351E71BA90004E47A2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				50E562361E71BA90004E47A2 /* YSDriveSearchController.swift */,
+				50E562371E71BA90004E47A2 /* YSDriveTopViewController.swift */,
+				50E562381E71BA90004E47A2 /* YSDriveViewController.swift */,
+				50E562391E71BA90004E47A2 /* YSPlayerController.swift */,
+				50E5623A1E71BA90004E47A2 /* YSPlaylistViewController.swift */,
+				50E5623B1E71BA90004E47A2 /* YSSettingsTableViewController.swift */,
+				50E5623C1E71BA90004E47A2 /* YSSettingsTopViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		50E5623D1E71BA90004E47A2 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				50E5623E1E71BA90004E47A2 /* YSCoordinatorProtocol.swift */,
+				50E5623F1E71BA90004E47A2 /* YSDriveCoordinator.swift */,
+				50E562401E71BA90004E47A2 /* YSDriveSearchCoordinator.swift */,
+				50E562411E71BA90004E47A2 /* YSDriveTopCoordinator.swift */,
+				50E562421E71BA90004E47A2 /* YSPlayerCoordinator.swift */,
+				50E562431E71BA90004E47A2 /* YSPlaylistCoordinator.swift */,
+				50E562441E71BA90004E47A2 /* YSSettingsCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		50E562451E71BA90004E47A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				50E562461E71BA90004E47A2 /* Data */,
+				50E5624F1E71BA90004E47A2 /* Protocols */,
+				50E562541E71BA90004E47A2 /* YSDriveModel.swift */,
+				50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */,
+				50E562561E71BA90004E47A2 /* YSFolder.swift */,
+				50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */,
+				50E562581E71BA90004E47A2 /* YSSettingsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		50E562461E71BA90004E47A2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				50E562471E71BA90004E47A2 /* Data Protocols */,
+				50E5624B1E71BA90004E47A2 /* Data Structs */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		50E562471E71BA90004E47A2 /* Data Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				50E562481E71BA90004E47A2 /* YSDownloadProtocol.swift */,
+				50E562491E71BA90004E47A2 /* YSDriveFileProtocol.swift */,
+				50E5624A1E71BA90004E47A2 /* YSErrorProtocol.swift */,
+			);
+			path = "Data Protocols";
+			sourceTree = "<group>";
+		};
+		50E5624B1E71BA90004E47A2 /* Data Structs */ = {
+			isa = PBXGroup;
+			children = (
+				50E5624C1E71BA90004E47A2 /* YSDownload.swift */,
+				50E5624D1E71BA90004E47A2 /* YSDriveFile.swift */,
+				50E5624E1E71BA90004E47A2 /* YSError.swift */,
+			);
+			path = "Data Structs";
+			sourceTree = "<group>";
+		};
+		50E5624F1E71BA90004E47A2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				50E562501E71BA90004E47A2 /* YSDriveModelProtocol.swift */,
+				50E562511E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift */,
+				50E562521E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift */,
+				50E562531E71BA90004E47A2 /* YSSettingsModelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		50E562591E71BA90004E47A2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				50E5625A1E71BA90004E47A2 /* Protocols */,
+				50E562601E71BA90004E47A2 /* YSDriveSearchViewModel.swift */,
+				50E562611E71BA90004E47A2 /* YSDriveViewModel.swift */,
+				50E562621E71BA90004E47A2 /* YSPlayerViewModel.swift */,
+				50E562631E71BA90004E47A2 /* YSPlaylistViewModel.swift */,
+				50E562641E71BA90004E47A2 /* YSSettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		50E5625A1E71BA90004E47A2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				50E5625B1E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift */,
+				50E5625C1E71BA90004E47A2 /* YSDriveViewModelProtocol.swift */,
+				50E5625D1E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift */,
+				50E5625E1E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift */,
+				50E5625F1E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		50E562651E71BA90004E47A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50E562661E71BA90004E47A2 /* Assets.xcassets */,
+				50E562671E71BA90004E47A2 /* LaunchScreen.storyboard */,
+				50E562691E71BA90004E47A2 /* Main.storyboard */,
+				50E5626B1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift */,
+				50E5626C1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib */,
+				50E5626D1E71BA90004E47A2 /* YSHeaderForSection.swift */,
+				50E5626E1E71BA90004E47A2 /* YSHeaderForSection.xib */,
+				50E5626F1E71BA90004E47A2 /* YSToolbarView.swift */,
+				50E562701E71BA90004E47A2 /* YSToolbarView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6AE4711898AD76DF85E73D3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D384CA94A771E85F7758D51D /* Pods_YSGGP.framework */,
-				DAD128DF4523C94D2288F545 /* Pods_YSGGPUnitTests.framework */,
+				700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,6 +461,8 @@
 			children = (
 				3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */,
 				90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */,
+				B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */,
+				C48E5DE7F722C2E89B93FDA8 /* Pods-QuickFile.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -612,14 +615,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501F145F1DF96E4B009FB868 /* YSHeaderForSection.xib in Resources */,
-				50E49FD21DA3DABD00A6FAAC /* YSToolbarView.xib in Resources */,
-				50AB0DC61D8FF242008EDB0D /* LaunchScreen.storyboard in Resources */,
-				50A157171DC0F3E1008AD787 /* GoogleService-Info.plist in Resources */,
-				502578141DC3521D00C6EFFF /* ServiceAccount.json in Resources */,
-				50AB0DC31D8FF242008EDB0D /* Assets.xcassets in Resources */,
-				50AB0DC11D8FF242008EDB0D /* Main.storyboard in Resources */,
-				501F145D1DF869F7009FB868 /* YSDriveFileTableViewCell.xib in Resources */,
+				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
+				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
+				50E562731E71BA90004E47A2 /* Info.plist in Resources */,
+				50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */,
+				50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */,
+				50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */,
+				50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */,
+				50E562AB1E71BA90004E47A2 /* Assets.xcassets in Resources */,
+				50E562B11E71BA90004E47A2 /* YSHeaderForSection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +649,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		07CB881B3B1C2E24B034515F /* [CP] Embed Pods Frameworks */ = {
@@ -660,7 +664,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		502578121DC3513300C6EFFF /* ShellScript */ = {
@@ -674,7 +678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:5bf14ac216ee97dc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/YSGGP/Additional Classes/ServiceAccount.json\"";
+			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:8ba3fc0bed298ebc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional Classes/ServiceAccount.json\"";
 		};
 		507016191DEDE56400A7CAEF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -718,62 +722,62 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				508EFC1E1DB52B3600ED5CFB /* YSSettingsModel.swift in Sources */,
-				504110461D956B2A00BE3B0C /* YSDriveModelProtocol.swift in Sources */,
-				50788D8F1DC79350003DD1C7 /* YSDatabaseManager.swift in Sources */,
-				508EFC221DB52D7C00ED5CFB /* YSSettingsViewModel.swift in Sources */,
-				503FB74A1D914F88001F66F6 /* YSPlaylistViewController.swift in Sources */,
-				5041104B1D95763000BE3B0C /* YSDriveFileTableViewCell.swift in Sources */,
-				501DF04E1DBF412F0058D085 /* YSDriveTopCoordinator.swift in Sources */,
-				508EFC171DB51CB100ED5CFB /* YSSettingsCoordinator.swift in Sources */,
-				504110FD1D9BEA1D00BE3B0C /* YSDriveCoordinator.swift in Sources */,
-				50083B6A1DDC9BEF009B306D /* YSToken.swift in Sources */,
-				504110431D95691100BE3B0C /* YSDriveFile.swift in Sources */,
-				501F14591DF71ECB009FB868 /* YSPlaylistAndPlayerModel.swift in Sources */,
-				509E558B1E13FE5700C22489 /* YSPlayerViewModel.swift in Sources */,
-				501F14611DF96F4B009FB868 /* YSHeaderForSection.swift in Sources */,
-				500B6C241D93ED98003996CA /* YSDriveViewModel.swift in Sources */,
-				504110491D956DEF00BE3B0C /* YSDriveModel.swift in Sources */,
-				501F14571DF71D77009FB868 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
-				500B6C2C1D93F083003996CA /* YSDriveFileProtocol.swift in Sources */,
-				500B6BFA1D92CA0C003996CA /* YSSettingsTableViewController.swift in Sources */,
-				50D326C81DC0C0EB00F12A93 /* YSDownloadProtocol.swift in Sources */,
-				501F14551DF71C3C009FB868 /* YSPlaylistViewModelProtocol.swift in Sources */,
-				508EFC201DB52C8600ED5CFB /* YSSettingsViewModelProtocol.swift in Sources */,
-				5000501B1DBA7A19008D752E /* YSTabBarController.swift in Sources */,
-				50C22DD31DDC675B0029E399 /* YSNetworkResponseManager.swift in Sources */,
-				50D326C61DC0BFC200F12A93 /* YSDriveFileDownloader.swift in Sources */,
-				503BC17A1DB79ED4000D5BA1 /* YSErrorProtocol.swift in Sources */,
-				50BDD1651E571D6B00ECA29D /* YSDriveSearchModel.swift in Sources */,
-				50C22DCF1DDC5D890029E399 /* YSFilesMetadataDownloader.swift in Sources */,
-				50BDD1671E5B083900ECA29D /* YSDriveSearchViewModelProtocol.swift in Sources */,
-				504111011D9C00E200BE3B0C /* YSConstants.swift in Sources */,
-				504110FF1D9BF5BD00BE3B0C /* YSTabBarControllerExtension.swift in Sources */,
-				50BDD1611E57191C00ECA29D /* YSDriveSearchCoordinator.swift in Sources */,
-				503BC17C1DB79F1C000D5BA1 /* YSError.swift in Sources */,
-				503189CA1DDF3DA2001F51B8 /* YSDictionaryExtension.swift in Sources */,
-				509E557F1E12CFE800C22489 /* YSPlayerController.swift in Sources */,
-				50E49FBA1D9D3ED300A6FAAC /* YSNSObjectExtension.swift in Sources */,
-				504110F61D9BE35100BE3B0C /* YSCoordinatorProtocol.swift in Sources */,
-				50D326CA1DC0C18A00F12A93 /* YSDownload.swift in Sources */,
-				50E49FD01DA3A8E800A6FAAC /* YSToolbarView.swift in Sources */,
-				50AB0DBA1D8FF242008EDB0D /* YSAppDelegate.swift in Sources */,
-				501F14531DF71C09009FB868 /* YSPlaylistViewModel.swift in Sources */,
-				50C22DD11DDC623D0029E399 /* YSCredentialManager.swift in Sources */,
-				50BDD15F1E5603C300ECA29D /* YSDriveSearchController.swift in Sources */,
-				503FB7481D914ED6001F66F6 /* YSDriveViewController.swift in Sources */,
-				50E49FD41DA3EE2D00A6FAAC /* YSDriveTopViewController.swift in Sources */,
-				501F145B1DF855E9009FB868 /* YSPlaylistCoordinator.swift in Sources */,
-				508EFC1C1DB52AED00ED5CFB /* YSSettingsModelProtocol.swift in Sources */,
-				500B6C261D93EDCF003996CA /* YSDriveViewModelProtocol.swift in Sources */,
-				508EFC261DB61DDF00ED5CFB /* YSSettingsTopViewController.swift in Sources */,
-				50BDD1631E571C4F00ECA29D /* YSDriveSearchModelProtocol.swift in Sources */,
-				509E55891E13FCF600C22489 /* YSPlayerViewModelProtocol.swift in Sources */,
-				509E558F1E1BDDB300C22489 /* YSFolder.swift in Sources */,
-				50083B6C1DDCA2CD009B306D /* YSDateExtension.swift in Sources */,
-				509E55831E13F4C300C22489 /* YSPlayerCoordinator.swift in Sources */,
-				503AF1691E1FDBF9000E5493 /* SwiftyTimer.swift in Sources */,
-				50BDD1691E5B0BD400ECA29D /* YSDriveSearchViewModel.swift in Sources */,
+				50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */,
+				50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */,
+				50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */,
+				50E562941E71BA90004E47A2 /* YSErrorProtocol.swift in Sources */,
+				50E562921E71BA90004E47A2 /* YSDownloadProtocol.swift in Sources */,
+				50E562911E71BA90004E47A2 /* YSSettingsCoordinator.swift in Sources */,
+				50E562851E71BA90004E47A2 /* YSDriveTopViewController.swift in Sources */,
+				50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */,
+				50E562B21E71BA90004E47A2 /* YSToolbarView.swift in Sources */,
+				50E562A41E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift in Sources */,
+				50E5629E1E71BA90004E47A2 /* YSFolder.swift in Sources */,
+				50E5629D1E71BA90004E47A2 /* YSDriveSearchModel.swift in Sources */,
+				50E562791E71BA90004E47A2 /* YSDictionaryExtension.swift in Sources */,
+				50E562B01E71BA90004E47A2 /* YSHeaderForSection.swift in Sources */,
+				50E562881E71BA90004E47A2 /* YSPlaylistViewController.swift in Sources */,
+				50E5627E1E71BA90004E47A2 /* YSDatabaseManager.swift in Sources */,
+				50E5627B1E71BA90004E47A2 /* YSTabBarController.swift in Sources */,
+				50E562991E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift in Sources */,
+				50E562AE1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift in Sources */,
+				50E562871E71BA90004E47A2 /* YSPlayerController.swift in Sources */,
+				50E5627D1E71BA90004E47A2 /* YSCredentialManager.swift in Sources */,
+				50E562A91E71BA90004E47A2 /* YSPlaylistViewModel.swift in Sources */,
+				50E5628D1E71BA90004E47A2 /* YSDriveSearchCoordinator.swift in Sources */,
+				50E5629B1E71BA90004E47A2 /* YSSettingsModelProtocol.swift in Sources */,
+				50E562951E71BA90004E47A2 /* YSDownload.swift in Sources */,
+				50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */,
+				50E562A11E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift in Sources */,
+				50E562A81E71BA90004E47A2 /* YSPlayerViewModel.swift in Sources */,
+				50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */,
+				50E562981E71BA90004E47A2 /* YSDriveModelProtocol.swift in Sources */,
+				50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */,
+				50E5628A1E71BA90004E47A2 /* YSSettingsTopViewController.swift in Sources */,
+				50E562811E71BA90004E47A2 /* YSNetworkResponseManager.swift in Sources */,
+				50E562821E71BA90004E47A2 /* YSToken.swift in Sources */,
+				50E562971E71BA90004E47A2 /* YSError.swift in Sources */,
+				50E562A31E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift in Sources */,
+				50E562931E71BA90004E47A2 /* YSDriveFileProtocol.swift in Sources */,
+				50E5627A1E71BA90004E47A2 /* YSNSObjectExtension.swift in Sources */,
+				50E5628B1E71BA90004E47A2 /* YSCoordinatorProtocol.swift in Sources */,
+				50E5628C1E71BA90004E47A2 /* YSDriveCoordinator.swift in Sources */,
+				50E5629F1E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift in Sources */,
+				50E562AA1E71BA90004E47A2 /* YSSettingsViewModel.swift in Sources */,
+				50E562901E71BA90004E47A2 /* YSPlaylistCoordinator.swift in Sources */,
+				50E562A51E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift in Sources */,
+				50E562801E71BA90004E47A2 /* YSFilesMetadataDownloader.swift in Sources */,
+				50E5627C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift in Sources */,
+				50E562A01E71BA90004E47A2 /* YSSettingsModel.swift in Sources */,
+				50E562A71E71BA90004E47A2 /* YSDriveViewModel.swift in Sources */,
+				50E562A61E71BA90004E47A2 /* YSDriveSearchViewModel.swift in Sources */,
+				50E5629C1E71BA90004E47A2 /* YSDriveModel.swift in Sources */,
+				50E5627F1E71BA90004E47A2 /* YSDriveFileDownloader.swift in Sources */,
+				50E562A21E71BA90004E47A2 /* YSDriveViewModelProtocol.swift in Sources */,
+				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
+				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
+				50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */,
+				50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,22 +810,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		50AB0DBF1D8FF242008EDB0D /* Main.storyboard */ = {
+		50E562671E71BA90004E47A2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				50AB0DC01D8FF242008EDB0D /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		50AB0DC41D8FF242008EDB0D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50AB0DC51D8FF242008EDB0D /* Base */,
+				50E562681E71BA90004E47A2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = .;
+			sourceTree = "<group>";
+		};
+		50E562691E71BA90004E47A2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50E5626A1E71BA90004E47A2 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -830,6 +832,7 @@
 		505B4A371DAD36600055C180 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = A2PX8YZMXY;
@@ -845,6 +848,7 @@
 		505B4A381DAD36600055C180 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YSGGPUnitTests/Info.plist;
@@ -955,15 +959,15 @@
 		};
 		50AB0DE11D8FF243008EDB0D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */;
+			baseConfigurationReference = B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFile/YSGGP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
+				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.quickfile;
@@ -977,15 +981,15 @@
 		};
 		50AB0DE21D8FF243008EDB0D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */;
+			baseConfigurationReference = C48E5DE7F722C2E89B93FDA8 /* Pods-QuickFile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YSGGP/YSGGP.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFile/YSGGP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "YSGGP/Additional Classes/Info.plist";
+				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.quickfile;

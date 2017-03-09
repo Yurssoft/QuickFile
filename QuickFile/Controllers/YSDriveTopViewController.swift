@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseCrash
 
 protocol YSDriveViewControllerDidFinishedLoading: class
 {
@@ -31,6 +32,7 @@ class YSDriveTopViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         driveVC?.toolbarView = toolbarView
         driveVC?.toolbarView.ysToolbarDelegate = driveVC
         driveVC?.containingViewControllerViewDidLoad()

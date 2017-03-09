@@ -1,6 +1,6 @@
 platform :ios, '10.0'
 use_frameworks!
-target 'YSGGP' do
+target 'QuickFile' do
     pod 'SwiftMessages'
     pod 'MJRefresh'
     pod 'M13ProgressSuite'
