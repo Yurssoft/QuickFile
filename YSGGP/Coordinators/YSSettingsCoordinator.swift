@@ -35,4 +35,11 @@ extension YSSettingsCoordinator : YSSettingsCoordinatorDelegate
             tababarController.selectedIndex = 0 //drive tab
         }
     }
+    
+    func viewModelDidDeleteAllLocalFiles(viewModel: YSSettingsViewModel)
+    {
+        YSAppDelegate.appDelegate().playerDelegate?.filesDidChange()
+        YSAppDelegate.appDelegate().playlistDelegate?.filesDidChange()
+        YSAppDelegate.appDelegate().driveDelegate?.filesDidChange()
+    }
 }

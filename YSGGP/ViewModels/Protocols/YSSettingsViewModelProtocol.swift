@@ -16,6 +16,7 @@ protocol YSSettingsViewModelViewDelegate: class
 protocol YSSettingsCoordinatorDelegate: class
 {
     func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel)
+    func viewModelDidDeleteAllLocalFiles(viewModel: YSSettingsViewModel)
 }
 
 protocol YSSettingsViewModelProtocol

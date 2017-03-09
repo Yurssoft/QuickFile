@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftMessages
 
 class YSSettingsViewModel : YSSettingsViewModelProtocol
 {
@@ -47,6 +48,10 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         YSDatabaseManager.deleteAllDownloads { (error) in
             DispatchQueue.main.async
             {
+                if error.messageType == Theme.success || error.title.contains("Deleted")
+                {
+                    self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
+                }
                 self.viewDelegate?.errorDidChange(viewModel: self, error: error)
             }
         }
