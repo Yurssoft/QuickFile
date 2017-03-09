@@ -25,7 +25,7 @@ class YSDriveTopViewController: UIViewController
     
     fileprivate let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
     fileprivate let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
-    //TODO: on will dissapear exit edit mode and do not show search
+    //TODO: do not show search
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -53,11 +53,23 @@ class YSDriveTopViewController: UIViewController
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        guard let driveVC = driveVC, driveVC.isEditing else { return }
+        driveVC.selectedIndexes.removeAll()
+        driveVC.setEditing(false, animated: true)
+        toolbarView?.isHidden = !driveVC.isEditing
+        editButton.title = driveVC.isEditing ? "Done" : "Edit"
+        tabBarController?.setTabBarVisible(isVisible: !driveVC.isEditing, animated: true, completion:nil)
+    }
+    
     deinit
     {
         driveVC?.viewModel = nil
         driveVC = nil
     }
+    
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem)
     {
         driveVC?.viewModel?.driveViewControllerDidRequestedSearch()
@@ -65,11 +77,12 @@ class YSDriveTopViewController: UIViewController
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)
     {
-        driveVC?.selectedIndexes.removeAll()
-        driveVC?.setEditing(!(driveVC?.isEditing)!, animated: true)
-        toolbarView?.isHidden = !(driveVC?.isEditing)!
-        sender.title = (driveVC?.isEditing)! ? "Done" : "Edit"
-        tabBarController?.setTabBarVisible(isVisible: !(driveVC?.isEditing)!, animated: true, completion:nil)
+        guard let driveVC = driveVC else { return }
+        driveVC.selectedIndexes.removeAll()
+        driveVC.setEditing(!driveVC.isEditing, animated: true)
+        toolbarView?.isHidden = !driveVC.isEditing
+        editButton.title = driveVC.isEditing ? "Done" : "Edit"
+        tabBarController?.setTabBarVisible(isVisible: !driveVC.isEditing, animated: true, completion:nil)
     }
     
     func loginButtonTapped(_ sender: AnyObject)
