@@ -11,6 +11,12 @@ import GTMOAuth2
 import Firebase
 import GoogleSignIn
 
+protocol YSUpdatingDelegate: class
+{
+    func downloadDidChange(_ download : YSDownloadProtocol,_ error: YSErrorProtocol?)
+    func filesDidChange()
+}
+
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
 {
@@ -21,6 +27,12 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var fileDownloader : YSDriveFileDownloader?
     var searchCoordinator : YSDriveSearchCoordinator?
     var playerCoordinator : YSPlayerCoordinator = YSPlayerCoordinator()
+    var filesOnDisk : [String] = []
+    
+    weak var downloadsDelegate: YSUpdatingDelegate?
+    weak var playlistDelegate: YSUpdatingDelegate?
+    weak var playerDelegate: YSUpdatingDelegate?
+    weak var driveDelegate: YSUpdatingDelegate?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -36,6 +48,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()
         fileDownloader = YSDriveFileDownloader()
+        lookUpAllFilesOnDisk()
         return true
     }
     
@@ -52,6 +65,22 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     class func appDelegate() -> YSAppDelegate
     {
         return UIApplication.shared.delegate as! YSAppDelegate
+    }
+    
+    private func lookUpAllFilesOnDisk()
+    {
+        do
+        {
+            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
+            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
+            let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
+            filesOnDisk = mp3FileNames
+        }
+        catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
     }
 }
 

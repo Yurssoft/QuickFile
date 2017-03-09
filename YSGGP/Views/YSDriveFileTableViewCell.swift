@@ -16,8 +16,8 @@ protocol YSDriveFileTableViewCellDelegate : class
     func stopDownloadButtonPressed(_ file: YSDriveFileProtocol)
 }
 
-class YSDriveFileTableViewCell: UITableViewCell {
-    
+class YSDriveFileTableViewCell: UITableViewCell
+{
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var fileInfoLabel: UILabel!
     @IBOutlet weak var fileImageView: UIImageView!
@@ -43,7 +43,6 @@ class YSDriveFileTableViewCell: UITableViewCell {
         fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
         if file.isAudio
         {
-            //TODO: fix performance - do not check for file existing every time - create dynamic list
             if file.localFileExists()
             {
                 downloadButton.isHidden = true
