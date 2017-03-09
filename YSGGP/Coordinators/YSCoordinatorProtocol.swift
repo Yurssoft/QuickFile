@@ -12,4 +12,3 @@ protocol YSCoordinatorProtocol: class
 {    
     func start()
 }
-

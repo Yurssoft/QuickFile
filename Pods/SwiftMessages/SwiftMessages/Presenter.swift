@@ -74,15 +74,34 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         let duration: TimeInterval?
         switch self.config.duration {
         case .automatic:
-            duration = 2.0
+            duration = 2
         case .seconds(let seconds):
             duration = seconds
-        case .forever:
+        case .forever, .indefinite:
             duration = nil
         }
         return duration
     }
-    
+
+    var showDate: Date?
+
+    private var interactivelyHidden = false;
+
+    var delayShow: TimeInterval? {
+        if case .indefinite(let opts) = config.duration { return opts.delay }
+        return nil
+    }
+
+    /// Returns the required delay for hiding based on time shown
+    var delayHide: TimeInterval? {
+        if interactivelyHidden { return 0 }
+        if case .indefinite(let opts) = config.duration, let showDate = showDate {
+            let timeIntervalShown = -showDate.timeIntervalSinceNow
+            return max(0, opts.minimum - timeIntervalShown)
+        }
+        return nil
+    }
+
     func show(completion: @escaping (_ completed: Bool) -> Void) throws {
         try presentationContext = getPresentationContext()
         install()
@@ -128,7 +147,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
     func install() {
         guard let containerView = presentationContext.viewValue() else { return }
         if let windowViewController = presentationContext.viewControllerValue() as? WindowViewController {
-            windowViewController.install(becomeKey: config.becomeKeyWindow)
+            windowViewController.install(becomeKey: becomeKeyWindow)
         }
         do {
             maskingView.translatesAutoresizingMaskIntoConstraints = false
@@ -194,15 +213,16 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
                 if interactive {
                     maskingView.tappedHander = { [weak self] in
                         guard let strongSelf = self else { return }
-                        self?.delegate?.hide(presenter: strongSelf)
+                        strongSelf.interactivelyHidden = true
+                        strongSelf.delegate?.hide(presenter: strongSelf)
                     }
                 } else {
                     // There's no action to take, but the presence of
                     // a tap handler prevents interaction with underlying views.
                     maskingView.tappedHander = { }
                 }
+                maskingView.accessibilityViewIsModal = true
             }
-            
             switch config.dimMode {
             case .none:
                 break
@@ -213,7 +233,19 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
             }
         }
     }
-    
+
+    private var becomeKeyWindow: Bool {
+        if config.becomeKeyWindow == .some(true) { return true }
+        switch config.dimMode {
+        case .gray, .color:
+            // Should become key window in modal presentation style
+            // for proper voice over handling.
+            return true
+        case .none:
+            return false
+        }
+    }
+
     private func viewInterferesWithStatusBar(_ view: UIView) -> Bool {
         guard let window = view.window else { return false }
         let statusBarFrame = UIApplication.shared.statusBarFrame
@@ -277,7 +309,10 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         }
     }
 
+    var isHiding = false
+
     func hide(completion: @escaping (_ completed: Bool) -> Void) {
+        isHiding = true
         self.config.eventListeners.forEach { $0(.willHide) }
         switch config.presentationStyle {
         case .top, .bottom:
@@ -311,7 +346,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
 //                completion(completed: completed)
 //            })
         }
-        
+
         func undim() {
             UIView.animate(withDuration: 0.2, animations: {
                 self.maskingView.backgroundColor = UIColor.clear
@@ -373,6 +408,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
             panTranslationY = translation.y
         case .ended, .cancelled:
             if closeSpeed > 750.0 || closePercent > 0.33 {
+                interactivelyHidden = true
                 delegate?.hide(presenter: self)
             } else {
                 closing = false
