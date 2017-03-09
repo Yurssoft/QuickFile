@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:YSGGP.xcodeproj">
+      location = "group:/Users/yuriiboiko/Desktop/YSGGP/QuickFile.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

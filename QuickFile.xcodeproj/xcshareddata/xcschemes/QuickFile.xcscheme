@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50AB0DB51D8FF242008EDB0D"
-               BuildableName = "YSGGP.app"
-               BlueprintName = "YSGGP"
-               ReferencedContainer = "container:YSGGP.xcodeproj">
+               BuildableName = "QuickFile.app"
+               BlueprintName = "QuickFile"
+               ReferencedContainer = "container:QuickFile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50AB0DD61D8FF243008EDB0D"
-               BuildableName = "YSGGPUITests.xctest"
-               BlueprintName = "YSGGPUITests"
-               ReferencedContainer = "container:YSGGP.xcodeproj">
+               BuildableName = "QuickFileUITests.xctest"
+               BlueprintName = "QuickFileUITests"
+               ReferencedContainer = "container:QuickFile.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "505B4A2E1DAD36600055C180"
-               BuildableName = "YSGGPUnitTests.xctest"
-               BlueprintName = "YSGGPUnitTests"
-               ReferencedContainer = "container:YSGGP.xcodeproj">
+               BuildableName = "QuickFileUnitTests.xctest"
+               BlueprintName = "QuickFileUnitTests"
+               ReferencedContainer = "container:QuickFile.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50AB0DB51D8FF242008EDB0D"
-            BuildableName = "YSGGP.app"
-            BlueprintName = "YSGGP"
-            ReferencedContainer = "container:YSGGP.xcodeproj">
+            BuildableName = "QuickFile.app"
+            BlueprintName = "QuickFile"
+            ReferencedContainer = "container:QuickFile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50AB0DB51D8FF242008EDB0D"
-            BuildableName = "YSGGP.app"
-            BlueprintName = "YSGGP"
-            ReferencedContainer = "container:YSGGP.xcodeproj">
+            BuildableName = "QuickFile.app"
+            BlueprintName = "QuickFile"
+            ReferencedContainer = "container:QuickFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -103,9 +103,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50AB0DB51D8FF242008EDB0D"
-            BuildableName = "YSGGP.app"
-            BlueprintName = "YSGGP"
-            ReferencedContainer = "container:YSGGP.xcodeproj">
+            BuildableName = "QuickFile.app"
+            BlueprintName = "QuickFile"
+            ReferencedContainer = "container:QuickFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
