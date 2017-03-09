@@ -17,13 +17,16 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
     fileprivate var navigationController: UINavigationController?
     var folder : YSFolder = YSFolder.rootFolder()
     fileprivate var storyboard: UIStoryboard?
+    var shouldShowSearch : Bool = true
     
     func start() { }
     
-    func start(driveTopVC: YSDriveTopViewController)
+    func start(driveTopVC: YSDriveTopViewController, shouldShowSearch : Bool = true)
     {
         driveTopVC.driveVCReadyDelegate = self
         storyboard = driveTopVC.storyboard
+        self.shouldShowSearch = shouldShowSearch
+        driveTopVC.shouldShowSearch = shouldShowSearch
     }
     
     func driveCoordinatorDidRequestedLogin()
@@ -100,6 +103,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
             folder = ysfolder
             let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
             driveTopVC.driveVCReadyDelegate = self
+            driveTopVC.shouldShowSearch = shouldShowSearch
             navigationController?.pushViewController(driveTopVC, animated: true)
         }
     }

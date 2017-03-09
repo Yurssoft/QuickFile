@@ -25,6 +25,7 @@ class YSDriveFileTableViewCell: UITableViewCell
     
     @IBOutlet weak var audioIndicatorView: AudioIndicatorBarsView!
     @IBOutlet weak var downloadButton: PKDownloadButton!
+    @IBOutlet weak var titleRightMarginConstraint: NSLayoutConstraint!
     
     override func prepareForReuse()
     {
@@ -46,10 +47,12 @@ class YSDriveFileTableViewCell: UITableViewCell
             if file.localFileExists()
             {
                 downloadButton.isHidden = true
+                titleRightMarginConstraint.constant = 0.0
                 return
             }
             downloadButton.superview?.bringSubview(toFront: downloadButton)
             downloadButton.isHidden = false
+            titleRightMarginConstraint.constant = downloadButton.frame.width + 8
             if let download = download
             {
                 switch download.downloadStatus
@@ -74,6 +77,7 @@ class YSDriveFileTableViewCell: UITableViewCell
         else
         {
             downloadButton.isHidden = true
+            titleRightMarginConstraint.constant = 0.0
         }
     }
     
@@ -92,6 +96,7 @@ class YSDriveFileTableViewCell: UITableViewCell
             }
             audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
             audioIndicatorView.isHidden = false
+            titleRightMarginConstraint.constant = audioIndicatorView.frame.width + 8
             audioIndicatorView.start()
         }
         else
@@ -103,6 +108,7 @@ class YSDriveFileTableViewCell: UITableViewCell
             }
             audioIndicatorView.stop()
             audioIndicatorView.isHidden = true
+            titleRightMarginConstraint.constant = 0.0
         }
         fileNameLabel?.text = file.fileName
         fileInfoLabel?.text = fileSize

@@ -67,7 +67,7 @@ extension YSDriveSearchCoordinator : YSDriveSearchViewModelCoordinatorDelegate
             ysFolder.folderID = file.fileDriveIdentifier
             ysFolder.folderName = file.fileName
             driveCoordinator.folder = ysFolder
-            driveCoordinator.start(driveTopVC: driveTopVC)
+            driveCoordinator.start(driveTopVC: driveTopVC, shouldShowSearch: false)
         }
     }
     

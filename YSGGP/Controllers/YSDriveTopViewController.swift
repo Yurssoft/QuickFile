@@ -19,13 +19,15 @@ class YSDriveTopViewController: UIViewController
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var toolbarViewBottomConstraint : NSLayoutConstraint?
     @IBOutlet fileprivate weak var toolbarView: YSToolbarView?
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     var driveVC : YSDriveViewController?
+    var shouldShowSearch : Bool = true
     
     weak var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
     
     fileprivate let toolbarViewBottomConstraintVisibleConstant = 0 as CGFloat
     fileprivate let toolbarViewBottomConstraintHiddenConstant = -100 as CGFloat
-    //TODO: do not show search
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,6 +39,10 @@ class YSDriveTopViewController: UIViewController
         driveVC?.selectedIndexes.removeAll()
         driveVC?.setEditing(false, animated: false)
         toolbarView?.isHidden = true
+        if !shouldShowSearch
+        {
+            navigationItem.rightBarButtonItems = [editButton]
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
