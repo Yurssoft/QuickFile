@@ -33,7 +33,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     weak var playlistDelegate: YSUpdatingDelegate?
     weak var playerDelegate: YSUpdatingDelegate?
     weak var driveDelegate: YSUpdatingDelegate?
-
+//TODO:SYNX!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
