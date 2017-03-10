@@ -18,7 +18,7 @@ class YSDriveViewController: UITableViewController
     
     var selectedIndexes : [IndexPath] = []
     private var wasLoggedIn : Bool = false
-    
+    //TODO: on empty list show message, notifications, admob
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */; };
 		50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562221E71BA90004E47A2 /* GoogleService-Info.plist */; };
 		50E562731E71BA90004E47A2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562231E71BA90004E47A2 /* Info.plist */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
@@ -79,13 +78,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		505B4A341DAD36600055C180 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50AB0DAE1D8FF242008EDB0D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
-			remoteInfo = YSGGP;
-		};
 		509B474E1E27ED25005E39F2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
@@ -99,13 +91,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 39DB52E41B5823330061C589;
 			remoteInfo = LNPopupController;
-		};
-		50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50AB0DAE1D8FF242008EDB0D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50AB0DB51D8FF242008EDB0D;
-			remoteInfo = YSGGP;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -125,13 +110,8 @@
 
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
-		505B4A2F1DAD36600055C180 /* QuickFileUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickFileUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		505B4A331DAD36600055C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DD71D8FF243008EDB0D /* QuickFileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickFileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGGPUITests.swift; sourceTree = "<group>"; };
-		50AB0DDD1D8FF243008EDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562221E71BA90004E47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562241E71BA90004E47A2 /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
@@ -197,7 +177,7 @@
 		50E5626E1E71BA90004E47A2 /* YSHeaderForSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSHeaderForSection.xib; sourceTree = "<group>"; };
 		50E5626F1E71BA90004E47A2 /* YSToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSToolbarView.swift; sourceTree = "<group>"; };
 		50E562701E71BA90004E47A2 /* YSToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSToolbarView.xib; sourceTree = "<group>"; };
-		50E562711E71BA90004E47A2 /* YSGGP.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = YSGGP.entitlements; sourceTree = "<group>"; };
+		50E562711E71BA90004E47A2 /* QuickFile.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = QuickFile.entitlements; sourceTree = "<group>"; };
 		700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
 		B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,13 +185,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		505B4A2C1DAD36600055C180 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50AB0DB31D8FF242008EDB0D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,24 +194,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50AB0DD41D8FF243008EDB0D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		505B4A301DAD36600055C180 /* YSGGPUnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				505B4A331DAD36600055C180 /* Info.plist */,
-			);
-			path = YSGGPUnitTests;
-			sourceTree = "<group>";
-		};
 		509B474B1E27ED25005E39F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,8 +213,6 @@
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
 				50E562201E71BA90004E47A2 /* QuickFile */,
-				50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */,
-				505B4A301DAD36600055C180 /* YSGGPUnitTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,19 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				50AB0DB61D8FF242008EDB0D /* QuickFile.app */,
-				50AB0DD71D8FF243008EDB0D /* QuickFileUITests.xctest */,
-				505B4A2F1DAD36600055C180 /* QuickFileUnitTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		50AB0DDA1D8FF243008EDB0D /* YSGGPUITests */ = {
-			isa = PBXGroup;
-			children = (
-				50AB0DDD1D8FF243008EDB0D /* Info.plist */,
-				50AB0DDB1D8FF243008EDB0D /* YSGGPUITests.swift */,
-			);
-			path = YSGGPUITests;
 			sourceTree = "<group>";
 		};
 		50E562201E71BA90004E47A2 /* QuickFile */ = {
@@ -289,7 +234,7 @@
 				50E562451E71BA90004E47A2 /* Models */,
 				50E562591E71BA90004E47A2 /* ViewModels */,
 				50E562651E71BA90004E47A2 /* Views */,
-				50E562711E71BA90004E47A2 /* YSGGP.entitlements */,
+				50E562711E71BA90004E47A2 /* QuickFile.entitlements */,
 			);
 			path = QuickFile;
 			sourceTree = "<group>";
@@ -470,24 +415,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		505B4A2E1DAD36600055C180 /* QuickFileUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 505B4A361DAD36600055C180 /* Build configuration list for PBXNativeTarget "QuickFileUnitTests" */;
-			buildPhases = (
-				505B4A2B1DAD36600055C180 /* Sources */,
-				505B4A2C1DAD36600055C180 /* Frameworks */,
-				505B4A2D1DAD36600055C180 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				505B4A351DAD36600055C180 /* PBXTargetDependency */,
-			);
-			name = QuickFileUnitTests;
-			productName = YSGGPUnitTests;
-			productReference = 505B4A2F1DAD36600055C180 /* QuickFileUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		50AB0DB51D8FF242008EDB0D /* QuickFile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50AB0DE01D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "QuickFile" */;
@@ -512,24 +439,6 @@
 			productReference = 50AB0DB61D8FF242008EDB0D /* QuickFile.app */;
 			productType = "com.apple.product-type.application";
 		};
-		50AB0DD61D8FF243008EDB0D /* QuickFileUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 50AB0DE61D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "QuickFileUITests" */;
-			buildPhases = (
-				50AB0DD31D8FF243008EDB0D /* Sources */,
-				50AB0DD41D8FF243008EDB0D /* Frameworks */,
-				50AB0DD51D8FF243008EDB0D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				50AB0DD91D8FF243008EDB0D /* PBXTargetDependency */,
-			);
-			name = QuickFileUITests;
-			productName = YSGGPUITests;
-			productReference = 50AB0DD71D8FF243008EDB0D /* QuickFileUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -540,15 +449,9 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Yurii Boiko";
 				TargetAttributes = {
-					505B4A2E1DAD36600055C180 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A2PX8YZMXY;
-						ProvisioningStyle = Manual;
-						TestTargetID = 50AB0DB51D8FF242008EDB0D;
-					};
 					50AB0DB51D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9GXW8252L9;
+						DevelopmentTeam = 5F6JBYSSNL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -558,12 +461,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					50AB0DD61D8FF243008EDB0D = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A2PX8YZMXY;
-						ProvisioningStyle = Manual;
-						TestTargetID = 50AB0DB51D8FF242008EDB0D;
 					};
 				};
 			};
@@ -587,8 +484,6 @@
 			projectRoot = "";
 			targets = (
 				50AB0DB51D8FF242008EDB0D /* QuickFile */,
-				50AB0DD61D8FF243008EDB0D /* QuickFileUITests */,
-				505B4A2E1DAD36600055C180 /* QuickFileUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -604,13 +499,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		505B4A2D1DAD36600055C180 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50AB0DB41D8FF242008EDB0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -624,13 +512,6 @@
 				50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */,
 				50E562AB1E71BA90004E47A2 /* Assets.xcassets in Resources */,
 				50E562B11E71BA90004E47A2 /* YSHeaderForSection.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50AB0DD51D8FF243008EDB0D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,13 +592,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		505B4A2B1DAD36600055C180 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50AB0DB21D8FF242008EDB0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -781,31 +655,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50AB0DD31D8FF243008EDB0D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50AB0DDC1D8FF243008EDB0D /* YSGGPUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		505B4A351DAD36600055C180 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50AB0DB51D8FF242008EDB0D /* QuickFile */;
-			targetProxy = 505B4A341DAD36600055C180 /* PBXContainerItemProxy */;
-		};
 		509B47531E27ED35005E39F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LNPopupController;
 			targetProxy = 509B47521E27ED35005E39F2 /* PBXContainerItemProxy */;
-		};
-		50AB0DD91D8FF243008EDB0D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50AB0DB51D8FF242008EDB0D /* QuickFile */;
-			targetProxy = 50AB0DD81D8FF243008EDB0D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -829,37 +685,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		505B4A371DAD36600055C180 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2PX8YZMXY;
-				INFOPLIST_FILE = YSGGPUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickFile.app/QuickFile";
-			};
-			name = Debug;
-		};
-		505B4A381DAD36600055C180 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = YSGGPUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickFile.app/QuickFile";
-			};
-			name = Release;
-		};
 		50AB0DDE1D8FF243008EDB0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -962,10 +787,10 @@
 			baseConfigurationReference = B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = QuickFile/YSGGP.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFile/QuickFile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9GXW8252L9;
+				DEVELOPMENT_TEAM = 5F6JBYSSNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -984,10 +809,10 @@
 			baseConfigurationReference = C48E5DE7F722C2E89B93FDA8 /* Pods-QuickFile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = QuickFile/YSGGP.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFile/QuickFile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9GXW8252L9;
+				DEVELOPMENT_TEAM = 5F6JBYSSNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1000,48 +825,9 @@
 			};
 			name = Release;
 		};
-		50AB0DE71D8FF243008EDB0D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = A2PX8YZMXY;
-				INFOPLIST_FILE = YSGGPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c61c4bc6-da06-45d5-8410-b06d695c76c0";
-				PROVISIONING_PROFILE_SPECIFIER = "Softjourn Development Profile";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = YSGGP;
-			};
-			name = Debug;
-		};
-		50AB0DE81D8FF243008EDB0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = YSGGPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.YSGGPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = YSGGP;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		505B4A361DAD36600055C180 /* Build configuration list for PBXNativeTarget "QuickFileUnitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				505B4A371DAD36600055C180 /* Debug */,
-				505B4A381DAD36600055C180 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		50AB0DB11D8FF242008EDB0D /* Build configuration list for PBXProject "QuickFile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1056,15 +842,6 @@
 			buildConfigurations = (
 				50AB0DE11D8FF243008EDB0D /* Debug */,
 				50AB0DE21D8FF243008EDB0D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		50AB0DE61D8FF243008EDB0D /* Build configuration list for PBXNativeTarget "QuickFileUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50AB0DE71D8FF243008EDB0D /* Debug */,
-				50AB0DE81D8FF243008EDB0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
