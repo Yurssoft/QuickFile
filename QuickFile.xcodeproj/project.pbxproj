@@ -10,7 +10,6 @@
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562221E71BA90004E47A2 /* GoogleService-Info.plist */; };
-		50E562731E71BA90004E47A2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562231E71BA90004E47A2 /* Info.plist */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562251E71BA90004E47A2 /* SwiftyTimer.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
@@ -212,6 +211,7 @@
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
 				50E562201E71BA90004E47A2 /* QuickFile */,
+				509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				50E5622D1E71BA90004E47A2 /* API */,
+				50E562211E71BA90004E47A2 /* Additional Classes */,
 				50E562351E71BA90004E47A2 /* Controllers */,
 				50E5623D1E71BA90004E47A2 /* Coordinators */,
 				50E562451E71BA90004E47A2 /* Models */,
@@ -503,7 +504,6 @@
 			files = (
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
 				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
-				50E562731E71BA90004E47A2 /* Info.plist in Resources */,
 				50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */,
 				50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */,
 				50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */,
@@ -670,6 +670,7 @@
 				50E562681E71BA90004E47A2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		50E562691E71BA90004E47A2 /* Main.storyboard */ = {
@@ -678,6 +679,7 @@
 				50E5626A1E71BA90004E47A2 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
