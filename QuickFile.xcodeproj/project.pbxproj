@@ -208,7 +208,6 @@
 		50AB0DAD1D8FF242008EDB0D = {
 			isa = PBXGroup;
 			children = (
-				509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */,
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
@@ -227,7 +226,6 @@
 		50E562201E71BA90004E47A2 /* QuickFile */ = {
 			isa = PBXGroup;
 			children = (
-				50E562211E71BA90004E47A2 /* Additional Classes */,
 				50E5622D1E71BA90004E47A2 /* API */,
 				50E562351E71BA90004E47A2 /* Controllers */,
 				50E5623D1E71BA90004E47A2 /* Coordinators */,
