@@ -18,7 +18,7 @@ class YSDriveViewController: UITableViewController
     
     var selectedIndexes : [IndexPath] = []
     private var wasLoggedIn : Bool = false
-    //TODO: on empty list show message, push notifications, admob
+    //TODO: push notifications, admob
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet
@@ -235,7 +235,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         default: break
         }
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = .forever
+        messageConfig.duration = YSConstants.kMessageDuration
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
@@ -280,7 +280,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         default: break
         }
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = .forever
+        messageConfig.duration = YSConstants.kMessageDuration
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
@@ -350,7 +350,11 @@ extension YSDriveViewController : DZNEmptyDataSetSource
 {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString!
     {
-        let promptText = "Browse your audio files from Google Drive"
+        var promptText = "Browse your audio files from Google Drive"
+        if let viewModel = viewModel, viewModel.isLoggedIn
+        {
+            promptText = "Empty folder"
+        }
         let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
@@ -358,7 +362,11 @@ extension YSDriveViewController : DZNEmptyDataSetSource
     
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString!
     {
-        let promptText = "Login"
+        var promptText = "Login"
+        if let viewModel = viewModel, viewModel.isLoggedIn
+        {
+            promptText = "Reload"
+        }
         let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
@@ -366,6 +374,10 @@ extension YSDriveViewController : DZNEmptyDataSetSource
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage!
     {
+        if let viewModel = viewModel, viewModel.isLoggedIn
+        {
+            return UIImage.init(named: "folder_small")
+        }
         return UIImage.init(named: "drive")
     }
     
@@ -379,12 +391,21 @@ extension YSDriveViewController : DZNEmptyDataSetDelegate
 {
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool
     {
-        guard let viewModel = viewModel, !viewModel.isLoggedIn else { return false }
-        return true
+        guard let viewModel = viewModel, !viewModel.isDownloadingMetadata else { return false }
+        return !viewModel.isLoggedIn || viewModel.numberOfFiles < 1
     }
+    
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
     {
-        viewModel?.loginToDrive()
+        guard let viewModel = viewModel else { return }
+        if viewModel.isLoggedIn
+        {
+            getFiles()
+        }
+        else
+        {
+            viewModel.loginToDrive()
+        }
     }
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool

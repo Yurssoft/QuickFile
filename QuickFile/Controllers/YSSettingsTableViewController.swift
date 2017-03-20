@@ -243,7 +243,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
         }
         
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = .forever
+        messageConfig.duration = YSConstants.kMessageDuration
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
         

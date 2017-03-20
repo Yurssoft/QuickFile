@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftMessages
 
 typealias CompletionHandler = (YSErrorProtocol?) -> Swift.Void
 
@@ -28,6 +29,7 @@ struct YSConstants
     static let kDefaultBlueColor = UIColor(red:23/255.0, green:156/255.0, blue:209/255.0, alpha:1.0)
     static let kDefaultBarColor = UIColor(red:254/255.0, green:213/255.0, blue:165/255.0, alpha:1.0)
     static let kDriveSearchNavigation = "YSDriveSearchControllerNavigation"
+    static let kMessageDuration = SwiftMessages.Duration.automatic
 }
 
 enum YSErrorType

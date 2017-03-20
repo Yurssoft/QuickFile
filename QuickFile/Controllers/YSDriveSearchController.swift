@@ -150,7 +150,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
             break
         }
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = .forever
+        messageConfig.duration = YSConstants.kMessageDuration
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
@@ -175,7 +175,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
         default: break
         }
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = .forever
+        messageConfig.duration = YSConstants.kMessageDuration
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: messageConfig, view: message)
