@@ -18,7 +18,7 @@ class YSDriveViewController: UITableViewController
     
     var selectedIndexes : [IndexPath] = []
     private var wasLoggedIn : Bool = false
-    //TODO: push notifications, admob
+    //TODO: make relative urls, push notifications, admob
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet
