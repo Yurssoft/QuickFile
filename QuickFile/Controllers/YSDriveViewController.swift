@@ -353,7 +353,7 @@ extension YSDriveViewController : DZNEmptyDataSetSource
         var promptText = "Browse your audio files from Google Drive"
         if let viewModel = viewModel, viewModel.isLoggedIn
         {
-            promptText = "Empty folder"
+            promptText = "Folder is empty or there are no .mp3 files"
         }
         let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
