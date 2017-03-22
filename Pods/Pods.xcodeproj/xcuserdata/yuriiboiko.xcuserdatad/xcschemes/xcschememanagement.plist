@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AudioIndicatorBars.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +82,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02ABCC1F4AF413E3891B4B9ABC2E5D4F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1BB4E27F09A85F71159B45FC38CB5F72</key>
+		<key>1090F6AF76910A4FD2284E34C072EED2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CFD2FB5087958F19AB59C479BB4C7BC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4C67D7346781DDF8F9F220537FAE7024</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B761FD685EDB7D896A810BD2A813A59</key>
+		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
+		<key>6E57619C5C4759CFD59687D6AC500F90</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,17 +127,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>93CE517701CB9B78C4870084F08E7D63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>94BE94A26ACF5FCB3BF7CA5D9A920287</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2C1A6220BD36AAC55F66606C6DDBFE4</key>
+		<key>D386C75EFD4F03725E4EFB866B600B9A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D386C75EFD4F03725E4EFB866B600B9A</key>
+		<key>D646F60ABA5CEE18C0A63056847469F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

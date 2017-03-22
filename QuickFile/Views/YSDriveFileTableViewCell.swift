@@ -8,7 +8,6 @@
 
 import UIKit
 import DownloadButton
-import AudioIndicatorBars
 
 protocol YSDriveFileTableViewCellDelegate : class
 {
@@ -23,7 +22,6 @@ class YSDriveFileTableViewCell: UITableViewCell
     @IBOutlet weak var fileImageView: UIImageView!
     weak var delegate: YSDriveFileTableViewCellDelegate?
     
-    @IBOutlet weak var audioIndicatorView: AudioIndicatorBarsView!
     @IBOutlet weak var downloadButton: PKDownloadButton!
     @IBOutlet weak var titleRightMarginConstraint: NSLayoutConstraint!
     
@@ -94,10 +92,8 @@ class YSDriveFileTableViewCell: UITableViewCell
                 fileNameLabel?.font = UIFont.boldSystemFont(ofSize: fileNameLabelFont.pointSize)
                 fileInfoLabel?.font = UIFont.boldSystemFont(ofSize: fileInfoLabelFont.pointSize)
             }
-            audioIndicatorView.superview?.bringSubview(toFront: audioIndicatorView)
-            audioIndicatorView.isHidden = false
-            titleRightMarginConstraint.constant = audioIndicatorView.frame.width + 8
-            audioIndicatorView.start()
+            fileNameLabel.textColor = YSConstants.kDefaultBlueColor
+            fileInfoLabel.textColor = YSConstants.kDefaultBlueColor
         }
         else
         {
@@ -106,10 +102,10 @@ class YSDriveFileTableViewCell: UITableViewCell
                 fileNameLabel?.font = UIFont.systemFont(ofSize: fileNameLabelFont.pointSize)
                 fileInfoLabel?.font = UIFont.systemFont(ofSize: fileInfoLabelFont.pointSize)
             }
-            audioIndicatorView.stop()
-            audioIndicatorView.isHidden = true
-            titleRightMarginConstraint.constant = 0.0
+            fileNameLabel.textColor = UIColor.black
+            fileInfoLabel.textColor = UIColor.black
         }
+        titleRightMarginConstraint.constant = 0.0
         fileNameLabel?.text = file.fileName
         fileInfoLabel?.text = fileSize
     }

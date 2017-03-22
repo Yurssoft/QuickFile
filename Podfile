@@ -13,6 +13,5 @@ target 'QuickFile' do
     pod 'KeychainAccess'
     pod 'ReachabilitySwift'
     pod 'MarqueeLabel/Swift'
-    pod 'AudioIndicatorBars'
     pod 'DZNEmptyDataSet'
 end

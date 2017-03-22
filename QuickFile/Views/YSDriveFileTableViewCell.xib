@@ -4,19 +4,20 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSDriveFileTableViewCell" customModule="QuickFile" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YSDriveFileTableViewCell" id="PUd-FV-DST" customClass="YSDriveFileTableViewCell" customModule="YSGGP" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YSDriveFileTableViewCell" id="PUd-FV-DST" customClass="YSDriveFileTableViewCell" customModule="QuickFile" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PUd-FV-DST" id="QEC-Xv-rsl">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="OrE-cw-9gu">
@@ -41,25 +42,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj0-8O-6hV" customClass="PKDownloadButton">
-                        <rect key="frame" x="340" y="8" width="27" height="27"/>
+                        <rect key="frame" x="341" y="8" width="26" height="27"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Aj0-8O-6hV" secondAttribute="height" multiplier="1:1" id="qXb-cj-Sx0"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXY-BY-AbB" customClass="AudioIndicatorBarsView" customModule="AudioIndicatorBars">
-                        <rect key="frame" x="340" y="8" width="27" height="27"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="trailing" secondItem="Aj0-8O-6hV" secondAttribute="trailing" id="0ww-zP-G9z"/>
                     <constraint firstItem="Aj0-8O-6hV" firstAttribute="trailing" secondItem="QEC-Xv-rsl" secondAttribute="trailingMargin" id="3kt-DB-bF8"/>
                     <constraint firstItem="OrE-cw-9gu" firstAttribute="centerY" secondItem="QEC-Xv-rsl" secondAttribute="centerY" id="7j1-7g-zFp"/>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="leading" secondItem="Aj0-8O-6hV" secondAttribute="leading" id="KkW-1V-DBV"/>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="centerY" secondItem="Aj0-8O-6hV" secondAttribute="centerY" id="M7K-q6-qfN"/>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="top" secondItem="Aj0-8O-6hV" secondAttribute="top" id="Mto-YX-gWV"/>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="centerX" secondItem="Aj0-8O-6hV" secondAttribute="centerX" id="Uhe-1J-OZp"/>
                     <constraint firstItem="OrE-cw-9gu" firstAttribute="bottom" secondItem="QEC-Xv-rsl" secondAttribute="bottomMargin" id="UiS-Cf-bXQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Rk8-Bj-aZj" secondAttribute="trailing" constant="35" id="Xww-Wz-4IP"/>
                     <constraint firstItem="Aj0-8O-6hV" firstAttribute="top" secondItem="QEC-Xv-rsl" secondAttribute="topMargin" id="ZSq-fj-nPf"/>
@@ -71,12 +63,10 @@
                     <constraint firstItem="NDG-ng-8UF" firstAttribute="leading" secondItem="OrE-cw-9gu" secondAttribute="trailing" constant="8" id="vhl-5k-6ps"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NDG-ng-8UF" secondAttribute="trailing" constant="35" id="wUM-eb-PcV"/>
                     <constraint firstItem="OrE-cw-9gu" firstAttribute="leading" secondItem="QEC-Xv-rsl" secondAttribute="leadingMargin" id="xQs-aE-OhP"/>
-                    <constraint firstItem="hXY-BY-AbB" firstAttribute="bottom" secondItem="Aj0-8O-6hV" secondAttribute="bottom" id="zUF-yr-6Ut"/>
                     <constraint firstItem="Aj0-8O-6hV" firstAttribute="centerY" secondItem="QEC-Xv-rsl" secondAttribute="centerY" id="zkk-Kx-mG4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="audioIndicatorView" destination="hXY-BY-AbB" id="Pzt-Ia-wLh"/>
                 <outlet property="downloadButton" destination="Aj0-8O-6hV" id="MAz-xz-c2C"/>
                 <outlet property="fileImageView" destination="OrE-cw-9gu" id="p4R-F5-jcx"/>
                 <outlet property="fileInfoLabel" destination="NDG-ng-8UF" id="OC0-Z7-sqb"/>

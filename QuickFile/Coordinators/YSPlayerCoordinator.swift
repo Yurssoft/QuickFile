@@ -46,8 +46,8 @@ extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
                 return
             }
             let audioSession = AVAudioSession.sharedInstance()
-            try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            try! audioSession.setActive(true)
+            try? audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try? audioSession.setActive(true)
             UIApplication.shared.beginReceivingRemoteControlEvents()
             
             self.popupContentController = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as? YSPlayerController
