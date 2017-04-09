@@ -17,7 +17,6 @@ class YSDriveViewController: UITableViewController
     weak var toolbarView: YSToolbarView!
     
     var selectedIndexes : [IndexPath] = []
-    private var wasLoggedIn : Bool = false
     //TODO: make relative urls, push notifications, admob, played files
     var viewModel: YSDriveViewModelProtocol?
     {
@@ -64,17 +63,11 @@ class YSDriveViewController: UITableViewController
     {
         super.viewWillAppear(animated)
         showNotLoggedInMessage()
-        guard let viewModel = viewModel else { return }
-        if !wasLoggedIn, viewModel.isLoggedIn
-        {
-            getFiles()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        wasLoggedIn = viewModel?.isLoggedIn ?? false
     }
     
     func showNotLoggedInMessage()

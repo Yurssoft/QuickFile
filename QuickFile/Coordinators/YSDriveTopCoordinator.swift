@@ -36,6 +36,11 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
             tababarController.selectedIndex = 2 //settings tab
         }
     }
+    
+    func getFilesAfterSuccessLogin()
+    {
+        driveCoordinators.first?.start()
+    }
 }
 
 extension YSDriveTopCoordinator : YSDriveViewControllerDidFinishedLoading

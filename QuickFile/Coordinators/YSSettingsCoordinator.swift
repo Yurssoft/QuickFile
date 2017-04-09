@@ -32,7 +32,8 @@ extension YSSettingsCoordinator : YSSettingsCoordinatorDelegate
     {
         if let tababarController = YSAppDelegate.appDelegate().window!.rootViewController as? UITabBarController
         {
-            tababarController.selectedIndex = 0 //drive tab
+            tababarController.selectedIndex = 0 // go to drive tab
+            YSAppDelegate.appDelegate().driveTopCoordinator?.getFilesAfterSuccessLogin()
         }
     }
     
