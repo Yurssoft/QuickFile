@@ -68,6 +68,7 @@ class YSDriveViewController: UITableViewController
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
+        SwiftMessages.hide()
     }
     
     func showNotLoggedInMessage()
@@ -203,6 +204,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     {
+        SwiftMessages.hide()
         DispatchQueue.main.async
         {
             [weak self] in self?.navigationController?.setIndeterminate(viewModel.isDownloadingMetadata)
@@ -241,6 +243,20 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     {
+        if error.errorType == .couldNotGetFileList
+        {
+            let statusBarMessage = MessageView.viewFromNib(layout: .StatusLine)
+            statusBarMessage.backgroundView.backgroundColor = UIColor.orange
+            statusBarMessage.bodyLabel?.textColor = UIColor.white
+            statusBarMessage.configureContent(body: error.message)
+            var messageConfig = SwiftMessages.defaultConfig
+            messageConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+            messageConfig.preferredStatusBarStyle = .lightContent
+            messageConfig.duration = .forever
+            SwiftMessages.show(config: messageConfig, view: statusBarMessage)
+            return
+        }
+        
         let message = MessageView.viewFromNib(layout: .CardView)
         message.configureTheme(error.messageType)
         message.configureDropShadow()
