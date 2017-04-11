@@ -12,7 +12,7 @@ struct YSDownload : YSDownloadProtocol
 {
     var file : YSDriveFileProtocol
     
-    var downloadTask : Foundation.NSURLSessionDownloadTask?
+    var downloadTask : URLSessionDownloadTask?
     var resumeData : Data?
     
     var totalSize : String?

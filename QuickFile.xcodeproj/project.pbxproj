@@ -450,7 +450,7 @@
 				TargetAttributes = {
 					50AB0DB51D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5F6JBYSSNL;
+						DevelopmentTeam = R5GE6YP3T5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -790,7 +790,7 @@
 				CODE_SIGN_ENTITLEMENTS = QuickFile/QuickFile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5F6JBYSSNL;
+				DEVELOPMENT_TEAM = R5GE6YP3T5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -812,7 +812,7 @@
 				CODE_SIGN_ENTITLEMENTS = QuickFile/QuickFile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5F6JBYSSNL;
+				DEVELOPMENT_TEAM = R5GE6YP3T5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
