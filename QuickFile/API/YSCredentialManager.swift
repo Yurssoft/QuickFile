@@ -118,13 +118,13 @@ class YSCredentialManager
         if token.accessTokenTokenType.isEmpty
         {
             request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
-            print("Request URL:  \(request.url)   Authorization:  Bearer \(token.accessToken)")
+            print("Request URL:  \(String(describing: request.url))   Authorization:  Bearer \(token.accessToken)")
             completionHandler(request, nil)
         }
         else
         {
             request.setValue("\(token.accessTokenTokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
-            print("Request URL:  \(request.url)   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
+            print("Request URL:  \(String(describing: request.url))   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
             completionHandler(request, nil)
         }
     }
