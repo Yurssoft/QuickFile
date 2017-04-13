@@ -85,31 +85,30 @@ class YSCredentialManager
     
     func addAccessTokenHeaders(_ request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
     {
-        if !isValidAccessToken
+        if isValidAccessToken
         {
-            var requestForToken = URLRequest.init(url: urlForAccessToken())
-            requestForToken.httpMethod = "POST"
-            
-            let task = Foundation.URLSession.shared.dataTask(with: requestForToken)
-            { data, response, error in
-                
-                if let err = YSNetworkResponseManager.validate(response, error: error)
-                {
-                    completionHandler(request, err)
-                    return
-                }
-                let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
-                if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
-                {
-                    let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
-                    self.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
-                    self.addHeaders(to: request, completionHandler)
-                }
-            }
-            task.resume()
-            return
+            addHeaders(to: request, completionHandler)
         }
-        addHeaders(to: request, completionHandler)
+        var requestForToken = URLRequest.init(url: urlForAccessToken())
+        requestForToken.httpMethod = "POST"
+        
+        let task = Foundation.URLSession.shared.dataTask(with: requestForToken)
+        { data, response, error in
+            
+            if let err = YSNetworkResponseManager.validate(response, error: error)
+            {
+                completionHandler(request, err)
+                return
+            }
+            let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
+            if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
+            {
+                let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
+                self.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
+                self.addHeaders(to: request, completionHandler)
+            }
+        }
+        task.resume()
     }
     
     private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
