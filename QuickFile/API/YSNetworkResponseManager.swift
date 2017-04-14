@@ -20,6 +20,9 @@ class YSNetworkResponseManager
             {
             case 200...299:
                 return nil
+            case 400...401:
+                let errorMessage = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Warning", message: "Could not get list, please relogin", buttonTitle: "Relogin", debugInfo: networkErrorDescription)
+                return errorMessage
                 
             default:
                 let errorMessage = YSError(errorType: YSErrorType.couldNotGetFileList, messageType: Theme.warning, title: "Warning", message: "Could not get list", buttonTitle: "Try again", debugInfo: networkErrorDescription)

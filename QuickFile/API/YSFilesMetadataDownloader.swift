@@ -27,6 +27,11 @@ class YSFilesMetadataDownloader
                 {
                     err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get list, no internet")
                 }
+                else if err.debugInfo.contains("unauthorized")
+                {
+                    completionHandler!(["" : ["": NSNull()]], err)
+                    return
+                }
                 else
                 {
                     err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get file list")
