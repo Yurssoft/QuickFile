@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftMessages
+import GoogleSignIn
 
 class YSSettingsViewModel : YSSettingsViewModelProtocol
 {
@@ -16,6 +17,16 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         return model!.isLoggedIn
     }
 
+    var loggedString : String
+    {
+        if isLoggedIn
+        {
+            let loggedInMessage = "Logged in to Drive"
+            return loggedInMessage
+        }
+        return "Not logged in"
+    }
+    
     fileprivate var error : YSErrorProtocol = YSError()
     {
         didSet

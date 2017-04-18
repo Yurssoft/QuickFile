@@ -16,20 +16,20 @@ import ReachabilitySwift
 class YSDriveFileDownloader : NSObject
 {
     fileprivate var downloads : [String : YSDownloadProtocol] = [String : YSDownloadProtocol]()
-    fileprivate var session : Foundation.URLSession
+    fileprivate var session : URLSession
     fileprivate var sessionQueue : OperationQueue
     fileprivate var reachability : Reachability = Reachability()!
     
     required override init()
     {
-        session = Foundation.URLSession()
+        session = URLSession()
         sessionQueue = OperationQueue()
         super.init()
         
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.yurssoft.YSGGP.drive_background_file_downloader_session")
         sessionQueue.qualityOfService = .background
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
-        let backgroundSession = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
+        let backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
         session = backgroundSession
         reachability.whenReachable =
         { reachability in

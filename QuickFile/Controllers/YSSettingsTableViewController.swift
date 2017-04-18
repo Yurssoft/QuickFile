@@ -61,7 +61,7 @@ class YSSettingsTableViewController: UITableViewController
         switch identifier
         {
             case cellLogInOutInfoIdentifier:
-                cell.textLabel?.text = viewModel.isLoggedIn ? "You are logged in to Drive" : "You are not logged in to Drive"
+                cell.textLabel?.text = viewModel.loggedString
             break
             case cellLogInOutIdentifier:
                  cell.textLabel?.textColor = viewModel.isLoggedIn ? UIColor.red : UIColor.black

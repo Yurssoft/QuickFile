@@ -1,27 +1,27 @@
 PODS:
   - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
-  - Firebase/Auth (3.15.0):
+  - Firebase/Auth (3.16.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.15.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.2)
-  - Firebase/Crash (3.15.0):
+  - Firebase/Core (3.16.0):
+    - FirebaseAnalytics (= 3.8.0)
+    - FirebaseCore (= 3.6.0)
+  - Firebase/Crash (3.16.0):
     - Firebase/Core
     - FirebaseCrash (= 1.1.6)
-  - Firebase/Database (3.15.0):
+  - Firebase/Database (3.16.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.2)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
+  - FirebaseAnalytics (3.8.0):
+    - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseAuth (3.1.1):
     - FirebaseAnalytics (~> 3.7)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.5.2):
+  - FirebaseCore (3.6.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseCrash (1.1.6):
     - FirebaseAnalytics (~> 3.7)
@@ -31,7 +31,8 @@ PODS:
     - Protobuf (~> 3.1)
   - FirebaseDatabase (3.1.2):
     - FirebaseAnalytics (~> 3.7)
-  - FirebaseInstanceID (1.0.9)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
   - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -58,10 +59,11 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.9)
   - KeychainAccess (3.0.2)
   - M13ProgressSuite (1.2.9)
-  - MarqueeLabel/Swift (3.0.1)
+  - MarqueeLabel/Swift (3.0.2)
   - MJRefresh (3.1.12)
   - Protobuf (3.2.1)
   - ReachabilitySwift (3)
+  - Reqres (2.0.0)
   - SwiftMessages (3.3.3)
 
 DEPENDENCIES:
@@ -77,30 +79,32 @@ DEPENDENCIES:
   - MarqueeLabel/Swift
   - MJRefresh
   - ReachabilitySwift
+  - Reqres
   - SwiftMessages
 
 SPEC CHECKSUMS:
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
+  FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
-  FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseCrash: db4c05d9c75baa050744d31b36357c8f1efba481
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
-  MarqueeLabel: 80ba85d2b76a9f5fa6c13de337db80bcd94feb1d
+  MarqueeLabel: 365d4a7cd5a9504e51a2034d2be83782424223ac
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Reqres: 7027a575c1539c9635ff11ecf04d49cdf30a2f0a
   SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
 
-PODFILE CHECKSUM: 2adac0cb24ef1c8eabcd7166117874efe27dd228
+PODFILE CHECKSUM: fd1d38e8265c729dbfb54198339e315efc7cd2f9
 
 COCOAPODS: 1.2.0

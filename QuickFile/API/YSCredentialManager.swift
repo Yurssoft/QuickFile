@@ -88,11 +88,12 @@ class YSCredentialManager
         if isValidAccessToken
         {
             addHeaders(to: request, completionHandler)
+            return
         }
         var requestForToken = URLRequest.init(url: urlForAccessToken())
         requestForToken.httpMethod = "POST"
         
-        let task = Foundation.URLSession.shared.dataTask(with: requestForToken)
+        let task = URLSession.shared.dataTask(with: requestForToken)
         { data, response, error in
             
             if let err = YSNetworkResponseManager.validate(response, error: error)
@@ -117,13 +118,11 @@ class YSCredentialManager
         if token.accessTokenTokenType.isEmpty
         {
             request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
-            print("Request URL:  \(String(describing: request.url))   Authorization:  Bearer \(token.accessToken)")
             completionHandler(request, nil)
         }
         else
         {
             request.setValue("\(token.accessTokenTokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
-            print("Request URL:  \(String(describing: request.url))   Authorization:  \(token.accessTokenTokenType) \(token.accessToken)")
             completionHandler(request, nil)
         }
     }

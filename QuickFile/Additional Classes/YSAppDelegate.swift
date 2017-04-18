@@ -10,6 +10,7 @@ import UIKit
 import GTMOAuth2
 import Firebase
 import GoogleSignIn
+import Reqres
 
 protocol YSUpdatingDelegate: class
 {
@@ -38,10 +39,8 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
-        //UITabBar.appearance().barTintColor = YSConstants.kDefaultBarColor
         
-        //UINavigationBar.appearance().barTintColor = YSConstants.kDefaultBarColor
-        //UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor]
+        Reqres.register()
         
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true

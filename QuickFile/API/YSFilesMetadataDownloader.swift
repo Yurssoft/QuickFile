@@ -39,7 +39,7 @@ class YSFilesMetadataDownloader
                 completionHandler!(["" : ["": NSNull()]], err)
                 return
             }
-            let task = Foundation.URLSession.shared.dataTask(with: request)
+            let task = URLSession.shared.dataTask(with: request)
             { data, response, error in
                 if var err = YSNetworkResponseManager.validate(response, error: error)
                 {

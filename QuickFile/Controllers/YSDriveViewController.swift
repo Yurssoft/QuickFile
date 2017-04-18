@@ -17,7 +17,7 @@ class YSDriveViewController: UITableViewController
     weak var toolbarView: YSToolbarView!
     
     var selectedIndexes : [IndexPath] = []
-    //TODO: make relative urls, push notifications, admob, played files
+    //TODO: make relative urls, push notifications, admob, played files, logged as, download wifi only, logging
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet
