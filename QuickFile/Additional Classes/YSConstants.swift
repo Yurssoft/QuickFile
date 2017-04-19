@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SwiftMessages
 
-typealias CompletionHandler = (YSErrorProtocol?) -> Swift.Void
+typealias CompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
 
 struct YSConstants
 {

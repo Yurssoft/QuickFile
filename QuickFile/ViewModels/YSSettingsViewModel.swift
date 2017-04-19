@@ -59,6 +59,7 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         YSDatabaseManager.deleteAllDownloads { (error) in
             DispatchQueue.main.async
             {
+                guard let error = error else { return }
                 if error.messageType == Theme.success || error.title.contains("Deleted")
                 {
                     self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)

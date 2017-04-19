@@ -8,13 +8,11 @@
 
 import Foundation
 
-typealias DriveCompletionHandler = ([YSDriveFileProtocol], YSErrorProtocol?) -> Swift.Void
-
 protocol YSDriveModelProtocol
 {
     var isLoggedIn : Bool {get}
     
-    func getFiles(_ completionHandler: @escaping DriveCompletionHandler)
+    func getFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
     
     func download(_ file : YSDriveFileProtocol)
     

@@ -64,6 +64,17 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         lookUpAllFilesOnDisk()
         
         log.info("looked Up All Files On Disk")
+        
+//        YSDatabaseManager.deleteDatabase { (error) in
+//            //TODO: remove this
+//            log.error("DATABASE DELETED")
+//            let when = DispatchTime.now() + 3
+//            DispatchQueue.main.asyncAfter(deadline: when)
+//            {
+//                self.driveDelegate?.filesDidChange()
+//            }
+//        }
+        
         return true
     }
     

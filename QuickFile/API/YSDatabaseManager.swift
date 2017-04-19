@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 import SwiftMessages
 
-typealias AllDownloadsDeletedCompletionHandler = (YSErrorProtocol) -> Swift.Void
 typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -> Swift.Void
 typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
 
@@ -18,7 +17,7 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping DriveCompletionHandler)
+    class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -97,7 +96,7 @@ class YSDatabaseManager
         }
     }
 
-    class func files(for folder: YSFolder,_ error: YSError,_ completionHandler: @escaping DriveCompletionHandler)
+    class func files(for folder: YSFolder,_ error: YSError,_ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -128,7 +127,7 @@ class YSDatabaseManager
         }
     }
     
-    class func deleteAllDownloads(_ completionHandler: @escaping AllDownloadsDeletedCompletionHandler)
+    class func deleteAllDownloads(_ completionHandler: @escaping CompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -145,6 +144,23 @@ class YSDatabaseManager
                     }
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
+                completionHandler(error)
+                return FIRTransactionResult.abort()
+            })
+        }
+        else
+        {
+            completionHandler(notLoggedInError())
+        }
+    }
+    
+    class func deleteDatabase(_ completionHandler: @escaping CompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+                ref.child("files").setValue([:])
+                let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Database deleted", buttonTitle: "GOT IT")
                 completionHandler(error)
                 return FIRTransactionResult.abort()
             })
@@ -244,7 +260,7 @@ class YSDatabaseManager
         return nil
     }
     
-    private class func callCompletionHandler(_ completionHandler: DriveCompletionHandler?, files : [YSDriveFileProtocol], _ error: YSError)
+    private class func callCompletionHandler(_ completionHandler: AllFilesCompletionHandler?, files : [YSDriveFileProtocol], _ error: YSError)
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + completionBlockDelay)
         {

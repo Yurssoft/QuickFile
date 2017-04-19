@@ -11,7 +11,6 @@ import SwiftMessages
 import SystemConfiguration
 
 typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
-typealias AccessTokenRefreshedCompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
 
 class YSFilesMetadataDownloader
 {
