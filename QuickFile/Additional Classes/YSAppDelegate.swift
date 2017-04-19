@@ -10,7 +10,6 @@ import UIKit
 import GTMOAuth2
 import Firebase
 import GoogleSignIn
-import Reqres
 import SwiftyBeaver
 
 protocol YSUpdatingDelegate: class
@@ -40,16 +39,16 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     {
         //logs
         Reqres.register()
-        let log = SwiftyBeaver.self
         let console = ConsoleDestination()  // log to Xcode Console
         let file = FileDestination()  // log to default swiftybeaver.log file
         let cloud = SBPlatformDestination(appID: "jxEkNM", appSecret: "32aci7cuhuqZ5fu7xgzorJHl0tc9wBsj", encryptionKey: "7rVx2pj3mLz1wnwlduyhphojdxnrrxil") // to cloud
         // add the destinations to SwiftyBeaver
+        let log = SwiftyBeaver.self
         log.addDestination(console)
         log.addDestination(file)
         log.addDestination(cloud)
         
-        log.info("logs set up")
+        log.info("Logs set up")
         
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
@@ -58,8 +57,13 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         FIRDatabase.database().persistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()
+        
+        log.info("FIRApp, GIDSignIn - configured")
+        
         fileDownloader = YSDriveFileDownloader()
         lookUpAllFilesOnDisk()
+        
+        log.info("looked Up All Files On Disk")
         return true
     }
     
@@ -90,7 +94,8 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         }
         catch let error as NSError
         {
-            print(error.localizedDescription)
+            let log = SwiftyBeaver.self
+            log.info("lookUpAllFilesOnDisk - \(error.localizedDescription)")
         }
     }
 }

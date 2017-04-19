@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5013C1B41EA73EC8002EF4F0 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 5013C1B01EA73EC8002EF4F0 /* .gitkeep */; };
 		5013C1B51EA73EC8002EF4F0 /* Reqres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B11EA73EC8002EF4F0 /* Reqres.swift */; };
 		5013C1B61EA73EC8002EF4F0 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */; };
 		5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */; };
@@ -113,7 +112,6 @@
 
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
-		5013C1B01EA73EC8002EF4F0 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		5013C1B11EA73EC8002EF4F0 /* Reqres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reqres.swift; sourceTree = "<group>"; };
 		5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresLogging.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 		5013C1AF1EA73EC8002EF4F0 /* Reqres */ = {
 			isa = PBXGroup;
 			children = (
-				5013C1B01EA73EC8002EF4F0 /* .gitkeep */,
 				5013C1B11EA73EC8002EF4F0 /* Reqres.swift */,
 				5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */,
 				5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */,
@@ -525,7 +522,6 @@
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
 				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
 				50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */,
-				5013C1B41EA73EC8002EF4F0 /* .gitkeep in Resources */,
 				50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */,
 				50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */,
 				50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */,
