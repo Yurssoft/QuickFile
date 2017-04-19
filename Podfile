@@ -14,5 +14,5 @@ target 'QuickFile' do
     pod 'ReachabilitySwift'
     pod 'MarqueeLabel/Swift'
     pod 'DZNEmptyDataSet'
-    pod 'Reqres'
+    pod 'SwiftyBeaver'
 end

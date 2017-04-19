@@ -63,8 +63,8 @@ PODS:
   - MJRefresh (3.1.12)
   - Protobuf (3.2.1)
   - ReachabilitySwift (3)
-  - Reqres (2.0.0)
   - SwiftMessages (3.3.3)
+  - SwiftyBeaver (1.2.0)
 
 DEPENDENCIES:
   - DownloadButton
@@ -79,8 +79,8 @@ DEPENDENCIES:
   - MarqueeLabel/Swift
   - MJRefresh
   - ReachabilitySwift
-  - Reqres
   - SwiftMessages
+  - SwiftyBeaver
 
 SPEC CHECKSUMS:
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
@@ -102,9 +102,9 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  Reqres: 7027a575c1539c9635ff11ecf04d49cdf30a2f0a
   SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
+  SwiftyBeaver: ee865c50ec462ff142f232145057818491c2b344
 
-PODFILE CHECKSUM: fd1d38e8265c729dbfb54198339e315efc7cd2f9
+PODFILE CHECKSUM: 5626f4816c7928c6812199bae026f2ebe4f78606
 
 COCOAPODS: 1.2.0

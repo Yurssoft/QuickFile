@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ReqresVersionNumber;
-FOUNDATION_EXPORT const unsigned char ReqresVersionString[];
+FOUNDATION_EXPORT double SwiftyBeaverVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftyBeaverVersionString[];
 

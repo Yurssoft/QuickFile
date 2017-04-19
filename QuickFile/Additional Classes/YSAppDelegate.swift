@@ -11,6 +11,7 @@ import GTMOAuth2
 import Firebase
 import GoogleSignIn
 import Reqres
+import SwiftyBeaver
 
 protocol YSUpdatingDelegate: class
 {
@@ -37,10 +38,21 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        //logs
+        Reqres.register()
+        let log = SwiftyBeaver.self
+        let console = ConsoleDestination()  // log to Xcode Console
+        let file = FileDestination()  // log to default swiftybeaver.log file
+        let cloud = SBPlatformDestination(appID: "jxEkNM", appSecret: "32aci7cuhuqZ5fu7xgzorJHl0tc9wBsj", encryptionKey: "7rVx2pj3mLz1wnwlduyhphojdxnrrxil") // to cloud
+        // add the destinations to SwiftyBeaver
+        log.addDestination(console)
+        log.addDestination(file)
+        log.addDestination(cloud)
+        
+        log.info("logs set up")
+        
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
-        
-        Reqres.register()
         
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
