@@ -9,6 +9,7 @@
 import UIKit
 import LNPopupController
 import MJRefresh
+import SwiftyBeaver
 
 class YSPlaylistViewController: UIViewController
 {
@@ -44,6 +45,22 @@ class YSPlaylistViewController: UIViewController
         setupCoordinator()
         configurePullToRefresh()
         getFiles()
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
     func setupCoordinator()

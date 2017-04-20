@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyBeaver
 
 class YSSettingsTopViewController: UIViewController
 {
@@ -17,6 +18,22 @@ class YSSettingsTopViewController: UIViewController
     {
         super.viewDidLoad()
         setupCoordinator()
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
     func setupCoordinator()

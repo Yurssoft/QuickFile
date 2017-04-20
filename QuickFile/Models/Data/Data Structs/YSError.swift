@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftMessages
+import SwiftyBeaver
 
 struct YSError : YSErrorProtocol
 {
@@ -36,12 +37,11 @@ struct YSError : YSErrorProtocol
         self.message = message
         self.buttonTitle = buttonTitle
         self.debugInfo = debugInfo
-        #if DEBUG
-            if !debugInfo.isEmpty
-            {
-                print("debug info : \(debugInfo)")
-            }
-        #endif
+        if !debugInfo.isEmpty
+        {
+            let log = SwiftyBeaver.self
+            log.info("debug info : \(debugInfo)")
+        }
     }
     
     init()

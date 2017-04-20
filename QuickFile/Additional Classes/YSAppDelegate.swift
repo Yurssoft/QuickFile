@@ -43,6 +43,9 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         let file = FileDestination()  // log to default swiftybeaver.log file
         let cloud = SBPlatformDestination(appID: "jxEkNM", appSecret: "32aci7cuhuqZ5fu7xgzorJHl0tc9wBsj", encryptionKey: "7rVx2pj3mLz1wnwlduyhphojdxnrrxil") // to cloud
         // add the destinations to SwiftyBeaver
+        console.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
+        file.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
+        cloud.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
         let log = SwiftyBeaver.self
         log.addDestination(console)
         log.addDestination(file)
@@ -88,6 +91,26 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         backgroundSessionCompletionHandler = completionHandler
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
     class func appDelegate() -> YSAppDelegate
     {
         return UIApplication.shared.delegate as! YSAppDelegate
@@ -106,7 +129,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         catch let error as NSError
         {
             let log = SwiftyBeaver.self
-            log.info("lookUpAllFilesOnDisk - \(error.localizedDescription)")
+            log.error("lookUpAllFilesOnDisk - \(error.localizedDescription)")
         }
     }
 }

@@ -9,8 +9,7 @@
 import UIKit
 import SwiftMessages
 import MJRefresh
-
-
+import SwiftyBeaver
 
 class YSDriveSearchController : UITableViewController
 {
@@ -47,6 +46,8 @@ class YSDriveSearchController : UITableViewController
         { [weak self] () -> Void in
             self?.viewModel?.getNextPartOfFiles()
         }
+        let log = SwiftyBeaver.self
+        log.info("")
         guard let viewModel = viewModel else { return }
         viewModel.getFiles(sectionType: viewModel.sectionType, searchTerm: viewModel.searchTerm, completion: {_ in })
     }
@@ -55,6 +56,20 @@ class YSDriveSearchController : UITableViewController
     {
         super.viewWillAppear(animated)
         viewModel?.subscribeToDownloadingProgress()
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem)
@@ -146,7 +161,6 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
             }
             break
         default:
-            print("error", #function)
             break
         }
         var messageConfig = SwiftMessages.Config()

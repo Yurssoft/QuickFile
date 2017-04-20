@@ -11,6 +11,7 @@ import SwiftMessages
 import MJRefresh
 import M13ProgressSuite
 import DZNEmptyDataSet
+import SwiftyBeaver
 
 class YSDriveViewController: UITableViewController
 {
@@ -41,6 +42,22 @@ class YSDriveViewController: UITableViewController
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
     func containingViewControllerViewDidLoad()

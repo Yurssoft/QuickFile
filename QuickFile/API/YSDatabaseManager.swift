@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import SwiftMessages
+import SwiftyBeaver
 
 typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?) -> Swift.Void
 typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
@@ -243,7 +244,8 @@ class YSDatabaseManager
             }
             else
             {
-                print("Something wrong with dbFile : \(dbFile)")
+                let log = SwiftyBeaver.self
+                log.error("Something wrong with dbFile : \(dbFile)")
             }
         }
         return databaseFilesDictionary

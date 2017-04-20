@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseCrash
+import SwiftyBeaver
 
 protocol YSDriveViewControllerDidFinishedLoading: class
 {
@@ -45,6 +46,22 @@ class YSDriveTopViewController: UIViewController
         {
             navigationItem.rightBarButtonItems = [editButton]
         }
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
     override func viewWillAppear(_ animated: Bool)

@@ -10,8 +10,7 @@ import UIKit
 import SwiftMessages
 import Firebase
 import ReachabilitySwift
-
-
+import SwiftyBeaver
 
 class YSDriveFileDownloader : NSObject
 {
@@ -87,7 +86,8 @@ class YSDriveFileDownloader : NSObject
         }
         if file.localFileExists() || downloads[file.fileUrl()] != nil
         {
-            print("ERROR DOWNLOAD FILE")
+            let log = SwiftyBeaver.self
+            log.error("Error downloading file:  local file exists or file is already in downloading queue")
             return
         }
         var download = YSDownload(file: file)
@@ -168,7 +168,8 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             catch let error as NSError
             {
                 try? fileManager.removeItem(at: download.file.localFilePath()!)
-                print("Could not copy file to disk: \(error.localizedDescription)")
+                let log = SwiftyBeaver.self
+                log.error("Could not copy file to disk: \(error.localizedDescription)")
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(download.file.fileName)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 

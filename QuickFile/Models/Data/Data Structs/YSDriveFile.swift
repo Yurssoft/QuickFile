@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyBeaver
 
 class YSDriveFile : NSObject, YSDriveFileProtocol
 {
@@ -103,7 +104,8 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
             fileSize = dict.fileSize()
             self.fileSize = String(fileSize)
         } catch {
-            print("Error: \(error)")
+            let log = SwiftyBeaver.self
+            log.error("Error creating file path: \(error)")
         }
         return fileSize
     }
