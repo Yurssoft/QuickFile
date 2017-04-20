@@ -66,7 +66,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             savingPlayedTimeTimer = Timer.every(10.seconds)
             { [weak self] in
                 guard let sself = self else { return }
-                sself.update(file: sself.currentFile, isCurrent: true)
+                sself.updateCurrentPlayingFile(isCurrent: true)
             }
             
             elapsedTimeTimer = Timer.every(1.seconds)
@@ -210,7 +210,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     if let firstAudio = audioFiles.first
                     {
                         self.currentFile = firstAudio
-                        self.update(file: self.currentFile, isCurrent: true)
+                        self.updateCurrentPlayingFile(isCurrent: true)
                     }
                 }
                 self.files = playerFiles
@@ -267,7 +267,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             play(file: currentFile)
             return
         }
-        update(file: currentFile, isCurrent: true)
+        updateCurrentPlayingFile(isCurrent: true)
         player.currentTime = Double((currentFile?.playedTime ?? "0.0")) ?? 0.0
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
@@ -276,7 +276,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func pause()
     {
-        update(file: currentFile, isCurrent: true)
+        updateCurrentPlayingFile(isCurrent: true)
         player?.pause()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -284,7 +284,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func next()
     {
-        update(file: currentFile, isCurrent: false)
+        updateCurrentPlayingFile(isCurrent: true)
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -292,7 +292,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func previous()
     {
-        update(file: currentFile, isCurrent: false)
+        updateCurrentPlayingFile(isCurrent: true)
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -333,7 +333,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         guard let player = player, var nowPlayingInfo = nowPlayingInfo else { return }
         
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: player.currentTime as Double)
-        
         set(nowPlayingInfo)
     }
     
@@ -365,7 +364,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func seek(to time:Double)
     {
-        update(file: currentFile, isCurrent: true)
+        updateCurrentPlayingFile(isCurrent: true)
         player?.currentTime = Double(time)
         viewDelegate?.timeDidChange(viewModel: self)
     }
@@ -375,7 +374,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         seek(to: Double(time))
     }
     
-    private func update(file: YSDriveFileProtocol?, isCurrent:Bool)
+    private func updateCurrentPlayingFile(isCurrent:Bool)
     {
         if var currentFile = currentFile
         {
@@ -385,6 +384,17 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 let interval = player.currentTime
                 let intervalSting = String(describing: interval)
                 currentFile.playedTime = intervalSting
+                
+                let elapsedTime = player.currentTime as Double
+                let duration = player.duration as Double
+                let remainingTime = duration - elapsedTime
+                
+                let remainingTimeInt = Int(round(remainingTime))
+                
+                if (remainingTimeInt < 5 && !currentFile.isPlayed)
+                {
+                    currentFile.isPlayed = true
+                }
             }
             YSDatabaseManager.update(file: currentFile)
         }

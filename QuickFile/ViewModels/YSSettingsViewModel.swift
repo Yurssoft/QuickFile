@@ -69,6 +69,21 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         }
     }
     
+    func deletePlayedFiles()
+    {
+        YSDatabaseManager.deletePlayedDownloads { (error) in
+            DispatchQueue.main.async
+                {
+                    guard let error = error else { return }
+                    if error.messageType == Theme.success || error.title.contains("Deleted")
+                    {
+                        self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
+                    }
+                    self.viewDelegate?.errorDidChange(viewModel: self, error: error)
+            }
+        }
+    }
+    
     func successfullyLoggedIn()
     {
         coordinatorDelegate?.viewModelSuccessfullyLoggedIn(viewModel: self)

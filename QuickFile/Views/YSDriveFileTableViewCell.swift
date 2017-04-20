@@ -85,6 +85,7 @@ class YSDriveFileTableViewCell: UITableViewCell
         fileImageView?.image = UIImage(named:"song")
         downloadButton.isHidden = true
         guard let file = file else { return }
+        accessoryType = file.isPlayed ? .checkmark : .none
         if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier
         {
             if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font

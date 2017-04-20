@@ -26,5 +26,6 @@ protocol YSSettingsViewModelProtocol
     var coordinatorDelegate: YSSettingsCoordinatorDelegate? { get set }
     func logOut()
     func deleteAllFiles()
+    func deletePlayedFiles()
     func successfullyLoggedIn()
 }

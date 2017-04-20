@@ -115,8 +115,9 @@ class YSPlayerController: UIViewController
     
     func updateTimeLabels()
     {
-        elapsedTimeLabel.text = humanReadableTimeInterval(viewModel?.fileCurrentTime ?? 0)
-        remainingTimeLabel.text = "-" + humanReadableTimeInterval((viewModel?.fileDuration ?? 0) - (viewModel?.fileCurrentTime ?? 0))
+        guard let viewModel = viewModel else { return }
+        elapsedTimeLabel.text = humanReadableTimeInterval(viewModel.fileCurrentTime)
+        remainingTimeLabel.text = "-" + humanReadableTimeInterval(viewModel.fileDuration - viewModel.fileCurrentTime)
     }
     
     func updateSongSlider()

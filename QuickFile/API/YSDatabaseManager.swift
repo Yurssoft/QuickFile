@@ -155,6 +155,36 @@ class YSDatabaseManager
         }
     }
     
+    class func deletePlayedDownloads(_ completionHandler: @escaping CompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+                if dbFiles.hasChildren()
+                {
+                    for currentDatabaseFile in dbFiles.children
+                    {
+                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let dbFile = databaseFile.value as! [String : Any]
+                        let ysFile = dbFile.toYSFile()
+                        if (ysFile.isPlayed)
+                        {
+                            ysFile.removeLocalFile()
+                            YSAppDelegate.appDelegate().fileDownloader?.cancelDownloading(file: ysFile)
+                        }
+                    }
+                }
+                let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Played local downloads deleted", buttonTitle: "GOT IT")
+                completionHandler(error)
+                return FIRTransactionResult.abort()
+            })
+        }
+        else
+        {
+            completionHandler(notLoggedInError())
+        }
+    }
+    
     class func deleteDatabase(_ completionHandler: @escaping CompletionHandler)
     {
         if let ref = referenceForCurrentUser()

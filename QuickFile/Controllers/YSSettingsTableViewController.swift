@@ -35,6 +35,7 @@ class YSSettingsTableViewController: UITableViewController
     fileprivate let cellLogInOutIdentifier = "logInOutCell"
     fileprivate let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
     fileprivate let cellDeleteAllIdentifier = "deleteAllCell"
+    fileprivate let cellDeletePlayedIdentifier = "deletePlayedDownloads"
     
     override func viewDidLoad()
     {
@@ -108,6 +109,9 @@ class YSSettingsTableViewController: UITableViewController
             case cellDeleteAllIdentifier:
                 deleteAllDownloads()
                 break
+            case cellDeletePlayedIdentifier:
+                deletePlayedDownloads()
+                break
             default:
                 break
             }
@@ -132,6 +136,22 @@ class YSSettingsTableViewController: UITableViewController
         let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
         { (action) in
             self.viewModel?.deleteAllFiles()
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    func deletePlayedDownloads()
+    {
+        let alertController = UIAlertController(title: "Delete all played downloads?", message: "This will delete already played local copies.", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
+        { (action) in
+            self.viewModel?.deletePlayedFiles()
         }
         alertController.addAction(destroyAction)
         
