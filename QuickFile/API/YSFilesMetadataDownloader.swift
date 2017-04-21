@@ -26,7 +26,7 @@ class YSFilesMetadataDownloader
                 {
                     err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get list, no internet")
                 }
-                else if err.debugInfo.contains("unauthorized")
+                else if err.errorType == YSErrorType.notLoggedInToDrive
                 {
                     completionHandler!(["" : ["": NSNull()]], err)
                     return
@@ -42,7 +42,12 @@ class YSFilesMetadataDownloader
             { data, response, error in
                 if var err = YSNetworkResponseManager.validate(response, error: error)
                 {
-                    if err.debugInfo.contains("connection appears to be offline")
+                    if err.errorType == YSErrorType.notLoggedInToDrive
+                    {
+                        completionHandler!(["" : ["": NSNull()]], err)
+                        return
+                    }
+                    else if err.debugInfo.contains("connection appears to be offline")
                     {
                         err.update(errorType: .couldNotGetFileList, messageType: .warning, title: "Warning", message: "Could not get list, no internet")
                     }
