@@ -24,7 +24,7 @@ struct YSConstants
     static let kObtainUserAuthorizationAPIEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
     static let kTokenKeychainKey = "kTokenKeychainKey"
     static let kTokenKeychainItemKey = "kTokenKeychainItemKey"
-    static let kDriveScopes = "https://www.googleapis.com/auth/drive.readonly"
+    static let kDriveScopes = ["https://www.googleapis.com/auth/drive.readonly"]
     static let kCellHeight = CGFloat(50.0)
     static let kHeaderHeight = CGFloat(28.0)
     static let kDefaultBlueColor = UIColor(red:23/255.0, green:156/255.0, blue:209/255.0, alpha:1.0)
