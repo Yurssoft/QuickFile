@@ -18,7 +18,7 @@ class YSDriveViewController: UITableViewController
     weak var toolbarView: YSToolbarView!
     
     var selectedIndexes : [IndexPath] = []
-    //TODO: make relative urls, push notifications, admob, logged as, download wifi only, add logo to login screen, launch screen
+    //TODO: make relative urls, push notifications, admob, logged as, download wifi only, add logo to login screen, launch screen, draw in rect for faster rendering
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet
