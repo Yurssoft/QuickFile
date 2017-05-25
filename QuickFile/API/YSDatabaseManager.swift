@@ -22,7 +22,7 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 
                 var dbFilesDict = databaseFilesDictionary(from: dbFiles)
                 var dbFilesForFolderToBeDeleted = [String : [String: Any]]()
@@ -88,7 +88,7 @@ class YSDatabaseManager
 
                 completionHandler(sort(ysFiles: ysfiles), YSError())
                 
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -101,14 +101,14 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 var sortedFiles : [YSDriveFileProtocol] = []
                 if dbFiles.hasChildren()
                 {
                     var files = [YSDriveFileProtocol]()
                     for currentDatabaseFile in dbFiles.children
                     {
-                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         var ysFile = dbFile.toYSFile()
                         if ysFile.folder.folderID == folder.folderID
@@ -119,7 +119,7 @@ class YSDatabaseManager
                     sortedFiles = sort(ysFiles: files)
                 }
                 callCompletionHandler(completionHandler, files: sortedFiles, error)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -132,12 +132,12 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 if dbFiles.hasChildren()
                 {
                     for currentDatabaseFile in dbFiles.children
                     {
-                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
                         ysFile.removeLocalFile()
@@ -146,7 +146,7 @@ class YSDatabaseManager
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
                 completionHandler(error)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -159,12 +159,12 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 if dbFiles.hasChildren()
                 {
                     for currentDatabaseFile in dbFiles.children
                     {
-                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
                         if (ysFile.isPlayed)
@@ -176,7 +176,7 @@ class YSDatabaseManager
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Played local downloads deleted", buttonTitle: "GOT IT")
                 completionHandler(error)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -189,11 +189,11 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 ref.child("files").setValue([:])
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Database deleted", buttonTitle: "GOT IT")
                 completionHandler(error)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -206,7 +206,7 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 var sortedFiles : [YSDriveFileProtocol] = []
                 var currentPlayingFile : YSDriveFileProtocol? = nil
                 if dbFiles.hasChildren()
@@ -214,7 +214,7 @@ class YSDatabaseManager
                     var files = [YSDriveFileProtocol]()
                     for currentDatabaseFile in dbFiles.children
                     {
-                        let databaseFile = currentDatabaseFile as! FIRMutableData
+                        let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
                         if ysFile.isCurrentlyPlaying && ysFile.localFileExists()
@@ -226,7 +226,7 @@ class YSDatabaseManager
                     sortedFiles = sort(ysFiles: files)
                 }
                 completionHandler(sortedFiles, currentPlayingFile, nil)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
         else
@@ -245,10 +245,10 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
                 let updatedFile = (file as! YSDriveFile).toDictionary()
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
-                return FIRTransactionResult.abort()
+                return TransactionResult.abort()
             })
         }
     }
@@ -261,12 +261,12 @@ class YSDatabaseManager
         return sortedFiles
     }
     
-    private class func databaseFilesDictionary(from databaseFiles: FIRMutableData) -> [String : [String: Any]]
+    private class func databaseFilesDictionary(from databaseFiles: MutableData) -> [String : [String: Any]]
     {
         var databaseFilesDictionary = [String : [String: Any]]()
         for currentDatabaseFile in databaseFiles.children
         {
-            let databaseFile = currentDatabaseFile as! FIRMutableData
+            let databaseFile = currentDatabaseFile as! MutableData
             let dbFile = databaseFile.value as! [String : Any]
             if let fileDriveIdentifier = dbFile["fileDriveIdentifier"] as? String
             {
@@ -282,11 +282,11 @@ class YSDatabaseManager
     }
     
     
-    private class func referenceForCurrentUser() -> FIRDatabaseReference?
+    private class func referenceForCurrentUser() -> DatabaseReference?
     {
-        if (FIRAuth.auth()?.currentUser) != nil, let uud = FIRAuth.auth()?.currentUser?.uid
+        if (Auth.auth().currentUser) != nil, let uud = Auth.auth().currentUser?.uid
         {
-            let ref = FIRDatabase.database().reference(withPath: "users/\(uud)")
+            let ref = Database.database().reference(withPath: "users/\(uud)")
             return ref
         }
         return nil

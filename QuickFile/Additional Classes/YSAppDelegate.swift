@@ -56,9 +56,9 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
         
-        FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()
         
         log.info("FIRApp, GIDSignIn - configured")

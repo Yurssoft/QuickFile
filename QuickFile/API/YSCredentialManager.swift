@@ -129,14 +129,14 @@ class YSCredentialManager
     
     class var isLoggedIn : Bool
     {
-        let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty && FIRAuth.auth()?.currentUser != nil
+        let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty && Auth.auth().currentUser != nil
         return isLoggedIn
     }
     
     class func logOut() throws
     {
         GIDSignIn.sharedInstance().signOut()
-        try? FIRAuth.auth()!.signOut()
+        try? Auth.auth().signOut()
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         keychain[data: YSConstants.kTokenKeychainItemKey] = Data()
         shared.token = YSToken()

@@ -236,9 +236,9 @@ extension YSSettingsTableViewController : GIDSignInDelegate
                                             accessToken: (authentication?.accessToken)!,
                                             availableTo: (authentication?.accessTokenExpirationDate)!)
         
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+        let credential = GoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
                                                           accessToken: (authentication?.accessToken)!)
-        FIRAuth.auth()?.signIn(with: credential)
+        Auth.auth().signIn(with: credential)
         { [weak self] (user, error) in
             let log = SwiftyBeaver.self
             log.info("User signed in \(user.debugDescription)")
