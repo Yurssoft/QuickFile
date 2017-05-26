@@ -12,6 +12,30 @@
 		5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */; };
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50B1C48C1ED72B35009B11B5 /* Advance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4751ED72B35009B11B5 /* Advance.swift */; };
+		50B1C48D1ED72B35009B11B5 /* Any+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4761ED72B35009B11B5 /* Any+Extensions.swift */; };
+		50B1C48E1ED72B35009B11B5 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4771ED72B35009B11B5 /* Array+Extensions.swift */; };
+		50B1C48F1ED72B35009B11B5 /* Construct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4781ED72B35009B11B5 /* Construct.swift */; };
+		50B1C4901ED72B35009B11B5 /* Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4791ED72B35009B11B5 /* Get.swift */; };
+		50B1C4911ED72B35009B11B5 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47A1ED72B35009B11B5 /* Identity.swift */; };
+		50B1C4921ED72B35009B11B5 /* MemoryProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47B1ED72B35009B11B5 /* MemoryProperties.swift */; };
+		50B1C4931ED72B35009B11B5 /* Metadata+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47C1ED72B35009B11B5 /* Metadata+Class.swift */; };
+		50B1C4941ED72B35009B11B5 /* Metadata+Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47D1ED72B35009B11B5 /* Metadata+Kind.swift */; };
+		50B1C4951ED72B35009B11B5 /* Metadata+Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47E1ED72B35009B11B5 /* Metadata+Struct.swift */; };
+		50B1C4961ED72B35009B11B5 /* Metadata+Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C47F1ED72B35009B11B5 /* Metadata+Tuple.swift */; };
+		50B1C4971ED72B35009B11B5 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4801ED72B35009B11B5 /* Metadata.swift */; };
+		50B1C4981ED72B35009B11B5 /* MetadataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4811ED72B35009B11B5 /* MetadataType.swift */; };
+		50B1C4991ED72B35009B11B5 /* NominalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4821ED72B35009B11B5 /* NominalType.swift */; };
+		50B1C49A1ED72B35009B11B5 /* NominalTypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4831ED72B35009B11B5 /* NominalTypeDescriptor.swift */; };
+		50B1C49B1ED72B35009B11B5 /* PointerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4841ED72B35009B11B5 /* PointerType.swift */; };
+		50B1C49C1ED72B35009B11B5 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4851ED72B35009B11B5 /* Properties.swift */; };
+		50B1C49D1ED72B35009B11B5 /* ReflectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4861ED72B35009B11B5 /* ReflectionError.swift */; };
+		50B1C49E1ED72B35009B11B5 /* RelativePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4871ED72B35009B11B5 /* RelativePointer.swift */; };
+		50B1C49F1ED72B35009B11B5 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4881ED72B35009B11B5 /* Set.swift */; };
+		50B1C4A01ED72B35009B11B5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4891ED72B35009B11B5 /* Storage.swift */; };
+		50B1C4A11ED72B35009B11B5 /* UnsafePointer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C48A1ED72B35009B11B5 /* UnsafePointer+Extensions.swift */; };
+		50B1C4A21ED72B35009B11B5 /* ValueWitnessTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C48B1ED72B35009B11B5 /* ValueWitnessTable.swift */; };
+		50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* Converting.swift */; };
 		50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562221E71BA90004E47A2 /* GoogleService-Info.plist */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562251E71BA90004E47A2 /* SwiftyTimer.swift */; };
@@ -117,6 +141,30 @@
 		5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresLogging.swift; sourceTree = "<group>"; };
 		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50B1C4751ED72B35009B11B5 /* Advance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advance.swift; sourceTree = "<group>"; };
+		50B1C4761ED72B35009B11B5 /* Any+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Any+Extensions.swift"; sourceTree = "<group>"; };
+		50B1C4771ED72B35009B11B5 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		50B1C4781ED72B35009B11B5 /* Construct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Construct.swift; sourceTree = "<group>"; };
+		50B1C4791ED72B35009B11B5 /* Get.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get.swift; sourceTree = "<group>"; };
+		50B1C47A1ED72B35009B11B5 /* Identity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		50B1C47B1ED72B35009B11B5 /* MemoryProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryProperties.swift; sourceTree = "<group>"; };
+		50B1C47C1ED72B35009B11B5 /* Metadata+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Class.swift"; sourceTree = "<group>"; };
+		50B1C47D1ED72B35009B11B5 /* Metadata+Kind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Kind.swift"; sourceTree = "<group>"; };
+		50B1C47E1ED72B35009B11B5 /* Metadata+Struct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Struct.swift"; sourceTree = "<group>"; };
+		50B1C47F1ED72B35009B11B5 /* Metadata+Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Tuple.swift"; sourceTree = "<group>"; };
+		50B1C4801ED72B35009B11B5 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		50B1C4811ED72B35009B11B5 /* MetadataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataType.swift; sourceTree = "<group>"; };
+		50B1C4821ED72B35009B11B5 /* NominalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominalType.swift; sourceTree = "<group>"; };
+		50B1C4831ED72B35009B11B5 /* NominalTypeDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominalTypeDescriptor.swift; sourceTree = "<group>"; };
+		50B1C4841ED72B35009B11B5 /* PointerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerType.swift; sourceTree = "<group>"; };
+		50B1C4851ED72B35009B11B5 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
+		50B1C4861ED72B35009B11B5 /* ReflectionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionError.swift; sourceTree = "<group>"; };
+		50B1C4871ED72B35009B11B5 /* RelativePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativePointer.swift; sourceTree = "<group>"; };
+		50B1C4881ED72B35009B11B5 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		50B1C4891ED72B35009B11B5 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		50B1C48A1ED72B35009B11B5 /* UnsafePointer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnsafePointer+Extensions.swift"; sourceTree = "<group>"; };
+		50B1C48B1ED72B35009B11B5 /* ValueWitnessTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueWitnessTable.swift; sourceTree = "<group>"; };
+		50B1C4A31ED7F85D009B11B5 /* Converting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converting.swift; sourceTree = "<group>"; };
 		50E562221E71BA90004E47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562241E71BA90004E47A2 /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
@@ -223,6 +271,7 @@
 		50AB0DAD1D8FF242008EDB0D = {
 			isa = PBXGroup;
 			children = (
+				50B1C4741ED72B35009B11B5 /* Reflection */,
 				5013C1AF1EA73EC8002EF4F0 /* Reqres */,
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
@@ -238,6 +287,36 @@
 				50AB0DB61D8FF242008EDB0D /* QuickFile.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		50B1C4741ED72B35009B11B5 /* Reflection */ = {
+			isa = PBXGroup;
+			children = (
+				50B1C4751ED72B35009B11B5 /* Advance.swift */,
+				50B1C4761ED72B35009B11B5 /* Any+Extensions.swift */,
+				50B1C4771ED72B35009B11B5 /* Array+Extensions.swift */,
+				50B1C4781ED72B35009B11B5 /* Construct.swift */,
+				50B1C4791ED72B35009B11B5 /* Get.swift */,
+				50B1C47A1ED72B35009B11B5 /* Identity.swift */,
+				50B1C47B1ED72B35009B11B5 /* MemoryProperties.swift */,
+				50B1C47C1ED72B35009B11B5 /* Metadata+Class.swift */,
+				50B1C47D1ED72B35009B11B5 /* Metadata+Kind.swift */,
+				50B1C47E1ED72B35009B11B5 /* Metadata+Struct.swift */,
+				50B1C47F1ED72B35009B11B5 /* Metadata+Tuple.swift */,
+				50B1C4801ED72B35009B11B5 /* Metadata.swift */,
+				50B1C4811ED72B35009B11B5 /* MetadataType.swift */,
+				50B1C4821ED72B35009B11B5 /* NominalType.swift */,
+				50B1C4831ED72B35009B11B5 /* NominalTypeDescriptor.swift */,
+				50B1C4841ED72B35009B11B5 /* PointerType.swift */,
+				50B1C4851ED72B35009B11B5 /* Properties.swift */,
+				50B1C4861ED72B35009B11B5 /* ReflectionError.swift */,
+				50B1C4871ED72B35009B11B5 /* RelativePointer.swift */,
+				50B1C4881ED72B35009B11B5 /* Set.swift */,
+				50B1C4891ED72B35009B11B5 /* Storage.swift */,
+				50B1C48A1ED72B35009B11B5 /* UnsafePointer+Extensions.swift */,
+				50B1C48B1ED72B35009B11B5 /* ValueWitnessTable.swift */,
+			);
+			path = Reflection;
 			sourceTree = "<group>";
 		};
 		50E562201E71BA90004E47A2 /* QuickFile */ = {
@@ -269,6 +348,7 @@
 				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
 				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
 				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
+				50B1C4A31ED7F85D009B11B5 /* Converting.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -611,38 +691,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B1C4971ED72B35009B11B5 /* Metadata.swift in Sources */,
+				50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */,
+				50B1C4951ED72B35009B11B5 /* Metadata+Struct.swift in Sources */,
 				50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */,
 				50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */,
+				50B1C49C1ED72B35009B11B5 /* Properties.swift in Sources */,
+				50B1C48D1ED72B35009B11B5 /* Any+Extensions.swift in Sources */,
 				50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */,
+				50B1C4901ED72B35009B11B5 /* Get.swift in Sources */,
 				50E562941E71BA90004E47A2 /* YSErrorProtocol.swift in Sources */,
 				50E562921E71BA90004E47A2 /* YSDownloadProtocol.swift in Sources */,
 				50E562911E71BA90004E47A2 /* YSSettingsCoordinator.swift in Sources */,
 				50E562851E71BA90004E47A2 /* YSDriveTopViewController.swift in Sources */,
 				50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */,
+				50B1C48E1ED72B35009B11B5 /* Array+Extensions.swift in Sources */,
 				50E562B21E71BA90004E47A2 /* YSToolbarView.swift in Sources */,
+				50B1C4941ED72B35009B11B5 /* Metadata+Kind.swift in Sources */,
 				50E562A41E71BA90004E47A2 /* YSPlaylistViewModelProtocol.swift in Sources */,
 				50E5629E1E71BA90004E47A2 /* YSFolder.swift in Sources */,
 				50E5629D1E71BA90004E47A2 /* YSDriveSearchModel.swift in Sources */,
 				50E562791E71BA90004E47A2 /* YSDictionaryExtension.swift in Sources */,
 				50E562B01E71BA90004E47A2 /* YSHeaderForSection.swift in Sources */,
+				50B1C4991ED72B35009B11B5 /* NominalType.swift in Sources */,
+				50B1C4A21ED72B35009B11B5 /* ValueWitnessTable.swift in Sources */,
 				50E562881E71BA90004E47A2 /* YSPlaylistViewController.swift in Sources */,
 				50E5627E1E71BA90004E47A2 /* YSDatabaseManager.swift in Sources */,
 				50E5627B1E71BA90004E47A2 /* YSTabBarController.swift in Sources */,
 				50E562991E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift in Sources */,
+				50B1C49A1ED72B35009B11B5 /* NominalTypeDescriptor.swift in Sources */,
 				50E562AE1E71BA90004E47A2 /* YSDriveFileTableViewCell.swift in Sources */,
+				50B1C4A11ED72B35009B11B5 /* UnsafePointer+Extensions.swift in Sources */,
+				50B1C49D1ED72B35009B11B5 /* ReflectionError.swift in Sources */,
+				50B1C4A01ED72B35009B11B5 /* Storage.swift in Sources */,
 				50E562871E71BA90004E47A2 /* YSPlayerController.swift in Sources */,
 				50E5627D1E71BA90004E47A2 /* YSCredentialManager.swift in Sources */,
+				50B1C49E1ED72B35009B11B5 /* RelativePointer.swift in Sources */,
 				50E562A91E71BA90004E47A2 /* YSPlaylistViewModel.swift in Sources */,
 				50E5628D1E71BA90004E47A2 /* YSDriveSearchCoordinator.swift in Sources */,
 				50E5629B1E71BA90004E47A2 /* YSSettingsModelProtocol.swift in Sources */,
+				50B1C4961ED72B35009B11B5 /* Metadata+Tuple.swift in Sources */,
 				50E562951E71BA90004E47A2 /* YSDownload.swift in Sources */,
 				50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */,
 				50E562A11E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift in Sources */,
 				50E562A81E71BA90004E47A2 /* YSPlayerViewModel.swift in Sources */,
 				50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */,
+				50B1C4911ED72B35009B11B5 /* Identity.swift in Sources */,
 				50E562981E71BA90004E47A2 /* YSDriveModelProtocol.swift in Sources */,
 				5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */,
 				50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */,
+				50B1C4981ED72B35009B11B5 /* MetadataType.swift in Sources */,
 				50E5628A1E71BA90004E47A2 /* YSSettingsTopViewController.swift in Sources */,
 				50E562811E71BA90004E47A2 /* YSNetworkResponseManager.swift in Sources */,
 				50E562821E71BA90004E47A2 /* YSToken.swift in Sources */,
@@ -651,12 +749,17 @@
 				50E562931E71BA90004E47A2 /* YSDriveFileProtocol.swift in Sources */,
 				5013C1B61EA73EC8002EF4F0 /* ReqresDefaultLogger.swift in Sources */,
 				50E5627A1E71BA90004E47A2 /* YSNSObjectExtension.swift in Sources */,
+				50B1C49F1ED72B35009B11B5 /* Set.swift in Sources */,
 				50E5628B1E71BA90004E47A2 /* YSCoordinatorProtocol.swift in Sources */,
+				50B1C49B1ED72B35009B11B5 /* PointerType.swift in Sources */,
+				50B1C4931ED72B35009B11B5 /* Metadata+Class.swift in Sources */,
+				50B1C4921ED72B35009B11B5 /* MemoryProperties.swift in Sources */,
 				50E5628C1E71BA90004E47A2 /* YSDriveCoordinator.swift in Sources */,
 				50E5629F1E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift in Sources */,
 				50E562AA1E71BA90004E47A2 /* YSSettingsViewModel.swift in Sources */,
 				50E562901E71BA90004E47A2 /* YSPlaylistCoordinator.swift in Sources */,
 				50E562A51E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift in Sources */,
+				50B1C48C1ED72B35009B11B5 /* Advance.swift in Sources */,
 				50E562801E71BA90004E47A2 /* YSFilesMetadataDownloader.swift in Sources */,
 				50E5627C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift in Sources */,
 				50E562A01E71BA90004E47A2 /* YSSettingsModel.swift in Sources */,
@@ -668,6 +771,7 @@
 				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
 				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
 				5013C1B51EA73EC8002EF4F0 /* Reqres.swift in Sources */,
+				50B1C48F1ED72B35009B11B5 /* Construct.swift in Sources */,
 				50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */,
 				50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
 			);

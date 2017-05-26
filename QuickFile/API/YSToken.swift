@@ -8,7 +8,7 @@
 
 import Foundation
 
-class YSToken : NSObject
+struct YSToken
 {
     //AccessToken
     var accessToken : String = ""

@@ -14,7 +14,7 @@ typealias CompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
 
 struct YSConstants
 {
-    static let kDriveClientID = "416980241627-7bl6ktgh5t7qil5alactn8q0n6jtpfet.apps.googleusercontent.com" 
+    static let kDriveClientID = "416980241627-e669b9lnebgfndk7avk07rudpjnc594r.apps.googleusercontent.com" 
     static let kStoryboardName = "Main"
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
     static let kSettingsEmbededSegue = "YSSettingsViewControllerSegue"

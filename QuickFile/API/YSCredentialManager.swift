@@ -36,7 +36,7 @@ class YSCredentialManager
             return
         }
         let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as! [String : Any]
-        self.token = tokenDictionary.toYSToken()
+        self.token = try! construct(dictionary: tokenDictionary)
     }
     
     private var token : YSToken = YSToken()
@@ -72,7 +72,7 @@ class YSCredentialManager
     private func saveTokenToKeychain()
     {
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
-        let tokenDictionary = token.toDictionary()
+        let tokenDictionary = toDictionary(type: token)
         let tokenData = NSKeyedArchiver.archivedData(withRootObject: tokenDictionary)
         keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
     }

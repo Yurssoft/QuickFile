@@ -45,7 +45,7 @@ class YSDatabaseManager
                 if !isRootFolderAdded
                 {
                     let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false)
-                    dbFilesDict[rootFolder.fileDriveIdentifier] = rootFolder.toDictionary()
+                    dbFilesDict[rootFolder.fileDriveIdentifier] = toDictionary(type: rootFolder)
                 }
                 var ysfiles : [YSDriveFileProtocol] = []
                 let filesDictArray = filesDictionary["files"] as! [[String: Any]]
@@ -73,7 +73,7 @@ class YSDatabaseManager
                     
                     ysfiles.append(ysFile)
                     dbFilesForFolderToBeDeleted[ysFile.fileDriveIdentifier] = nil
-                    dbFilesDict[ysFile.fileDriveIdentifier] = ysFile.toDictionary()
+                    dbFilesDict[ysFile.fileDriveIdentifier] = toDictionary(type: ysFile)
                 }
                 
                 for key in dbFilesForFolderToBeDeleted.keys
@@ -246,7 +246,7 @@ class YSDatabaseManager
         if let ref = referenceForCurrentUser()
         {
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-                let updatedFile = (file as! YSDriveFile).toDictionary()
+                let updatedFile = toDictionary(type: file)
                 ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
                 return TransactionResult.abort()
             })

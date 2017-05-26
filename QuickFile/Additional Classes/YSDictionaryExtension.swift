@@ -32,15 +32,4 @@ public extension Dictionary
         }
         return object
     }
-    
-    internal func toYSToken() -> YSToken
-    {
-        let object = YSToken()
-        for key in keys
-        {
-            let val = self[key]
-            object.setValue(val, forKey: key as! String)
-        }
-        return object
-    }
 }
