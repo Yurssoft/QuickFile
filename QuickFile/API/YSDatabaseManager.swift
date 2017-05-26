@@ -51,6 +51,7 @@ class YSDatabaseManager
                     if let remoteFile = remoteFilesDict[currentFileIdentifier]
                     {
                         dbFile.value = mergeFiles(dbFile: &dbFile.value, remoteFile: remoteFile, folder: folder)
+                        remoteFilesDict[currentFileIdentifier] = nil
                     }
                     else
                     {
@@ -61,9 +62,9 @@ class YSDatabaseManager
                     ysFiles.append(ysFile)
                 }
                 
-                if dbFilesArrayDict.count == 0
+                for remoteFile in remoteFilesDict
                 {
-                    dbFilesArrayDict = remoteFilesDict
+                    dbFilesArrayDict[(remoteFile.value["fileDriveIdentifier"] as! String)] = remoteFile.value
                 }
                 
                 if !isRootFolderAdded && folder.folderID == rootFolderID
