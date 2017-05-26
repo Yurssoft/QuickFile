@@ -24,7 +24,7 @@ protocol YSDriveFileProtocol
     
     func fileUrl() -> String
     func localFilePath() -> URL?
-    func updateFileSize() -> UInt64
+    mutating func updateFileSize() -> UInt64
     
     func localFileExists() -> Bool
     func removeLocalFile()

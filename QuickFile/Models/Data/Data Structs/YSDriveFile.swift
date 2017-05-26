@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyBeaver
 
-class YSDriveFile : NSObject, YSDriveFileProtocol
+struct YSDriveFile : YSDriveFileProtocol
 {
     var fileName : String //Book 343
     var fileSize : String //108.03 MB (47 audio) or 10:18
@@ -25,10 +25,10 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
     
     init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool)
     {
-        self.fileName = YSDriveFile.checkStringForNil(string: fileName)
-        self.fileSize = YSDriveFile.checkStringForNil(string: fileSize)
-        self.mimeType = YSDriveFile.checkStringForNil(string: mimeType)
-        let mimeTypes = YSDriveFile.checkStringForNil(string: mimeType)
+        self.fileName = checkStringForNil(string: fileName)
+        self.fileSize = checkStringForNil(string: fileSize)
+        self.mimeType = checkStringForNil(string: mimeType)
+        let mimeTypes = checkStringForNil(string: mimeType)
         if !mimeTypes.isEmpty && (mimeTypes.contains("mp3") || mimeTypes.contains("audio") || mimeTypes.contains("mpeg"))
         {
             self.isAudio = true
@@ -37,16 +37,16 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         {
             self.isAudio = false
         }
-        self.fileDriveIdentifier = YSDriveFile.checkStringForNil(string: fileDriveIdentifier)
-        self.folder.folderName = YSDriveFile.checkStringForNil(string: folderName)
-        self.folder.folderID = YSDriveFile.checkStringForNil(string: folderID)
+        self.fileDriveIdentifier = checkStringForNil(string: fileDriveIdentifier)
+        self.folder.folderName = checkStringForNil(string: folderName)
+        self.folder.folderID = checkStringForNil(string: folderID)
         
-        self.playedTime = YSDriveFile.checkStringForNil(string: playedTime)
+        self.playedTime = checkStringForNil(string: playedTime)
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
     }
     
-    override init()
+    init()
     {
         self.fileName = ""
         self.fileSize = ""
@@ -58,14 +58,6 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         self.isCurrentlyPlaying = false
     }
     
-    class func checkStringForNil(string : String?) -> String
-    {
-        if string == nil
-        {
-            return ""
-        }
-        return string!
-    }
     
     func fileUrl() -> String
     {
@@ -93,7 +85,7 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         return YSAppDelegate.appDelegate().filesOnDisk.contains(fileDriveIdentifier)
     }
     
-    func updateFileSize() -> UInt64
+    mutating func updateFileSize() -> UInt64
     {
         var fileSize : UInt64 = 0
         guard let filePath = localFilePath()?.path else { return fileSize }
@@ -117,8 +109,16 @@ class YSDriveFile : NSObject, YSDriveFileProtocol
         YSAppDelegate.appDelegate().filesOnDisk.remove(at: indexToDelete)
     }
     
-    override var debugDescription: String
+    var debugDescription: String
     {
         return "File name: \(fileName) ID: \(fileDriveIdentifier) FolderID: \(folder.folderID) Folder name: \(folder.folderName) IS AUDIO: \(isAudio)\t"
     }
+}
+
+fileprivate func checkStringForNil(string : String?) -> String {
+    if string == nil
+    {
+        return ""
+    }
+    return string!
 }

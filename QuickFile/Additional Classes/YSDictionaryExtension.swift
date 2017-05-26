@@ -12,7 +12,7 @@ public extension Dictionary
 {
     internal func toYSFile() -> YSDriveFileProtocol
     {
-        let object = YSDriveFile()
+        var object = YSDriveFile()
         for key in keys
         {
             let val = self[key]
@@ -23,11 +23,11 @@ public extension Dictionary
                 let value = val as! [String : String]
                 folder.folderID = value["folderID"]!
                 folder.folderName = value["folderName"]!
-                object.setValue(folder, forKey: propertyKey)
+                try! set(folder, key: propertyKey, for: &object)
             }
             else
             {
-                object.setValue(val, forKey: propertyKey)
+                try! set(val ?? "", key: propertyKey, for: &object)
             }
         }
         return object
