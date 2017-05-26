@@ -34,7 +34,7 @@ class YSDriveModel: YSDriveModelProtocol
                 YSDatabaseManager.files(for: self.currentFolder, yserror, completionHandler)
                 return
             }
-            YSDatabaseManager.save(filesDictionary: filesDictionary!, self.currentFolder, completionHandler)
+            YSDatabaseManager.save(remoteFilesDict: filesDictionary!, self.currentFolder, completionHandler)
         }
     }
     

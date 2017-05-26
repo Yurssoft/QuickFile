@@ -18,76 +18,64 @@ class YSDatabaseManager
 {
     private static let completionBlockDelay = 0.3
     
-    class func save(filesDictionary: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler)
+    class func save(remoteFilesDict: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
+            ref.child("files").runTransactionBlock({ (dbFilesData: MutableData) -> TransactionResult in
+                var dbFilesArrayDict = databaseFilesDictionary(from: dbFilesData)
+                let rootFolderID = YSFolder.rootFolder().folderID
                 
-                var dbFilesDict = databaseFilesDictionary(from: dbFiles)
-                var dbFilesForFolderToBeDeleted = [String : [String: Any]]()
+                var ysFiles : [YSDriveFileProtocol] = []
+                let remoteFilesArrayDict = remoteFilesDict["files"] as! [[String: Any]]
+                
                 var isRootFolderAdded = false
-                for key in dbFilesDict.keys
+
+                var remoteFilesDict = [String : [String: Any]]()
+                for var remoteFile in remoteFilesArrayDict
                 {
-                    var dbFile = dbFilesDict[key]
-                    if let ID = dbFile?["fileDriveIdentifier"] as! String?, ID == "root"
-                    {
-                        isRootFolderAdded = true
-                    }
-                    let folderObj = dbFile?["folder"] as! [String: String]
-                    let dbFileFolderID = folderObj["folderID"]
-                    if dbFileFolderID == folder.folderID
-                    {
-                        dbFilesForFolderToBeDeleted[key] = dbFile
-                        dbFilesDict[key] = nil
-                    }
+                    //map ysfiledict to remote property names
+                    let fileIdentifier = remoteFile["id"] as! String
+                    var emptyFile = [String : Any]()
+                    let mergedFile = mergeYSFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
+                    remoteFilesDict[fileIdentifier] = mergedFile
                 }
-                if !isRootFolderAdded
+                for var dbFile in dbFilesArrayDict
                 {
-                    let rootFolder = YSDriveFile.init(fileName: "Root", fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false)
-                    dbFilesDict[rootFolder.fileDriveIdentifier] = toDictionary(type: rootFolder)
-                }
-                var ysfiles : [YSDriveFileProtocol] = []
-                let filesDictArray = filesDictionary["files"] as! [[String: Any]]
-                for fileDict in filesDictArray
-                {
-                    var playedTime = ""
-                    var isPlayed = false
-                    var isCurrentlyPlaying = false
-                    if let id = fileDict["name"] as! String?, let dbFile = dbFilesForFolderToBeDeleted[id]
+                    if (dbFile.value["fileDriveIdentifier"] as! String) == YSFolder.rootFolder().folderID
                     {
-                        let dbysFile = dbFile.toYSFile()
-                        playedTime = dbysFile.playedTime
-                        isCurrentlyPlaying = dbysFile.isCurrentlyPlaying
-                        isPlayed = dbysFile.isPlayed
+                        continue
                     }
-                    let ysFile = YSDriveFile.init(fileName: fileDict["name"] as! String?,
-                                                  fileSize: fileDict["size"] as! String?,
-                                                  mimeType: fileDict["mimeType"] as! String?,
-                                                  fileDriveIdentifier: fileDict["id"] as! String?,
-                                                  folderName: folder.folderName,
-                                                  folderID: folder.folderID,
-                                                  playedTime : playedTime,
-                                                  isPlayed : isPlayed,
-                                                  isCurrentlyPlaying : isCurrentlyPlaying)
-                    
-                    ysfiles.append(ysFile)
-                    dbFilesForFolderToBeDeleted[ysFile.fileDriveIdentifier] = nil
-                    dbFilesDict[ysFile.fileDriveIdentifier] = toDictionary(type: ysFile)
+                    let currentFileIdentifier = dbFile.value["fileDriveIdentifier"] as! String
+                    isRootFolderAdded = currentFileIdentifier == rootFolderID
+                    if let remoteFile = remoteFilesDict[currentFileIdentifier]
+                    {
+                        dbFile.value = mergeYSFiles(dbFile: &dbFile.value, remoteFile: remoteFile, folder: folder)
+                    }
+                    else
+                    {
+                        dbFile.value["isDeletedFromDrive"] = true
+                    }
+                    var ysFile = dbFile.value.toYSFile()
+                    checkIfFileExists(file: &ysFile)
+                    ysFiles.append(ysFile)
                 }
                 
-                for key in dbFilesForFolderToBeDeleted.keys
+                if dbFilesArrayDict.count == 0
                 {
-                    var dbFileToBeDeleted = dbFilesForFolderToBeDeleted[key]
-                    let ysFile = dbFileToBeDeleted?.toYSFile()
-                    ysFile?.removeLocalFile()
-                    dbFileToBeDeleted?[key] = nil
+                    dbFilesArrayDict = remoteFilesDict
                 }
-
-                ref.child("files").setValue(dbFilesDict)
-
-                completionHandler(sort(ysFiles: ysfiles), YSError())
                 
+                if !isRootFolderAdded && folder.folderID == rootFolderID
+                {
+                    let rootFolder = YSDriveFile.init(fileName: YSFolder.rootFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false, isDeletedFromDrive : false)
+                    ysFiles.append(rootFolder)
+                    let rootFolderDict = toDictionary(type: rootFolder)
+                    dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
+                }
+                ref.child("files").setValue(dbFilesArrayDict)
+                ysFiles = sort(ysFiles: ysFiles)
+                completionHandler(ysFiles, YSError())
                 return TransactionResult.abort()
             })
         }
@@ -96,7 +84,29 @@ class YSDatabaseManager
             completionHandler([], notLoggedInError())
         }
     }
-
+    
+    class func checkIfFileExists(file: inout YSDriveFileProtocol)
+    {
+        if !YSAppDelegate.appDelegate().filesOnDisk.contains(file.fileDriveIdentifier) && file.localFileExists()
+        {
+            YSAppDelegate.appDelegate().filesOnDisk.append(file.fileDriveIdentifier)
+            var file = file
+            _ = file.updateFileSize()
+        }
+    }
+    
+    class func mergeYSFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
+    {
+        var dbFile = dbFile
+        dbFile["fileDriveIdentifier"] = remoteFile["id"]
+        dbFile["folder"] = toDictionary(type: folder)
+        dbFile["fileName"] = remoteFile["name"]
+        dbFile["mimeType"] = remoteFile["mimeType"]
+        dbFile["fileSize"] = remoteFile["size"]
+        dbFile["isDeletedFromDrive"] = false
+        return dbFile
+    }
+    
     class func files(for folder: YSFolder,_ error: YSError,_ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
@@ -280,7 +290,6 @@ class YSDatabaseManager
         }
         return databaseFilesDictionary
     }
-    
     
     private class func referenceForCurrentUser() -> DatabaseReference?
     {

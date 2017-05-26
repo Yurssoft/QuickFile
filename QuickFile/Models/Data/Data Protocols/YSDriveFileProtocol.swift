@@ -17,6 +17,7 @@ protocol YSDriveFileProtocol
     var fileDriveIdentifier : String { get set }
     var modifiedTime : String { get set }
     var folder : YSFolder { get set }
+    var isDeletedFromDrive : Bool { get set }
     
     var playedTime : String { get set }
     var isPlayed : Bool { get set }

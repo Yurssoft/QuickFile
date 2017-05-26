@@ -84,7 +84,8 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
                                                       folderID: "",
                                                       playedTime : "",
                                                       isPlayed : false,
-                                                      isCurrentlyPlaying : false)
+                                                      isCurrentlyPlaying : false,
+                                                      isDeletedFromDrive : false)
                         ysFiles.append(ysFile)
                     }
                     continue

@@ -18,12 +18,13 @@ struct YSDriveFile : YSDriveFileProtocol
     var fileDriveIdentifier : String
     var modifiedTime : String = ""
     var folder : YSFolder = YSFolder()
+    var isDeletedFromDrive : Bool = false
     
     var playedTime : String
     var isPlayed : Bool
     var isCurrentlyPlaying : Bool
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool)
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool, isDeletedFromDrive : Bool)
     {
         self.fileName = checkStringForNil(string: fileName)
         self.fileSize = checkStringForNil(string: fileSize)
@@ -44,6 +45,7 @@ struct YSDriveFile : YSDriveFileProtocol
         self.playedTime = checkStringForNil(string: playedTime)
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
+        self.isDeletedFromDrive = false
     }
     
     init()
@@ -56,8 +58,8 @@ struct YSDriveFile : YSDriveFileProtocol
         self.playedTime = ""
         self.isPlayed = false
         self.isCurrentlyPlaying = false
+        self.isDeletedFromDrive = false
     }
-    
     
     func fileUrl() -> String
     {
