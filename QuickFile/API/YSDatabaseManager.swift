@@ -37,7 +37,7 @@ class YSDatabaseManager
                     //map ysfiledict to remote property names
                     let fileIdentifier = remoteFile["id"] as! String
                     var emptyFile = [String : Any]()
-                    let mergedFile = mergeYSFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
+                    let mergedFile = mapFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
                     remoteFilesDict[fileIdentifier] = mergedFile
                 }
                 for var dbFile in dbFilesArrayDict
@@ -50,7 +50,7 @@ class YSDatabaseManager
                     isRootFolderAdded = currentFileIdentifier == rootFolderID
                     if let remoteFile = remoteFilesDict[currentFileIdentifier]
                     {
-                        dbFile.value = mergeYSFiles(dbFile: &dbFile.value, remoteFile: remoteFile, folder: folder)
+                        dbFile.value = mergeFiles(dbFile: &dbFile.value, remoteFile: remoteFile, folder: folder)
                     }
                     else
                     {
@@ -95,7 +95,7 @@ class YSDatabaseManager
         }
     }
     
-    class func mergeYSFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
+    class func mapFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
     {
         var dbFile = dbFile
         dbFile["fileDriveIdentifier"] = remoteFile["id"]
@@ -103,6 +103,18 @@ class YSDatabaseManager
         dbFile["fileName"] = remoteFile["name"]
         dbFile["mimeType"] = remoteFile["mimeType"]
         dbFile["fileSize"] = remoteFile["size"]
+        dbFile["isDeletedFromDrive"] = false
+        return dbFile
+    }
+    
+    class func mergeFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
+    {
+        var dbFile = dbFile
+        dbFile["fileDriveIdentifier"] = remoteFile["fileDriveIdentifier"]
+        dbFile["folder"] = toDictionary(type: folder)
+        dbFile["fileName"] = remoteFile["fileName"]
+        dbFile["mimeType"] = remoteFile["mimeType"]
+        dbFile["fileSize"] = remoteFile["fileSize"]
         dbFile["isDeletedFromDrive"] = false
         return dbFile
     }
