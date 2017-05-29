@@ -75,6 +75,9 @@ class YSDatabaseManager
                     dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
                 }
                 ref.child("files").setValue(dbFilesArrayDict)
+                ysFiles = ysFiles.filter({ (ysFile) -> Bool in
+                    return ysFile.folder.folderID == folder.folderID
+                })
                 ysFiles = sort(ysFiles: ysFiles)
                 completionHandler(ysFiles, YSError())
                 return TransactionResult.abort()
