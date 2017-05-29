@@ -65,6 +65,8 @@ class YSDatabaseManager
                 for remoteFile in remoteFilesDict
                 {
                     dbFilesArrayDict[(remoteFile.value["fileDriveIdentifier"] as! String)] = remoteFile.value
+                    let ysFile = remoteFile.value.toYSFile()
+                    ysFiles.append(ysFile)
                 }
                 
                 if !isRootFolderAdded && folder.folderID == rootFolderID

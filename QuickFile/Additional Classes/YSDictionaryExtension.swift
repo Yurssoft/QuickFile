@@ -12,7 +12,7 @@ public extension Dictionary
 {
     internal func toYSFile() -> YSDriveFileProtocol
     {
-        var object = YSDriveFile()
+        var ysFile = YSDriveFile()
         for key in keys
         {
             let val = self[key]
@@ -23,13 +23,15 @@ public extension Dictionary
                 let value = val as! [String : String]
                 folder.folderID = value["folderID"]!
                 folder.folderName = value["folderName"]!
-                try! set(folder, key: propertyKey, for: &object)
+                try! set(folder, key: propertyKey, for: &ysFile)
             }
             else
             {
-                try! set(val ?? "", key: propertyKey, for: &object)
+                try! set(val ?? "", key: propertyKey, for: &ysFile)
             }
         }
-        return object
+        let mimeType = ysFile.mimeType
+        ysFile.isAudio = !mimeType.isEmpty && (mimeType.contains("mp3") || mimeType.contains("audio") || mimeType.contains("mpeg"))
+        return ysFile
     }
 }
