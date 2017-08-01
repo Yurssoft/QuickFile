@@ -10,6 +10,7 @@
 		5013C1B51EA73EC8002EF4F0 /* Reqres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B11EA73EC8002EF4F0 /* Reqres.swift */; };
 		5013C1B61EA73EC8002EF4F0 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */; };
 		5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */; };
+		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B1C48C1ED72B35009B11B5 /* Advance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4751ED72B35009B11B5 /* Advance.swift */; };
@@ -36,7 +37,6 @@
 		50B1C4A11ED72B35009B11B5 /* UnsafePointer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C48A1ED72B35009B11B5 /* UnsafePointer+Extensions.swift */; };
 		50B1C4A21ED72B35009B11B5 /* ValueWitnessTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C48B1ED72B35009B11B5 /* ValueWitnessTable.swift */; };
 		50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* Converting.swift */; };
-		50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50E562221E71BA90004E47A2 /* GoogleService-Info.plist */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562251E71BA90004E47A2 /* SwiftyTimer.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
@@ -139,6 +139,7 @@
 		5013C1B11EA73EC8002EF4F0 /* Reqres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reqres.swift; sourceTree = "<group>"; };
 		5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresLogging.swift; sourceTree = "<group>"; };
+		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4751ED72B35009B11B5 /* Advance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advance.swift; sourceTree = "<group>"; };
@@ -165,7 +166,6 @@
 		50B1C48A1ED72B35009B11B5 /* UnsafePointer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnsafePointer+Extensions.swift"; sourceTree = "<group>"; };
 		50B1C48B1ED72B35009B11B5 /* ValueWitnessTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueWitnessTable.swift; sourceTree = "<group>"; };
 		50B1C4A31ED7F85D009B11B5 /* Converting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converting.swift; sourceTree = "<group>"; };
-		50E562221E71BA90004E47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562241E71BA90004E47A2 /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		50E562251E71BA90004E47A2 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 		50E562211E71BA90004E47A2 /* Additional Classes */ = {
 			isa = PBXGroup;
 			children = (
-				50E562221E71BA90004E47A2 /* GoogleService-Info.plist */,
+				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
 				50E562231E71BA90004E47A2 /* Info.plist */,
 				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
 				50E562251E71BA90004E47A2 /* SwiftyTimer.swift */,
@@ -548,12 +548,15 @@
 					50AB0DB51D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 9GXW8252L9;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -600,9 +603,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
+				507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */,
 				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
 				50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */,
-				50E562721E71BA90004E47A2 /* GoogleService-Info.plist in Resources */,
 				50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */,
 				50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */,
 				50E562AB1E71BA90004E47A2 /* Assets.xcassets in Resources */,
@@ -919,10 +922,10 @@
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.quickfile;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8d2b3d35-e61c-4ad9-af46-68e7f5a44979";
+				PROVISIONING_PROFILE_SPECIFIER = Dev;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -935,15 +938,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = QuickFile/QuickFile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yurssoft.quickfile;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c4e2ef3d-5c67-4a1b-b7ec-8064c66a7c81";
+				PROVISIONING_PROFILE_SPECIFIER = Prod;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

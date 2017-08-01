@@ -13,6 +13,12 @@ PODS:
   - Firebase/Database (4.0.4):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
+  - Firebase/Messaging (4.0.4):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.0.0)
+  - Firebase/Performance (4.0.4):
+    - Firebase/Core
+    - FirebasePerformance (= 1.0.3)
   - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -34,6 +40,19 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FirebasePerformance (1.0.3):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.1)
   - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -79,6 +98,8 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crash
   - Firebase/Database
+  - Firebase/Messaging
+  - Firebase/Performance
   - GoogleSignIn
   - KeychainAccess
   - M13ProgressSuite
@@ -98,6 +119,8 @@ SPEC CHECKSUMS:
   FirebaseCrash: 600ec2cbd8e10c3064a42de2c6ee7687bd02a076
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseMessaging: 227406c05b0dc9290702d2e9f18ab5528f0c2cf2
+  FirebasePerformance: 36bdb0500213b459ae991766801d5dc5399ff231
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
@@ -112,6 +135,6 @@ SPEC CHECKSUMS:
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   SwiftyBeaver: d4b551ba34b4206c52cc4684ae90444b8aaa5afd
 
-PODFILE CHECKSUM: 5626f4816c7928c6812199bae026f2ebe4f78606
+PODFILE CHECKSUM: 619166130f5ef965de102591e13abdb9d05377be
 
 COCOAPODS: 1.2.1

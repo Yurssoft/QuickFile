@@ -8,6 +8,8 @@ target 'QuickFile' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Crash'
+    pod 'Firebase/Performance'
+    pod 'Firebase/Messaging'
     pod 'DownloadButton'
     pod 'GoogleSignIn'
     pod 'KeychainAccess'

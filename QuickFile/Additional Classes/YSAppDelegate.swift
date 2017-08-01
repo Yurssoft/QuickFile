@@ -11,6 +11,8 @@ import GTMOAuth2
 import Firebase
 import GoogleSignIn
 import SwiftyBeaver
+import UserNotifications
+import SafariServices
 
 protocol YSUpdatingDelegate: class
 {
@@ -78,6 +80,17 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
 //            }
 //        }
         
+        log.info("Register for notifications")
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization( options: authOptions, completionHandler: { (granted, error) in
+            guard granted else { return }
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                guard settings.authorizationStatus == .authorized else { return }
+                application.registerForRemoteNotifications()
+            }
+        })
+        log.info("Finished registering for notifications")
         return true
     }
     
@@ -132,5 +145,65 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
             log.error("lookUpAllFilesOnDisk - \(error.localizedDescription)")
         }
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        let log = SwiftyBeaver.self
+        log.info("Successfully registered for notifications. Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        let log = SwiftyBeaver.self
+        log.info("Failed to register: \(error)")
+    }
+    
+//    {
+//    "aps": {
+//    "content-available": 0
+//    }
+//    }
+    //recieves remote silent notification
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        let aps = userInfo["aps"] as! [String: AnyObject]
+        
+        let log = SwiftyBeaver.self
+        log.info("Recieved remote silent notification: \(aps)")
+        if aps["content-available"] as? Int == 1 {
+            completionHandler(.newData)
+        } else {
+            completionHandler(.newData)
+        }
+    }
 }
 
+extension YSAppDelegate : UNUserNotificationCenterDelegate
+{
+//    {
+//    "aps": {
+//    "alert": "New version!",
+//    "sound": "default",
+//    "link_url": "https://github.com/Yurssoft/QuickFile"
+//    }
+//    }
+    //recieves push notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+    {
+        let log = SwiftyBeaver.self
+        log.info("Recieved push notification: \(response.notification.request.content.userInfo)")
+        let userInfo = response.notification.request.content.userInfo
+        let aps = userInfo["aps"] as! [String: AnyObject]
+        
+        if let urlString = aps["link_url"], let url = URL(string: urlString as! String)
+        {
+            let safari = SFSafariViewController(url: url)
+            window?.rootViewController?.present(safari, animated: true, completion: nil)
+        }
+        
+        completionHandler()
+    }
+}
