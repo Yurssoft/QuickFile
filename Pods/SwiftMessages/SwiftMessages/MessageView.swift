@@ -34,7 +34,7 @@ open class MessageView: BaseView, Identifiable, AccessibleMessage {
         // touches. This helps with tap dismissal when using `DimMode.gray` and `DimMode.color`.
         return backgroundView == self
             ? super.point(inside: point, with: event)
-            : backgroundView.point(inside: point, with: event)
+            : backgroundView.point(inside: convert(point, to: backgroundView), with: event)
     }
 
     /*
@@ -162,7 +162,13 @@ extension MessageView {
          directly under the status bar (see the `ContentInsetting` protocol).
          */
         case StatusLine = "StatusLine"
-        
+
+        /**
+         A floating card-style view with elements centered and arranged vertically.
+         This view is typically used with `.center` presentation style.         
+         */
+        case CenteredView = "CenteredView"
+
         /**
          A standard message view like `MessageView`, but without
          stack views for iOS 8.
@@ -221,6 +227,7 @@ extension MessageView {
         views.forEach {
             let constraints = [$0.heightAnchor.constraint(equalToConstant: size.height),
                                $0.widthAnchor.constraint(equalToConstant: size.width)]
+            constraints.forEach { $0.priority = 999 }
             $0.addConstraints(constraints)
             if let contentMode = contentMode {
                 $0.contentMode = contentMode
@@ -382,6 +389,38 @@ extension MessageView {
         self.buttonTapHandler = buttonTapHandler
         iconImageView?.isHidden = iconImageView?.image == nil
         iconLabel?.isHidden = iconLabel?.text == nil
+    }
+}
+
+/*
+ MARK: - Configuring the width
+ 
+ This extension provides a few convenience functions for configuring the
+ background view's width. You are encouraged to write your own such functions
+ if these don't exactly meet your needs.
+ */
+
+extension MessageView {
+
+    /**
+     A shortcut for configuring the left and right layout margins. For views that
+     have `backgroundView` as a subview of `MessageView`, the background view should
+     be pinned to the left and right `layoutMargins` in order for this configuration to work.
+    */
+    public func configureBackgroundView(sideMargin: CGFloat) {
+        layoutMargins.left = sideMargin
+        layoutMargins.right = sideMargin
+    }
+
+    /**
+     A shortcut for adding a width constraint to the `backgroundView`. When calling this
+     method, it is important to ensure that the width constraint doesn't conflict with
+     other constraints. The CardView.nib and TabView.nib layouts are compatible with
+     this method.
+     */
+    public func configureBackgroundView(width: CGFloat) {
+        let constraint = NSLayoutConstraint(item: backgroundView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width)
+        backgroundView.addConstraint(constraint)
     }
 }
 
