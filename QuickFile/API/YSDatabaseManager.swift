@@ -75,8 +75,6 @@ class YSDatabaseManager
                     let rootFolderDict = toDictionary(type: rootFolder)
                     dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
                 }
-                //TODO:eads
-                return TransactionResult.abort()
                 ref.child("files").setValue(dbFilesArrayDict)
                 ysFiles = ysFiles.filter({ (ysFile) -> Bool in
                     return ysFile.folder.folderID == folder.folderID
