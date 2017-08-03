@@ -13,6 +13,7 @@ protocol YSDriveFileProtocol
     var fileName : String { get set } //Book 343
     var fileSize : String { get set } //108.03 MB (47 audio) or 10:18
     var mimeType : String { get set }
+    var pageToken : String { get set }
     var isAudio : Bool { get set } //If true it is audio if false it is folder
     var fileDriveIdentifier : String { get set }
     var modifiedTime : String { get set }

@@ -25,7 +25,6 @@ class YSDatabaseManager
             ref.child("files").runTransactionBlock({ (dbFilesData: MutableData) -> TransactionResult in
                 var dbFilesArrayDict = databaseFilesDictionary(from: dbFilesData)
                 let rootFolderID = YSFolder.rootFolder().folderID
-                
                 var ysFiles : [YSDriveFileProtocol] = []
                 let remoteFilesArrayDict = remoteFilesDict["files"] as! [[String: Any]]
                 
@@ -71,11 +70,13 @@ class YSDatabaseManager
                 
                 if !isRootFolderAdded && folder.folderID == rootFolderID
                 {
-                    let rootFolder = YSDriveFile.init(fileName: YSFolder.rootFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false, isDeletedFromDrive : false)
+                    let rootFolder = YSDriveFile.init(fileName: YSFolder.rootFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false, isDeletedFromDrive : false, pageToken : "")
                     ysFiles.append(rootFolder)
                     let rootFolderDict = toDictionary(type: rootFolder)
                     dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
                 }
+                //TODO:eads
+                return TransactionResult.abort()
                 ref.child("files").setValue(dbFilesArrayDict)
                 ysFiles = ysFiles.filter({ (ysFile) -> Bool in
                     return ysFile.folder.folderID == folder.folderID

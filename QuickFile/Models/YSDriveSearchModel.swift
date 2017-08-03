@@ -85,7 +85,8 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
                                                       playedTime : "",
                                                       isPlayed : false,
                                                       isCurrentlyPlaying : false,
-                                                      isDeletedFromDrive : false)
+                                                      isDeletedFromDrive : false,
+                                                      pageToken: "")
                         ysFiles.append(ysFile)
                     }
                     continue

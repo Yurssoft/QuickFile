@@ -14,6 +14,7 @@ struct YSDriveFile : YSDriveFileProtocol
     var fileName : String //Book 343
     var fileSize : String //108.03 MB (47 audio) or 10:18
     var mimeType : String
+    var pageToken : String
     var isAudio : Bool
     var fileDriveIdentifier : String
     var modifiedTime : String = ""
@@ -24,7 +25,7 @@ struct YSDriveFile : YSDriveFileProtocol
     var isPlayed : Bool
     var isCurrentlyPlaying : Bool
     
-    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool, isDeletedFromDrive : Bool)
+    init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool, isDeletedFromDrive : Bool, pageToken : String?)
     {
         self.fileName = checkStringForNil(string: fileName)
         self.fileSize = checkStringForNil(string: fileSize)
@@ -46,6 +47,7 @@ struct YSDriveFile : YSDriveFileProtocol
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
         self.isDeletedFromDrive = false
+        self.pageToken = checkStringForNil(string: pageToken)
     }
     
     init()
@@ -59,6 +61,7 @@ struct YSDriveFile : YSDriveFileProtocol
         self.isPlayed = false
         self.isCurrentlyPlaying = false
         self.isDeletedFromDrive = false
+        self.pageToken = ""
     }
     
     func fileUrl() -> String

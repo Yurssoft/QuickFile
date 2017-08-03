@@ -25,7 +25,7 @@ class YSDriveModel: YSDriveModelProtocol
     
     func getFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
     {
-        let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=100&q='\(currentFolder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
+        let url = "\(YSConstants.kDriveAPIEndpoint)files?corpus=user&orderBy=folder%2Cname&pageSize=\(YSConstants.kPageSize)&q='\(currentFolder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
         YSFilesMetadataDownloader.downloadFilesList(for: url)
         { filesDictionary, error in
             if let err = error
