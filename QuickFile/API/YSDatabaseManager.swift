@@ -36,9 +36,10 @@ class YSDatabaseManager
                     //map ysfiledict to remote property names
                     let fileIdentifier = remoteFile["id"] as! String
                     var emptyFile = [String : Any]()
-                    let mergedFile = mapFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
-                    remoteFilesDict[fileIdentifier] = mergedFile
+                    let mappedFile = mapFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
+                    remoteFilesDict[fileIdentifier] = mappedFile
                 }
+                
                 for var dbFile in dbFilesArrayDict
                 {
                     if (dbFile.value["fileDriveIdentifier"] as! String) == YSFolder.rootFolder().folderID
@@ -56,15 +57,18 @@ class YSDatabaseManager
                     {
                         dbFile.value["isDeletedFromDrive"] = true
                     }
+                    dbFile.value["pageToken"] = ""
                     var ysFile = dbFile.value.toYSFile()
                     checkIfFileExists(file: &ysFile)
                     ysFiles.append(ysFile)
                 }
                 
-                for remoteFile in remoteFilesDict
+                for var remoteFile in remoteFilesDict
                 {
+                    remoteFile.value["pageToken"] = ""
                     dbFilesArrayDict[(remoteFile.value["fileDriveIdentifier"] as! String)] = remoteFile.value
-                    let ysFile = remoteFile.value.toYSFile()
+                    var ysFile = remoteFile.value.toYSFile()
+                    ysFile.pageToken = "1"
                     ysFiles.append(ysFile)
                 }
                 
