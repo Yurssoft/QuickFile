@@ -21,7 +21,6 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            //TODO: when moving file - update player
             ref.child("files").runTransactionBlock({ (dbFilesData: MutableData) -> TransactionResult in
                 var dbFilesArrayDict = databaseFilesDictionary(from: dbFilesData)
                 let rootFolderID = YSFolder.rootFolder().folderID

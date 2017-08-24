@@ -13,17 +13,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
     func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping DriveSearchCompletionHandler)
     {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
-        if let nextPageToken = nextPageToken
-        {
-            let encodedNextPageToken = CFURLCreateStringByAddingPercentEscapes(
-                nil,
-                nextPageToken as CFString!,
-                nil,
-                "!'();:@&=+$,/?%#[]" as CFString!,
-                CFStringBuiltInEncodings.ASCII.rawValue
-            )!
-            url.append("pageToken=\(encodedNextPageToken)&")
-        }
+        url.addingPercentEncoding(nextPageToken)
         switch sectionType
         {
         case .all:
@@ -52,7 +42,6 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
             if let err = error
             {
                 let yserror = err as! YSError
-                //TODO: search local database as section
                 completionHandler([], "", yserror)
                 return
             }

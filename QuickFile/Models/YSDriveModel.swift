@@ -27,18 +27,7 @@ class YSDriveModel: YSDriveModelProtocol
     func getFiles(pageToken: String, nextPageToken: String?,_ completionHandler: @escaping AllFilesCompletionHandler)
     {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
-        //TODO: remove duplicated and deprecated code
-        if let nextPageToken = nextPageToken
-        {
-            let encodedNextPageToken = CFURLCreateStringByAddingPercentEscapes(
-                nil,
-                nextPageToken as CFString!,
-                nil,
-                "!'();:@&=+$,/?%#[]" as CFString!,
-                CFStringBuiltInEncodings.ASCII.rawValue
-                ) as String
-            url.append("pageToken=\(encodedNextPageToken)&")
-        }
+        url.addingPercentEncoding(nextPageToken)
         guard let folder = currentFolder else
         {
             let log = SwiftyBeaver.self

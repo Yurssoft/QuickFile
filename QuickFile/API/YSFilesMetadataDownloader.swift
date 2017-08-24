@@ -36,7 +36,6 @@ class YSFilesMetadataDownloader
                 completionHandler!(dict, nil)
             }
             task.resume()
-            //TODO: in order to use unowned use cancel for task
         }
     }
 }

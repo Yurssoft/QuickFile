@@ -54,7 +54,6 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         }
     }
     
-    //TODO: player delete current playing
     func deleteAllFiles()
     {
         YSDatabaseManager.deleteAllDownloads { (error) in
