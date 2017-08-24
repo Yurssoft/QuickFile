@@ -42,7 +42,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     
     weak var coordinatorDelegate: YSDriveViewModelCoordinatorDelegate?
     
-    fileprivate var files: [YSDriveFileProtocol] = []
+    fileprivate var files = [YSDriveFileProtocol]()
     {
         didSet
         {
@@ -71,9 +71,9 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         return files.count
     }
     
-    var allPagesDownloaded : Bool = false
+    var allPagesDownloaded = false
     
-    fileprivate var pageTokens: [String] = [YSConstants.kFirstPageToken]
+    fileprivate var pageTokens = [YSConstants.kFirstPageToken]
     
     func file(at index: Int) -> YSDriveFileProtocol?
     {

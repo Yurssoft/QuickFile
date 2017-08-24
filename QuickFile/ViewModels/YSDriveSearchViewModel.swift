@@ -46,7 +46,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         }
     }
     
-    var searchTerm : String = ""
+    var searchTerm = ""
     {
         didSet
         {
@@ -72,7 +72,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         }
     }
     
-    var allPagesDownloaded : Bool = false
+    var allPagesDownloaded = false
     
     func subscribeToDownloadingProgress()
     {

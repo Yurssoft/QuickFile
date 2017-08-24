@@ -20,7 +20,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         }
     }
     
-    fileprivate var files: [YSDriveFileProtocol] = [YSDriveFileProtocol]()
+    fileprivate var files = [YSDriveFileProtocol]()
     {
         didSet
         {
@@ -28,7 +28,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         }
     }
     
-    var folders: [YSDriveFileProtocol] = [YSDriveFileProtocol]()
+    var folders = [YSDriveFileProtocol]()
     
     weak var viewDelegate: YSPlaylistViewModelViewDelegate?
     

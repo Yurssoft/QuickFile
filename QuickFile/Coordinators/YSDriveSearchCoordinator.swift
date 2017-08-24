@@ -14,7 +14,7 @@ import SwiftMessages
 class YSDriveSearchCoordinator : YSCoordinatorProtocol
 {
     fileprivate var searchNavigationController: UINavigationController?
-    fileprivate var driveCoordinator : YSDriveTopCoordinator = YSDriveTopCoordinator()
+    fileprivate var driveCoordinator = YSDriveTopCoordinator()
     fileprivate var storyboard: UIStoryboard?
     fileprivate weak var searchViewModel: YSDriveSearchViewModel?
     

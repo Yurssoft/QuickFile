@@ -13,17 +13,16 @@ import SwiftMessages
 
 class YSDriveTopCoordinator: YSCoordinatorProtocol
 {
-    var driveCoordinators : Set<YSDriveCoordinator> = Set<YSDriveCoordinator>()
+    var driveCoordinators = Set<YSDriveCoordinator>()
     fileprivate var navigationController: UINavigationController?
-    var folders : [YSFolder] = [YSFolder.rootFolder()]
+    var folders = [YSFolder.rootFolder()]
     fileprivate var storyboard: UIStoryboard?
-    var shouldShowSearch : Bool = true
+    var shouldShowSearch = true
     
     func start() { }
     
     func start(driveTopVC: YSDriveTopViewController, shouldShowSearch : Bool = true)
     {
-        //TODO: check if folders inited
         driveTopVC.driveVCReadyDelegate = self
         storyboard = driveTopVC.storyboard
         self.shouldShowSearch = shouldShowSearch
