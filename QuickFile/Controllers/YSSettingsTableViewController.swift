@@ -40,6 +40,7 @@ class YSSettingsTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().scopes = YSConstants.kDriveScopes

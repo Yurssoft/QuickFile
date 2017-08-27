@@ -41,6 +41,7 @@ class YSDriveSearchController : UITableViewController
         let bundle = Bundle(for: YSDriveFileTableViewCell.self)
         let nib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         let footer = MJRefreshAutoNormalFooter.init
         { [weak self] () -> Void in

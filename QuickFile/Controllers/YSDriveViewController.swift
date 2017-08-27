@@ -40,7 +40,7 @@ class YSDriveViewController: UITableViewController
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         let log = SwiftyBeaver.self
         log.info("")
     }

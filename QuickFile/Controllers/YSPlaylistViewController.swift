@@ -47,6 +47,7 @@ class YSPlaylistViewController: UIViewController
         getFiles()
         let log = SwiftyBeaver.self
         log.info("")
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     override func viewDidAppear(_ animated: Bool)
