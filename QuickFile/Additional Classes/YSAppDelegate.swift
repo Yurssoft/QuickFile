@@ -20,7 +20,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: when moving file - update player, when we remove all downloads also remove current playing from player, cancel all download tasks when user will not use this result like when closing search and  pressing back in drive controller, search local database as section, if we download file from search show it in playlist, when deleting downloads delete all from disk, show all downloads in playlist, logged as, download wifi only, memory leaks, firebase functions?, folders leaks
+//TODO: when moving file - update player, when we remove all downloads also remove current playing from player, cancel all download tasks when user will not use this result like when closing search and  pressing back in drive controller, search local database as section, search add loading indicator, if we download file from search show it in playlist, when deleting downloads delete all from disk, show all downloads in playlist, logged as, download wifi only, memory leaks, firebase functions?, folders leaks
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
