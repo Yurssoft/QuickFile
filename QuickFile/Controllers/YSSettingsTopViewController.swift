@@ -12,7 +12,6 @@ import SwiftyBeaver
 class YSSettingsTopViewController: UIViewController
 {
     var settingsVC: YSSettingsTableViewController!
-    var settingsCoordinator: YSSettingsCoordinator!
     
     override func viewDidLoad()
     {
@@ -38,8 +37,7 @@ class YSSettingsTopViewController: UIViewController
     
     func setupCoordinator()
     {
-        settingsCoordinator = YSSettingsCoordinator(settingsViewController: settingsVC!)
-        settingsCoordinator.start()
+        YSAppDelegate.appDelegate().settingsCoordinator.start(settingsViewController: settingsVC!)
     }
     
     @IBAction func refreshSettings(_ sender: UIBarButtonItem)

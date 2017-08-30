@@ -66,8 +66,7 @@ class YSPlaylistViewController: UIViewController
     
     func setupCoordinator()
     {
-        let playlistCoordinator = YSPlaylistCoordinator.init(playlistViewController: self, navigationController: navigationController!)
-        playlistCoordinator.start()
+        YSAppDelegate.appDelegate().playlistCoordinator.start(playlistViewController: self)
     }
     
     func configurePullToRefresh()

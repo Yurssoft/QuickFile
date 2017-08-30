@@ -14,8 +14,6 @@ import MediaPlayer
 
 class YSPlayerCoordinator: YSCoordinatorProtocol
 {
-    func start() { }
-    
     var viewModel = YSPlayerViewModel.init()
     fileprivate var tabBarController: UITabBarController?
     fileprivate var popupContentController: YSPlayerController?

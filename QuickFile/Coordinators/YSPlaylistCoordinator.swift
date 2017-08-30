@@ -14,17 +14,7 @@ import SwiftMessages
 
 class YSPlaylistCoordinator: YSCoordinatorProtocol
 {
-    fileprivate var playlistViewController: YSPlaylistViewController
-    let navigationController: UINavigationController
-    var playerCoordinator : YSPlayerCoordinator?
-    
-    init(playlistViewController: YSPlaylistViewController, navigationController: UINavigationController)
-    {
-        self.playlistViewController = playlistViewController
-        self.navigationController = navigationController
-    }
-    
-    func start()
+    func start(playlistViewController: YSPlaylistViewController)
     {
         let viewModel =  YSPlaylistViewModel()
         playlistViewController.viewModel = viewModel

@@ -19,8 +19,6 @@ class YSDriveTopCoordinator: YSCoordinatorProtocol
     fileprivate var storyboard: UIStoryboard?
     var shouldShowSearch = true
     
-    func start() { }
-    
     func start(driveTopVC: YSDriveTopViewController, shouldShowSearch : Bool = true)
     {
         driveTopVC.driveVCReadyDelegate = self
@@ -98,6 +96,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
     
     func driveViewControllerDidRequestedSearch()
     {
+        //TODO:is YSDriveSearchCoordinator get deallocated after showing?
         let searchCoordinator = YSDriveSearchCoordinator()
         YSAppDelegate.appDelegate().searchCoordinator = searchCoordinator
         searchCoordinator.start(navigationController: navigationController, storyboard: storyboard)

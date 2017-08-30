@@ -10,17 +10,10 @@ import UIKit
 
 class YSSettingsCoordinator: YSCoordinatorProtocol
 {
-    fileprivate var settingsViewController: YSSettingsTableViewController?
-    
-    init(settingsViewController: YSSettingsTableViewController)
-    {
-        self.settingsViewController = settingsViewController
-    }
-    
-    func start()
+    func start(settingsViewController: YSSettingsTableViewController)
     {
         let viewModel = YSSettingsViewModel()
-        settingsViewController?.viewModel = viewModel
+        settingsViewController.viewModel = viewModel
         viewModel.model = YSSettingsModel()
         viewModel.coordinatorDelegate = self
     }

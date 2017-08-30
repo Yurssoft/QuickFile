@@ -18,8 +18,6 @@ class YSDriveSearchCoordinator : YSCoordinatorProtocol
     fileprivate var storyboard: UIStoryboard?
     fileprivate weak var searchViewModel: YSDriveSearchViewModel?
     
-    func start() { }
-    
     func start(navigationController: UINavigationController?, storyboard: UIStoryboard?)
     {
         self.storyboard = storyboard

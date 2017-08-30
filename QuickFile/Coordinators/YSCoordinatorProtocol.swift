@@ -9,6 +9,5 @@
 import UIKit
 
 protocol YSCoordinatorProtocol: class
-{    
-    func start()
+{
 }
