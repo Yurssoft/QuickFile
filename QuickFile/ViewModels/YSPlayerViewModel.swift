@@ -111,33 +111,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
     
     var currentFile: YSDriveFileProtocol?
-    {
-        didSet
-        {
-            if var currentFile = currentFile
-            {
-                if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier})
-                {
-                    currentPlayingIndex = currentFileIndex
-                }
-                guard let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
-                updateNowPlayingInfoForCurrentPlaybackItem()
-                player?.stop()
-                player?.delegate = nil
-                audioPlayer.delegate = self
-                audioPlayer.prepareToPlay()
-                let audioSession = AVAudioSession.sharedInstance()
-                audioPlayer.volume = audioSession.outputVolume
-                player = audioPlayer
-                let fileTime = Double(currentFile.playedTime) ?? 0
-                if fileTime > 1.0.seconds
-                {
-                    seek(to: fileTime)
-                }
-            }
-            playerDelegate?.currentFilePlayingDidChange(viewModel: self)
-        }
-    }
     
     var nextFile: YSDriveFileProtocol?
     {
@@ -189,6 +162,32 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     var currentPlayingIndex : Int = 0
     
+    fileprivate func updateCurrentPlaying()
+    {
+        if var currentFile = currentFile
+        {
+            if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier})
+            {
+                currentPlayingIndex = currentFileIndex
+            }
+            guard let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
+            updateNowPlayingInfoForCurrentPlaybackItem()
+            player?.stop()
+            player?.delegate = nil
+            audioPlayer.delegate = self
+            audioPlayer.prepareToPlay()
+            let audioSession = AVAudioSession.sharedInstance()
+            audioPlayer.volume = audioSession.outputVolume
+            player = audioPlayer
+            let fileTime = Double(currentFile.playedTime) ?? 0
+            if fileTime > 1.0.seconds
+            {
+                seek(to: fileTime)
+            }
+        }
+        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
+    }
+    
     func getFiles()
     {
         model?.allFiles()
@@ -213,6 +212,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                         self.updateCurrentPlayingFile(isCurrent: true)
                     }
                 }
+                self.updateCurrentPlaying()
                 self.files = playerFiles
                 if let error = error
                 {
@@ -254,6 +254,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         {
             currentFile = file
         }
+        updateCurrentPlaying()
         guard currentFile != nil else { return }
         coordinatorDelegate?.showPlayer()
         
@@ -267,8 +268,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             play(file: currentFile)
             return
         }
-        updateCurrentPlayingFile(isCurrent: true)
         player.currentTime = Double((currentFile?.playedTime ?? "0.0")) ?? 0.0
+        updateCurrentPlayingFile(isCurrent: true)
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -364,8 +365,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     func seek(to time:Double)
     {
-        updateCurrentPlayingFile(isCurrent: true)
         player?.currentTime = Double(time)
+        updateCurrentPlayingFile(isCurrent: true)
         viewDelegate?.timeDidChange(viewModel: self)
     }
     
@@ -376,29 +377,20 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     private func updateCurrentPlayingFile(isCurrent:Bool)
     {
-        if var currentFile = currentFile
+        guard var currentFile = currentFile else { return }
+        currentFile.isCurrentlyPlaying = isCurrent
+        if let player = player
         {
-            let isCurrentlyPlaying = isCurrent
-            currentFile.isCurrentlyPlaying = isCurrent
-            var intervalSting = currentFile.playedTime
-            var isPlayed = currentFile.isPlayed
-            if let player = player
-            {
-                let interval = player.currentTime
-                intervalSting = String(describing: interval)
-                currentFile.playedTime = intervalSting
-                
-                let elapsedTime = player.currentTime as Double
-                let duration = player.duration as Double
-                let remainingTime = duration - elapsedTime
-                
-                let remainingTimeInt = Int(round(remainingTime))
-                
-                isPlayed = remainingTimeInt < 5 && !currentFile.isPlayed
-                currentFile.isPlayed = isPlayed
-            }
-            YSDatabaseManager.update(fileDriveIdentifier: currentFile.fileDriveIdentifier, isCurrentlyPlaying: isCurrentlyPlaying, playedTime: intervalSting, isPlayed: isPlayed)
+            currentFile.playedTime = String(describing: player.currentTime)
+            
+            let elapsedTime = player.currentTime as Double
+            let duration = player.duration as Double
+            let remainingTime = duration - elapsedTime
+            let remainingTimeInt = Int(round(remainingTime))
+            currentFile.isPlayed = remainingTimeInt < 5 && !currentFile.isPlayed
         }
+        self.currentFile = currentFile
+        YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
 }
 

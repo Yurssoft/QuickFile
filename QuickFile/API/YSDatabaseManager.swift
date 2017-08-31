@@ -282,17 +282,18 @@ class YSDatabaseManager
     }
     
     
-    class func update(fileDriveIdentifier: String, isCurrentlyPlaying: Bool, playedTime: String, isPlayed: Bool)
+    class func updatePlayingInfo(file: YSDriveFileProtocol)
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files/\(fileDriveIdentifier)").runTransactionBlock({ (dbFileData: MutableData) -> TransactionResult in
-                if var dbFile = dbFileData.value as? [String : Any], let currentFileIdentifier = dbFile["fileDriveIdentifier"] as? String, currentFileIdentifier == fileDriveIdentifier
+            let identifier = file.fileDriveIdentifier
+            ref.child("files/\(identifier)").runTransactionBlock({ (dbFileData: MutableData) -> TransactionResult in
+                if var dbFile = dbFileData.value as? [String : Any], let currentFileIdentifier = dbFile["fileDriveIdentifier"] as? String, currentFileIdentifier == identifier
                 {
-                    dbFile["isCurrentlyPlaying"] = isCurrentlyPlaying
-                    dbFile["playedTime"] = playedTime
-                    dbFile["isPlayed"] = isPlayed
-                    ref.child("files/\(fileDriveIdentifier)").setValue(dbFile)
+                    dbFile["isCurrentlyPlaying"] = file.isCurrentlyPlaying
+                    dbFile["playedTime"] = file.playedTime
+                    dbFile["isPlayed"] = file.isPlayed
+                    ref.child("files/\(identifier)").setValue(dbFile)
                 }
                 return TransactionResult.abort()
             })
