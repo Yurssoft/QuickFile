@@ -17,14 +17,20 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
     var viewModel = YSPlayerViewModel.init()
     fileprivate var tabBarController: UITabBarController?
     fileprivate var popupContentController: YSPlayerController?
+    private var isStarted = false
     
     func start(tabBarController: UITabBarController)
     {
+        if isStarted
+        {
+            return
+        }
         self.tabBarController = tabBarController
         let model = YSPlaylistAndPlayerModel()
         viewModel.coordinatorDelegate = self
         viewModel.model = model
         YSAppDelegate.appDelegate().playerDelegate = viewModel
+        isStarted = true
     }
     
     func play(file: YSDriveFileProtocol)
