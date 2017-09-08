@@ -6,6 +6,7 @@
 //  Copyright © 2016 Yurii Boiko. All rights reserved.
 //
 
+import Reflection
 import Foundation
 
 public extension Dictionary

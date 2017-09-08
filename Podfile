@@ -18,5 +18,5 @@ target 'QuickFile' do
     pod 'DZNEmptyDataSet'
     pod 'SwiftyBeaver'
     pod 'Reqres'
-    #pod 'Reflection'
+    pod 'Reflection'
 end

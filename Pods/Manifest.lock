@@ -88,6 +88,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - Protobuf (3.3.0)
   - ReachabilitySwift (3)
+  - Reflection (0.14.3)
   - Reqres (2.1.0)
   - SwiftMessages (3.4.0)
   - SwiftyBeaver (1.3.0)
@@ -107,6 +108,7 @@ DEPENDENCIES:
   - MarqueeLabel/Swift
   - MJRefresh
   - ReachabilitySwift
+  - Reflection
   - Reqres
   - SwiftMessages
   - SwiftyBeaver
@@ -134,10 +136,11 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Reflection: 93327e50981227ac33c18274fcbaed33b1127811
   Reqres: 98a22e7b0772d423fabda44bfed533f197bc4856
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   SwiftyBeaver: d4b551ba34b4206c52cc4684ae90444b8aaa5afd
 
-PODFILE CHECKSUM: d428c9107e14ded2e9b6e275ca65fa8d824f109c
+PODFILE CHECKSUM: f2b08162501b0f9128997aae61acaa44eb4f2f80
 
 COCOAPODS: 1.2.1

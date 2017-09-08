@@ -1,14 +1,11 @@
-struct HashedType : Hashable {
+private struct HashedType : Hashable {
     let hashValue: Int
     init(_ type: Any.Type) {
         hashValue = unsafeBitCast(type, to: Int.self)
     }
-    init<T>(_ pointer: UnsafePointer<T>) {
-        hashValue = pointer.hashValue
-    }
 }
 
-func == (lhs: HashedType, rhs: HashedType) -> Bool {
+private func == (lhs: HashedType, rhs: HashedType) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
 
@@ -53,13 +50,13 @@ public func properties(_ type: Any.Type) throws -> [Property.Description] {
     } else if let nominalType = Metadata.Struct(type: type) {
         return try fetchAndSaveProperties(nominalType: nominalType, hashedType: hashedType)
     } else if let nominalType = Metadata.Class(type: type) {
-        return try nominalType.properties()
+        return try fetchAndSaveProperties(nominalType: nominalType, hashedType: hashedType)
     } else {
         throw ReflectionError.notStruct(type: type)
     }
 }
 
-func fetchAndSaveProperties<T : NominalType>(nominalType: T, hashedType: HashedType) throws -> [Property.Description] {
+private func fetchAndSaveProperties<T : NominalType>(nominalType: T, hashedType: HashedType) throws -> [Property.Description] {
     let properties = try propertiesForNominalType(nominalType)
     cachedProperties[hashedType] = properties
     return properties
