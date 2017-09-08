@@ -139,12 +139,20 @@ open class BaseDestination: Hashable, Equatable {
                     text += String(line) + remainingPhrase
                 case "D":
                     // start of datetime format
+                    #if swift(>=3.2)
+                    text += formatDate(String(remainingPhrase))
+                    #else
                     text += formatDate(remainingPhrase)
+                    #endif
                 case "d":
                     text += remainingPhrase
                 case "Z":
                     // start of datetime format in UTC timezone
+                    #if swift(>=3.2)
+                    text += formatDate(String(remainingPhrase), timeZone: "UTC")
+                    #else
                     text += formatDate(remainingPhrase, timeZone: "UTC")
+                    #endif
                 case "z":
                     text += remainingPhrase
                 case "C":
@@ -280,7 +288,11 @@ open class BaseDestination: Hashable, Equatable {
         let endIndex = str.index(str.startIndex,
                                  offsetBy: str.characters.count - 2)
         let range = str.index(str.startIndex, offsetBy: offset)..<endIndex
+        #if swift(>=3.2)
+        return String(str[range])
+        #else
         return str[range]
+        #endif
     }
 
     /// turns dict into JSON-encoded string
@@ -359,20 +371,15 @@ open class BaseDestination: Hashable, Equatable {
                                                                    function: function, message: message)
         let (matchedNonRequired, allNonRequired) = passedNonRequiredFilters(level, path: path,
                                                                     function: function, message: message)
+
+        // If required filters exist, we should validate or invalidate the log if all of them pass or not
         if allRequired > 0 {
-            if matchedRequired == allRequired {
-                return true
-            }
-        } else {
-            // no required filters are existing so at least 1 optional needs to match
-            if allNonRequired > 0 {
-                if matchedNonRequired > 0 {
-                    return true
-                }
-            } else if allExclude == 0 {
-                // no optional is existing, so all is good
-                return true
-            }
+            return matchedRequired == allRequired
+        }
+
+        // If a non-required filter matches, the log is validated
+        if allNonRequired > 0 && matchedNonRequired > 0 {
+            return true
         }
 
         if level.rawValue < minLevel.rawValue {

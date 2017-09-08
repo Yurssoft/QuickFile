@@ -12,9 +12,9 @@ import Foundation
 open class SwiftyBeaver {
 
     /// version string of framework
-    public static let version = "1.3.0"  // UPDATE ON RELEASE!
+    public static let version = "1.4.0"  // UPDATE ON RELEASE!
     /// build number of framework
-    public static let build = 1300 // version 0.7.1 -> 710, UPDATE ON RELEASE!
+    public static let build = 1400 // version 0.7.1 -> 710, UPDATE ON RELEASE!
 
     public enum Level: Int {
         case verbose = 0
@@ -130,7 +130,7 @@ open class SwiftyBeaver {
                 continue
             }
 
-            resolvedMessage = resolvedMessage == nil && dest.hasMessageFilters() ? "\(message())" : nil
+            resolvedMessage = resolvedMessage == nil && dest.hasMessageFilters() ? "\(message())" : resolvedMessage
             if dest.shouldLevelBeLogged(level, path: file, function: function, message: resolvedMessage) {
                 // try to convert msg object to String and put it on queue
                 let msgStr = resolvedMessage == nil ? "\(message())" : resolvedMessage!
@@ -179,7 +179,11 @@ open class SwiftyBeaver {
     class func stripParams(function: String) -> String {
         var f = function
         if let indexOfBrace = f.characters.index(of: "(") {
+            #if swift(>=4.0)
+            f = String(f[..<indexOfBrace])
+            #else
             f = f.substring(to: indexOfBrace)
+            #endif
         }
         f += "()"
         return f
