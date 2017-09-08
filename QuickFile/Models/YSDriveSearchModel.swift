@@ -95,6 +95,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
     
     func download(_ file : YSDriveFileProtocol)
     {
+        YSDatabaseManager.updateGenaralFileInfo(file: file)
         YSAppDelegate.appDelegate().fileDownloader.download(file: file)
     }
     

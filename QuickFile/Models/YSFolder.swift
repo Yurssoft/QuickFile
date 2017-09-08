@@ -20,4 +20,12 @@ class YSFolder : NSObject
         folder.folderName = "Root"
         return folder
     }
+    
+    static func searchFolder() -> YSFolder
+    {
+        let folder = YSFolder()
+        folder.folderID = "search"
+        folder.folderName = "Search"
+        return folder
+    }
 }

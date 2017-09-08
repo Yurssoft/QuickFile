@@ -29,6 +29,7 @@ class YSDatabaseManager
                 let remoteFilesArrayDict = remoteFilesDict["files"] as! [[String: Any]]
                 
                 var isRootFolderAdded = false
+                var isSearchFolderAdded = false
 
                 var remoteFilesDict = [String : [String: Any]]()
                 for var remoteFile in remoteFilesArrayDict
@@ -47,6 +48,12 @@ class YSDatabaseManager
                     if isRootFolder
                     {
                         isRootFolderAdded = isRootFolder
+                        continue
+                    }
+                    let isSearchFolder = (currentFileIdentifier == YSFolder.searchFolder().folderID)
+                    if isSearchFolder
+                    {
+                        isSearchFolderAdded = isSearchFolder
                         continue
                     }
                     if let remoteFile = remoteFilesDict[currentFileIdentifier]
@@ -86,6 +93,13 @@ class YSDatabaseManager
                     ysFiles.append(rootFolder)
                     let rootFolderDict = toDictionary(type: rootFolder)
                     dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
+                }
+                if !isSearchFolderAdded
+                {
+                    let searchFolder = YSDriveFile.init(fileName: YSFolder.searchFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.searchFolder().folderID, folderName: "", folderID: "", playedTime :"", isPlayed : false, isCurrentlyPlaying : false, isDeletedFromDrive : false, pageToken : "")
+                    ysFiles.append(searchFolder)
+                    let rootFolderDict = toDictionary(type: searchFolder)
+                    dbFilesArrayDict[searchFolder.fileDriveIdentifier] = rootFolderDict
                 }
                 ref.child("files").setValue(dbFilesArrayDict)
                 ysFiles = ysFiles.filter({ (ysFile) -> Bool in
@@ -300,13 +314,33 @@ class YSDatabaseManager
         }
     }
     
-    class func update(file: YSDriveFileProtocol)
+    class func updateGenaralFileInfo(file: YSDriveFileProtocol)
     {
         if let ref = referenceForCurrentUser()
         {
             ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-                let updatedFile = toDictionary(type: file)
-                ref.child("files/\(file.fileDriveIdentifier)").updateChildValues(updatedFile)
+                var file = file
+                file.folder = YSFolder.searchFolder()
+                var updatedFile = toDictionary(type: file)
+                
+                for currentDatabaseFile in currentData.children
+                {
+                    let databaseFile = currentDatabaseFile as! MutableData
+                    if var dbFile = databaseFile.value as? [String : Any], let folderDict = dbFile["folder"] as? [String : String], let folderName = folderDict["folderName"], let folderID = folderDict["folderID"]
+                    {
+                        let folder = YSFolder()
+                        folder.folderName = folderName
+                        folder.folderID = folderID
+                        updatedFile = mergeFiles(dbFile: &dbFile, remoteFile: updatedFile, folder: folder)
+                    }
+                    else
+                    {
+                        let log = SwiftyBeaver.self
+                        log.error("Something wrong with dbFile : \(databaseFile)")
+                    }
+                }
+                
+                ref.child("files/\(file.fileDriveIdentifier)").setValue(updatedFile)
                 return TransactionResult.abort()
             })
         }
