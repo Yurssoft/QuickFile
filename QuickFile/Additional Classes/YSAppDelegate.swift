@@ -35,7 +35,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     var backgroundSession : URLSession?
     var backgroundSessionCompletionHandler: (() -> Void)?
     var fileDownloader : YSDriveFileDownloader = YSDriveFileDownloader()
-    var filesOnDisk : Set<String> = Set<String>()
+    var filesOnDisk = Set<String>()
     
     weak var downloadsDelegate: YSUpdatingDelegate?
     weak var playlistDelegate: YSUpdatingDelegate?
@@ -138,19 +138,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     
     private func lookUpAllFilesOnDisk()
     {
-        do
-        {
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
-            let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
-            filesOnDisk = Set<String>().union(mp3FileNames)
-        }
-        catch let error as NSError
-        {
-            let log = SwiftyBeaver.self
-            log.error("lookUpAllFilesOnDisk - \(error.localizedDescription)")
-        }
+        filesOnDisk = YSDatabaseManager.getAllFileNamesOnDisk()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

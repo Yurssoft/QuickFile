@@ -57,30 +57,24 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
     func deleteAllFiles()
     {
         YSDatabaseManager.deleteAllDownloads { (error) in
-            DispatchQueue.main.async
+            guard let error = error else { return }
+            if error.messageType == Theme.success || error.title.contains("Deleted")
             {
-                guard let error = error else { return }
-                if error.messageType == Theme.success || error.title.contains("Deleted")
-                {
-                    self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
-                }
-                self.viewDelegate?.errorDidChange(viewModel: self, error: error)
+                self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
             }
+            self.viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
     
     func deletePlayedFiles()
     {
         YSDatabaseManager.deletePlayedDownloads { (error) in
-            DispatchQueue.main.async
-                {
-                    guard let error = error else { return }
-                    if error.messageType == Theme.success || error.title.contains("Deleted")
-                    {
-                        self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
-                    }
-                    self.viewDelegate?.errorDidChange(viewModel: self, error: error)
+            guard let error = error else { return }
+            if error.messageType == Theme.success || error.title.contains("Deleted")
+            {
+                self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
             }
+            self.viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
     

@@ -71,14 +71,13 @@ struct YSDriveFile : YSDriveFileProtocol
     
     func localFilePath() -> URL?
     {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         if let url = URL(string: fileUrl())
         {
             if url.lastPathComponent.isEmpty
             {
                 return nil
             }
-            var fullPath = documentsPath.appendingPathComponent(url.lastPathComponent)
+            var fullPath = YSDatabaseManager.localFilePathForDownloadingFolder.appendingPathComponent(url.lastPathComponent)
             fullPath = "\(fullPath).mp3"
             return URL(fileURLWithPath:fullPath)
         }

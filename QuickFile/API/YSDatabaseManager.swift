@@ -198,16 +198,46 @@ class YSDatabaseManager
                         YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)
                     }
                 }
+                
+                
+                let directoryContents = (try? FileManager.default.contentsOfDirectory(atPath: localFilePathForDownloadingFolder as String)) ?? []
+                for path in directoryContents
+                {
+                    let url = URL(string: localFilePathForDownloadingFolder.appendingPathComponent(path))
+                    try? FileManager.default.removeItem(at: url!)
+                }
+                
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
-                completionHandler(error)
+                callCompletionHandler(completionHandler, error)
                 return TransactionResult.abort()
             })
         }
         else
         {
-            completionHandler(notLoggedInError())
+            callCompletionHandler(completionHandler, notLoggedInError() as! YSError)
         }
     }
+    
+    class func getAllFileNamesOnDisk() -> Set<String>
+    {
+        var allFileNames = Set<String>()
+        do
+        {
+            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
+            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
+            let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
+            allFileNames = Set<String>().union(mp3FileNames)
+        }
+        catch let error as NSError
+        {
+            let log = SwiftyBeaver.self
+            log.error("lookUpAllFilesOnDisk - \(error.localizedDescription)")
+        }
+        return allFileNames
+    }
+    
+    static let localFilePathForDownloadingFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
     
     class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
     {
@@ -229,13 +259,13 @@ class YSDatabaseManager
                     }
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Played local downloads deleted", buttonTitle: "GOT IT")
-                completionHandler(error)
+                callCompletionHandler(completionHandler, error)
                 return TransactionResult.abort()
             })
         }
         else
         {
-            completionHandler(notLoggedInError())
+            callCompletionHandler(completionHandler, notLoggedInError() as! YSError)
         }
     }
     
@@ -246,13 +276,13 @@ class YSDatabaseManager
             ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 ref.child("files").setValue([:])
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Database deleted", buttonTitle: "GOT IT")
-                completionHandler(error)
+                callCompletionHandler(completionHandler, error)
                 return TransactionResult.abort()
             })
         }
         else
         {
-            completionHandler(notLoggedInError())
+            callCompletionHandler(completionHandler, notLoggedInError() as! YSError)
         }
     }
     
@@ -294,7 +324,6 @@ class YSDatabaseManager
         let error = YSError(errorType: YSErrorType.notLoggedInToDrive, messageType: Theme.warning, title: "Not logged in", message: "Not logged in to drive", buttonTitle: "Login")
         return error
     }
-    
     
     class func updatePlayingInfo(file: YSDriveFileProtocol)
     {
@@ -389,6 +418,14 @@ class YSDatabaseManager
         DispatchQueue.main.async
         {
             completionHandler!(files, error, nextPageToken)
+        }
+    }
+    
+    private class func callCompletionHandler(_ completionHandler: ErrorCompletionHandler?, _ error: YSError)
+    {
+        DispatchQueue.main.async
+        {
+            completionHandler!(error)
         }
     }
 }
