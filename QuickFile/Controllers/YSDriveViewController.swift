@@ -13,7 +13,7 @@ import M13ProgressSuite
 import DZNEmptyDataSet
 import SwiftyBeaver
 
-class YSDriveViewController: UITableViewController
+class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     weak var toolbarView: YSToolbarView!
     
@@ -350,46 +350,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             }
         }
     }
-}
-
-extension YSDriveViewController : YSToolbarViewDelegate
-{
-    func selectAllButtonTapped(toolbar: YSToolbarView)
-    {
-        selectedIndexes.removeAll()
-        for index in 0..<tableView.numberOfRows(inSection: 0)
-        {
-            let indexPath = IndexPath.init(row: index, section: 0)
-                selectedIndexes.append(indexPath)
-                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-        }
-    }
     
-    func downloadButtonTapped(toolbar: YSToolbarView)
-    {
-        viewModel?.downloadFilesFor(selectedIndexes)
-    }
-    
-    func deleteButtonTapped(toolbar: YSToolbarView)
-    {
-        let alertController = UIAlertController(title: "Confirm", message: "Deleting \(selectedIndexes.count) local files", preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alertController.addAction(cancelAction)
-        
-        let destroyAction = UIAlertAction(title: "Confirm", style: .destructive)
-        { (action) in
-            self.viewModel?.deleteDownloadsFor(self.selectedIndexes)
-        }
-        alertController.addAction(destroyAction)
-        
-        present(alertController, animated: true)
-    }
-}
-
-extension YSDriveViewController : DZNEmptyDataSetSource
-{
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString!
     {
         var promptText = "Browse your audio files from Google Drive"
@@ -427,10 +388,7 @@ extension YSDriveViewController : DZNEmptyDataSetSource
     {
         return UIColor.white
     }
-}
-
-extension YSDriveViewController : DZNEmptyDataSetDelegate
-{
+    
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool
     {
         guard let viewModel = viewModel, !viewModel.isDownloadingMetadata else { return false }
@@ -440,11 +398,47 @@ extension YSDriveViewController : DZNEmptyDataSetDelegate
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
     {
         guard let viewModel = viewModel else { return }
-        viewModel.isLoggedIn ? self.viewModel?.refreshFiles {} : viewModel.loginToDrive()
+        viewModel.isLoggedIn ? viewModel.refreshFiles {} : viewModel.loginToDrive()
     }
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool
     {
         return true
+    }
+}
+
+extension YSDriveViewController : YSToolbarViewDelegate
+{
+    func selectAllButtonTapped(toolbar: YSToolbarView)
+    {
+        selectedIndexes.removeAll()
+        for index in 0..<tableView.numberOfRows(inSection: 0)
+        {
+            let indexPath = IndexPath.init(row: index, section: 0)
+                selectedIndexes.append(indexPath)
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
+    }
+    
+    func downloadButtonTapped(toolbar: YSToolbarView)
+    {
+        viewModel?.downloadFilesFor(selectedIndexes)
+    }
+    
+    func deleteButtonTapped(toolbar: YSToolbarView)
+    {
+        let alertController = UIAlertController(title: "Confirm", message: "Deleting \(selectedIndexes.count) local files", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Confirm", style: .destructive)
+        { (action) in
+            self.viewModel?.deleteDownloadsFor(self.selectedIndexes)
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
     }
 }

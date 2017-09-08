@@ -10,8 +10,9 @@ import UIKit
 import LNPopupController
 import MJRefresh
 import SwiftyBeaver
+import DZNEmptyDataSet
 
-class YSPlaylistViewController: UIViewController
+class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +49,8 @@ class YSPlaylistViewController: UIViewController
         let log = SwiftyBeaver.self
         log.info("")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -84,6 +87,43 @@ class YSPlaylistViewController: UIViewController
                         self?.tableView.mj_header.endRefreshing()
                         self?.tableView.reloadData()
         })
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString!
+    {
+        let promptText = "There are no file yet"
+        let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
+        let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
+        return attributedString
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString!
+    {
+        let promptText = "Reload"
+        let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
+        let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
+        return attributedString
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage!
+    {
+        return UIImage.init(named: "music")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor!
+    {
+        return UIColor.white
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
+    {
+        guard let viewModel = viewModel else { return }
+        viewModel.getFiles(completion: {_ in })
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool
+    {
+        return true
     }
 }
 
