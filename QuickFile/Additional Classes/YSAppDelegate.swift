@@ -13,6 +13,7 @@ import GoogleSignIn
 import SwiftyBeaver
 import UserNotifications
 import SafariServices
+import Reqres
 
 protocol YSUpdatingDelegate: class
 {
@@ -44,6 +45,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         //logs
+        Reqres.logger = ReqresDefaultLogger()
         Reqres.register()
         let console = ConsoleDestination()  // log to Xcode Console
         let file = FileDestination()  // log to default swiftybeaver.log file

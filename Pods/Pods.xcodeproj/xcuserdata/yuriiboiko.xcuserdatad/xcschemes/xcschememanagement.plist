@@ -69,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Reqres.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftMessages-SwiftMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,17 +97,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09D5E221CD7F2AAD5B89DF453839D98E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1F53003C44E17F4E78B733385CAB3716</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2450E00DF8CA42260012F81A56F239CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>30E5D67B525E3BF4CDF422B726363D46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>546DE567D0AC6661318A775E693A4DF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D1EEB66A7779BEE8BF49A7BDBFECB2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,6 +137,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7DFC979BC1F2A6141CFDAD089166FC7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8905DB6521F8FDC34752B69DEE3FDEB7</key>
 		<dict>
 			<key>primary</key>
@@ -137,7 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9852EADDBF65C198D9C50865012179D8</key>
+		<key>98BB2D1E8FCC9E15BEF403B6A3949EB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5906CFDAE2FA99A8FBB13983403ABB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A91D0D2CE8ADD42A0BE3315B01E1B958</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,22 +172,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B93F011CC3F3A9300535C5031D9A9A33</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D0C4B68E96269504DF1B18B4E293BFBE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D386C75EFD4F03725E4EFB866B600B9A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D4F9A10EC1C198A0F9ABBF73FCA7DEA5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

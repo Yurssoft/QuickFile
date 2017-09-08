@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5013C1B51EA73EC8002EF4F0 /* Reqres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B11EA73EC8002EF4F0 /* Reqres.swift */; };
-		5013C1B61EA73EC8002EF4F0 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */; };
-		5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */; };
+		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
 		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
 		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
 		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -138,9 +136,7 @@
 
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
-		5013C1B11EA73EC8002EF4F0 /* Reqres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reqres.swift; sourceTree = "<group>"; };
-		5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
-		5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresLogging.swift; sourceTree = "<group>"; };
+		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,16 +250,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5013C1AF1EA73EC8002EF4F0 /* Reqres */ = {
-			isa = PBXGroup;
-			children = (
-				5013C1B11EA73EC8002EF4F0 /* Reqres.swift */,
-				5013C1B21EA73EC8002EF4F0 /* ReqresDefaultLogger.swift */,
-				5013C1B31EA73EC8002EF4F0 /* ReqresLogging.swift */,
-			);
-			path = Reqres;
-			sourceTree = "<group>";
-		};
 		509B474B1E27ED25005E39F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				50B1C4741ED72B35009B11B5 /* Reflection */,
-				5013C1AF1EA73EC8002EF4F0 /* Reqres */,
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
@@ -344,6 +329,7 @@
 				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
 				50E562231E71BA90004E47A2 /* Info.plist */,
 				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
+				501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */,
 				50E562251E71BA90004E47A2 /* SwiftyTimer.swift */,
 				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
 				50E562271E71BA90004E47A2 /* YSConstants.swift */,
@@ -726,6 +712,7 @@
 				50B1C4A21ED72B35009B11B5 /* ValueWitnessTable.swift in Sources */,
 				50E562881E71BA90004E47A2 /* YSPlaylistViewController.swift in Sources */,
 				50E5627E1E71BA90004E47A2 /* YSDatabaseManager.swift in Sources */,
+				501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */,
 				50E5627B1E71BA90004E47A2 /* YSTabBarController.swift in Sources */,
 				50E562991E71BA90004E47A2 /* YSDriveSearchModelProtocol.swift in Sources */,
 				50B1C49A1ED72B35009B11B5 /* NominalTypeDescriptor.swift in Sources */,
@@ -747,7 +734,6 @@
 				50E562751E71BA90004E47A2 /* SwiftyTimer.swift in Sources */,
 				50B1C4911ED72B35009B11B5 /* Identity.swift in Sources */,
 				50E562981E71BA90004E47A2 /* YSDriveModelProtocol.swift in Sources */,
-				5013C1B71EA73EC8002EF4F0 /* ReqresLogging.swift in Sources */,
 				50EC7AB71F4DAEEF00315985 /* YSClassExtension.swift in Sources */,
 				50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */,
 				50B1C4981ED72B35009B11B5 /* MetadataType.swift in Sources */,
@@ -757,7 +743,6 @@
 				50E562971E71BA90004E47A2 /* YSError.swift in Sources */,
 				50E562A31E71BA90004E47A2 /* YSPlayerViewModelProtocol.swift in Sources */,
 				50E562931E71BA90004E47A2 /* YSDriveFileProtocol.swift in Sources */,
-				5013C1B61EA73EC8002EF4F0 /* ReqresDefaultLogger.swift in Sources */,
 				50E5627A1E71BA90004E47A2 /* YSNSObjectExtension.swift in Sources */,
 				50B1C49F1ED72B35009B11B5 /* Set.swift in Sources */,
 				50E5628B1E71BA90004E47A2 /* YSCoordinatorProtocol.swift in Sources */,
@@ -781,7 +766,6 @@
 				50E562A21E71BA90004E47A2 /* YSDriveViewModelProtocol.swift in Sources */,
 				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
 				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
-				5013C1B51EA73EC8002EF4F0 /* Reqres.swift in Sources */,
 				50B1C48F1ED72B35009B11B5 /* Construct.swift in Sources */,
 				50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */,
 				50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
