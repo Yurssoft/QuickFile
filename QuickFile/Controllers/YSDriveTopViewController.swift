@@ -23,7 +23,8 @@ class YSDriveTopViewController: UIViewController
     @IBOutlet fileprivate weak var toolbarView: YSToolbarView?
     @IBOutlet weak var searchButton: UIBarButtonItem!
     weak var driveVC : YSDriveViewController?
-    var shouldShowSearch : Bool = true
+    var shouldShowSearch = true
+    var navigationTitleStr = ""
     
     weak var driveVCReadyDelegate : YSDriveViewControllerDidFinishedLoading?
     
@@ -46,6 +47,7 @@ class YSDriveTopViewController: UIViewController
         {
             navigationItem.rightBarButtonItems = [editButton]
         }
+        navigationItem.title = navigationTitleStr
         let log = SwiftyBeaver.self
         log.info("")
     }

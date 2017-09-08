@@ -96,6 +96,7 @@ PODS:
   - Reqres (2.1.0)
   - SwiftMessages (3.5.0)
   - SwiftyBeaver (1.4.0)
+  - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
   - DownloadButton
@@ -116,6 +117,7 @@ DEPENDENCIES:
   - Reqres
   - SwiftMessages
   - SwiftyBeaver
+  - SwiftyTimer
 
 SPEC CHECKSUMS:
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
@@ -145,7 +147,8 @@ SPEC CHECKSUMS:
   Reqres: 98a22e7b0772d423fabda44bfed533f197bc4856
   SwiftMessages: 323c2847255ebf380f01b95ad1121a750be4d117
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: f2b08162501b0f9128997aae61acaa44eb4f2f80
+PODFILE CHECKSUM: 79c4a01570e21be2fc771369ac2dd9c5ac3f264d
 
 COCOAPODS: 1.2.1

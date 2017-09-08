@@ -90,13 +90,13 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
             let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
             driveTopVC.driveVCReadyDelegate = self
             driveTopVC.shouldShowSearch = shouldShowSearch
+            driveTopVC.navigationTitleStr = file.fileName
             navigationController?.pushViewController(driveTopVC, animated: true)
         }
     }
     
     func driveViewControllerDidRequestedSearch()
     {
-        //TODO:is YSDriveSearchCoordinator get deallocated after showing?
         let searchCoordinator = YSDriveSearchCoordinator()
         YSAppDelegate.appDelegate().searchCoordinator = searchCoordinator
         searchCoordinator.start(navigationController: navigationController, storyboard: storyboard)

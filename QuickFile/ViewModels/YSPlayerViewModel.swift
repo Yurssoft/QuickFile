@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 import MediaPlayer
+import SwiftyTimer
 
 class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate
 {

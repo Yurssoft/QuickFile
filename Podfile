@@ -19,4 +19,5 @@ target 'QuickFile' do
     pod 'SwiftyBeaver'
     pod 'Reqres'
     pod 'Reflection'
+    pod 'SwiftyTimer'
 end
