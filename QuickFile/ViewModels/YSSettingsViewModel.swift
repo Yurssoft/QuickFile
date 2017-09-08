@@ -78,6 +78,12 @@ class YSSettingsViewModel : YSSettingsViewModelProtocol
         }
     }
     
+    func deleteAllMetadata()
+    {
+        deleteAllFiles()
+        YSDatabaseManager.deleteDatabase({_ in })
+    }
+    
     func successfullyLoggedIn()
     {
         coordinatorDelegate?.viewModelSuccessfullyLoggedIn(viewModel: self)

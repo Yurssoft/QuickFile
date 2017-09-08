@@ -36,6 +36,7 @@ class YSSettingsTableViewController: UITableViewController
     fileprivate let cellLogInOutInfoIdentifier = "loggedInOutInfoCell"
     fileprivate let cellDeleteAllIdentifier = "deleteAllCell"
     fileprivate let cellDeletePlayedIdentifier = "deletePlayedDownloads"
+    fileprivate let cellDeleteAllDatabaseMetadataIdentifier = "deleteAllMetadata"
     
     override func viewDidLoad()
     {
@@ -113,6 +114,9 @@ class YSSettingsTableViewController: UITableViewController
             case cellDeletePlayedIdentifier:
                 deletePlayedDownloads()
                 break
+            case cellDeleteAllDatabaseMetadataIdentifier:
+                deleteAllMetadata()
+                break
             default:
                 break
             }
@@ -129,7 +133,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func deleteAllDownloads()
     {
-        let alertController = UIAlertController(title: "Delete all downloads?", message: "This will delete all local copies.", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Delete all downloads?", message: "This will delete all local copies. This operation cannot be undone.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
@@ -145,7 +149,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func deletePlayedDownloads()
     {
-        let alertController = UIAlertController(title: "Delete all played downloads?", message: "This will delete already played local copies.", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Delete all played downloads?", message: "This will delete already played local copies. This operation cannot be undone.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
@@ -153,6 +157,23 @@ class YSSettingsTableViewController: UITableViewController
         let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
         { (action) in
             self.viewModel?.deletePlayedFiles()
+        }
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    
+    func deleteAllMetadata()
+    {
+        let alertController = UIAlertController(title: "Delete all metadata", message: "This will delete ALL database metadata and local file copies. This operation cannot be undone.", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
+        { (action) in
+            self.viewModel?.deleteAllMetadata()
         }
         alertController.addAction(destroyAction)
         

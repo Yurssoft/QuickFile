@@ -28,4 +28,5 @@ protocol YSSettingsViewModelProtocol
     func deleteAllFiles()
     func deletePlayedFiles()
     func successfullyLoggedIn()
+    func deleteAllMetadata()
 }
