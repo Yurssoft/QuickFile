@@ -213,6 +213,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                         self.updateCurrentPlayingFile(isCurrent: true)
                     }
                 }
+                if playerFiles.count == 0 && currentPlaying == nil
+                {
+                    self.currentFile = currentPlaying
+                    self.coordinatorDelegate?.hidePlayer()
+                }
                 self.updateCurrentPlaying()
                 self.files = playerFiles
                 if let error = error

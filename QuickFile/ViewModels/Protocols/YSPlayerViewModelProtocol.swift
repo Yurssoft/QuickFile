@@ -23,6 +23,7 @@ protocol YSPlayerViewModelViewDelegate: class
 protocol YSPlayerViewModelCoordinatorDelegate: class
 {
     func showPlayer()
+    func hidePlayer()
 }
 
 protocol YSPlayerViewModelProtocol

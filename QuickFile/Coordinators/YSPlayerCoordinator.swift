@@ -61,4 +61,19 @@ extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
             self.tabBarController?.popupBar.subtitleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGray]
         }
     }
+    
+    func hidePlayer()
+    {
+        DispatchQueue.main.async
+        {
+            if self.tabBarController?.popupPresentationState == .hidden
+            {
+                return
+            }
+            let audioSession = AVAudioSession.sharedInstance()
+            try? audioSession.setActive(false)
+            UIApplication.shared.endReceivingRemoteControlEvents()
+            self.tabBarController?.dismissPopupBar(animated: true, completion: nil)
+        }
+    }
 }
