@@ -191,13 +191,12 @@ extension YSPlaylistViewController : YSPlayerDelegate
         if let playingFile = viewModel?.currentFile
         {
             DispatchQueue.main.async
+            {
+                if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
                 {
-                    if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
-                    {
-                        let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
-                        cell.configureForPlaylist(file)
-                    }
-                    
+                    let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
+                    cell.configureForPlaylist(file)
+                }
             }
         }
     }

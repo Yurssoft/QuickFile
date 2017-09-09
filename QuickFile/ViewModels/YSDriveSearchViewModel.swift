@@ -15,7 +15,13 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         didSet
         {
-            refreshFiles()
+            updateGlobalResults()
+            model?.getAllFiles
+            {[weak self] (localFiles, error, _) in
+                self?.localFilesUnfiltered = localFiles
+                guard let error = error else { return }
+                self?.error = error
+            }
         }
     }
     
@@ -52,18 +58,20 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     }
     
     var searchTerm = ""
-    {
-        didSet
-        {
-            refreshFiles()
-        }
-    }
     
     fileprivate var globalFiles = [YSDriveFileProtocol]()
     {
         didSet
         {
             viewDelegate?.filesDidChange(viewModel: self)
+        }
+    }
+    
+    fileprivate var localFilesUnfiltered = [YSDriveFileProtocol]()
+    {
+        didSet
+        {
+            updateLocalResults()
         }
     }
     
@@ -78,12 +86,6 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     fileprivate var nextPageToken: String?
     
     var sectionType: YSSearchSectionType = YSSearchSectionType(rawValue: YSSearchSectionType.all.rawValue)!
-    {
-        didSet
-        {
-            refreshFiles()
-        }
-    }
     
     var allPagesDownloaded = false
     
@@ -92,13 +94,24 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         coordinatorDelegate?.subscribeToDownloadingProgress()
     }
     
-    func refreshFiles()
+    func updateLocalResults()
+    {
+        if searchTerm == ""
+        {
+            localFiles = Array(localFilesUnfiltered.prefix(3))
+            return
+        }
+        var localFilesFiltered = localFilesUnfiltered.filter
+        {
+            return $0.fileName.contains(searchTerm)
+        }
+        localFilesFiltered = Array(localFilesFiltered.prefix(3))
+        localFiles = localFilesFiltered
+    }
+    
+    func updateGlobalResults()
     {
         nextPageToken = nil
-        model?.getAllFiles
-        {[weak self] (localFiles, error, _) in
-            self?.localFiles = localFiles
-        }
         getFiles
         {[weak self] (files) in
             self?.globalFiles = files
@@ -121,20 +134,19 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     
     func file(at indexPath: IndexPath) -> YSDriveFileProtocol?
     {
-        switch indexPath.row {
-        case YSSearchSection.localFiles.rawValue:
+        switch YSSearchSection(rawValue: indexPath.section)!
+        {
+        case .localFiles:
             if localFiles.count > indexPath.row
             {
                 return localFiles[indexPath.row]
             }
             break
-        case YSSearchSection.globalFiles.rawValue:
+        case .globalFiles:
             if globalFiles.count > indexPath.row
             {
                 return globalFiles[indexPath.row]
             }
-            break
-        default:
             break
         }
         viewDelegate?.filesDidChange(viewModel: self)
@@ -148,16 +160,15 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     
     func useFile(at indexPath: IndexPath)
     {
-        switch indexPath.row {
-        case YSSearchSection.localFiles.rawValue:
+        switch YSSearchSection(rawValue: indexPath.section)!
+        {
+        case .localFiles:
             guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < localFiles.count else { return }
             coordinatorDelegate.searchViewModelDidSelectFile(self, file: localFiles[indexPath.row])
             break
-        case YSSearchSection.globalFiles.rawValue:
+        case .globalFiles:
             guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < globalFiles.count else { return }
             coordinatorDelegate.searchViewModelDidSelectFile(self, file: globalFiles[indexPath.row])
-            break
-        default:
             break
         }
     }

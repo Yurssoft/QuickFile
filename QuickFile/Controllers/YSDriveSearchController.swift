@@ -99,11 +99,14 @@ class YSDriveSearchController : UITableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let viewModel = viewModel
+        guard let viewModel = viewModel else { return 0 }
+        switch YSSearchSection(rawValue: section)!
         {
-            return section == YSSearchSection.localFiles.rawValue ? viewModel.numberOfLocalFiles : viewModel.numberOfGlobalFiles
+        case .localFiles:
+            return viewModel.numberOfLocalFiles
+        case .globalFiles:
+            return viewModel.numberOfGlobalFiles
         }
-        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -243,10 +246,12 @@ extension YSDriveSearchController : UISearchResultsUpdating
     {
         pendingRequestForSearchModel?.cancel()
         guard let viewModel1 = viewModel as? YSDriveSearchViewModel, let searchText = searchController.searchBar.text, searchText.characters.count > 1 else { return }
+        viewModel1.searchTerm = searchText
+        viewModel1.updateLocalResults()
         // Wrap our request to viewModel in a work item
         let requestWorkItem = DispatchWorkItem { [weak viewModel1] in
             guard let viewModel2 = viewModel1 else { return }
-            viewModel2.searchTerm = searchText
+            viewModel2.updateGlobalResults()
         }
         pendingRequestForSearchModel = requestWorkItem
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(750), execute: requestWorkItem)
@@ -260,10 +265,12 @@ extension YSDriveSearchController : UISearchBarDelegate
         pendingRequestForSearchModel?.cancel()
         let section = YSSearchSectionType(rawValue: searchBar.scopeButtonTitles![selectedScope])
         guard let sectionType = section, let viewModel1 = viewModel as? YSDriveSearchViewModel else { return }
+        viewModel1.sectionType = sectionType
+        viewModel1.updateLocalResults()
         // Wrap our request to viewModel in a work item
         let requestWorkItem = DispatchWorkItem { [weak viewModel1] in
             guard let viewModel2 = viewModel1 else { return }
-            viewModel2.sectionType = sectionType
+            viewModel2.updateGlobalResults()
         }
         pendingRequestForSearchModel = requestWorkItem
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(750), execute: requestWorkItem)

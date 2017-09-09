@@ -250,16 +250,11 @@
 				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
 				50E562231E71BA90004E47A2 /* Info.plist */,
 				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
+				50F4F4351F644E1000CB9646 /* Extensions */,
 				501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */,
 				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
 				50E562271E71BA90004E47A2 /* YSConstants.swift */,
-				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
-				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
-				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
-				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
-				50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */,
 				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
-				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
 				50B1C4A31ED7F85D009B11B5 /* Converting.swift */,
 			);
 			path = "Additional Classes";
@@ -399,6 +394,19 @@
 				50E562701E71BA90004E47A2 /* YSToolbarView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		50F4F4351F644E1000CB9646 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
+				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
+				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
+				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
+				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
+				50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		6AE4711898AD76DF85E73D3E /* Frameworks */ = {

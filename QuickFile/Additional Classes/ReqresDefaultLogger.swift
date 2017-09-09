@@ -25,6 +25,6 @@ open class ReqresDefaultLogger: ReqresLogging {
     
     open func logError(_ message: String) {
         let log = SwiftyBeaver.self
-        log.info(message)
+        log.error(message)
     }
 }

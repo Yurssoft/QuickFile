@@ -52,6 +52,8 @@ protocol YSDriveSearchViewModelProtocol
     var allPagesDownloaded : Bool { get }
     
     func subscribeToDownloadingProgress()
+    func updateLocalResults()
+    func updateGlobalResults()
     func file(at indexPath: IndexPath) -> YSDriveFileProtocol?
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     func useFile(at indexPath: IndexPath)
