@@ -17,6 +17,8 @@ typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], Y
 
 class YSDatabaseManager
 {
+    //Here usage of transactions in for that reason that when we offline we need to use quries that are no returning all data from db
+    
     class func save(pageToken: String, remoteFilesDict: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
@@ -182,24 +184,39 @@ class YSDatabaseManager
         }
     }
     
-    class func deleteAllDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
+    class func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
             ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
+                var sortedFiles : [YSDriveFileProtocol] = []
                 if dbFiles.hasChildren()
                 {
+                    var files = [YSDriveFileProtocol]()
                     for currentDatabaseFile in dbFiles.children
                     {
                         let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
-                        ysFile.removeLocalFile()
-                        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)
+                        files.append(ysFile)
                     }
+                    sortedFiles = sort(ysFiles: files)
                 }
-                
-                
+                callCompletionHandler(nextPageToken: nil, completionHandler, files: sortedFiles, YSError())
+                return TransactionResult.abort()
+            })
+        }
+        else
+        {
+            callCompletionHandler(nextPageToken: nil, completionHandler, files: [], notLoggedInError() as! YSError)
+        }
+    }
+    
+    class func deleteAllDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
+    {
+        if let ref = referenceForCurrentUser()
+        {
+            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
                 let directoryContents = (try? FileManager.default.contentsOfDirectory(atPath: localFilePathForDownloadingFolder as String)) ?? []
                 for path in directoryContents
                 {
@@ -271,6 +288,7 @@ class YSDatabaseManager
     
     class func deleteDatabase(_ completionHandler: @escaping ErrorCompletionHandler)
     {
+        deleteAllDownloads({ _ in })
         if let ref = referenceForCurrentUser()
         {
             ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
@@ -408,6 +426,7 @@ class YSDatabaseManager
         if (Auth.auth().currentUser) != nil, let uud = Auth.auth().currentUser?.uid
         {
             let ref = Database.database().reference(withPath: "users/\(uud)")
+            ref.keepSynced(true)
             return ref
         }
         return nil

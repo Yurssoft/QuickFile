@@ -14,6 +14,8 @@ protocol YSDriveSearchModelProtocol
 {
     func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping DriveSearchCompletionHandler)
     
+    func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
+    
     func download(_ file : YSDriveFileProtocol)
     
     func stopDownload(_ file : YSDriveFileProtocol)

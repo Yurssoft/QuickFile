@@ -88,6 +88,11 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
         }
     }
     
+    func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
+    {
+        YSDatabaseManager.getAllFiles(completionHandler)
+    }
+    
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     {
         return YSAppDelegate.appDelegate().fileDownloader.download(for: file)

@@ -94,14 +94,14 @@ class YSDriveSearchController : UITableViewController
     
     override func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let viewModel = viewModel
         {
-            return viewModel.numberOfFiles
+            return section == YSSearchSection.localFiles.rawValue ? viewModel.numberOfLocalFiles : viewModel.numberOfGlobalFiles
         }
         return 0
     }
@@ -114,16 +114,21 @@ class YSDriveSearchController : UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
-        let file = viewModel?.file(at: indexPath.row)
+        let file = viewModel?.file(at: indexPath)
         let download = viewModel?.download(for: file!)
         cell.configureForDrive(file, self, download)
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return section == YSSearchSection.localFiles.rawValue ? "Local results" : "Global results"
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         searchController.isActive = false
-        viewModel?.useFile(at: (indexPath as NSIndexPath).row)
+        viewModel?.useFile(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -224,7 +229,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
             let indexPath = IndexPath.init(row: index, section: 0)
             if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
             {
-                let file = viewModel.file(at: indexPath.row)
+                let file = viewModel.file(at: indexPath)
                 let download = viewModel.download(for: file!)
                 cell.configureForDrive(file, self, download)
             }

@@ -15,6 +15,12 @@ enum YSSearchSectionType : String
     case folders = "Folders"
 }
 
+enum YSSearchSection : Int
+{
+    case localFiles
+    case globalFiles
+}
+
 protocol YSDriveSearchViewModelViewDelegate: class
 {
     func filesDidChange(viewModel: YSDriveSearchViewModelProtocol)
@@ -37,7 +43,8 @@ protocol YSDriveSearchViewModelProtocol
     var model: YSDriveSearchModelProtocol? { get set }
     weak var viewDelegate: YSDriveSearchViewModelViewDelegate? { get set }
     weak var coordinatorDelegate: YSDriveSearchViewModelCoordinatorDelegate? { get set }
-    var numberOfFiles: Int { get }
+    var numberOfLocalFiles: Int { get }
+    var numberOfGlobalFiles: Int { get }
     var isDownloadingMetadata: Bool { get }
     var error : YSErrorProtocol { get }
     var searchTerm : String { get set }
@@ -45,13 +52,12 @@ protocol YSDriveSearchViewModelProtocol
     var allPagesDownloaded : Bool { get }
     
     func subscribeToDownloadingProgress()
-    func file(at index: Int) -> YSDriveFileProtocol?
+    func file(at indexPath: IndexPath) -> YSDriveFileProtocol?
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
-    func useFile(at index: Int)
-    func refreshFiles(_ completion: @escaping () -> Swift.Void)
+    func useFile(at indexPath: IndexPath)
     func getNextPartOfFiles(_ completion: @escaping () -> Swift.Void)
     func searchViewControllerDidFinish()
     func download(_ file : YSDriveFileProtocol)
     func stopDownloading(_ file : YSDriveFileProtocol)
-    func index(of file : YSDriveFileProtocol) -> Int
+    func indexPath(of file : YSDriveFileProtocol) -> IndexPath
 }

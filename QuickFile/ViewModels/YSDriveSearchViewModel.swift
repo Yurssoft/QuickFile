@@ -15,16 +15,21 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         didSet
         {
-            refreshFiles { }
+            refreshFiles()
         }
     }
     
     weak var viewDelegate: YSDriveSearchViewModelViewDelegate?
     weak var coordinatorDelegate: YSDriveSearchViewModelCoordinatorDelegate?
     
-    var numberOfFiles: Int
+    var numberOfLocalFiles: Int
     {
-        return files.count
+        return localFiles.count
+    }
+    
+    var numberOfGlobalFiles: Int
+    {
+        return globalFiles.count
     }
     
     var isDownloadingMetadata: Bool = false
@@ -50,11 +55,19 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         didSet
         {
-            refreshFiles { }
+            refreshFiles()
         }
     }
     
-    fileprivate var files: [YSDriveFileProtocol] = []
+    fileprivate var globalFiles = [YSDriveFileProtocol]()
+    {
+        didSet
+        {
+            viewDelegate?.filesDidChange(viewModel: self)
+        }
+    }
+    
+    fileprivate var localFiles = [YSDriveFileProtocol]()
     {
         didSet
         {
@@ -68,7 +81,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         didSet
         {
-            refreshFiles { }
+            refreshFiles()
         }
     }
     
@@ -79,18 +92,16 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         coordinatorDelegate?.subscribeToDownloadingProgress()
     }
     
-    func refreshFiles(_ completion: @escaping () -> Swift.Void)
+    func refreshFiles()
     {
-        guard !isDownloadingMetadata else
-        {
-            completion()
-            return
-        }
         nextPageToken = nil
+        model?.getAllFiles
+        {[weak self] (localFiles, error, _) in
+            self?.localFiles = localFiles
+        }
         getFiles
-        {[weak self]  (files) in
-            self?.files = files
-            self?.callCompletion(completion)
+        {[weak self] (files) in
+            self?.globalFiles = files
         }
     }
     
@@ -103,16 +114,28 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         }
         getFiles
         {[weak self]  (files) in
-            self?.files.append(contentsOf: files)
+            self?.globalFiles.append(contentsOf: files)
             self?.callCompletion(completion)
         }
     }
     
-    func file(at index: Int) -> YSDriveFileProtocol?
+    func file(at indexPath: IndexPath) -> YSDriveFileProtocol?
     {
-        if files.count > index
-        {
-            return files[index]
+        switch indexPath.row {
+        case YSSearchSection.localFiles.rawValue:
+            if localFiles.count > indexPath.row
+            {
+                return localFiles[indexPath.row]
+            }
+            break
+        case YSSearchSection.globalFiles.rawValue:
+            if globalFiles.count > indexPath.row
+            {
+                return globalFiles[indexPath.row]
+            }
+            break
+        default:
+            break
         }
         viewDelegate?.filesDidChange(viewModel: self)
         return YSDriveFile()
@@ -123,10 +146,20 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         return model?.download(for: file)
     }
     
-    func useFile(at index: Int)
+    func useFile(at indexPath: IndexPath)
     {
-        guard let coordinatorDelegate = coordinatorDelegate, index < files.count else { return }
-        coordinatorDelegate.searchViewModelDidSelectFile(self, file: files[index])
+        switch indexPath.row {
+        case YSSearchSection.localFiles.rawValue:
+            guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < localFiles.count else { return }
+            coordinatorDelegate.searchViewModelDidSelectFile(self, file: localFiles[indexPath.row])
+            break
+        case YSSearchSection.globalFiles.rawValue:
+            guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < globalFiles.count else { return }
+            coordinatorDelegate.searchViewModelDidSelectFile(self, file: globalFiles[indexPath.row])
+            break
+        default:
+            break
+        }
     }
 
     fileprivate func getFiles(_ completion: @escaping FilesCompletionHandler)
@@ -157,13 +190,17 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         model?.stopDownload(file)
     }
     
-    func index(of file : YSDriveFileProtocol) -> Int
+    func indexPath(of file : YSDriveFileProtocol) -> IndexPath
     {
-        if let index = files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+        if let index = localFiles.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
         {
-            return index
+            return IndexPath.init(row: index, section: YSSearchSection.localFiles.rawValue)
         }
-        return 0
+        if let index = globalFiles.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier})
+        {
+            return IndexPath.init(row: index, section: YSSearchSection.localFiles.rawValue)
+        }
+        return IndexPath.init(row: 0, section: 0)
     }
 }
 
@@ -180,8 +217,14 @@ extension YSDriveSearchViewModel : YSUpdatingDelegate
         {
             self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
         }
-        let index = self.files.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
-        guard let indexx = index, self.files.count > indexx else { return }
+        var index = self.localFiles.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
+        if let indexx = index, self.localFiles.count > indexx
+        {
+            self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
+        }
+        
+        index = self.globalFiles.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
+        guard let indexx = index, self.globalFiles.count > indexx else { return }
         self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
     }
 }
