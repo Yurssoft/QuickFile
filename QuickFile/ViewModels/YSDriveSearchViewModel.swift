@@ -98,14 +98,34 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         if searchTerm == ""
         {
-            localFiles = Array(localFilesUnfiltered.prefix(3))
+            let localFilesFiltered = localFilesUnfiltered.filter
+            {
+                switch sectionType
+                {
+                case .all:
+                    return true
+                case .files:
+                    return $0.isAudio
+                case .folders:
+                    return !$0.isAudio
+                }
+            }
+            localFiles = Array(localFilesFiltered.prefix(5))
             return
         }
         var localFilesFiltered = localFilesUnfiltered.filter
         {
-            return $0.fileName.contains(searchTerm)
+            switch sectionType
+            {
+            case .all:
+                return $0.fileName.contains(searchTerm)
+            case .files:
+                return $0.isAudio && $0.fileName.contains(searchTerm)
+            case .folders:
+                return !$0.isAudio && $0.fileName.contains(searchTerm)
+            }
         }
-        localFilesFiltered = Array(localFilesFiltered.prefix(3))
+        localFilesFiltered = Array(localFilesFiltered.prefix(5))
         localFiles = localFilesFiltered
     }
     
