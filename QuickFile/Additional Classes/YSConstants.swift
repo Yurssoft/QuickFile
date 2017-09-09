@@ -12,6 +12,12 @@ import SwiftMessages
 
 typealias FilesCompletionHandler = (_ files:[YSDriveFileProtocol]) -> Swift.Void
 typealias ErrorCompletionHandler = (_ error:YSErrorProtocol?) -> Swift.Void
+typealias AccessTokenAddedCompletionHandler = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
+//                                      //files              //error           //next page token
+typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?, String?) -> Swift.Void
+                                                        //files                //current playing    //error
+typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
+typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
 
 struct YSConstants
 {
@@ -36,6 +42,7 @@ struct YSConstants
     static let kDefaultBlueColor = UIColor(red:23/255.0, green:156/255.0, blue:209/255.0, alpha:1.0)
     static let kDefaultBarColor = UIColor(red:254/255.0, green:213/255.0, blue:165/255.0, alpha:1.0)
     static let kMessageDuration = SwiftMessages.Duration.automatic
+    static let localFilePathForDownloadingFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
 }
 
 enum YSErrorType

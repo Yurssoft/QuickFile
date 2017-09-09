@@ -11,10 +11,6 @@ import Firebase
 import SwiftMessages
 import SwiftyBeaver
 
-//                                      //files              //error           //next page token
-typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?, String?) -> Swift.Void
-typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
-
 class YSDatabaseManager
 {
     //Here usage of transactions in for that reason that when we offline we need to use quries that are no returning all data from db
@@ -23,8 +19,13 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFilesData: MutableData) -> TransactionResult in
-                var dbFilesArrayDict = databaseFilesDictionary(from: dbFilesData)
+            ref.child("files").observeSingleEvent(of: .value, with:
+            { (dbFilesData) in
+                var dbFilesArrayDict = [String : [String: Any]]()
+                if let allDatabaseFilesArrayDict = dbFilesData.value as? [String : [String: Any]]
+                {
+                    dbFilesArrayDict = allDatabaseFilesArrayDict
+                }
                 let rootFolderID = YSFolder.rootFolder().folderID
                 var ysFiles : [YSDriveFileProtocol] = []
                 let nextPageToken = remoteFilesDict["nextPageToken"] as? String
@@ -110,7 +111,6 @@ class YSDatabaseManager
                 ysFiles = sort(ysFiles: ysFiles)
                 
                 callCompletionHandler(nextPageToken: nextPageToken, completionHandler, files: ysFiles, YSError())
-                return TransactionResult.abort()
             })
         }
         else
@@ -119,7 +119,7 @@ class YSDatabaseManager
         }
     }
     
-    class func checkIfFileExists(file: inout YSDriveFileProtocol)
+    fileprivate class func checkIfFileExists(file: inout YSDriveFileProtocol)
     {
         if !YSAppDelegate.appDelegate().filesOnDisk.contains(file.fileDriveIdentifier) && file.localFileExists()
         {
@@ -129,7 +129,7 @@ class YSDatabaseManager
         }
     }
     
-    class func mapFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
+    fileprivate class func mapFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
     {
         var dbFile = dbFile
         dbFile["fileDriveIdentifier"] = remoteFile["id"]
@@ -141,7 +141,7 @@ class YSDatabaseManager
         return dbFile
     }
     
-    class func mergeFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
+    fileprivate class func mergeFiles(dbFile: inout [String: Any], remoteFile:[String: Any], folder : YSFolder) -> [String: Any]
     {
         var dbFile = dbFile
         dbFile["fileDriveIdentifier"] = remoteFile["fileDriveIdentifier"]
@@ -157,25 +157,22 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
+            ref.child("files").observeSingleEvent(of: .value, with:
+            { (dbFiles) in
                 var sortedFiles : [YSDriveFileProtocol] = []
-                if dbFiles.hasChildren()
+                var files = [YSDriveFileProtocol]()
+                for currentDatabaseFile in dbFiles.children
                 {
-                    var files = [YSDriveFileProtocol]()
-                    for currentDatabaseFile in dbFiles.children
+                    let databaseFile = currentDatabaseFile as! DataSnapshot
+                    let dbFile = databaseFile.value as! [String : Any]
+                    var ysFile = dbFile.toYSFile()
+                    if ysFile.folder.folderID == folder.folderID
                     {
-                        let databaseFile = currentDatabaseFile as! MutableData
-                        let dbFile = databaseFile.value as! [String : Any]
-                        var ysFile = dbFile.toYSFile()
-                        if ysFile.folder.folderID == folder.folderID
-                        {
-                            files.append(ysFile)
-                        }
+                        files.append(ysFile)
                     }
-                    sortedFiles = sort(ysFiles: files)
                 }
+                sortedFiles = sort(ysFiles: files)
                 callCompletionHandler(nextPageToken: nil, completionHandler, files: sortedFiles, error)
-                return TransactionResult.abort()
             })
         }
         else
@@ -188,14 +185,15 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
+            ref.child("files").observeSingleEvent(of: .value, with:
+            { (dbFiles) in
                 var sortedFiles : [YSDriveFileProtocol] = []
                 if dbFiles.hasChildren()
                 {
                     var files = [YSDriveFileProtocol]()
                     for currentDatabaseFile in dbFiles.children
                     {
-                        let databaseFile = currentDatabaseFile as! MutableData
+                        let databaseFile = currentDatabaseFile as! DataSnapshot
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
                         files.append(ysFile)
@@ -203,7 +201,6 @@ class YSDatabaseManager
                     sortedFiles = sort(ysFiles: files)
                 }
                 callCompletionHandler(nextPageToken: nil, completionHandler, files: sortedFiles, YSError())
-                return TransactionResult.abort()
             })
         }
         else
@@ -214,74 +211,48 @@ class YSDatabaseManager
     
     class func deleteAllDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
     {
-        if let ref = referenceForCurrentUser()
-        {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
-                let directoryContents = (try? FileManager.default.contentsOfDirectory(atPath: localFilePathForDownloadingFolder as String)) ?? []
-                for path in directoryContents
-                {
-                    let fullPath = localFilePathForDownloadingFolder.appendingPathComponent(path)
-                    try? FileManager.default.removeItem(at: URL(fileURLWithPath:fullPath))
-                    YSAppDelegate.appDelegate().filesOnDisk.removeAll()
-                    //TODO: remove download by file identifier
-                    //YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file identifier: file identifier)
-                }
-                
-                let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
-                callCompletionHandler(completionHandler, error)
-                return TransactionResult.abort()
-            })
+        let documentsUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        _ = documentsUrls.map
+        { url in
+            try? FileManager.default.removeItem(at: url)
+            //TODO: remove download by file identifier
+            //YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file identifier: file identifier)
         }
-        else
-        {
-            callCompletionHandler(completionHandler, notLoggedInError() as! YSError)
-        }
+        YSAppDelegate.appDelegate().filesOnDisk.removeAll()
+        
+        let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
+        callCompletionHandler(completionHandler, error)
     }
     
     class func getAllFileNamesOnDisk() -> Set<String>
     {
         var allFileNames = Set<String>()
-        do
-        {
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
-            let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
-            allFileNames = Set<String>().union(mp3FileNames)
-        }
-        catch let error as NSError
-        {
-            let log = SwiftyBeaver.self
-            log.error("lookUpAllFilesOnDisk - \(error.localizedDescription)")
-        }
+        let documentsUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let mp3Files = documentsUrls.filter{ $0.pathExtension == "mp3" }
+        let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
+        allFileNames = Set<String>().union(mp3FileNames)
         return allFileNames
     }
     
-    static let localFilePathForDownloadingFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-    
     class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
     {
-        deleteAllDownloads({_ in })
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
-                if dbFiles.hasChildren()
+            ref.child("files").observeSingleEvent(of: .value, with:
+            { (dbFilesData) in
+                for currentDatabaseFile in dbFilesData.children
                 {
-                    for currentDatabaseFile in dbFiles.children
+                    let databaseFile = currentDatabaseFile as! DataSnapshot
+                    let dbFile = databaseFile.value as! [String : Any]
+                    let ysFile = dbFile.toYSFile()
+                    if ysFile.isPlayed
                     {
-                        let databaseFile = currentDatabaseFile as! MutableData
-                        let dbFile = databaseFile.value as! [String : Any]
-                        let ysFile = dbFile.toYSFile()
-                        if ysFile.isPlayed
-                        {
-                            ysFile.removeLocalFile()
-                            YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)
-                        }
+                        ysFile.removeLocalFile()
+                        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)
                     }
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Played local downloads deleted", buttonTitle: "GOT IT")
                 callCompletionHandler(completionHandler, error)
-                return TransactionResult.abort()
             })
         }
         else
@@ -295,12 +266,9 @@ class YSDatabaseManager
         deleteAllDownloads({ _ in })
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
-                ref.child("files").setValue([:])
-                let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Database deleted", buttonTitle: "GOT IT")
-                callCompletionHandler(completionHandler, error)
-                return TransactionResult.abort()
-            })
+            ref.child("files").removeValue()
+            let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Database deleted", buttonTitle: "GOT IT")
+            callCompletionHandler(completionHandler, error)
         }
         else
         {
@@ -312,27 +280,24 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
+            ref.child("files").observeSingleEvent(of: .value, with:
+            { (dbFilesData) in
                 var sortedFiles : [YSDriveFileProtocol] = []
                 var currentPlayingFile : YSDriveFileProtocol? = nil
-                if dbFiles.hasChildren()
+                var files = [YSDriveFileProtocol]()
+                for currentDatabaseFile in dbFilesData.children
                 {
-                    var files = [YSDriveFileProtocol]()
-                    for currentDatabaseFile in dbFiles.children
+                    let databaseFile = currentDatabaseFile as! DataSnapshot
+                    let dbFile = databaseFile.value as! [String : Any]
+                    let ysFile = dbFile.toYSFile()
+                    if ysFile.isCurrentlyPlaying && ysFile.localFileExists()
                     {
-                        let databaseFile = currentDatabaseFile as! MutableData
-                        let dbFile = databaseFile.value as! [String : Any]
-                        let ysFile = dbFile.toYSFile()
-                        if ysFile.isCurrentlyPlaying && ysFile.localFileExists()
-                        {
-                            currentPlayingFile = ysFile
-                        }
-                        files.append(ysFile)
+                        currentPlayingFile = ysFile
                     }
-                    sortedFiles = sort(ysFiles: files)
+                    files.append(ysFile)
                 }
+                sortedFiles = sort(ysFiles: files)
                 completionHandler(sortedFiles, currentPlayingFile, nil)
-                return TransactionResult.abort()
             })
         }
         else
@@ -352,15 +317,15 @@ class YSDatabaseManager
         if let ref = referenceForCurrentUser()
         {
             let identifier = file.fileDriveIdentifier
-            ref.child("files/\(identifier)").runTransactionBlock({ (dbFileData: MutableData) -> TransactionResult in
-                if var dbFile = dbFileData.value as? [String : Any], let currentFileIdentifier = dbFile["fileDriveIdentifier"] as? String, currentFileIdentifier == identifier
+            ref.child("files/\(identifier)").observeSingleEvent(of: .value, with:
+            { (dbFilesData) in
+                if var dbFile = dbFilesData.value as? [String : Any], let currentFileIdentifier = dbFile["fileDriveIdentifier"] as? String, currentFileIdentifier == identifier
                 {
                     dbFile["isCurrentlyPlaying"] = file.isCurrentlyPlaying
                     dbFile["playedTime"] = file.playedTime
                     dbFile["isPlayed"] = file.isPlayed
                     ref.child("files/\(identifier)").setValue(dbFile)
                 }
-                return TransactionResult.abort()
             })
         }
     }
@@ -369,14 +334,16 @@ class YSDatabaseManager
     {
         if let ref = referenceForCurrentUser()
         {
-            ref.child("files/\(file.fileDriveIdentifier)").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            let identifier = file.fileDriveIdentifier
+            ref.child("files/\(identifier)").observeSingleEvent(of: .value, with:
+            { (dbFilesData) in
                 var file = file
                 file.folder = YSFolder.searchFolder()
                 var updatedFile = toDictionary(type: file)
                 
-                for currentDatabaseFile in currentData.children
+                for currentDatabaseFile in dbFilesData.children
                 {
-                    let databaseFile = currentDatabaseFile as! MutableData
+                    let databaseFile = currentDatabaseFile as! DataSnapshot
                     if var dbFile = databaseFile.value as? [String : Any], let folderDict = dbFile["folder"] as? [String : String], let folderName = folderDict["folderName"], let folderID = folderDict["folderID"]
                     {
                         let folder = YSFolder()
@@ -390,9 +357,7 @@ class YSDatabaseManager
                         log.error("Something wrong with dbFile : \(databaseFile)")
                     }
                 }
-                
                 ref.child("files/\(file.fileDriveIdentifier)").setValue(updatedFile)
-                return TransactionResult.abort()
             })
         }
     }
@@ -403,26 +368,6 @@ class YSDatabaseManager
             return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio
         })
         return sortedFiles
-    }
-    
-    private class func databaseFilesDictionary(from databaseFiles: MutableData) -> [String : [String: Any]]
-    {
-        var databaseFilesDictionary = [String : [String: Any]]()
-        for currentDatabaseFile in databaseFiles.children
-        {
-            let databaseFile = currentDatabaseFile as! MutableData
-            let dbFile = databaseFile.value as! [String : Any]
-            if let fileDriveIdentifier = dbFile["fileDriveIdentifier"] as? String
-            {
-                databaseFilesDictionary[fileDriveIdentifier] = dbFile
-            }
-            else
-            {
-                let log = SwiftyBeaver.self
-                log.error("Something wrong with dbFile : \(dbFile)")
-            }
-        }
-        return databaseFilesDictionary
     }
     
     private class func referenceForCurrentUser() -> DatabaseReference?

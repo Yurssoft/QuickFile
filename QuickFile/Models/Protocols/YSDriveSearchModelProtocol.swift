@@ -8,11 +8,9 @@
 
 import Foundation
 
-typealias DriveSearchCompletionHandler = ([YSDriveFileProtocol], String?, YSErrorProtocol?) -> Swift.Void
-
 protocol YSDriveSearchModelProtocol
 {
-    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping DriveSearchCompletionHandler)
+    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
     
     func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
     

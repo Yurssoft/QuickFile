@@ -177,7 +177,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         isDownloadingMetadata = true
         model?.getFiles(for: searchTerm, sectionType: sectionType, nextPageToken: nextPageToken)
-        {[weak self] (files, nextPageToken, error) in
+        {[weak self] (files, error, nextPageToken) in
             self?.nextPageToken = nextPageToken
             self?.isDownloadingMetadata = false
             self?.error = error!

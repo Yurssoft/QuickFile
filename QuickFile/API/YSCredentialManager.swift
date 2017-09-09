@@ -14,8 +14,6 @@ import KeychainAccess
 import ReachabilitySwift
 import Reflection
 
-typealias AccessTokenAddedCompletionHandler = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
-
 class YSCredentialManager
 {
     static let shared : YSCredentialManager =

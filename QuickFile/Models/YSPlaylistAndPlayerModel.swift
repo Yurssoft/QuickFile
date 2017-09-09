@@ -10,7 +10,7 @@ import Foundation
 
 class YSPlaylistAndPlayerModel : YSPlaylistAndPlayerModelProtocol
 {
-    func allFiles(_ completionHandler: @escaping PlaylistAndPlayerCompletionHandler)
+    func allFiles(_ completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler)
     {
         YSDatabaseManager.allFilesWithCurrentPlaying { (databaseYSFiles, currentPlaying, yserror) in
             if let error = yserror

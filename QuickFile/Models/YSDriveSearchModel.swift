@@ -10,7 +10,7 @@ import Foundation
 
 class YSDriveSearchModel : YSDriveSearchModelProtocol
 {
-    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping DriveSearchCompletionHandler)
+    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
         url.addingPercentEncoding(nextPageToken)
@@ -42,10 +42,10 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
             if let err = error
             {
                 let yserror = err as! YSError
-                completionHandler([], "", yserror)
+                completionHandler([], yserror, "")
                 return
             }
-            guard let filesDictionary = filesDictionary else { return completionHandler([], "", YSError()) }
+            guard let filesDictionary = filesDictionary else { return completionHandler([], YSError(), "") }
             var ysFiles = [YSDriveFileProtocol]()
             var nextPageToken : String?
             for fileKey in filesDictionary.keys
@@ -84,7 +84,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
                     break
                 }
             }
-            completionHandler(ysFiles, nextPageToken, YSError())
+            completionHandler(ysFiles, YSError(), nextPageToken)
         }
     }
     

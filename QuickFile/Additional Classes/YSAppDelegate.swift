@@ -21,7 +21,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: when moving and updating file - update player, cancel all download tasks when user will not use this result like when closing search and  pressing back in drive controller, search add loading indicator, show all downloads in playlist, logged as, download wifi only, memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection, make player get files by delegation from playlist, firebase Offline Capabilities on iOS, when cancelling file download in search - update drive because this is still loading
+//TODO: when moving and updating file - update player, cancel all download tasks when user will not use this result like when closing search and  pressing back in drive controller, search add loading indicator, show all downloads in playlist, logged as, download wifi only, memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection, make player get files by delegation from playlist, firebase Offline Capabilities on iOS, when cancelling file download in search - update drive because this is still loading, next song is not working
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
