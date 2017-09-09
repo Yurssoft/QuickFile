@@ -65,9 +65,10 @@ class YSDriveFileDownloader : NSObject
                 }
                 let downloadTask = self.session.downloadTask(with: request)
                 download.downloadTask = downloadTask
+                downloadTask.taskDescription = download.file.fileDriveIdentifier
                 downloadTask.resume()
                 download.downloadStatus = .downloading(progress: 0.0)
-                self.downloads[url] = download
+                self.downloads[download.file.fileDriveIdentifier] = download
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
             }
         }
@@ -75,7 +76,7 @@ class YSDriveFileDownloader : NSObject
     
     func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
     {
-        return downloads[file.fileUrl()]
+        return downloads[file.fileDriveIdentifier]
     }
     
     func download(file: YSDriveFileProtocol)
@@ -85,7 +86,7 @@ class YSDriveFileDownloader : NSObject
             downloadFolder(file: file)
             return
         }
-        if file.localFileExists() || downloads[file.fileUrl()] != nil
+        if file.localFileExists() || downloads[file.fileDriveIdentifier] != nil
         {
             let log = SwiftyBeaver.self
             log.error("Error downloading file:  local file exists or file is already in downloading queue")
@@ -93,7 +94,7 @@ class YSDriveFileDownloader : NSObject
         }
         var download = YSDownload(file: file)
         download.downloadStatus = .pending
-        downloads[file.fileUrl()] = download
+        downloads[file.fileDriveIdentifier] = download
         YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
         downloadNextFile()
     }
@@ -117,11 +118,11 @@ class YSDriveFileDownloader : NSObject
     
     func cancelDownloading(file: YSDriveFileProtocol)
     {
-        if let download = downloads[file.fileUrl()]
+        if let download = downloads[file.fileDriveIdentifier]
         {
             download.downloadTask?.cancel()
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
-            downloads[file.fileUrl()] = nil
+            downloads[file.fileDriveIdentifier] = nil
             downloadNextFile()
         }
     }
@@ -150,12 +151,12 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
         //TODO: use open var taskDescription: String? for downloads[url] and remove all files
-        if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
+        if let currentFileIdentifier = downloadTask.taskDescription, var download = downloads[currentFileIdentifier]
         {
             if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: download.file.fileName)
             {
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, err)
-                downloads[url] = nil
+                downloads[currentFileIdentifier] = nil
                 return
             }
             let fileManager = FileManager.default
@@ -184,34 +185,34 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(download.file.fileName)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, errorMessage)
-                downloads[url] = nil
+                downloads[currentFileIdentifier] = nil
                 return
             }
             
             YSAppDelegate.appDelegate().playlistDelegate?.downloadDidChange(download, nil)
             YSAppDelegate.appDelegate().playerDelegate?.downloadDidChange(download, nil)
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
-            downloads[url] = nil
+            downloads[currentFileIdentifier] = nil
             downloadNextFile()
         }
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
     {
-        if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
+        if let currentFileIdentifier = downloadTask.taskDescription, var download = downloads[currentFileIdentifier]
         {
             let progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
             download.downloadStatus = .downloading(progress: progress)
             let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: ByteCountFormatter.CountStyle.binary)
             download.totalSize = totalSize
-            downloads[url] = download
+            downloads[currentFileIdentifier] = download
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
         }
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
-        if let error = error, let url = task.originalRequest?.url?.absoluteString, var download = downloads[url]
+        if let error = error, let currentFileIdentifier = task.taskDescription, var download = downloads[currentFileIdentifier]
         {
             if error.localizedDescription.contains("cancelled") || error.localizedDescription.contains("connection was lost") || error.localizedDescription.contains("No such file or directory")
             {
@@ -224,7 +225,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             var yserror : YSErrorProtocol
             yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(download.file.fileName)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, yserror)
-            downloads[download.file.fileUrl()] = nil
+            downloads[currentFileIdentifier] = nil
         }
     }
 }
