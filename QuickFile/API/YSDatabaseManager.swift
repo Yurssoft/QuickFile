@@ -211,7 +211,7 @@ class YSDatabaseManager
     
     class func deleteAllDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
     {
-        let documentsUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsUrls = getAllFilesUrls()
         _ = documentsUrls.map
         { url in
             try? FileManager.default.removeItem(at: url)
@@ -224,13 +224,19 @@ class YSDatabaseManager
         callCompletionHandler(completionHandler, error)
     }
     
+    private class func getAllFilesUrls() -> [URL]
+    {
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let directoryContents = (try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])) ?? []
+        let allUrls = directoryContents.filter{ $0.pathExtension == "mp3" }
+        return allUrls
+    }
+    
     class func getAllFileNamesOnDisk() -> Set<String>
     {
-        var allFileNames = Set<String>()
-        let documentsUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let mp3Files = documentsUrls.filter{ $0.pathExtension == "mp3" }
-        let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
-        allFileNames = Set<String>().union(mp3FileNames)
+        let allFilesInDocumentsFolder = getAllFilesUrls()
+        let mp3FileNames = allFilesInDocumentsFolder.map{ $0.deletingPathExtension().lastPathComponent }
+        let allFileNames = Set<String>().union(mp3FileNames)
         return allFileNames
     }
     
