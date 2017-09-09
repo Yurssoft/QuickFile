@@ -220,8 +220,11 @@ class YSDatabaseManager
                 let directoryContents = (try? FileManager.default.contentsOfDirectory(atPath: localFilePathForDownloadingFolder as String)) ?? []
                 for path in directoryContents
                 {
-                    let url = URL(string: localFilePathForDownloadingFolder.appendingPathComponent(path))
-                    try? FileManager.default.removeItem(at: url!)
+                    let fullPath = localFilePathForDownloadingFolder.appendingPathComponent(path)
+                    try? FileManager.default.removeItem(at: URL(fileURLWithPath:fullPath))
+                    YSAppDelegate.appDelegate().filesOnDisk.removeAll()
+                    //TODO: remove download by file identifier
+                    //YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file identifier: file identifier)
                 }
                 
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")
@@ -258,6 +261,7 @@ class YSDatabaseManager
     
     class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCompletionHandler)
     {
+        deleteAllDownloads({_ in })
         if let ref = referenceForCurrentUser()
         {
             ref.child("files").runTransactionBlock({ (dbFiles: MutableData) -> TransactionResult in
@@ -268,7 +272,7 @@ class YSDatabaseManager
                         let databaseFile = currentDatabaseFile as! MutableData
                         let dbFile = databaseFile.value as! [String : Any]
                         let ysFile = dbFile.toYSFile()
-                        if (ysFile.isPlayed)
+                        if ysFile.isPlayed
                         {
                             ysFile.removeLocalFile()
                             YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)

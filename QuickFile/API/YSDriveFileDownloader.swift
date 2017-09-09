@@ -149,6 +149,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
 {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
     {
+        //TODO: use open var taskDescription: String? for downloads[url] and remove all files
         if let url = downloadTask.originalRequest?.url?.absoluteString, var download = downloads[url]
         {
             if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: download.file.fileName)

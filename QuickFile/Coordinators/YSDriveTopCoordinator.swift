@@ -58,7 +58,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
     func driveCoordinatorDidFinish(driveCoordinator: YSDriveCoordinator, error: YSErrorProtocol?)
     {
         folders.remove(at: folders.count - 1)
-        driveCoordinators.remove(at: driveCoordinators.index(of: driveCoordinator)!)
+        driveCoordinators.remove(driveCoordinator)
     }
     
     func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)

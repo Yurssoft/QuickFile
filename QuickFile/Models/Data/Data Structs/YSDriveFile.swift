@@ -109,8 +109,7 @@ struct YSDriveFile : YSDriveFileProtocol
     func removeLocalFile()
     {
         try? FileManager.default.removeItem(at: localFilePath()!)
-        guard let indexToDelete = YSAppDelegate.appDelegate().filesOnDisk.index(of: fileDriveIdentifier) else { return }
-        YSAppDelegate.appDelegate().filesOnDisk.remove(at: indexToDelete)
+        YSAppDelegate.appDelegate().filesOnDisk.remove(fileDriveIdentifier)
     }
     
     var debugDescription: String

@@ -171,7 +171,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             {
                 currentPlayingIndex = currentFileIndex
             }
-            guard let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
+            let isCurrentlyPlaying = currentFile.isCurrentlyPlaying && player != nil
+            guard !isCurrentlyPlaying, let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else { return }
             updateNowPlayingInfoForCurrentPlaybackItem()
             player?.stop()
             player?.delegate = nil
