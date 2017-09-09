@@ -20,6 +20,7 @@ protocol YSErrorProtocol : Error
     var systemCode : Int { get }
     
     func isEmpty() -> Bool
+    func isNoInternetError() -> Bool
     mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String)
     mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String, systemCode: Int)
 }

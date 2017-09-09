@@ -172,11 +172,12 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol)
     {
-        let message = MessageView.viewFromNib(layout: .CardView)
-        message.configureTheme(error.messageType)
-        message.configureDropShadow()
-        message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        if error.isNoInternetError()
+        {
+            SwiftMessages.showNoInternetError(error)
+            return
+        }
+        let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
         case .couldNotGetFileList:
@@ -188,36 +189,24 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
         default:
             break
         }
-        var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
-        messageConfig.ignoreDuplicates = false
-        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.show(config: messageConfig, view: message)
+        SwiftMessages.showDefaultMessage(message)
     }
     
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
     {
-        let message = MessageView.viewFromNib(layout: .CardView)
-        message.configureTheme(error.messageType)
-        message.configureDropShadow()
-        message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
         case .couldNotDownloadFile:
             message.buttonTapHandler =
-                { _ in
-                    self.downloadButtonPressed(file)
-                    SwiftMessages.hide()
+            { _ in
+                self.downloadButtonPressed(file)
+                SwiftMessages.hide()
             }
             break
         default: break
         }
-        var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
-        messageConfig.ignoreDuplicates = false
-        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.show(config: messageConfig, view: message)
+        SwiftMessages.showDefaultMessage(message)
     }
     
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)

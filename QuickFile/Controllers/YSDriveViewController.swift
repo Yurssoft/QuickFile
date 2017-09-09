@@ -244,11 +244,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
     {
-        let message = MessageView.viewFromNib(layout: .CardView)
-        message.configureTheme(error.messageType)
-        message.configureDropShadow()
-        message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
         case .couldNotDownloadFile:
@@ -260,12 +256,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             break
         default: break
         }
-        var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
-        messageConfig.ignoreDuplicates = false
-        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
-        SwiftMessages.show(config: messageConfig, view: message)
+        SwiftMessages.showDefaultMessage(message)
     }
     
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
@@ -275,25 +266,12 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     {
-        if error.errorType == .couldNotGetFileList && error.systemCode == -1009 //no internet code
+        if error.isNoInternetError()
         {
-            let statusBarMessage = MessageView.viewFromNib(layout: .StatusLine)
-            statusBarMessage.backgroundView.backgroundColor = UIColor.orange
-            statusBarMessage.bodyLabel?.textColor = UIColor.white
-            statusBarMessage.configureContent(body: error.message)
-            var messageConfig = SwiftMessages.defaultConfig
-            messageConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
-            messageConfig.preferredStatusBarStyle = .lightContent
-            messageConfig.duration = .forever
-            statusBarMessage.id = YSConstants.kOffineStatusBarMessageID
-            SwiftMessages.show(config: messageConfig, view: statusBarMessage)
+            SwiftMessages.showNoInternetError(error)
             return
         }
-        let message = MessageView.viewFromNib(layout: .CardView)
-        message.configureTheme(error.messageType)
-        message.configureDropShadow()
-        message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
         case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
@@ -320,12 +298,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             break
         default: break
         }
-        var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
-        messageConfig.ignoreDuplicates = false
-        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
-        SwiftMessages.show(config: messageConfig, view: message)
+        SwiftMessages.showDefaultMessage(message)
     }
     
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)

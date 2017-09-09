@@ -96,4 +96,9 @@ struct YSError : YSErrorProtocol
         }
         return false
     }
+    
+    func isNoInternetError() -> Bool
+    {
+        return errorType == .couldNotGetFileList && systemCode == YSConstants.kNoInternetSystemCode
+    }
 }

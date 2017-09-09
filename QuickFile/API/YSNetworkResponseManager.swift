@@ -32,7 +32,7 @@ class YSNetworkResponseManager
         if let er = error as NSError?
         {
             var message = "Could not get list"
-            if er.code == -1009
+            if er.code == YSConstants.kNoInternetSystemCode
             {
                 message = er.localizedDescription
             }
@@ -61,7 +61,7 @@ class YSNetworkResponseManager
         if let er = error as NSError?
         {
             var message = "Could not download file \(fileName)"
-            if er.code == -1009
+            if er.code == YSConstants.kNoInternetSystemCode
             {
                 message.append(" , \(er.localizedDescription)")
             }

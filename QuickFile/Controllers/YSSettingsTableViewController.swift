@@ -276,11 +276,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
     {
-        let message = MessageView.viewFromNib(layout: .CardView)
-        message.configureTheme(error.messageType)
-        message.configureDropShadow()
-        message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
         case .loggedInToToDrive:
@@ -312,12 +308,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
             }
             break
         }
-        
-        var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
-        messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-        SwiftMessages.show(config: messageConfig, view: message)
-        
+        SwiftMessages.showDefaultMessage(message)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
         {
             self.tableView.reloadData()
