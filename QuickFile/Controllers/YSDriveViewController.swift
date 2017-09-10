@@ -386,7 +386,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         return !viewModel.isLoggedIn || viewModel.numberOfFiles < 1
     }
     
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
+    @objc func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
     {
         guard let viewModel = viewModel else { return }
         viewModel.isLoggedIn ? viewModel.refreshFiles {} : viewModel.loginToDrive()
