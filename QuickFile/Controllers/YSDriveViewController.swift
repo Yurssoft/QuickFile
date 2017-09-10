@@ -172,12 +172,12 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool
     {
-        return isFileAudio(at: indexPath)
+        return isFileAudio(at: indexPath) || !isEditing
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?
     {
-        return isFileAudio(at: indexPath) ? indexPath : nil
+        return (isFileAudio(at: indexPath) || !isEditing) ? indexPath : nil
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

@@ -42,6 +42,7 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
     {
         guard let delegate = driveViewController?.viewModel as? YSUpdatingDelegate else { return }
         YSAppDelegate.appDelegate().downloadsDelegate = delegate
+        YSAppDelegate.appDelegate().driveDelegate?.filesDidChange()
     }
     
     fileprivate func start(folderID: String,error: YSError?)
