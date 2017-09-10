@@ -93,19 +93,23 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
         YSDatabaseManager.getAllFiles(completionHandler)
     }
     
-    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
     {
-        return YSAppDelegate.appDelegate().fileDownloader.download(for: file)
+        return YSAppDelegate.appDelegate().fileDownloader.download(for: fileDriveIdentifier)
     }
     
-    func download(_ file : YSDriveFileProtocol)
+    func download(_ fileDriveIdentifier: String)
+    {
+        YSAppDelegate.appDelegate().fileDownloader.download(fileDriveIdentifier: fileDriveIdentifier)
+    }
+    
+    func upfateFileGeneralInfo(for file: YSDriveFileProtocol)
     {
         YSDatabaseManager.updateGenaralFileInfo(file: file)
-        YSAppDelegate.appDelegate().fileDownloader.download(file: file)
     }
     
-    func stopDownload(_ file : YSDriveFileProtocol)
+    func stopDownload(_ fileDriveIdentifier: String)
     {
-        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: file)
+        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: fileDriveIdentifier)
     }
 }

@@ -173,9 +173,9 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         return YSDriveFile()
     }
     
-    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
     {
-        return model?.download(for: file)
+        return model?.download(for: fileDriveIdentifier)
     }
     
     func useFile(at indexPath: IndexPath)
@@ -211,14 +211,18 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         coordinatorDelegate?.searchViewModelDidFinish()
     }
     
-    func download(_ file : YSDriveFileProtocol)
+    func download(_ fileDriveIdentifier: String)
     {
-        model?.download(file)
+        var allFiles = globalFiles + localFilesUnfiltered
+        allFiles = allFiles.filter({ $0.fileDriveIdentifier == fileDriveIdentifier })
+        guard let file = allFiles.first else { return }
+        model?.upfateFileGeneralInfo(for: file)
+        model?.download(fileDriveIdentifier)
     }
     
-    func stopDownloading(_ file: YSDriveFileProtocol)
+    func stopDownloading(_ fileDriveIdentifier: String)
     {
-        model?.stopDownload(file)
+        model?.stopDownload(fileDriveIdentifier)
     }
     
     func indexPath(of file : YSDriveFileProtocol) -> IndexPath
@@ -248,13 +252,13 @@ extension YSDriveSearchViewModel : YSUpdatingDelegate
         {
             self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
         }
-        var index = self.localFiles.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
+        var index = self.localFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
         if let indexx = index, self.localFiles.count > indexx
         {
             self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
         }
         
-        index = self.globalFiles.index(where: {$0.fileDriveIdentifier == download.file.fileDriveIdentifier})
+        index = self.globalFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
         guard let indexx = index, self.globalFiles.count > indexx else { return }
         self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
     }

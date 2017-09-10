@@ -11,8 +11,8 @@ import DownloadButton
 
 protocol YSDriveFileTableViewCellDelegate : class
 {
-    func downloadButtonPressed(_ file: YSDriveFileProtocol)
-    func stopDownloadButtonPressed(_ file: YSDriveFileProtocol)
+    func downloadButtonPressed(_ fileDriveIdentifier: String)
+    func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
 }
 
 class YSDriveFileTableViewCell: UITableViewCell
@@ -137,11 +137,11 @@ extension YSDriveFileTableViewCell: PKDownloadButtonDelegate
         case .startDownload:
             downloadButton.state = .pending
             downloadButton.pendingView.startSpin()
-            delegate?.downloadButtonPressed(file!)
+            delegate?.downloadButtonPressed(file?.fileDriveIdentifier ?? "")
             break
         case .pending, .downloading:
             downloadButton.state = .startDownload
-            delegate?.stopDownloadButtonPressed(file!)
+            delegate?.stopDownloadButtonPressed(file?.fileDriveIdentifier ?? "")
             break
         case .downloaded:
             downloadButton.isHidden = true

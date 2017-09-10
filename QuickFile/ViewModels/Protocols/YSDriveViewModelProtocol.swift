@@ -14,7 +14,7 @@ protocol YSDriveViewModelViewDelegate: class
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
-    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
     func reloadFileDownload(at index: Int, viewModel: YSDriveViewModelProtocol)
 }
@@ -41,17 +41,17 @@ protocol YSDriveViewModelProtocol
     var allPagesDownloaded : Bool { get }
     
     func file(at index: Int) -> YSDriveFileProtocol?
-    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
     func useFile(at index: Int)
     func loginToDrive()
     func removeDownloads()
     func driveViewControllerDidFinish()
     func driveViewControllerDidRequestedSearch()
-    func download(_ file : YSDriveFileProtocol)
-    func stopDownloading(_ file : YSDriveFileProtocol)
+    func download(_ fileDriveIdentifier: String)
+    func stopDownloading(_ fileDriveIdentifier: String)
     func index(of file : YSDriveFileProtocol) -> Int
-    func deleteDownloadsFor(_ indexes : [IndexPath])
-    func downloadFilesFor(_ indexes : [IndexPath])
+    func deleteDownloadsFor(_ indexes : Set<IndexPath>)
+    func downloadFilesFor(_ indexes : Set<IndexPath>)
     func refreshFiles(_ completion: @escaping () -> Swift.Void)
     func getNextPartOfFiles(_ completion: @escaping () -> Swift.Void)
 }

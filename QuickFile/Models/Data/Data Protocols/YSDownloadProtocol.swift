@@ -18,7 +18,7 @@ enum YSDownloadStatus
 
 protocol YSDownloadProtocol
 {
-    var file : YSDriveFileProtocol { get set}
+    var fileDriveIdentifier : String { get set }
     var totalSize : String? { get set }
     
     var downloadTask : URLSessionDownloadTask? { get set }

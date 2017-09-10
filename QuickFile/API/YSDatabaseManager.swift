@@ -13,8 +13,6 @@ import SwiftyBeaver
 
 class YSDatabaseManager
 {
-    //Here usage of transactions in for that reason that when we offline we need to use quries that are no returning all data from db
-    
     class func save(pageToken: String, remoteFilesDict: [String : Any],_ folder : YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
@@ -153,7 +151,7 @@ class YSDatabaseManager
         return dbFile
     }
     
-    class func offlineFiles(folder: YSFolder,_ error: YSError,_ completionHandler: @escaping AllFilesCompletionHandler)
+    class func offlineFiles(fileDriveIdentifier: String,_ error: YSError,_ completionHandler: @escaping AllFilesCompletionHandler)
     {
         if let ref = referenceForCurrentUser()
         {
@@ -166,7 +164,7 @@ class YSDatabaseManager
                     let databaseFile = currentDatabaseFile as! DataSnapshot
                     let dbFile = databaseFile.value as! [String : Any]
                     var ysFile = dbFile.toYSFile()
-                    if ysFile.folder.folderID == folder.folderID
+                    if ysFile.folder.folderID == fileDriveIdentifier
                     {
                         files.append(ysFile)
                     }
@@ -215,8 +213,8 @@ class YSDatabaseManager
         _ = documentsUrls.map
         { url in
             try? FileManager.default.removeItem(at: url)
-            //TODO: remove download by file identifier
-            //YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file identifier: file identifier)
+            //TODO: check if this is working
+            YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: url.deletingPathExtension().lastPathComponent)
         }
         YSAppDelegate.appDelegate().filesOnDisk.removeAll()
         
@@ -254,7 +252,7 @@ class YSDatabaseManager
                     if ysFile.isPlayed
                     {
                         ysFile.removeLocalFile()
-                        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: ysFile)
+                        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: ysFile.fileDriveIdentifier)
                     }
                 }
                 let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "Played local downloads deleted", buttonTitle: "GOT IT")

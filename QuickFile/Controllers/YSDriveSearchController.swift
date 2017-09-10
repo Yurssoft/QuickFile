@@ -118,7 +118,7 @@ class YSDriveSearchController : UITableViewController
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
         let file = viewModel?.file(at: indexPath)
-        let download = viewModel?.download(for: file!)
+        let download = viewModel?.download(for: file?.fileDriveIdentifier ?? "")
         cell.configureForDrive(file, self, download)
         return cell
     }
@@ -138,14 +138,14 @@ class YSDriveSearchController : UITableViewController
 
 extension YSDriveSearchController : YSDriveFileTableViewCellDelegate
 {
-    func downloadButtonPressed(_ file: YSDriveFileProtocol)
+    func downloadButtonPressed(_ fileDriveIdentifier: String)
     {
-        viewModel?.download(file)
+        viewModel?.download(fileDriveIdentifier)
     }
     
-    func stopDownloadButtonPressed(_ file: YSDriveFileProtocol)
+    func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
     {
-        viewModel?.stopDownloading(file)
+        viewModel?.stopDownloading(fileDriveIdentifier)
     }
 }
 
@@ -192,7 +192,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
         SwiftMessages.showDefaultMessage(message)
     }
     
-    func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
+    func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier : String)
     {
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
@@ -200,7 +200,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
         case .couldNotDownloadFile:
             message.buttonTapHandler =
             { _ in
-                self.downloadButtonPressed(file)
+                self.downloadButtonPressed(fileDriveIdentifier)
                 SwiftMessages.hide()
             }
             break
@@ -211,7 +211,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
     {
-        downloadErrorDidChange(viewModel: viewModel, error: error, file: download.file)
+        downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: download.fileDriveIdentifier)
     }
     
     func reloadFileDownload(at index: Int, viewModel: YSDriveSearchViewModelProtocol)
@@ -222,7 +222,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
             if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
             {
                 let file = viewModel.file(at: indexPath)
-                let download = viewModel.download(for: file!)
+                let download = viewModel.download(for: file?.fileDriveIdentifier ?? "")
                 cell.configureForDrive(file, self, download)
             }
         }

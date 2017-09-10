@@ -64,27 +64,12 @@ struct YSDriveFile : YSDriveFileProtocol
         self.pageToken = ""
     }
     
-    func fileUrl() -> String
-    {
-        return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
-    }
-    
-    func localFilePath() -> URL?
-    {
-        if let url = URL(string: fileUrl())
-        {
-            if url.lastPathComponent.isEmpty
-            {
-                return nil
-            }
-            var fullPath = YSConstants.localFilePathForDownloadingFolder.appendingPathComponent(url.lastPathComponent)
-            fullPath = "\(fullPath).mp3"
-            return URL(fileURLWithPath:fullPath)
-        }
-        return nil
-    }
-    
     func localFileExists() -> Bool
+    {
+        return YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier)
+    }
+    
+    static func localFileExistsStatic(fileDriveIdentifier: String) -> Bool
     {
         return YSAppDelegate.appDelegate().filesOnDisk.contains(fileDriveIdentifier)
     }
@@ -116,6 +101,37 @@ struct YSDriveFile : YSDriveFileProtocol
     {
         return "File name: \(fileName) ID: \(fileDriveIdentifier) FolderID: \(folder.folderID) Folder name: \(folder.folderName) IS AUDIO: \(isAudio)\t"
     }
+    
+    
+    func fileUrl() -> String
+    {
+        return YSDriveFile.fileUrlStatic(fileDriveIdentifier: fileDriveIdentifier)
+    }
+    func localFilePath() -> URL?
+    {
+        return YSDriveFile.localFilePathStatic(fileDriveIdentifier: fileDriveIdentifier)
+    }
+    
+    static func localFilePathStatic(fileDriveIdentifier: String) -> URL?
+    {
+        if let url = URL(string: YSDriveFile.fileUrlStatic(fileDriveIdentifier: fileDriveIdentifier))
+        {
+            if url.lastPathComponent.isEmpty
+            {
+                return nil
+            }
+            var fullPath = YSConstants.localFilePathForDownloadingFolder.appendingPathComponent(url.lastPathComponent)
+            fullPath = "\(fullPath).mp3"
+            return URL(fileURLWithPath:fullPath)
+        }
+        return nil
+    }
+    
+    static func fileUrlStatic(fileDriveIdentifier: String) -> String
+    {
+        return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
+    }
+    
 }
 
 fileprivate func checkStringForNil(string : String?) -> String

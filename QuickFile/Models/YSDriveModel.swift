@@ -40,25 +40,25 @@ class YSDriveModel: YSDriveModelProtocol
             if let err = error
             {
                 let yserror = err as! YSError
-                YSDatabaseManager.offlineFiles(folder: folder, yserror, completionHandler)
+                YSDatabaseManager.offlineFiles(fileDriveIdentifier: folder.folderID, yserror, completionHandler)
                 return
             }
             YSDatabaseManager.save(pageToken: pageToken, remoteFilesDict: filesDictionary!, folder, completionHandler)
         }
     }
     
-    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
     {
-        return YSAppDelegate.appDelegate().fileDownloader.download(for: file)
+        return YSAppDelegate.appDelegate().fileDownloader.download(for: fileDriveIdentifier)
     }
     
-    func download(_ file : YSDriveFileProtocol)
+    func download(_ fileDriveIdentifier: String)
     {
-        YSAppDelegate.appDelegate().fileDownloader.download(file: file)
+        YSAppDelegate.appDelegate().fileDownloader.download(fileDriveIdentifier: fileDriveIdentifier)
     }
     
-    func stopDownload(_ file : YSDriveFileProtocol)
+    func stopDownload(_ fileDriveIdentifier: String)
     {
-        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(file: file)
+        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: fileDriveIdentifier)
     }
 }

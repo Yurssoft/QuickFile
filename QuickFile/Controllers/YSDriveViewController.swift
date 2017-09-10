@@ -17,7 +17,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
 {
     weak var toolbarView: YSToolbarView!
     
-    var selectedIndexes : [IndexPath] = []
+    var selectedIndexes = Set<IndexPath>()
     var viewModel: YSDriveViewModelProtocol?
     {
         willSet
@@ -161,7 +161,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
         let file = viewModel?.file(at: indexPath.row)
-        let download = viewModel?.download(for: file!)
+        let download = viewModel?.download(for: file?.fileDriveIdentifier ?? "")
         cell.configureForDrive(file, self, download)
         if isEditing && selectedIndexes.contains(indexPath)
         {
@@ -170,11 +170,25 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool
+    {
+        return isFileAudio(at: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?
+    {
+        return isFileAudio(at: indexPath) ? indexPath : nil
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         if isEditing
         {
-            selectedIndexes.append(indexPath)
+            if !isFileAudio(at: indexPath)
+            {
+                return
+            }
+            selectedIndexes.insert(indexPath)
         }
         else
         {
@@ -187,36 +201,40 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     {
         if isEditing
         {
-            let indexOfIndex = selectedIndexes.index(where: {$0.row == indexPath.row})
-            selectedIndexes.remove(at: indexOfIndex!)
+            if !isFileAudio(at: indexPath)
+            {
+                return
+            }
+            selectedIndexes.remove(indexPath)
         }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
-        return true
+        return isFileAudio(at: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
     {
-        if let file = viewModel?.file(at: indexPath.row), file.isAudio
-        {
-            return .insert
-        }
-        return .none
+        return isFileAudio(at: indexPath) ? .insert : .none
+    }
+    
+    private func isFileAudio(at indexPath: IndexPath) -> Bool
+    {
+        return (viewModel?.file(at: indexPath.row)?.isAudio ?? false)
     }
 }
 
 extension YSDriveViewController: YSDriveFileTableViewCellDelegate
 {
-    func downloadButtonPressed(_ file: YSDriveFileProtocol)
+    func downloadButtonPressed(_ fileDriveIdentifier: String)
     {
-        viewModel?.download(file)
+        viewModel?.download(fileDriveIdentifier)
     }
     
-    func stopDownloadButtonPressed(_ file: YSDriveFileProtocol)
+    func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
     {
-        viewModel?.stopDownloading(file)
+        viewModel?.stopDownloading(fileDriveIdentifier)
     }
 }
 
@@ -242,7 +260,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         }
     }
     
-    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, file : YSDriveFileProtocol)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
     {
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
@@ -250,7 +268,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
         case .couldNotDownloadFile:
             message.buttonTapHandler =
             { _ in
-                self.downloadButtonPressed(file)
+                self.downloadButtonPressed(fileDriveIdentifier)
                 SwiftMessages.hide()
             }
             break
@@ -261,7 +279,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download : YSDownloadProtocol)
     {
-        downloadErrorDidChange(viewModel: viewModel, error: error, file: download.file)
+        downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: download.fileDriveIdentifier)
     }
     
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
@@ -318,7 +336,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
             if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
             {
                 let file = viewModel.file(at: indexPath.row)
-                let download = viewModel.download(for: file!)
+                let download = viewModel.download(for: file?.fileDriveIdentifier ?? "")
                 cell.configureForDrive(file, self, download)
             }
         }
@@ -388,7 +406,7 @@ extension YSDriveViewController : YSToolbarViewDelegate
         for index in 0..<tableView.numberOfRows(inSection: 0)
         {
             let indexPath = IndexPath.init(row: index, section: 0)
-                selectedIndexes.append(indexPath)
+                selectedIndexes.insert(indexPath)
                 tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
     }

@@ -54,7 +54,7 @@ extension YSDriveSearchCoordinator : YSDriveSearchViewModelCoordinatorDelegate
             else
             {
                 let error = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.warning, title: "Could not play song", message: "No local copy", buttonTitle: "Download")
-                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, file: file)
+                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: file.fileDriveIdentifier)
             }
         }
         else

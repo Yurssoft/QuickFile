@@ -14,9 +14,11 @@ protocol YSDriveSearchModelProtocol
     
     func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
     
-    func download(_ file : YSDriveFileProtocol)
+    func download(_ fileDriveIdentifier: String)
     
-    func stopDownload(_ file : YSDriveFileProtocol)
+    func stopDownload(_ fileDriveIdentifier: String)
     
-    func download(for file: YSDriveFileProtocol) -> YSDownloadProtocol?
+    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
+    
+    func upfateFileGeneralInfo(for file: YSDriveFileProtocol)
 }
