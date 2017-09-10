@@ -213,9 +213,8 @@ class YSDatabaseManager
         _ = documentsUrls.map
         { url in
             try? FileManager.default.removeItem(at: url)
-            //TODO: check if this is working
-            YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: url.deletingPathExtension().lastPathComponent)
         }
+        YSAppDelegate.appDelegate().fileDownloader.cancelAllDownloads()
         YSAppDelegate.appDelegate().filesOnDisk.removeAll()
         
         let error = YSError(errorType: YSErrorType.none, messageType: Theme.success, title: "Deleted", message: "All local downloads deleted", buttonTitle: "GOT IT")

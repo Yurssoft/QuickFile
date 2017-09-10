@@ -14,10 +14,10 @@ import SwiftyBeaver
 
 class YSDriveFileDownloader : NSObject
 {
-    fileprivate var downloads : [String : YSDownloadProtocol] = [String : YSDownloadProtocol]()
+    fileprivate var downloads = [String : YSDownloadProtocol]()
     fileprivate var session : URLSession
     fileprivate var sessionQueue : OperationQueue
-    fileprivate var reachability : Reachability = Reachability()!
+    fileprivate var reachability = Reachability()!
     
     required override init()
     {
@@ -103,6 +103,16 @@ class YSDriveFileDownloader : NSObject
             downloads[fileDriveIdentifier] = nil
             downloadNextFile()
         }
+    }
+    
+    func cancelAllDownloads()
+    {
+        for download in downloads
+        {
+            download.value.downloadTask?.cancel()
+        }
+        downloads.removeAll()
+        YSAppDelegate.appDelegate().downloadsDelegate?.filesDidChange()
     }
 }
 
