@@ -50,6 +50,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         super.viewDidAppear(animated)
         let log = SwiftyBeaver.self
         log.info("")
+        navigationController?.setIndeterminate(viewModel?.isDownloadingMetadata ?? false)
     }
     
     override func viewDidDisappear(_ animated: Bool)
@@ -57,7 +58,6 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         super.viewDidDisappear(animated)
         let log = SwiftyBeaver.self
         log.info("")
-        navigationController?.setIndeterminate(false)
     }
     
     func containingViewControllerViewDidLoad()

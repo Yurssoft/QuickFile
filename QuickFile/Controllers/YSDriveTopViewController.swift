@@ -69,11 +69,13 @@ class YSDriveTopViewController: UIViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        let log = SwiftyBeaver.self
+        log.info("")
     }
     
-    override func willMove(toParentViewController parent: UIViewController?)
+    override func didMove(toParentViewController parent: UIViewController?)
     {
-        super.willMove(toParentViewController: parent)
+        super.didMove(toParentViewController: parent)
         if parent == nil
         {
             driveVC?.viewModel?.driveViewControllerDidFinish()
