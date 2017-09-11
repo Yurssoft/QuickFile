@@ -12,18 +12,26 @@ import SystemConfiguration
 
 class YSFilesMetadataDownloader
 {
-    class func downloadFilesList(for requestURL: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
+    static let shared = YSFilesMetadataDownloader()
+    let urlSession : URLSession
+    
+    private init()
+    {
+        urlSession = URLSession(configuration: URLSessionConfiguration.default)
+    }
+    
+    func downloadFilesList(for requestURL: String, _ taskIdentifier: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
     {
         let reqURL = URL.init(string: requestURL)
         let request = URLRequest.init(url: reqURL!)
-        YSCredentialManager.shared.addAccessTokenHeaders(request)
-        { request, error in
+        let accessHeadersTask = YSCredentialManager.shared.addAccessTokenHeaders(request, urlSession)
+        { [weak self] request, error in
             if let err = error
             {
                 completionHandler!(["" : ["": NSNull()]], err)
                 return
             }
-            let task = URLSession.shared.dataTask(with: request)
+            let task = self?.urlSession.dataTask(with: request)
             { data, response, error in
                 if let err = YSNetworkResponseManager.validate(response, error: error)
                 {
@@ -33,7 +41,24 @@ class YSFilesMetadataDownloader
                 let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
                 completionHandler!(dict, nil)
             }
-            task.resume()
+            task?.taskDescription = taskIdentifier
+            task?.resume()
+        }
+        accessHeadersTask?.taskDescription = taskIdentifier
+        accessHeadersTask?.resume()
+    }
+    
+    func cancelTaskWithIdentifier(taskIdentifier: String)
+    {
+        urlSession.getAllTasks
+        { tasks in
+            for task in tasks
+            {
+                if task.taskDescription == taskIdentifier
+                {
+                    task.cancel()
+                }
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ class YSDriveFileDownloader : NSObject
         super.init()
         
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.yurssoft.YSGGP.drive_background_file_downloader_session")
-        sessionQueue.qualityOfService = .background
+        sessionQueue.qualityOfService = .userInitiated
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)
         session = backgroundSession
@@ -57,7 +57,7 @@ class YSDriveFileDownloader : NSObject
             let url = YSDriveFile.fileUrlStatic(fileDriveIdentifier: download.fileDriveIdentifier)
             let reqURL = URL.init(string: url)
             let request = URLRequest.init(url: reqURL!)
-            YSCredentialManager.shared.addAccessTokenHeaders(request)
+            YSCredentialManager.shared.addAccessTokenHeaders(request, YSFilesMetadataDownloader.shared.urlSession)
             {  request, error in
                 if error != nil
                 {

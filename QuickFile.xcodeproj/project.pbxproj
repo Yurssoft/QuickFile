@@ -159,7 +159,7 @@
 		50E562531E71BA90004E47A2 /* YSSettingsModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModelProtocol.swift; sourceTree = "<group>"; };
 		50E562541E71BA90004E47A2 /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
 		50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModel.swift; sourceTree = "<group>"; };
-		50E562561E71BA90004E47A2 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFolder.swift; sourceTree = "<group>"; };
+		50E562561E71BA90004E47A2 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YSFolder.swift; path = ../../YSFolder.swift; sourceTree = "<group>"; };
 		50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerModel.swift; sourceTree = "<group>"; };
 		50E562581E71BA90004E47A2 /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
 		50E5625B1E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -310,7 +310,6 @@
 				50E5624F1E71BA90004E47A2 /* Protocols */,
 				50E562541E71BA90004E47A2 /* YSDriveModel.swift */,
 				50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */,
-				50E562561E71BA90004E47A2 /* YSFolder.swift */,
 				50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */,
 				50E562581E71BA90004E47A2 /* YSSettingsModel.swift */,
 			);
@@ -342,6 +341,7 @@
 				50E5624C1E71BA90004E47A2 /* YSDownload.swift */,
 				50E5624D1E71BA90004E47A2 /* YSDriveFile.swift */,
 				50E5624E1E71BA90004E47A2 /* YSError.swift */,
+				50E562561E71BA90004E47A2 /* YSFolder.swift */,
 			);
 			path = "Data Structs";
 			sourceTree = "<group>";

@@ -17,10 +17,10 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         {
             updateGlobalResults()
             model?.getAllFiles
-            {[weak self] (localFiles, error, _) in
-                self?.localFilesUnfiltered = localFiles
+            {[unowned self] (localFiles, error, _) in
+                self.localFilesUnfiltered = localFiles
                 guard let error = error else { return }
-                self?.error = error
+                self.error = error
             }
         }
     }
@@ -133,8 +133,8 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         nextPageToken = nil
         getFiles
-        {[weak self] (files) in
-            self?.globalFiles = files
+        {[unowned self] (files) in
+            self.globalFiles = files
         }
     }
     
@@ -146,9 +146,9 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
             return
         }
         getFiles
-        {[weak self]  (files) in
-            self?.globalFiles.append(contentsOf: files)
-            self?.callCompletion(completion)
+        {[unowned self]  (files) in
+            self.globalFiles.append(contentsOf: files)
+            self.callCompletion(completion)
         }
     }
     
@@ -197,11 +197,15 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
     {
         isDownloadingMetadata = true
         model?.getFiles(for: searchTerm, sectionType: sectionType, nextPageToken: nextPageToken)
-        {[weak self] (files, error, nextPageToken) in
-            self?.nextPageToken = nextPageToken
-            self?.isDownloadingMetadata = false
-            self?.error = error!
-            self?.allPagesDownloaded = nextPageToken == nil
+        {[unowned self] (files, error, nextPageToken) in
+            if let errorDebugInfo = error?.debugInfo, errorDebugInfo.contains("cancelled")
+            {
+                return
+            }
+            self.nextPageToken = nextPageToken
+            self.isDownloadingMetadata = false
+            self.error = error!
+            self.allPagesDownloaded = nextPageToken == nil
             completion(files)
         }
     }

@@ -10,6 +10,12 @@ import Foundation
 
 class YSDriveSearchModel : YSDriveSearchModelProtocol
 {
+    private let taskUIID = UUID().uuidString
+    deinit
+    {
+        YSFilesMetadataDownloader.shared.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
+    }
+    
     func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
     {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
@@ -37,7 +43,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
         {
             url = url.replacingOccurrences(of: "SEARCH_CONTAINS", with: "")
         }
-        YSFilesMetadataDownloader.downloadFilesList(for: url)
+        YSFilesMetadataDownloader.shared.downloadFilesList(for: url, taskUIID)
         { filesDictionary, error in
             if let err = error
             {

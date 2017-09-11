@@ -112,17 +112,21 @@ class YSDriveViewModel: YSDriveViewModelProtocol
     {
         isDownloadingMetadata = true
         model?.getFiles(pageToken: pageTokens.first!, nextPageToken: pageTokens.count > 1 ? pageTokens.last : nil)
-        { [weak self] (files, error, nextPageToken) in
-            self?.error = error!
-            completion(files)
-            self?.isDownloadingMetadata = false
-            guard let token = nextPageToken else
+        { [unowned self] (files, error, nextPageToken) in
+            if let errorDebugInfo = error?.debugInfo, errorDebugInfo.contains("cancelled")
             {
-                self?.allPagesDownloaded = true
                 return
             }
-            self?.allPagesDownloaded = false
-            self?.pageTokens.append(token)
+            self.error = error!
+            completion(files)
+            self.isDownloadingMetadata = false
+            guard let token = nextPageToken else
+            {
+                self.allPagesDownloaded = true
+                return
+            }
+            self.allPagesDownloaded = false
+            self.pageTokens.append(token)
         }
     }
     
@@ -200,8 +204,8 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
         pageTokens = [YSConstants.kFirstPageToken]
         getFiles
-        {[weak self]  files in
-            self?.files = files
+        {[unowned self]  files in
+            self.files = files
             completion()
         }
     }
@@ -220,8 +224,8 @@ class YSDriveViewModel: YSDriveViewModelProtocol
             return
         }
         getFiles
-        {[weak self]  (files) in
-            self?.files.append(contentsOf: files)
+        {[unowned self]  (files) in
+            self.files.append(contentsOf: files)
             completion()
         }
     }
