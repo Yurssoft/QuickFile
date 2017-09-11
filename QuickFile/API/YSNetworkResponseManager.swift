@@ -63,7 +63,7 @@ class YSNetworkResponseManager
             var message = "Could not download file \(fileName)"
             if er.code == YSConstants.kNoInternetSystemCode
             {
-                message.append(" , \(er.localizedDescription)")
+                message += " , \(er.localizedDescription)"
             }
             let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: message, buttonTitle: "Try again", debugInfo: er.localizedDescription, systemCode: er.code)
             return errorMessage

@@ -23,13 +23,13 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
         switch sectionType
         {
         case .all:
-            url.append("corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINS(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU")
+            url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINS(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
             break
         case .files:
-            url.append("corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'audio'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU")
+            url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'audio'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
             break
         case .folders:
-            url.append("corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'folder'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU")
+            url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'folder'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
             break
         }
         let searchTermClean = searchTerm.replacingOccurrences(of: " ", with: "")

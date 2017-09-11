@@ -21,7 +21,7 @@ extension String
                 "!'();:@&=+$,/?%#[]" as CFString!,
                 CFStringBuiltInEncodings.ASCII.rawValue
                 )!
-            self.append("pageToken=\(encodedNextPageToken)&")
+            self += "pageToken=\(encodedNextPageToken)&"
         }
     }
 }

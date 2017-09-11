@@ -203,7 +203,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 for folder in folders
                 {
                     let filesInFolder = files.filter{ $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
-                    playerFiles.append(contentsOf: filesInFolder)
+                    playerFiles += filesInFolder
                 }
                 if  let localFileExists = currentPlaying?.localFileExists(), currentPlaying != nil && self.currentFile == nil && localFileExists
                 {

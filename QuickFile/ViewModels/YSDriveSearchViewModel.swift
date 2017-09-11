@@ -147,7 +147,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         }
         getFiles
         {[unowned self]  (files) in
-            self.globalFiles.append(contentsOf: files)
+            self.globalFiles += files
             self.callCompletion(completion)
         }
     }

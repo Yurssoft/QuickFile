@@ -225,7 +225,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol
         }
         getFiles
         {[unowned self]  (files) in
-            self.files.append(contentsOf: files)
+            self.files += files
             completion()
         }
     }
