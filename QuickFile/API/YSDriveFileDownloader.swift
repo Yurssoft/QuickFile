@@ -155,7 +155,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             catch let error as NSError
             {
-                log.error("Could not delete file from disk: \(error.localizedDescription)")
+                log.error("Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
             }
             
             do

@@ -21,7 +21,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: when moving and updating file - update player, search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection, make player get files by delegation from playlist
+//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
