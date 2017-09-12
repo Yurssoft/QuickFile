@@ -13,7 +13,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
     private let taskUIID = UUID().uuidString
     deinit
     {
-        YSFilesMetadataDownloader.shared.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
+        YSFilesMetadataDownloader.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
     }
     
     func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
@@ -43,7 +43,7 @@ class YSDriveSearchModel : YSDriveSearchModelProtocol
         {
             url = url.replacingOccurrences(of: "SEARCH_CONTAINS", with: "")
         }
-        YSFilesMetadataDownloader.shared.downloadFilesList(for: url, taskUIID)
+        YSFilesMetadataDownloader.downloadFilesList(for: url, taskUIID)
         { filesDictionary, error in
             if let err = error
             {

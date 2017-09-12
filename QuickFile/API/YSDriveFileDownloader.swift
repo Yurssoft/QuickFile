@@ -57,7 +57,7 @@ class YSDriveFileDownloader : NSObject
             let url = YSDriveFile.fileUrlStatic(fileDriveIdentifier: download.fileDriveIdentifier)
             let reqURL = URL.init(string: url)
             let request = URLRequest.init(url: reqURL!)
-            YSCredentialManager.shared.addAccessTokenHeaders(request, YSFilesMetadataDownloader.shared.urlSession)
+            YSCredentialManager.shared.addAccessTokenHeaders(request, UUID().uuidString)
             {  request, error in
                 if error != nil
                 {

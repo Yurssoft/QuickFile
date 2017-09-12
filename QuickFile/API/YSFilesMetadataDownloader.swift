@@ -9,29 +9,22 @@
 import Foundation
 import SwiftMessages
 import SystemConfiguration
+import Reqres
 
 class YSFilesMetadataDownloader
 {
-    static let shared = YSFilesMetadataDownloader()
-    let urlSession : URLSession
-    
-    private init()
-    {
-        urlSession = URLSession(configuration: URLSessionConfiguration.default)
-    }
-    
-    func downloadFilesList(for requestURL: String, _ taskIdentifier: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
+    class func downloadFilesList(for requestURL: String, _ taskIdentifier: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil)
     {
         let reqURL = URL.init(string: requestURL)
         let request = URLRequest.init(url: reqURL!)
-        let accessHeadersTask = YSCredentialManager.shared.addAccessTokenHeaders(request, urlSession)
-        { [weak self] request, error in
+        YSCredentialManager.shared.addAccessTokenHeaders(request, taskIdentifier)
+        { request, error in
             if let err = error
             {
                 completionHandler!(["" : ["": NSNull()]], err)
                 return
             }
-            let task = self?.urlSession.dataTask(with: request)
+            let task = URLSession.shared.dataTask(with: request)
             { data, response, error in
                 if let err = YSNetworkResponseManager.validate(response, error: error)
                 {
@@ -41,16 +34,14 @@ class YSFilesMetadataDownloader
                 let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
                 completionHandler!(dict, nil)
             }
-            task?.taskDescription = taskIdentifier
-            task?.resume()
+            task.taskDescription = taskIdentifier
+            task.resume()
         }
-        accessHeadersTask?.taskDescription = taskIdentifier
-        accessHeadersTask?.resume()
     }
     
-    func cancelTaskWithIdentifier(taskIdentifier: String)
+    class func cancelTaskWithIdentifier(taskIdentifier: String)
     {
-        urlSession.getAllTasks
+        URLSession.shared.getAllTasks
         { tasks in
             for task in tasks
             {

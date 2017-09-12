@@ -82,17 +82,17 @@ class YSCredentialManager
         return URL.init(string: url)!
     }
     
-    func addAccessTokenHeaders(_ request: URLRequest, _ session: URLSession, _ completionHandler: @escaping AccessTokenAddedCompletionHandler) -> URLSessionDataTask?
+    func addAccessTokenHeaders(_ request: URLRequest, _ taskIdentifier: String, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
     {
         if isValidAccessToken
         {
             addHeaders(to: request, completionHandler)
-            return nil
+            return
         }
         var requestForToken = URLRequest.init(url: urlForAccessToken())
         requestForToken.httpMethod = "POST"
         
-        let task = session.dataTask(with: requestForToken)
+        let accessHeadersTask = URLSession.shared.dataTask(with: requestForToken)
         { data, response, error in
             if let err = YSNetworkResponseManager.validate(response, error: error)
             {
@@ -107,7 +107,8 @@ class YSCredentialManager
                 self.addHeaders(to: request, completionHandler)
             }
         }
-        return task
+        accessHeadersTask.taskDescription = taskIdentifier
+        accessHeadersTask.resume()
     }
     
     private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)

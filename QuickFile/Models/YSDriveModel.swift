@@ -27,7 +27,7 @@ class YSDriveModel: YSDriveModelProtocol
     
     deinit
     {
-        YSFilesMetadataDownloader.shared.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
+        YSFilesMetadataDownloader.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
     }
     
     func getFiles(pageToken: String, nextPageToken: String?,_ completionHandler: @escaping AllFilesCompletionHandler)
@@ -41,7 +41,7 @@ class YSDriveModel: YSDriveModelProtocol
             return
         }
         url += "corpus=user&orderBy=folder%2Cname&pageSize=\(YSConstants.kPageSize)&q='\(folder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
-        YSFilesMetadataDownloader.shared.downloadFilesList(for: url, taskUIID)
+        YSFilesMetadataDownloader.downloadFilesList(for: url, taskUIID)
         { filesDictionary, error in
             if let err = error
             {
