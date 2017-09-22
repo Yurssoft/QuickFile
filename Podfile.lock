@@ -94,6 +94,7 @@ PODS:
   - ReachabilitySwift (3)
   - Reflection (0.14.3)
   - Reqres (2.1.0)
+  - SwiftLint (0.22.0)
   - SwiftMessages (3.5.0)
   - SwiftyBeaver (1.4.0)
   - SwiftyTimer (2.0.0)
@@ -115,6 +116,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - Reflection
   - Reqres
+  - SwiftLint
   - SwiftMessages
   - SwiftyBeaver
   - SwiftyTimer
@@ -145,10 +147,11 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Reflection: 93327e50981227ac33c18274fcbaed33b1127811
   Reqres: 98a22e7b0772d423fabda44bfed533f197bc4856
+  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
   SwiftMessages: 323c2847255ebf380f01b95ad1121a750be4d117
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 79c4a01570e21be2fc771369ac2dd9c5ac3f264d
+PODFILE CHECKSUM: 309ec2f2cd5425abd26189faebdf4b415cb13872
 
 COCOAPODS: 1.2.1

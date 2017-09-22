@@ -20,4 +20,5 @@ target 'QuickFile' do
     pod 'Reqres'
     pod 'Reflection'
     pod 'SwiftyTimer'
+    pod 'SwiftLint'
 end
