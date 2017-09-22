@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftMessages
-import SwiftyBeaver
+import NSLogger
 
 class YSDriveModel: YSDriveModelProtocol
 {
@@ -36,8 +36,7 @@ class YSDriveModel: YSDriveModelProtocol
         url.addingPercentEncoding(nextPageToken)
         guard let folder = currentFolder else
         {
-            let log = SwiftyBeaver.self
-            log.error("No folder")
+            Log(.Service, .Error, "No folder")
             return
         }
         url += "corpus=user&orderBy=folder%2Cname&pageSize=\(YSConstants.kPageSize)&q='\(folder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"

@@ -10,7 +10,7 @@ import UIKit
 import SwiftMessages
 import Firebase
 import ReachabilitySwift
-import SwiftyBeaver
+import NSLogger
 
 class YSDriveFileDownloader : NSObject
 {
@@ -83,8 +83,7 @@ class YSDriveFileDownloader : NSObject
     {
         if YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier) || downloads[fileDriveIdentifier] != nil
         {
-            let log = SwiftyBeaver.self
-            log.error("Error downloading file:  local file exists or file is already in downloading queue")
+            Log(.Network, .Error, "Error downloading file:  local file exists or file is already in downloading queue")
             return
         }
         var download = YSDownload(fileDriveIdentifier: fileDriveIdentifier)
@@ -148,27 +147,25 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
                 return
             }
             let fileManager = FileManager.default
-            let log = SwiftyBeaver.self
-            
             do
             {
                 try fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
             }
             catch let error as NSError
             {
-                log.error("Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
+                Log(.Network, .Error, "Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
             }
             
             do
             {
                 try fileManager.copyItem(at: location, to: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
-                log.info("Copied file to disk")
+                Log(.Network, .Info, "Copied file to disk")
                 YSAppDelegate.appDelegate().filesOnDisk.insert(currentFileIdentifier)
             }
             catch let error as NSError
             {
                 try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
-                log.error("Could not copy file to disk: \(error.localizedDescription)")
+                Log(.Network, .Error, "Could not copy file to disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(currentFileIdentifier)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 

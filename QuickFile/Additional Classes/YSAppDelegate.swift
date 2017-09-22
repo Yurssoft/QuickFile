@@ -10,7 +10,7 @@ import UIKit
 import GTMOAuth2
 import Firebase
 import GoogleSignIn
-import SwiftyBeaver
+import NSLogger
 import UserNotifications
 import SafariServices
 import Reqres
@@ -21,7 +21,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection, delete played files after 24 hours, display all files in drive and use document previewer for all files, when downloading files and token dies - refresh it, for release remove reques logs, what happens when no storage, make downloads in order
+//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), memory leaks, firebase functions?, folders leaks, add spotlight search, add search in playlist, use codable instead of reflection, delete played files after 24 hours, display all files in drive and use document previewer for all files, when downloading files and token dies - refresh it, what happens when no storage, make downloads in order
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
@@ -47,20 +47,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         //logs
         Reqres.logger = ReqresDefaultLogger()
         Reqres.register()
-        let console = ConsoleDestination()  // log to Xcode Console
-        let file = FileDestination()  // log to default swiftybeaver.log file
-        let cloud = SBPlatformDestination(appID: "jxEkNM", appSecret: "32aci7cuhuqZ5fu7xgzorJHl0tc9wBsj", encryptionKey: "7rVx2pj3mLz1wnwlduyhphojdxnrrxil") // to cloud
-        // add the destinations to SwiftyBeaver
-        console.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
-        file.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
-        cloud.format = "$Dyyyy-MM-dd HH:mm:ss$d $T $N.$F:$l - $M"
-        let log = SwiftyBeaver.self
-        log.addDestination(console)
-        log.addDestination(file)
-        log.addDestination(cloud)
-        
-        log.info("Logs set up")
-        
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
         
@@ -69,11 +55,11 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()
         
-        log.info("FIRApp, GIDSignIn - configured")
+        Log(.App, .Info, "FIRApp, GIDSignIn - configured")
         
         lookUpAllFilesOnDisk()
         
-        log.info("looked Up All Files On Disk")
+        Log(.App, .Info, "looked Up All Files On Disk")
         
 //        YSDatabaseManager.deleteDatabase { (error) in
 //            //TODO: REMOVES DATABASE
@@ -87,7 +73,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
 //            }
 //        }
         
-        log.info("Register for notifications")
+        Log(.App, .Info, "Register for notifications")
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization( options: authOptions, completionHandler: { (granted, error) in
@@ -97,7 +83,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
                 application.registerForRemoteNotifications()
             }
         })
-        log.info("Finished registering for notifications")
+        Log(.App, .Info, "Finished registering for notifications")
         return true
     }
     
@@ -112,23 +98,19 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.App, .Info, "")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.App, .Info, "")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.App, .Info, "")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.App, .Info, "")
     }
     
     class func appDelegate() -> YSAppDelegate
@@ -145,15 +127,12 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
-        
         let token = tokenParts.joined()
-        let log = SwiftyBeaver.self
-        log.info("Successfully registered for notifications. Device Token: \(token)")
+        Log(.App, .Info, "Successfully registered for notifications. Device Token: \(token)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        let log = SwiftyBeaver.self
-        log.info("Failed to register: \(error)")
+        Log(.App, .Info, "Failed to register: \(error)")
     }
     
 //    {
@@ -166,8 +145,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         
         let aps = userInfo["aps"] as! [String: AnyObject]
         
-        let log = SwiftyBeaver.self
-        log.info("Recieved remote silent notification: \(aps)")
+        Log(.App, .Info, "Recieved remote silent notification: \(aps)")
         if aps["content-available"] as? Int == 1 {
             completionHandler(.newData)
         } else {
@@ -188,8 +166,7 @@ extension YSAppDelegate : UNUserNotificationCenterDelegate
     //recieves push notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        let log = SwiftyBeaver.self
-        log.info("Recieved push notification: \(response.notification.request.content.userInfo)")
+        Log(.App, .Info, "Recieved push notification: \(response.notification.request.content.userInfo)")
         let userInfo = response.notification.request.content.userInfo
         let aps = userInfo["aps"] as! [String: AnyObject]
         

@@ -10,7 +10,7 @@ import UIKit
 import SwiftMessages
 import GoogleSignIn
 import Firebase
-import SwiftyBeaver
+import NSLogger
 
 class YSSettingsTableViewController: UITableViewController
 {
@@ -46,22 +46,19 @@ class YSSettingsTableViewController: UITableViewController
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().scopes = YSConstants.kDriveScopes
         signInButton = GIDSignInButton.init()
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -126,8 +123,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func loginToDrive()
     {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
         GIDSignIn.sharedInstance().signInSilently()
     }
     
@@ -189,8 +185,7 @@ class YSSettingsTableViewController: UITableViewController
         
         let destroyAction = UIAlertAction(title: "Log Out", style: .destructive)
         { (action) in
-            let log = SwiftyBeaver.self
-            log.info("logOut")
+            Log(.Controller, .Info, "logOut")
             self.viewModel?.logOut()
         }
         alertController.addAction(destroyAction)
@@ -208,16 +203,14 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
     {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
         signIn.scopes = YSConstants.kDriveScopes
         present(viewController, animated: true, completion: nil)
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
         signIn.scopes = YSConstants.kDriveScopes
         dismiss(animated: true)
     }
@@ -232,8 +225,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
             let errorString = error.localizedDescription
             
             //could not sign in silently, call explicit sign in
-            let log = SwiftyBeaver.self
-            log.error("Error signing in \(error)")
+            Log(.Controller, .Error, "Error signing in \(error)")
             if errorString.contains("error -4") || errorString.contains("couldn’t be completed") || errorString.contains("-4")
             {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
@@ -262,8 +254,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
                                                           accessToken: (authentication?.accessToken)!)
         Auth.auth().signIn(with: credential)
         { [weak self] (user, error) in
-            let log = SwiftyBeaver.self
-            log.info("User signed in \(user.debugDescription)")
+            Log(.Controller, .Error, "User signed in \(user.debugDescription)")
             guard let sself = self else { return }
             let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
             sself.errorDidChange(viewModel: sself.viewModel!, error: messageLoggedIn)

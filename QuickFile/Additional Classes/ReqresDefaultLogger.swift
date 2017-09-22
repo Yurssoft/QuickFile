@@ -7,24 +7,27 @@
 //
 
 import Reqres
-import SwiftyBeaver
+import NSLogger
 
 open class ReqresDefaultLogger: ReqresLogging {
     
     open var logLevel: LogLevel = .verbose
     
     open func logVerbose(_ message: String) {
-        let log = SwiftyBeaver.self
-        log.info(message)
+        #if DEBUG
+            Log(.Network, .Info, message)
+        #endif
     }
     
     open func logLight(_ message: String) {
-        let log = SwiftyBeaver.self
-        log.info(message)
+        #if DEBUG
+            Log(.Network, .Info, message)
+        #endif
     }
     
     open func logError(_ message: String) {
-        let log = SwiftyBeaver.self
-        log.error(message)
+        #if DEBUG
+            Log(.Network, .Info, message)
+        #endif
     }
 }

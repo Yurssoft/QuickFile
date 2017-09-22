@@ -9,7 +9,7 @@
 import UIKit
 import SwiftMessages
 import MJRefresh
-import SwiftyBeaver
+import NSLogger
 
 class YSDriveSearchController : UITableViewController
 {
@@ -62,8 +62,7 @@ class YSDriveSearchController : UITableViewController
         }
         footer?.isAutomaticallyHidden = true
         tableView.mj_footer = footer
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -75,15 +74,13 @@ class YSDriveSearchController : UITableViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem)

@@ -8,7 +8,7 @@
 
 import UIKit
 import MJRefresh
-import SwiftyBeaver
+import NSLogger
 import DZNEmptyDataSet
 
 class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
@@ -45,8 +45,7 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
         setupCoordinator()
         configurePullToRefresh()
         getFiles()
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -55,15 +54,13 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     func setupCoordinator()

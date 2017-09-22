@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 import SwiftMessages
-import SwiftyBeaver
+import NSLogger
 
 class YSDatabaseManager
 {
@@ -356,8 +356,7 @@ class YSDatabaseManager
                     }
                     else
                     {
-                        let log = SwiftyBeaver.self
-                        log.error("Something wrong with dbFile : \(databaseFile)")
+                        Log(.DB, .Error, "Something wrong with dbFile : \(databaseFile)")
                     }
                 }
                 ref.child("files/\(file.fileDriveIdentifier)").setValue(updatedFile)

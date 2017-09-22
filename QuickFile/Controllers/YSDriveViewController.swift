@@ -11,7 +11,7 @@ import SwiftMessages
 import MJRefresh
 import M13ProgressSuite
 import DZNEmptyDataSet
-import SwiftyBeaver
+import NSLogger
 
 class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
@@ -41,23 +41,20 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
         navigationController?.setIndeterminate(viewModel?.isDownloadingMetadata ?? false)
     }
     
     override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     func containingViewControllerViewDidLoad()

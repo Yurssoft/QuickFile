@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftMessages
-import SwiftyBeaver
+import NSLogger
 
 struct YSError : YSErrorProtocol
 {
@@ -52,8 +52,7 @@ struct YSError : YSErrorProtocol
         self.systemCode = systemCode
         if !debugInfo.isEmpty
         {
-            let log = SwiftyBeaver.self
-            log.info("debug info : \(debugInfo)")
+            Log(.Model, .Info, "debug info : \(debugInfo)")
         }
     }
     

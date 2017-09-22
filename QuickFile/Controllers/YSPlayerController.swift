@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import MarqueeLabel
 import MediaPlayer
-import SwiftyBeaver
+import NSLogger
 
 class YSPlayerController: UIViewController
 {
@@ -75,22 +75,19 @@ class YSPlayerController: UIViewController
     {
         super.viewDidLoad()
         playerDidChange(viewModel: viewModel!)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     override func viewDidDisappear(_ animated: Bool)
     {
         super.viewDidDisappear(animated)
-        let log = SwiftyBeaver.self
-        log.info("")
+        Log(.Controller, .Info, "")
     }
     
     func updateBarButtons()

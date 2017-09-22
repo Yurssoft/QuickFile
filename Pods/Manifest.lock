@@ -89,13 +89,15 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NSLogger/ObjC (1.8.3)
+  - NSLogger/Swift (1.8.3):
+    - NSLogger/ObjC
   - Protobuf (3.4.0)
   - ReachabilitySwift (3)
   - Reflection (0.15.0)
   - Reqres (2.1.0)
   - SwiftLint (0.22.0)
   - SwiftMessages (4.0.0)
-  - SwiftyBeaver (1.4.1)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
@@ -112,12 +114,12 @@ DEPENDENCIES:
   - M13ProgressSuite
   - MarqueeLabel/Swift
   - MJRefresh
+  - NSLogger/Swift
   - ReachabilitySwift
   - Reflection
   - Reqres
   - SwiftLint
   - SwiftMessages
-  - SwiftyBeaver
   - SwiftyTimer
 
 SPEC CHECKSUMS:
@@ -142,15 +144,15 @@ SPEC CHECKSUMS:
   MarqueeLabel: baa5753dcbd36dca080e1f5c589a665aa5c906f1
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NSLogger: c9b80dbeee1d65eb553647a1f6f1f72171b04808
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Reflection: 25cb331157e0d2691271f6492216030acc58ff1e
   Reqres: 98a22e7b0772d423fabda44bfed533f197bc4856
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
   SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
-  SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 309ec2f2cd5425abd26189faebdf4b415cb13872
+PODFILE CHECKSUM: e76bbe61f8bb291b4a0c0bb38cc5c6f87e3471f0
 
 COCOAPODS: 1.2.1
