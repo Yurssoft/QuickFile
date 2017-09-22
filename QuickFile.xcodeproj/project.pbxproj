@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
 		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
-		509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; };
-		509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509B474F1E27ED25005E39F2 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50AB27F31F75518E005464B6 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5044CE621F754E5E006C502D /* LNPopupController.framework */; };
+		50AB27F41F75518E005464B6 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5044CE621F754E5E006C502D /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* Converting.swift */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
@@ -81,16 +81,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		509B474E1E27ED25005E39F2 /* PBXContainerItemProxy */ = {
+		5044CE611F754E5E006C502D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+			containerPortal = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 39DB52E51B5823330061C589;
 			remoteInfo = LNPopupController;
 		};
-		509B47521E27ED35005E39F2 /* PBXContainerItemProxy */ = {
+		50AB27F51F75518E005464B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+			containerPortal = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 39DB52E41B5823330061C589;
 			remoteInfo = LNPopupController;
@@ -104,7 +104,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				509B47511E27ED35005E39F2 /* LNPopupController.framework in Embed Frameworks */,
+				50AB27F41F75518E005464B6 /* LNPopupController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,8 +114,8 @@
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
+		5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = SOURCE_ROOT; };
 		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4A31ED7F85D009B11B5 /* Converting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converting.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,18 +196,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				509B47501E27ED35005E39F2 /* LNPopupController.framework in Frameworks */,
 				58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */,
+				50AB27F31F75518E005464B6 /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		509B474B1E27ED25005E39F2 /* Products */ = {
+		5044CE5E1F754E5E006C502D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				509B474F1E27ED25005E39F2 /* LNPopupController.framework */,
+				5044CE621F754E5E006C502D /* LNPopupController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,7 +219,6 @@
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
 				50E562201E71BA90004E47A2 /* QuickFile */,
-				509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -242,6 +241,7 @@
 				50E562591E71BA90004E47A2 /* ViewModels */,
 				50E562651E71BA90004E47A2 /* Views */,
 				50E562711E71BA90004E47A2 /* QuickFile.entitlements */,
+				5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */,
 			);
 			path = QuickFile;
 			sourceTree = "<group>";
@@ -451,7 +451,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				509B47531E27ED35005E39F2 /* PBXTargetDependency */,
+				50AB27F61F75518E005464B6 /* PBXTargetDependency */,
 			);
 			name = QuickFile;
 			productName = YSGGP;
@@ -499,8 +499,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 509B474B1E27ED25005E39F2 /* Products */;
-					ProjectRef = 509B474A1E27ED25005E39F2 /* LNPopupController.xcodeproj */;
+					ProductGroup = 5044CE5E1F754E5E006C502D /* Products */;
+					ProjectRef = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -511,11 +511,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		509B474F1E27ED25005E39F2 /* LNPopupController.framework */ = {
+		5044CE621F754E5E006C502D /* LNPopupController.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LNPopupController.framework;
-			remoteRef = 509B474E1E27ED25005E39F2 /* PBXContainerItemProxy */;
+			remoteRef = 5044CE611F754E5E006C502D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -683,10 +683,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		509B47531E27ED35005E39F2 /* PBXTargetDependency */ = {
+		50AB27F61F75518E005464B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LNPopupController;
-			targetProxy = 509B47521E27ED35005E39F2 /* PBXContainerItemProxy */;
+			targetProxy = 50AB27F51F75518E005464B6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

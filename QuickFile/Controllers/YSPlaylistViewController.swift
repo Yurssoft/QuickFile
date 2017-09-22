@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import LNPopupController
 import MJRefresh
 import SwiftyBeaver
 import DZNEmptyDataSet

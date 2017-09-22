@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import LNPopupController
 import AVFoundation
 import MarqueeLabel
 import MediaPlayer

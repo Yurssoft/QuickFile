@@ -11,6 +11,7 @@ import AVKit
 import AVFoundation
 import SwiftMessages
 import MediaPlayer
+import LNPopupController
 
 class YSPlayerCoordinator: YSCoordinatorProtocol
 {
