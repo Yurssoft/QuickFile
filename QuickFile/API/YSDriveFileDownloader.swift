@@ -144,6 +144,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             {
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, err)
                 downloads[currentFileIdentifier] = nil
+                downloadNextFile()
                 return
             }
             let fileManager = FileManager.default
