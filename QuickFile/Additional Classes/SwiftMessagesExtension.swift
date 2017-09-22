@@ -13,7 +13,7 @@ extension SwiftMessages
 {
     class func showNoInternetError(_ error: YSErrorProtocol)
     {
-        let statusBarMessage = MessageView.viewFromNib(layout: .StatusLine)
+        let statusBarMessage = MessageView.viewFromNib(layout: .statusLine)
         statusBarMessage.backgroundView.backgroundColor = UIColor.orange
         statusBarMessage.bodyLabel?.textColor = UIColor.white
         statusBarMessage.configureContent(body: error.message)
@@ -27,7 +27,7 @@ extension SwiftMessages
     
     class func createMessage<T: MessageView>(_ error: YSErrorProtocol) -> T
     {
-        let message = MessageView.viewFromNib(layout: .CardView)
+        let message = MessageView.viewFromNib(layout: .cardView)
         message.configureTheme(error.messageType)
         message.configureDropShadow()
         message.configureContent(title: error.title, body: error.message)
