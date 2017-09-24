@@ -44,7 +44,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        //logs
         Reqres.logger = ReqresDefaultLogger()
         Reqres.register()
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
@@ -80,7 +79,10 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
             guard granted else { return }
             UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                 guard settings.authorizationStatus == .authorized else { return }
-                application.registerForRemoteNotifications()
+                DispatchQueue.main.async
+                {
+                    application.registerForRemoteNotifications()
+                }
             }
         })
         Log(.App, .Info, "Finished registering for notifications")
