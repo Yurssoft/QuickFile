@@ -11,7 +11,6 @@ import SwiftMessages
 import MJRefresh
 import M13ProgressSuite
 import DZNEmptyDataSet
-import NSLogger
 
 class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
@@ -41,20 +40,12 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        Log(.Controller, .Info, "")
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
         navigationController?.setIndeterminate(viewModel?.isDownloadingMetadata ?? false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
     }
     
     func containingViewControllerViewDidLoad()

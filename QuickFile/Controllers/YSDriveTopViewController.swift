@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseCrash
-import NSLogger
 
 protocol YSDriveViewControllerDidFinishedLoading: class
 {
@@ -48,25 +47,6 @@ class YSDriveTopViewController: UIViewController
             navigationItem.rightBarButtonItems = [editButton]
         }
         navigationItem.title = navigationTitleStr
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        Log(.Controller, .Info, "")
     }
     
     override func didMove(toParentViewController parent: UIViewController?)

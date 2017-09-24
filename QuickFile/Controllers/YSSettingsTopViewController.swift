@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NSLogger
 
 class YSSettingsTopViewController: UIViewController
 {
@@ -17,19 +16,6 @@ class YSSettingsTopViewController: UIViewController
     {
         super.viewDidLoad()
         setupCoordinator()
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
     }
     
     func setupCoordinator()

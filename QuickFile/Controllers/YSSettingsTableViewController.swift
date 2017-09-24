@@ -46,21 +46,7 @@ class YSSettingsTableViewController: UITableViewController
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().scopes = YSConstants.kDriveScopes
         signInButton = GIDSignInButton.init()
-        Log(.Controller, .Info, "")
     }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -123,7 +109,6 @@ class YSSettingsTableViewController: UITableViewController
     
     func loginToDrive()
     {
-        Log(.Controller, .Info, "")
         GIDSignIn.sharedInstance().signInSilently()
     }
     
@@ -203,14 +188,14 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
     {
-        Log(.Controller, .Info, "")
+        Log(.Controller, .Info, self.nameOfClass + ": present signIn viewController")
         signIn.scopes = YSConstants.kDriveScopes
         present(viewController, animated: true, completion: nil)
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
-        Log(.Controller, .Info, "")
+        Log(.Controller, .Info, self.nameOfClass + ": dismiss signIn viewController")
         signIn.scopes = YSConstants.kDriveScopes
         dismiss(animated: true)
     }

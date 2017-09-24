@@ -42,6 +42,13 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     weak var playerDelegate: YSUpdatingDelegate?
     weak var driveDelegate: YSUpdatingDelegate?
     
+    
+    override init()
+    {
+        super.init()
+        UIViewController.classInit
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         Reqres.logger = ReqresDefaultLogger()

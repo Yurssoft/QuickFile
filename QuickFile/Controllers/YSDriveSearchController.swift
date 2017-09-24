@@ -9,7 +9,6 @@
 import UIKit
 import SwiftMessages
 import MJRefresh
-import NSLogger
 
 class YSDriveSearchController : UITableViewController
 {
@@ -62,25 +61,12 @@ class YSDriveSearchController : UITableViewController
         }
         footer?.isAutomaticallyHidden = true
         tableView.mj_footer = footer
-        Log(.Controller, .Info, "")
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         viewModel?.subscribeToDownloadingProgress()
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
     }
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem)

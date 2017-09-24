@@ -8,7 +8,6 @@
 
 import UIKit
 import MJRefresh
-import NSLogger
 import DZNEmptyDataSet
 
 class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
@@ -45,24 +44,10 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
         setupCoordinator()
         configurePullToRefresh()
         getFiles()
-        Log(.Controller, .Info, "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
     }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
     func setupCoordinator()
     {
         YSAppDelegate.appDelegate().playlistCoordinator.start(playlistViewController: self)

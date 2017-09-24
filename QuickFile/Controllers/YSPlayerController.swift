@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 import MarqueeLabel
 import MediaPlayer
-import NSLogger
 
 class YSPlayerController: UIViewController
 {
@@ -75,21 +74,7 @@ class YSPlayerController: UIViewController
     {
         super.viewDidLoad()
         playerDidChange(viewModel: viewModel!)
-        Log(.Controller, .Info, "")
     }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        Log(.Controller, .Info, "")
-    }
-    
     func updateBarButtons()
     {
         guard let viewModel = viewModel  else {
