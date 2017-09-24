@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50056EBA1F77DAFB008C981C /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072938E1F77DA81002A7C53 /* LNPopupController.framework */; };
+		50056EBB1F77DAFB008C981C /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5072938E1F77DA81002A7C53 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
 		507293871F77D43A002A7C53 /* ViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */; };
 		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
-		50AB27F31F75518E005464B6 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5044CE621F754E5E006C502D /* LNPopupController.framework */; };
-		50AB27F41F75518E005464B6 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5044CE621F754E5E006C502D /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* Converting.swift */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
@@ -82,18 +82,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5044CE611F754E5E006C502D /* PBXContainerItemProxy */ = {
+		50056EBC1F77DAFB008C981C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 39DB52E51B5823330061C589;
-			remoteInfo = LNPopupController;
-		};
-		50AB27F51F75518E005464B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
+			containerPortal = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 39DB52E41B5823330061C589;
+			remoteInfo = LNPopupController;
+		};
+		5072938D1F77DA81002A7C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39DB52E51B5823330061C589;
 			remoteInfo = LNPopupController;
 		};
 /* End PBXContainerItemProxy section */
@@ -105,7 +105,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50AB27F41F75518E005464B6 /* LNPopupController.framework in Embed Frameworks */,
+				50056EBB1F77DAFB008C981C /* LNPopupController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,8 +115,8 @@
 /* Begin PBXFileReference section */
 		3156D1F3A99794B96BBB2897 /* Pods-YSGGP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.debug.xcconfig"; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
-		5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = SOURCE_ROOT; };
 		507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
+		507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = SOURCE_ROOT; };
 		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4A31ED7F85D009B11B5 /* Converting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converting.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		50E562531E71BA90004E47A2 /* YSSettingsModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModelProtocol.swift; sourceTree = "<group>"; };
 		50E562541E71BA90004E47A2 /* YSDriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveModel.swift; sourceTree = "<group>"; };
 		50E562551E71BA90004E47A2 /* YSDriveSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchModel.swift; sourceTree = "<group>"; };
-		50E562561E71BA90004E47A2 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YSFolder.swift; path = ../../YSFolder.swift; sourceTree = "<group>"; };
+		50E562561E71BA90004E47A2 /* YSFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSFolder.swift; sourceTree = "<group>"; };
 		50E562571E71BA90004E47A2 /* YSPlaylistAndPlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSPlaylistAndPlayerModel.swift; sourceTree = "<group>"; };
 		50E562581E71BA90004E47A2 /* YSSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSettingsModel.swift; sourceTree = "<group>"; };
 		50E5625B1E71BA90004E47A2 /* YSDriveSearchViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSDriveSearchViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -199,17 +199,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */,
-				50AB27F31F75518E005464B6 /* LNPopupController.framework in Frameworks */,
+				50056EBA1F77DAFB008C981C /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5044CE5E1F754E5E006C502D /* Products */ = {
+		5072938A1F77DA81002A7C53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5044CE621F754E5E006C502D /* LNPopupController.framework */,
+				5072938E1F77DA81002A7C53 /* LNPopupController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +235,7 @@
 		50E562201E71BA90004E47A2 /* QuickFile */ = {
 			isa = PBXGroup;
 			children = (
+				507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */,
 				50E5622D1E71BA90004E47A2 /* API */,
 				50E562211E71BA90004E47A2 /* Additional Classes */,
 				50E562351E71BA90004E47A2 /* Controllers */,
@@ -243,7 +244,6 @@
 				50E562591E71BA90004E47A2 /* ViewModels */,
 				50E562651E71BA90004E47A2 /* Views */,
 				50E562711E71BA90004E47A2 /* QuickFile.entitlements */,
-				5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */,
 			);
 			path = QuickFile;
 			sourceTree = "<group>";
@@ -251,15 +251,15 @@
 		50E562211E71BA90004E47A2 /* Additional Classes */ = {
 			isa = PBXGroup;
 			children = (
+				50F4F4351F644E1000CB9646 /* Extensions */,
+				50B1C4A31ED7F85D009B11B5 /* Converting.swift */,
 				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
 				50E562231E71BA90004E47A2 /* Info.plist */,
-				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
-				50F4F4351F644E1000CB9646 /* Extensions */,
 				501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */,
+				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
 				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
 				50E562271E71BA90004E47A2 /* YSConstants.swift */,
 				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
-				50B1C4A31ED7F85D009B11B5 /* Converting.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -295,9 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				50E5623E1E71BA90004E47A2 /* YSCoordinatorProtocol.swift */,
-				50E562411E71BA90004E47A2 /* YSDriveTopCoordinator.swift */,
 				50E5623F1E71BA90004E47A2 /* YSDriveCoordinator.swift */,
 				50E562401E71BA90004E47A2 /* YSDriveSearchCoordinator.swift */,
+				50E562411E71BA90004E47A2 /* YSDriveTopCoordinator.swift */,
 				50E562421E71BA90004E47A2 /* YSPlayerCoordinator.swift */,
 				50E562431E71BA90004E47A2 /* YSPlaylistCoordinator.swift */,
 				50E562441E71BA90004E47A2 /* YSSettingsCoordinator.swift */,
@@ -403,16 +403,16 @@
 		50F4F4351F644E1000CB9646 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
-				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
-				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
-				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
-				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
-				50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */,
 				50F4F4361F644EA000CB9646 /* SwiftMessagesExtension.swift */,
 				507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */,
+				50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */,
+				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
+				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
+				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
+				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
+				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		6AE4711898AD76DF85E73D3E /* Frameworks */ = {
@@ -454,7 +454,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				50AB27F61F75518E005464B6 /* PBXTargetDependency */,
+				50056EBD1F77DAFB008C981C /* PBXTargetDependency */,
 			);
 			name = QuickFile;
 			productName = YSGGP;
@@ -502,8 +502,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5044CE5E1F754E5E006C502D /* Products */;
-					ProjectRef = 5044CE5D1F754E5E006C502D /* LNPopupController.xcodeproj */;
+					ProductGroup = 5072938A1F77DA81002A7C53 /* Products */;
+					ProjectRef = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -514,11 +514,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		5044CE621F754E5E006C502D /* LNPopupController.framework */ = {
+		5072938E1F77DA81002A7C53 /* LNPopupController.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LNPopupController.framework;
-			remoteRef = 5044CE611F754E5E006C502D /* PBXContainerItemProxy */;
+			remoteRef = 5072938D1F77DA81002A7C53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -687,10 +687,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		50AB27F61F75518E005464B6 /* PBXTargetDependency */ = {
+		50056EBD1F77DAFB008C981C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LNPopupController;
-			targetProxy = 50AB27F51F75518E005464B6 /* PBXContainerItemProxy */;
+			targetProxy = 50056EBC1F77DAFB008C981C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
