@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftMessages
-import MJRefresh
 
 class YSDriveSearchController : UITableViewController
 {

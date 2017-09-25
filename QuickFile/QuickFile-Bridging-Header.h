@@ -1,14 +1,13 @@
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
+//
+//  QuickFile-Bridging-Header.h
+//  QuickFile
+//
+//  Created by Yurii Boiko on 9/25/17.
+//  Copyright © 2017 Yurii Boiko. All rights reserved.
+//
+
+#ifndef QuickFile_Bridging_Header_h
+#define QuickFile_Bridging_Header_h
 
 #import "MJRefreshAutoFooter.h"
 #import "MJRefreshBackFooter.h"
@@ -31,6 +30,4 @@
 #import "UIScrollView+MJRefresh.h"
 #import "UIView+MJExtension.h"
 
-FOUNDATION_EXPORT double MJRefreshVersionNumber;
-FOUNDATION_EXPORT const unsigned char MJRefreshVersionString[];
-
+#endif /* QuickFile_Bridging_Header_h */

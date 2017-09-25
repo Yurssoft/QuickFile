@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftMessages
-import MJRefresh
 import M13ProgressSuite
 import DZNEmptyDataSet
 

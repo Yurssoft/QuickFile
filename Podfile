@@ -2,7 +2,6 @@ platform :ios, '10.0'
 use_frameworks!
 target 'QuickFile' do
     pod 'SwiftMessages'
-    pod 'MJRefresh'
     pod 'M13ProgressSuite'
     pod 'Firebase/Core'
     pod 'Firebase/Database'

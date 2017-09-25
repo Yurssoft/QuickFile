@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MJRefresh
 import DZNEmptyDataSet
 
 class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
