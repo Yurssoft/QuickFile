@@ -13,8 +13,6 @@ import DZNEmptyDataSet
 
 class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
-    weak var toolbarView: YSToolbarView!
-    
     var selectedIndexes = Set<IndexPath>()
     var viewModel: YSDriveViewModelProtocol?
     {
@@ -393,8 +391,12 @@ extension YSDriveViewController : YSToolbarViewDelegate
         for index in 0..<tableView.numberOfRows(inSection: 0)
         {
             let indexPath = IndexPath.init(row: index, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! YSDriveFileTableViewCell
+            if let file = cell.file, file.isAudio
+            {
                 selectedIndexes.insert(indexPath)
                 tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
         }
     }
     

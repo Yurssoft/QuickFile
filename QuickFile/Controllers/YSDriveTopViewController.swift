@@ -33,9 +33,7 @@ class YSDriveTopViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        driveVC?.toolbarView = toolbarView
-        driveVC?.toolbarView.ysToolbarDelegate = driveVC
+        toolbarView?.ysToolbarDelegate = driveVC
         driveVC?.containingViewControllerViewDidLoad()
         driveVCReadyDelegate?.driveViewControllerDidLoaded(driveVC: driveVC!, navigationController: navigationController!)
         

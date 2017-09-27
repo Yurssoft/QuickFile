@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSToolbarView" customModule="YSGGP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSToolbarView" customModule="QuickFile" customModuleProvider="target">
             <connections>
-                <outlet property="deleteButton" destination="WZl-uE-Jac" id="gd6-as-bCt"/>
-                <outlet property="downloadButton" destination="xdX-EZ-egT" id="lJB-py-o8C"/>
-                <outlet property="selectAllButton" destination="Tid-qO-RYC" id="8o7-X3-FHf"/>
+                <outlet property="deleteButton" destination="vHd-CO-6IR" id="N8V-1M-lao"/>
+                <outlet property="downloadButton" destination="yU3-z6-wNX" id="et9-3I-vVN"/>
+                <outlet property="selectAllButton" destination="DXu-f7-EvX" id="REA-ih-M5U"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,36 +21,45 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbA-Ju-fH6">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXu-f7-EvX">
+                    <rect key="frame" x="8" y="6" width="72" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Select All"/>
+                    <connections>
+                        <action selector="selectAllTapped:" destination="-1" eventType="touchUpInside" id="g7O-d2-fWw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yU3-z6-wNX">
+                    <rect key="frame" x="171" y="6" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="gFD-f2-r4a"/>
+                        <constraint firstAttribute="width" constant="33" id="EZN-Hn-As3"/>
+                        <constraint firstAttribute="height" constant="33" id="LfB-ku-icG"/>
                     </constraints>
-                    <items>
-                        <barButtonItem title="Select All" id="Tid-qO-RYC">
-                            <connections>
-                                <action selector="selectAllTapped:" destination="-1" id="dTd-tr-Rpg"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2Xj-fP-HHK"/>
-                        <barButtonItem image="cloud_download_toolbar" id="xdX-EZ-egT">
-                            <connections>
-                                <action selector="downloadTapped:" destination="-1" id="dR4-AX-G2k"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QbH-Wt-DZH"/>
-                        <barButtonItem systemItem="trash" id="WZl-uE-Jac">
-                            <connections>
-                                <action selector="deleteTapped:" destination="-1" id="VcI-Kh-AfE"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
+                    <state key="normal" image="cloud_download_toolbar"/>
+                    <connections>
+                        <action selector="downloadTapped:" destination="-1" eventType="touchUpInside" id="EoQ-gJ-tO4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHd-CO-6IR">
+                    <rect key="frame" x="334" y="5" width="33" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="33" id="aRK-Tu-D45"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="trash_toolbar"/>
+                    <connections>
+                        <action selector="deleteTapped:" destination="-1" eventType="touchUpInside" id="ubr-T9-5Pp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="DbA-Ju-fH6" secondAttribute="bottom" id="2ET-0W-aQC"/>
-                <constraint firstItem="DbA-Ju-fH6" firstAttribute="leading" secondItem="fMW-7p-wrW" secondAttribute="leading" id="Xuc-yk-eYT"/>
-                <constraint firstAttribute="trailing" secondItem="DbA-Ju-fH6" secondAttribute="trailing" id="amF-6t-ZMr"/>
+                <constraint firstAttribute="trailing" secondItem="vHd-CO-6IR" secondAttribute="trailing" constant="8" id="13c-My-ihn"/>
+                <constraint firstItem="DXu-f7-EvX" firstAttribute="centerY" secondItem="fMW-7p-wrW" secondAttribute="centerY" id="4WK-jf-aa5"/>
+                <constraint firstItem="DXu-f7-EvX" firstAttribute="leading" secondItem="fMW-7p-wrW" secondAttribute="leading" constant="8" id="Mgh-MW-VDg"/>
+                <constraint firstAttribute="trailing" secondItem="vHd-CO-6IR" secondAttribute="trailing" constant="8" id="TGd-jh-txm"/>
+                <constraint firstItem="yU3-z6-wNX" firstAttribute="centerX" secondItem="fMW-7p-wrW" secondAttribute="centerX" id="hZ6-72-6ff"/>
+                <constraint firstItem="yU3-z6-wNX" firstAttribute="top" secondItem="fMW-7p-wrW" secondAttribute="top" constant="6" id="kyz-0w-yo7"/>
+                <constraint firstItem="vHd-CO-6IR" firstAttribute="centerY" secondItem="fMW-7p-wrW" secondAttribute="centerY" id="yhL-78-rfS"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -56,5 +68,6 @@
     </objects>
     <resources>
         <image name="cloud_download_toolbar" width="33" height="33"/>
+        <image name="trash_toolbar" width="33" height="33"/>
     </resources>
 </document>

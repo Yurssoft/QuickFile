@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 protocol YSToolbarViewDelegate : class
 {
@@ -15,24 +16,24 @@ protocol YSToolbarViewDelegate : class
     func deleteButtonTapped(toolbar: YSToolbarView)
 }
 
-@IBDesignable class YSToolbarView: UIToolbar
+@IBDesignable class YSToolbarView: UIView
 {
     var view: UIView!
     
-    @IBOutlet weak var selectAllButton: UIBarButtonItem!
-    @IBOutlet weak var downloadButton: UIBarButtonItem!
-    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var selectAllButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     weak var ysToolbarDelegate: YSToolbarViewDelegate?
     
     @IBInspectable var SelectAllButtonText: String?
     {
         get
         {
-            return selectAllButton.title
+            return selectAllButton.titleLabel?.text
         }
         set(text)
         {
-            selectAllButton.title = text
+            selectAllButton.setTitle(text, for: .normal)
         }
     }
     
@@ -40,25 +41,25 @@ protocol YSToolbarViewDelegate : class
     {
         get
         {
-            return downloadButton.image
+            return downloadButton.imageView?.image
         }
         set(image)
         {
-            downloadButton.image = image
+            downloadButton.setImage(image, for: .normal)
         }
     }
     
-    @IBAction func selectAllTapped(_ sender: UIBarButtonItem)
+    @IBAction func selectAllTapped(_ sender: UIButton)
     {
         ysToolbarDelegate?.selectAllButtonTapped(toolbar: self)
     }
     
-    @IBAction func downloadTapped(_ sender: UIBarButtonItem)
+    @IBAction func downloadTapped(_ sender: UIButton)
     {
         ysToolbarDelegate?.downloadButtonTapped(toolbar: self)
     }
     
-    @IBAction func deleteTapped(_ sender: UIBarButtonItem)
+    @IBAction func deleteTapped(_ sender: UIButton)
     {
         ysToolbarDelegate?.deleteButtonTapped(toolbar: self)
     }
