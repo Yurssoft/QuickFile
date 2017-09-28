@@ -83,7 +83,7 @@ extension YSDriveTopCoordinator : YSDriveCoordinatorDelegate
         }
         else
         {
-            let ysfolder = YSFolder()
+            var ysfolder = YSFolder()
             ysfolder.folderID = file.fileDriveIdentifier
             ysfolder.folderName = file.fileName
             folders.append(ysfolder)

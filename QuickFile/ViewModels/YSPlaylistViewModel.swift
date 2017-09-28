@@ -65,7 +65,7 @@ class YSPlaylistViewModel : YSPlaylistViewModelProtocol
         return folders
     }
     
-    var error : YSErrorProtocol = YSError.init()
+    var error : YSErrorProtocol = YSError()
     {
         didSet
         {

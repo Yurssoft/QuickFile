@@ -349,7 +349,7 @@ class YSDatabaseManager
                     let databaseFile = currentDatabaseFile as! DataSnapshot
                     if var dbFile = databaseFile.value as? [String : Any], let folderDict = dbFile["folder"] as? [String : String], let folderName = folderDict["folderName"], let folderID = folderDict["folderID"]
                     {
-                        let folder = YSFolder()
+                        var folder = YSFolder()
                         folder.folderName = folderName
                         folder.folderID = folderID
                         updatedFile = mergeFiles(dbFile: &dbFile, remoteFile: updatedFile, folder: folder)

@@ -21,7 +21,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     var elapsedTimeTimer : Timer?
     var savingPlayedTimeTimer : Timer?
     
-    var error: YSErrorProtocol = YSError.init()
+    var error: YSErrorProtocol = YSError()
     {
         didSet
         {

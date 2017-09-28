@@ -20,7 +20,7 @@ public extension Dictionary
             let propertyKey = key as! String
             if propertyKey == "folder"
             {
-                let folder = YSFolder()
+                var folder = YSFolder()
                 let value = val as! [String : String]
                 folder.folderID = value["folderID"]!
                 folder.folderName = value["folderName"]!

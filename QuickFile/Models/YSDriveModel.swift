@@ -17,7 +17,7 @@ class YSDriveModel: YSDriveModelProtocol
         return YSCredentialManager.isLoggedIn
     }
     
-    private weak var currentFolder : YSFolder?
+    private var currentFolder : YSFolder?
     private let taskUIID = UUID().uuidString
     
     init(folder: YSFolder?)

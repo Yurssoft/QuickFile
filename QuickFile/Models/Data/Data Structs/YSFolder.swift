@@ -8,14 +8,14 @@
 
 import Foundation
 
-class YSFolder : NSObject
+struct YSFolder
 {
     var folderName: String = ""
     var folderID: String = ""
     
     static func rootFolder() -> YSFolder
     {
-        let folder = YSFolder()
+        var folder = YSFolder()
         folder.folderID = "root"
         folder.folderName = "Root"
         return folder
@@ -23,7 +23,7 @@ class YSFolder : NSObject
     
     static func searchFolder() -> YSFolder
     {
-        let folder = YSFolder()
+        var folder = YSFolder()
         folder.folderID = "search"
         folder.folderName = "Search"
         return folder

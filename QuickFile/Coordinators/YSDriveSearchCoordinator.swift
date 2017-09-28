@@ -61,7 +61,7 @@ extension YSDriveSearchCoordinator : YSDriveSearchViewModelCoordinatorDelegate
         {
             let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as! YSDriveTopViewController
             searchNavigationController?.pushViewController(driveTopVC, animated: true)
-            let ysFolder = YSFolder()
+            var ysFolder = YSFolder()
             ysFolder.folderID = file.fileDriveIdentifier
             ysFolder.folderName = file.fileName
             driveCoordinator.folders = [ysFolder]
