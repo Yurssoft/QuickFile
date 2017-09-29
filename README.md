@@ -4,15 +4,15 @@ QuickFile
 
 # Welcome to QuickFile project
 
-This is cool iOS app for listening your audio books from GoogleDrive. 
+This is cool iOS app for listening your audiobooks from GoogleDrive. 
 
 
 ## How it works
 
 ```markdown
-1. You upload (or copy) your audio books to your GoogleDrive account.
+1. You upload (or copy) your audiobooks to your GoogleDrive account.
 2. For your convinience you put your book with multiple chapters into folder.
-3. You name this foler the same as your audio book.
+3. You name this foler the same as your audiobook.
 4. You to to the app, go to this folder (book) you want to listen.
 5. Select all chapters and press download
 6. All downloaded chapters will appear in playlist tab.
