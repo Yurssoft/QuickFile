@@ -16,8 +16,8 @@ This is cool iOS app for listening your audiobooks from GoogleDrive.
 4. You to to the app, go to this folder (book) you want to listen.
 5. Select all chapters and press download.
 6. Wait until downloads are finished.
-6. All downloaded chapters will appear in playlist tab.
-7. Enjoy!
+7. All downloaded chapters will appear in playlist tab.
+8. Enjoy!
 ```
 
 ## App Features
