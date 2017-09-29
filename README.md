@@ -2,10 +2,39 @@ QuickFile
 ==========================
 [![Build Status](https://travis-ci.org/Yurssoft/QuickFile.svg?branch=master)](https://travis-ci.org/Yurssoft/QuickFile)
 
-Simple audiobook player which uses your Google Drive as source of audio books.
+# Welcome to QuickFile project
 
-If you see possible improvements - feel free to create issue or/and pull request. Thank you for contributing.
+This is cool iOS app for listening your audio books from GoogleDrive. 
 
-⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠DISCLAIMER⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠
 
-This app still in development and may crash from time to time, some functions may not work properly.
+## How it works
+
+```markdown
+1. You upload (or copy) your audio books to your GoogleDrive account.
+2. For your convinience you put your book with multiple chapters into folder.
+3. You name this foler the same as your audio book.
+4. You to to the app, go to this folder (book) you want to listen.
+5. Select all chapters and press download
+6. All downloaded chapters will appear in playlist tab.
+7. Enjoy!
+```
+
+## App Features
+
+```markdown
+- Downloading files for offline use
+- Easy playlist managment
+- Fast and lightweight 
+```
+
+### Development Features
+
+```markdown
+- Offline database
+- MVVM pattern
+```
+
+## Support or Contact
+
+Having trouble with QuickFile? Feel free to raise an issue in [issues](https://github.com/Yurssoft/QuickFile/issues) or contact me directly at yurii.boiko.s@gmail.com and I’ll help you sort it out.
+
