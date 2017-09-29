@@ -36,5 +36,5 @@ This is cool iOS app for listening your audio books from GoogleDrive.
 
 ## Support or Contact
 
-Having trouble with QuickFile? Feel free to raise an issue in [issues](https://github.com/Yurssoft/QuickFile/issues) or contact me directly at yurii.boiko.s@gmail.com and I’ll help you sort it out.
+Having trouble with QuickFile? Feel free to raise an issue in [issues](https://github.com/Yurssoft/QuickFile/issues) or contact me directly at yurii.boiko.s@gmail.com and I’ll help you sort it out. Additionally, you are welcome to create pull requests if know how to make this project better :)
 
