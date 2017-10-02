@@ -21,7 +21,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), firebase functions?, add spotlight search, add search in playlist, use codable instead of reflection, delete played files after 24 hours, display all files in drive and use document previewer for all files, what happens when no storage, make downloads in order, add tutorial screen, battery life
+//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), firebase functions?, add spotlight search, add search in playlist, use codable instead of reflection, delete played files after 24 hours, display all files in drive and use document previewer for all files, what happens when no storage, make downloads in order, add tutorial screen, battery life, remove all logs in settings
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
@@ -51,6 +51,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        startNSLogger()
         Reqres.logger = ReqresDefaultLogger()
         Reqres.register()
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for:.selected)
@@ -94,6 +95,18 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         })
         Log(.App, .Info, "Finished registering for notifications")
         return true
+    }
+    
+    private func startNSLogger()
+    {
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as NSString
+        let file = "\(path)/loggerdata" + UUID().uuidString + ".rawnsloggerdata"
+        let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+        
+        LoggerSetBufferFile(nil, file as CFString)
+        LoggerSetOptions(nil, UInt32(kLoggerOption_BufferLogsUntilConnection | kLoggerOption_BrowseBonjour | kLoggerOption_BrowseOnlyLocalDomain))
+        LoggerSetupBonjour(nil, nil, bundleName as CFString)
+        LoggerStart(nil)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool

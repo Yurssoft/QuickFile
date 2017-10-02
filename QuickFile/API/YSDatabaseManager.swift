@@ -223,9 +223,9 @@ class YSDatabaseManager
     
     private class func getAllFilesUrls() -> [URL]
     {
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let directoryContents = (try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])) ?? []
-        let allUrls = directoryContents.filter{ $0.pathExtension == "mp3" }
+        var allUrls = [URL]()
+        guard let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first, let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) else { return allUrls }
+        allUrls = directoryContents.filter{ $0.pathExtension == "mp3" }
         return allUrls
     }
     
