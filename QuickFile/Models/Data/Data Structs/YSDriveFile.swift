@@ -120,8 +120,8 @@ struct YSDriveFile : YSDriveFileProtocol
                 return nil
             }
             var fullPath = YSConstants.localFilePathForDownloadingFolder.appendingPathComponent(url.lastPathComponent)
-            fullPath = "\(fullPath).mp3"
-            return URL(fileURLWithPath:fullPath)
+            fullPath.appendPathExtension("mp3")
+            return fullPath
         }
         return nil
     }

@@ -38,11 +38,14 @@ struct YSConstants
     static let kCellHeight = CGFloat(50.0)
     static let kHeaderHeight = CGFloat(28.0)
     static let kPageSize = 100
+    static let kNumberOfLogsStored = 19
     static let kNoInternetSystemCode = -1009
     static let kDefaultBlueColor = UIColor(red:23/255.0, green:156/255.0, blue:209/255.0, alpha:1.0)
     static let kDefaultBarColor = UIColor(red:254/255.0, green:213/255.0, blue:165/255.0, alpha:1.0)
     static let kMessageDuration = SwiftMessages.Duration.automatic
-    static let localFilePathForDownloadingFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+    static let localFilePathForDownloadingFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let cacheFolder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    static let logsFolder = cacheFolder.appendingPathComponent("AppLogs")
 }
 
 enum YSErrorType

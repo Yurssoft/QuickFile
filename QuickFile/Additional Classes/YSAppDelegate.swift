@@ -99,14 +99,54 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     
     private func startNSLogger()
     {
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as NSString
-        let file = "\(path)/loggerdata" + UUID().uuidString + ".rawnsloggerdata"
-        let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+        let logsDirectory = YSConstants.logsFolder
+        do
+        {
+            try FileManager.default.createDirectory(atPath: logsDirectory.relativePath, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch let error as NSError
+        {
+            Log(.App, .Error, "Error creating directory: \(error.localizedDescription)")
+        }
+        removeOldestLogIfNeeded()
         
+        let file = "\(logsDirectory.relativePath)/NSLoggerData-" + UUID().uuidString + ".rawnsloggerdata"
         LoggerSetBufferFile(nil, file as CFString)
+        
         LoggerSetOptions(nil, UInt32(kLoggerOption_BufferLogsUntilConnection | kLoggerOption_BrowseBonjour | kLoggerOption_BrowseOnlyLocalDomain))
+        
+        let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
         LoggerSetupBonjour(nil, nil, bundleName as CFString)
         LoggerStart(nil)
+    }
+    
+    private func removeOldestLogIfNeeded()
+    {
+        DispatchQueue.global(qos: .utility).async
+        {
+            Log(.App, .Info, "removeOldestLogIfNeeded")
+            do
+            {
+                let urlArray = try FileManager.default.contentsOfDirectory(at: YSConstants.logsFolder, includingPropertiesForKeys: [.contentModificationDateKey], options:.skipsHiddenFiles)
+                if urlArray.count > YSConstants.kNumberOfLogsStored
+                {
+                    let fileUrlsSortedByDate = urlArray.map { url in
+                        (url, (try? url.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? Date.distantPast)
+                        }
+                        .sorted(by: { $0.1 > $1.1 }) // sort descending modification dates
+                        .map { $0.0 } // extract file urls
+                    if let oldestLogFileUrl = fileUrlsSortedByDate.last
+                    {
+                        try FileManager.default.removeItem(at: oldestLogFileUrl) // we delete the oldest log
+                        Log(.App, .Info, "Removed oldest log" + oldestLogFileUrl.relativePath)
+                    }
+                }
+            }
+            catch let error as NSError
+            {
+                Log(.App, .Error, "Error while working with logs folder contents \(error.localizedDescription)")
+            }
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
