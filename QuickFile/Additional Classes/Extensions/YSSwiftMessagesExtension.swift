@@ -17,6 +17,10 @@ extension SwiftMessages
         statusBarMessage.backgroundView.backgroundColor = UIColor.orange
         statusBarMessage.bodyLabel?.textColor = UIColor.white
         statusBarMessage.configureContent(body: error.message)
+        statusBarMessage.tapHandler =
+        { _ in
+            SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
+        }
         var messageConfig = defaultConfig
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
         messageConfig.preferredStatusBarStyle = .lightContent

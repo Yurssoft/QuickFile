@@ -34,7 +34,16 @@ class YSDriveSearchController : UITableViewController
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = [YSSearchSectionType.all.rawValue, YSSearchSectionType.files.rawValue, YSSearchSectionType.folders.rawValue]
         searchController.searchBar.delegate = self
-        tableView.tableHeaderView = searchController.searchBar
+        
+        if #available(iOS 11, *)
+        {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+        else
+        {
+            tableView.tableHeaderView = searchController.searchBar
+        }
         
         let bundle = Bundle(for: YSDriveFileTableViewCell.self)
         let nib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: bundle)

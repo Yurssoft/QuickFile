@@ -52,7 +52,10 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol
         {
             if !error.isEmpty()
             {
-                viewDelegate?.errorDidChange(viewModel: self, error: error)
+                DispatchQueue.main.async
+                {
+                    self.viewDelegate?.errorDidChange(viewModel: self, error: self.error)
+                }
             }
         }
     }
