@@ -43,6 +43,7 @@ class YSDriveSearchController : UITableViewController
         
         let footer = MJRefreshAutoNormalFooter.init
         { [weak self] () -> Void in
+            SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
             LogSearchSubdomain(.Controller, .Info, "Footer requested")
             guard let viewModel = self?.viewModel as? YSDriveSearchViewModel else
             {
@@ -235,6 +236,10 @@ extension YSDriveSearchController : UISearchResultsUpdating
         // Wrap our request to viewModel in a work item
         let requestWorkItem = DispatchWorkItem { [weak viewModel1] in
             guard let viewModel2 = viewModel1 else { return }
+            DispatchQueue.main.async
+            {
+                SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
+            }
             viewModel2.updateGlobalResults()
         }
         pendingRequestForSearchModel = requestWorkItem
@@ -255,6 +260,10 @@ extension YSDriveSearchController : UISearchBarDelegate
         // Wrap our request to viewModel in a work item
         let requestWorkItem = DispatchWorkItem { [weak viewModel1] in
             guard let viewModel2 = viewModel1 else { return }
+            DispatchQueue.main.async
+            {
+                SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
+            }
             viewModel2.updateGlobalResults()
         }
         pendingRequestForSearchModel = requestWorkItem

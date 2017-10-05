@@ -57,6 +57,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     {
         let footer = MJRefreshAutoNormalFooter.init
         { [weak self] () -> Void in
+            SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
             LogDriveSubdomain(.Controller, .Info, "Footer requested")
             guard let viewModel = self?.viewModel as? YSDriveViewModel, let isEditing = self?.isEditing, !isEditing else
             {
@@ -80,6 +81,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
         { [weak self] () -> Void in
+            SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)
             LogDriveSubdomain(.Controller, .Info, "Header requested")
             guard let viewModel = self?.viewModel as? YSDriveViewModel, let isEditing = self?.isEditing, !isEditing else
             {
