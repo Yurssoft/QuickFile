@@ -34,6 +34,7 @@ protocol YSUpdatingDelegate: class
  - display all files in drive and use document previewer for all files
  - what happens when no storage, make downloads in order
  - add tutorial screen, battery life
+ - fix search in search
  */
 
 @UIApplicationMain
