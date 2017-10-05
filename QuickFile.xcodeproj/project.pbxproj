@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50056EBA1F77DAFB008C981C /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072938E1F77DA81002A7C53 /* LNPopupController.framework */; };
-		50056EBB1F77DAFB008C981C /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5072938E1F77DA81002A7C53 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		500570491F78EB14008C981C /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5005701D1F78EB14008C981C /* MJRefreshAutoFooter.m */; };
 		5005704A1F78EB14008C981C /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5005701F1F78EB14008C981C /* MJRefreshBackFooter.m */; };
 		5005704B1F78EB14008C981C /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 500570211F78EB14008C981C /* MJRefreshComponent.m */; };
@@ -31,7 +29,8 @@
 		5005705C1F78EB14008C981C /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 500570481F78EB14008C981C /* UIView+MJExtension.m */; };
 		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
 		501DD30A1F852552008AA5C0 /* YSNSLoggerDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */; };
-		5068A1441F8619670063DA9D /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5068A1431F8619670063DA9D /* Cartfile */; };
+		505A142C1F861AEE00EC82B0 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 505A142B1F861AEE00EC82B0 /* Cartfile */; };
+		505A142E1F861B9500EC82B0 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505A142D1F861B9500EC82B0 /* LNPopupController.framework */; };
 		507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */; };
 		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
 		50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */; };
@@ -103,23 +102,6 @@
 		58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		50056EBC1F77DAFB008C981C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 39DB52E41B5823330061C589;
-			remoteInfo = LNPopupController;
-		};
-		5072938D1F77DA81002A7C53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 39DB52E51B5823330061C589;
-			remoteInfo = LNPopupController;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		50CBD1561E1D0842006789EF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -127,7 +109,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50056EBB1F77DAFB008C981C /* LNPopupController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,9 +160,9 @@
 		500570481F78EB14008C981C /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSLoggerDecorator.swift; sourceTree = "<group>"; };
-		5068A1431F8619670063DA9D /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		505A142B1F861AEE00EC82B0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		505A142D1F861B9500EC82B0 /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
-		507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = SOURCE_ROOT; };
 		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConverting.swift; sourceTree = "<group>"; };
@@ -263,8 +244,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505A142E1F861B9500EC82B0 /* LNPopupController.framework in Frameworks */,
 				58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */,
-				50056EBA1F77DAFB008C981C /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,22 +353,14 @@
 				50E562231E71BA90004E47A2 /* Info.plist */,
 				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
 				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
-				5068A1431F8619670063DA9D /* Cartfile */,
 			);
 			path = Plists;
-			sourceTree = "<group>";
-		};
-		5072938A1F77DA81002A7C53 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5072938E1F77DA81002A7C53 /* LNPopupController.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		50AB0DAD1D8FF242008EDB0D = {
 			isa = PBXGroup;
 			children = (
+				505A142B1F861AEE00EC82B0 /* Cartfile */,
 				6AE4711898AD76DF85E73D3E /* Frameworks */,
 				77BC85D60FDCB8FE1D7F7AC3 /* Pods */,
 				50AB0DB71D8FF242008EDB0D /* Products */,
@@ -408,7 +381,6 @@
 			children = (
 				500570191F78E065008C981C /* QuickFile-Bridging-Header.h */,
 				5005701A1F78EB14008C981C /* MJRefresh */,
-				507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */,
 				50E5622D1E71BA90004E47A2 /* API */,
 				50E562211E71BA90004E47A2 /* Additional Classes */,
 				50E562351E71BA90004E47A2 /* Controllers */,
@@ -590,6 +562,7 @@
 		6AE4711898AD76DF85E73D3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				505A142D1F861B9500EC82B0 /* LNPopupController.framework */,
 				700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */,
 			);
 			name = Frameworks;
@@ -622,11 +595,11 @@
 				502578121DC3513300C6EFFF /* ShellScript */,
 				507016191DEDE56400A7CAEF /* ShellScript */,
 				50CBD1561E1D0842006789EF /* Embed Frameworks */,
+				505A142F1F861BD000EC82B0 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				50056EBD1F77DAFB008C981C /* PBXTargetDependency */,
 			);
 			name = QuickFile;
 			productName = YSGGP;
@@ -672,12 +645,6 @@
 			mainGroup = 50AB0DAD1D8FF242008EDB0D;
 			productRefGroup = 50AB0DB71D8FF242008EDB0D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5072938A1F77DA81002A7C53 /* Products */;
-					ProjectRef = 507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				50AB0DB51D8FF242008EDB0D /* QuickFile */,
@@ -685,22 +652,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		5072938E1F77DA81002A7C53 /* LNPopupController.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LNPopupController.framework;
-			remoteRef = 5072938D1F77DA81002A7C53 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		50AB0DB41D8FF242008EDB0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5068A1441F8619670063DA9D /* Cartfile in Resources */,
+				505A142C1F861AEE00EC82B0 /* Cartfile in Resources */,
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
 				507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */,
 				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
@@ -758,6 +715,21 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:8ba3fc0bed298ebc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional Classes/ServiceAccount.json\"";
+		};
+		505A142F1F861BD000EC82B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LNPopupController.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LNPopupController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		507016191DEDE56400A7CAEF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -879,14 +851,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		50056EBD1F77DAFB008C981C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LNPopupController;
-			targetProxy = 50056EBC1F77DAFB008C981C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		50E562671E71BA90004E47A2 /* LaunchScreen.storyboard */ = {
@@ -1017,6 +981,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1040,6 +1008,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
