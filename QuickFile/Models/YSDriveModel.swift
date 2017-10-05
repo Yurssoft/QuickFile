@@ -45,7 +45,10 @@ class YSDriveModel: YSDriveModelProtocol
             {
                 if nextPageToken != nil
                 {
-                    completionHandler([], yserror, nil)
+                    DispatchQueue.main.async
+                    {
+                        completionHandler([], yserror, nil)
+                    }
                     return
                 }
                 YSDatabaseManager.offlineFiles(fileDriveIdentifier: folder.folderID, yserror, completionHandler)
