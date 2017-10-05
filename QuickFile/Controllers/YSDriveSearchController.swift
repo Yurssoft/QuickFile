@@ -163,7 +163,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol)
     {
-        LogSearchSubdomain(.Controller, .Info, "")
+        LogSearchSubdomain(.Controller, .Info, "Error: message: " + error.message + " debug message" + error.debugInfo)
         if error.isNoInternetError()
         {
             SwiftMessages.showNoInternetError(error)
@@ -186,7 +186,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier : String)
     {
-        LogSearchSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
+        LogSearchSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier + " Error: message: " + error.message + " debug message" + error.debugInfo)
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {

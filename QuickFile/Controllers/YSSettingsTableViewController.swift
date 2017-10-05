@@ -77,6 +77,7 @@ class YSSettingsTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        LogSettingsSubdomain(.Controller, .Info, "Index: \(indexPath.row)")
         if let cell = tableView.cellForRow(at: indexPath), let identifier = cell.reuseIdentifier, let viewModel = viewModel
         {
             switch identifier
@@ -109,11 +110,13 @@ class YSSettingsTableViewController: UITableViewController
     
     func loginToDrive()
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         GIDSignIn.sharedInstance().signInSilently()
     }
     
     func deleteAllDownloads()
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         let alertController = UIAlertController(title: "Delete all downloads?", message: "This will delete all local copies. This operation cannot be undone.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -130,6 +133,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func deletePlayedDownloads()
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         let alertController = UIAlertController(title: "Delete all played downloads?", message: "This will delete already played local copies. This operation cannot be undone.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -147,6 +151,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func deleteAllMetadata()
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         let alertController = UIAlertController(title: "Delete all metadata", message: "This will delete ALL database metadata and local file copies. This operation cannot be undone.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -163,6 +168,7 @@ class YSSettingsTableViewController: UITableViewController
     
     func logOutFromDrive()
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         let alertController = UIAlertController(title: "Log Out?", message: "If you log out you won't be able to download songs.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -183,19 +189,20 @@ extension YSSettingsTableViewController : GIDSignInUIDelegate
 {
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         signIn.scopes = YSConstants.kDriveScopes
     }
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
     {
-        Log(.Controller, .Info, self.nameOfClass + ": present signIn viewController")
+        LogSettingsSubdomain(.Controller, .Info, "")
         signIn.scopes = YSConstants.kDriveScopes
         present(viewController, animated: true, completion: nil)
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
-        Log(.Controller, .Info, self.nameOfClass + ": dismiss signIn viewController")
+        LogSettingsSubdomain(.Controller, .Info, "")
         signIn.scopes = YSConstants.kDriveScopes
         dismiss(animated: true)
     }
@@ -210,7 +217,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
             let errorString = error.localizedDescription
             
             //could not sign in silently, call explicit sign in
-            Log(.Controller, .Error, "Error signing in \(error)")
+            LogSettingsSubdomain(.Controller, .Error, "Error signing in \(error)")
             if errorString.contains("error -4") || errorString.contains("couldn’t be completed") || errorString.contains("-4")
             {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
@@ -239,7 +246,7 @@ extension YSSettingsTableViewController : GIDSignInDelegate
                                                           accessToken: (authentication?.accessToken)!)
         Auth.auth().signIn(with: credential)
         { [weak self] (user, error) in
-            Log(.Controller, .Error, "User signed in \(user.debugDescription)")
+            LogSettingsSubdomain(.Controller, .Info, "User signed in \(user.debugDescription), error \(String(describing: error?.localizedDescription))")
             guard let sself = self else { return }
             let messageLoggedIn = YSError(errorType: YSErrorType.loggedInToToDrive, messageType: Theme.success, title: "Success", message: "Logged in to Drive", buttonTitle: "GOT IT", debugInfo: "")
             sself.errorDidChange(viewModel: sself.viewModel!, error: messageLoggedIn)
@@ -252,6 +259,7 @@ extension YSSettingsTableViewController : YSSettingsViewModelViewDelegate
 {
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
     {
+        LogSettingsSubdomain(.Controller, .Info, "Error: message: " + error.message + " debug message" + error.debugInfo)
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {

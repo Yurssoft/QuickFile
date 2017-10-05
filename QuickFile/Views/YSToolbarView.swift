@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreGraphics
+import NSLogger
 
 protocol YSToolbarViewDelegate : class
 {
@@ -51,16 +52,19 @@ protocol YSToolbarViewDelegate : class
     
     @IBAction func selectAllTapped(_ sender: UIButton)
     {
+        Log(.View, .Info, #function)
         ysToolbarDelegate?.selectAllButtonTapped(toolbar: self)
     }
     
     @IBAction func downloadTapped(_ sender: UIButton)
     {
+        Log(.View, .Info, #function)
         ysToolbarDelegate?.downloadButtonTapped(toolbar: self)
     }
     
     @IBAction func deleteTapped(_ sender: UIButton)
     {
+        Log(.View, .Info, #function)
         ysToolbarDelegate?.deleteButtonTapped(toolbar: self)
     }
     

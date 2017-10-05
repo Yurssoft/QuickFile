@@ -55,17 +55,18 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
     func configurePullToRefresh()
     {
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
-            { [weak self] () -> Void in
-                self?.getFiles()
+        { [weak self] () -> Void in
+            LogPlaylistSubdomain(.Controller, .Info, "Requested refresh")
+            self?.getFiles()
         })
     }
     
     func getFiles()
     {
         viewModel?.getFiles(completion:
-            { [weak self] _ in
-                        self?.tableView.mj_header.endRefreshing()
-                        self?.tableView.reloadData()
+        { [weak self] _ in
+            self?.tableView.mj_header.endRefreshing()
+            self?.tableView.reloadData()
         })
     }
     
@@ -138,6 +139,7 @@ extension YSPlaylistViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        LogPlaylistSubdomain(.Controller, .Info, "")
         viewModel?.useFile(at: indexPath.section, file: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -160,6 +162,7 @@ extension YSPlaylistViewController : YSPlayerDelegate
 {
     func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
     {
+        LogPlaylistSubdomain(.Controller, .Info, "")
         guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
         for indexPath in indexPaths
         {
@@ -186,6 +189,7 @@ extension YSPlaylistViewController : YSPlaylistViewModelViewDelegate
 {
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol)
     {
+        LogPlaylistSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         {
             [weak self] in self?.tableView.reloadData()

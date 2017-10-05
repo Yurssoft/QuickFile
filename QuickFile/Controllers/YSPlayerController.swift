@@ -57,16 +57,19 @@ class YSPlayerController: UIViewController
     
     @IBAction func nextTapped(_ sender: UIButton)
     {
+        LogPlayerSubdomain(.Controller, .Info, "")
         viewModel?.next()
     }
     
     @IBAction func previousTapped(_ sender: UIButton)
     {
+        LogPlayerSubdomain(.Controller, .Info, "")
         viewModel?.previous()
     }
     
     @IBAction func playPauseTapped(_ sender: UIButton)
     {
+        LogPlayerSubdomain(.Controller, .Info, "")
         viewModel?.togglePlayPause()
     }
     
@@ -152,6 +155,7 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
 {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     {
+        LogPlayerSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         {
             self.updatePopubButtons()

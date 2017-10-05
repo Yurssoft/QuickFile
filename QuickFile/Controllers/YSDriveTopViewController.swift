@@ -75,11 +75,13 @@ class YSDriveTopViewController: UIViewController
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         driveVC?.viewModel?.driveViewControllerDidRequestedSearch()
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         guard let driveVC = driveVC else { return }
         driveVC.selectedIndexes.removeAll()
         driveVC.setEditing(!driveVC.isEditing, animated: true)
@@ -90,6 +92,7 @@ class YSDriveTopViewController: UIViewController
     
     func loginButtonTapped(_ sender: AnyObject)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         driveVC?.loginButtonTapped(sender as! UIBarButtonItem)
     }
     

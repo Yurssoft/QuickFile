@@ -25,6 +25,7 @@ class YSSettingsTopViewController: UIViewController
     
     @IBAction func refreshSettings(_ sender: UIBarButtonItem)
     {
+        LogSettingsSubdomain(.Controller, .Info, "")
         settingsVC.tableView.reloadData()
     }
     

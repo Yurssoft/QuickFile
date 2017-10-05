@@ -57,13 +57,16 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     {
         let footer = MJRefreshAutoNormalFooter.init
         { [weak self] () -> Void in
+            LogDriveSubdomain(.Controller, .Info, "Footer requested")
             guard let viewModel = self?.viewModel as? YSDriveViewModel, let isEditing = self?.isEditing, !isEditing else
             {
+                LogDriveSubdomain(.Controller, .Info, "Footer cancelled, no model or editing")
                 self?.tableView.mj_footer.endRefreshing()
                 return
             }
             viewModel.getNextPartOfFiles
             { [weak viewModel] in
+                LogDriveSubdomain(.Controller, .Info, "Footer finished with data")
                 guard let viewModel = viewModel, viewModel.allPagesDownloaded else
                 {
                     self?.tableView.mj_footer.endRefreshing()
@@ -77,13 +80,16 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
         { [weak self] () -> Void in
+            LogDriveSubdomain(.Controller, .Info, "Header requested")
             guard let viewModel = self?.viewModel as? YSDriveViewModel, let isEditing = self?.isEditing, !isEditing else
             {
+                LogDriveSubdomain(.Controller, .Info, "Header cancelled, no model or editing")
                 self?.tableView.mj_header.endRefreshing()
                 return
             }
             viewModel.refreshFiles
             {
+                LogDriveSubdomain(.Controller, .Info, "Header finished with data")
                 self?.tableView.mj_header.endRefreshing()
                 //set state to idle to have opportunity to fetch more data after user scrolled to bottom
                 self?.tableView.mj_footer.state = .idle
@@ -107,16 +113,19 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     
     func deleteToolbarButtonTapped(_ sender: UIBarButtonItem)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         viewModel?.removeDownloads()
     }
     
     func loginButtonTapped(_ sender: UIBarButtonItem)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         viewModel?.loginToDrive()
     }
     
     func refreshDisplay()
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         if (viewIfLoaded != nil)
         {
             tableView.reloadData()
@@ -167,6 +176,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        LogDriveSubdomain(.Controller, .Info, "Index: \(indexPath.row)")
         if isEditing
         {
             if !isFileAudio(at: indexPath)
@@ -184,6 +194,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
     {
+        LogDriveSubdomain(.Controller, .Info, "Index: \(indexPath.row)")
         if isEditing
         {
             if !isFileAudio(at: indexPath)
@@ -214,11 +225,13 @@ extension YSDriveViewController: YSDriveFileTableViewCellDelegate
 {
     func downloadButtonPressed(_ fileDriveIdentifier: String)
     {
+        LogDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
         viewModel?.download(fileDriveIdentifier)
     }
     
     func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
     {
+        LogDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
         viewModel?.stopDownloading(fileDriveIdentifier)
     }
 }
@@ -227,6 +240,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
 {
     func filesDidChange(viewModel: YSDriveViewModelProtocol)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         {
             [weak self] in self?.tableView.reloadData()
@@ -235,6 +249,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     {
+        LogDriveSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         { [weak self] in
             self?.navigationController?.setIndeterminate(viewModel.isDownloadingMetadata)
@@ -247,6 +262,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
     {
+        LogDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier + " Error: message: " + error.message + " debug message" + error.debugInfo)
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
@@ -269,6 +285,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     {
+        LogDriveSubdomain(.Controller, .Info, "File id: " + " Error: message: " + error.message + " debug message" + error.debugInfo)
         if error.isNoInternetError()
         {
             SwiftMessages.showNoInternetError(error)
@@ -306,6 +323,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
     {
+        LogDriveSubdomain(.Controller, .Info, "Inex: \(index)")
         DispatchQueue.main.async
         {
             let indexPath = IndexPath.init(row: index, section: 0)
@@ -315,6 +333,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate
     
     func reloadFileDownload(at index: Int, viewModel: YSDriveViewModelProtocol)
     {
+        LogDriveSubdomain(.Controller, .Info, "Inex: \(index)")
         DispatchQueue.main.async
         {
             let indexPath = IndexPath.init(row: index, section: 0)
