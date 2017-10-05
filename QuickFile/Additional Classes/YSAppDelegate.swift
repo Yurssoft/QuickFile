@@ -21,7 +21,20 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-//TODO: search add loading indicator, show all downloads in playlist, logged as, download wifi only (allowsCellularAccess), firebase functions?, add spotlight search, add search in playlist, use codable instead of reflection, delete played files after 24 hours, display all files in drive and use document previewer for all files, what happens when no storage, make downloads in order, add tutorial screen, battery life, remove all logs in settings
+/*TODO:
+ - search add loading indicator
+ - show all downloads in playlist
+ - logged as
+ - download wifi only (allowsCellularAccess)
+ - firebase functions?
+ - add spotlight search
+ - add search in playlist
+ - use codable instead of reflection
+ - delete played files after 24 hours
+ - display all files in drive and use document previewer for all files
+ - what happens when no storage, make downloads in order
+ - add tutorial screen, battery life
+ */
 
 @UIApplicationMain
 class YSAppDelegate: UIResponder, UIApplicationDelegate
@@ -41,7 +54,6 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     weak var playlistDelegate: YSUpdatingDelegate?
     weak var playerDelegate: YSUpdatingDelegate?
     weak var driveDelegate: YSUpdatingDelegate?
-    
     
     override init()
     {
