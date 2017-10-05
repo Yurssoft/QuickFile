@@ -7,7 +7,6 @@
 //
 
 import Reqres
-import NSLogger
 
 open class ReqresDefaultLogger: ReqresLogging {
     
@@ -15,19 +14,19 @@ open class ReqresDefaultLogger: ReqresLogging {
     
     open func logVerbose(_ message: String) {
         #if DEBUG
-            Log(.Network, .Info, message)
+            LogDefault(.Network, .Info, message)
         #endif
     }
     
     open func logLight(_ message: String) {
         #if DEBUG
-            Log(.Network, .Info, message)
+            LogDefault(.Network, .Info, message)
         #endif
     }
     
     open func logError(_ message: String) {
         #if DEBUG
-            Log(.Network, .Info, message)
+            LogDefault(.Network, .Info, message)
         #endif
     }
 }

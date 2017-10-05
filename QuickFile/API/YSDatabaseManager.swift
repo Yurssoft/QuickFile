@@ -9,7 +9,6 @@
 import Foundation
 import Firebase
 import SwiftMessages
-import NSLogger
 
 class YSDatabaseManager
 {
@@ -356,7 +355,7 @@ class YSDatabaseManager
                     }
                     else
                     {
-                        Log(.DB, .Error, "Something wrong with dbFile : \(databaseFile)")
+                        LogDefault(.DB, .Error, "Something wrong with dbFile : \(databaseFile)")
                     }
                 }
                 ref.child("files/\(file.fileDriveIdentifier)").setValue(updatedFile)

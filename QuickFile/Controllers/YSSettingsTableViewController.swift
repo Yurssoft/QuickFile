@@ -10,7 +10,6 @@ import UIKit
 import SwiftMessages
 import GoogleSignIn
 import Firebase
-import NSLogger
 
 class YSSettingsTableViewController: UITableViewController
 {
@@ -176,7 +175,7 @@ class YSSettingsTableViewController: UITableViewController
         
         let destroyAction = UIAlertAction(title: "Log Out", style: .destructive)
         { (action) in
-            Log(.Controller, .Info, "logOut")
+            LogSettingsSubdomain(.Controller, .Info, "")
             self.viewModel?.logOut()
         }
         alertController.addAction(destroyAction)

@@ -74,11 +74,11 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().signInSilently()
         
-        Log(.App, .Info, "FIRApp, GIDSignIn - configured")
+        LogDefault(.App, .Info, "FIRApp, GIDSignIn - configured")
         
         lookUpAllFilesOnDisk()
         
-        Log(.App, .Info, "looked Up All Files On Disk")
+        LogDefault(.App, .Info, "looked Up All Files On Disk")
         
 //        YSDatabaseManager.deleteDatabase { (error) in
 //            //TODO: REMOVES DATABASE
@@ -92,7 +92,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
 //            }
 //        }
         
-        Log(.App, .Info, "Register for notifications")
+        LogDefault(.App, .Info, "Register for notifications")
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization( options: authOptions, completionHandler: { (granted, error) in
@@ -105,7 +105,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
                 }
             }
         })
-        Log(.App, .Info, "Finished registering for notifications")
+        LogDefault(.App, .Info, "Finished registering for notifications")
         return true
     }
     
@@ -118,7 +118,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         }
         catch let error as NSError
         {
-            Log(.App, .Error, "Error creating directory: \(error.localizedDescription)")
+            LogDefault(.App, .Error, "Error creating directory: \(error.localizedDescription)")
         }
         removeOldestLogIfNeeded()
         
@@ -136,7 +136,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     {
         DispatchQueue.global(qos: .utility).async
         {
-            Log(.App, .Info, "removeOldestLogIfNeeded")
+            LogDefault(.App, .Info, "removeOldestLogIfNeeded")
             do
             {
                 let urlArray = try FileManager.default.contentsOfDirectory(at: YSConstants.logsFolder, includingPropertiesForKeys: [.contentModificationDateKey], options:.skipsHiddenFiles)
@@ -150,13 +150,13 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
                     if let oldestLogFileUrl = fileUrlsSortedByDate.last
                     {
                         try FileManager.default.removeItem(at: oldestLogFileUrl) // we delete the oldest log
-                        Log(.App, .Info, "Removed oldest log: " + oldestLogFileUrl.relativePath)
+                        LogDefault(.App, .Info, "Removed oldest log: " + oldestLogFileUrl.relativePath)
                     }
                 }
             }
             catch let error as NSError
             {
-                Log(.App, .Error, "Error while working with logs folder contents \(error.localizedDescription)")
+                LogDefault(.App, .Error, "Error while working with logs folder contents \(error.localizedDescription)")
             }
         }
     }
@@ -172,19 +172,19 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        Log(.App, .Info, "")
+        LogDefault(.App, .Info, "")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        Log(.App, .Info, "")
+        LogDefault(.App, .Info, "")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        Log(.App, .Info, "")
+        LogDefault(.App, .Info, "")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        Log(.App, .Info, "")
+        LogDefault(.App, .Info, "")
     }
     
     class func appDelegate() -> YSAppDelegate
@@ -202,11 +202,11 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
             return String(format: "%02.2hhx", data)
         }
         let token = tokenParts.joined()
-        Log(.App, .Info, "Successfully registered for notifications. Device Token: \(token)")
+        LogDefault(.App, .Info, "Successfully registered for notifications. Device Token: \(token)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        Log(.App, .Info, "Failed to register: \(error)")
+        LogDefault(.App, .Info, "Failed to register: \(error)")
     }
     
 //    {
@@ -219,7 +219,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
         
         let aps = userInfo["aps"] as! [String: AnyObject]
         
-        Log(.App, .Info, "Recieved remote silent notification: \(aps)")
+        LogDefault(.App, .Info, "Recieved remote silent notification: \(aps)")
         if aps["content-available"] as? Int == 1 {
             completionHandler(.newData)
         } else {
@@ -240,7 +240,7 @@ extension YSAppDelegate : UNUserNotificationCenterDelegate
     //recieves push notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        Log(.App, .Info, "Recieved push notification: \(response.notification.request.content.userInfo)")
+        LogDefault(.App, .Info, "Recieved push notification: \(response.notification.request.content.userInfo)")
         let userInfo = response.notification.request.content.userInfo
         let aps = userInfo["aps"] as! [String: AnyObject]
         

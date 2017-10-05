@@ -38,3 +38,9 @@ public func LogSettingsSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _
 {
     Log(domain, level, "-Settings: " + fnName + " " + format)
 }
+
+public func LogDefault(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                                 _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
+{
+    Log(domain, level, fnName + " :  " + format)
+}

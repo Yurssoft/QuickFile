@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NSLogger
 
 private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, originalSelector, swizzledSelector in
     let originalMethod = class_getInstanceMethod(forClass, originalSelector)
@@ -33,16 +32,16 @@ extension UIViewController {
     
     func swizzled_viewDidLoad() {
         swizzled_viewDidLoad()
-        Log(.Controller, .Info, self.nameOfClass + ": viewDidLoad()")
+        LogDefault(.Controller, .Info, self.nameOfClass + ": viewDidLoad()")
     }
     
     func swizzled_viewDidAppear() {
         swizzled_viewDidAppear()
-        Log(.Controller, .Info, self.nameOfClass + ": viewDidAppear()")
+        LogDefault(.Controller, .Info, self.nameOfClass + ": viewDidAppear()")
     }
     
     func swizzled_viewDidDisappear() {
         swizzled_viewDidDisappear()
-        Log(.Controller, .Info, self.nameOfClass + ": viewDidDisappear()")
+        LogDefault(.Controller, .Info, self.nameOfClass + ": viewDidDisappear()")
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NSLogger
 
 struct YSDriveFile : YSDriveFileProtocol
 {
@@ -85,7 +84,7 @@ struct YSDriveFile : YSDriveFileProtocol
             fileSize = dict.fileSize()
             self.fileSize = String(fileSize)
         } catch {
-            Log(.Model, .Error, "Error creating file path: \(error)")
+            LogDefault(.Model, .Error, "Error creating file path: \(error)")
         }
         return fileSize
     }

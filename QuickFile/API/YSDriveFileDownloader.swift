@@ -10,7 +10,6 @@ import UIKit
 import SwiftMessages
 import Firebase
 import ReachabilitySwift
-import NSLogger
 
 class YSDriveFileDownloader : NSObject
 {
@@ -83,7 +82,7 @@ class YSDriveFileDownloader : NSObject
     {
         if YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier) || downloads[fileDriveIdentifier] != nil
         {
-            Log(.Network, .Error, "Error downloading file:  local file exists or file is already in downloading queue")
+            LogDefault(.Network, .Error, "Error downloading file:  local file exists or file is already in downloading queue")
             return
         }
         var download = YSDownload(fileDriveIdentifier: fileDriveIdentifier)
@@ -153,19 +152,19 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             catch let error as NSError
             {
-                Log(.Network, .Error, "Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
+                LogDefault(.Network, .Error, "Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
             }
             
             do
             {
                 try fileManager.copyItem(at: location, to: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
-                Log(.Network, .Info, "Copied file to disk")
+                LogDefault(.Network, .Info, "Copied file to disk")
                 YSAppDelegate.appDelegate().filesOnDisk.insert(currentFileIdentifier)
             }
             catch let error as NSError
             {
                 try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
-                Log(.Network, .Error, "Could not copy file to disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
+                LogDefault(.Network, .Error, "Could not copy file to disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(currentFileIdentifier)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 

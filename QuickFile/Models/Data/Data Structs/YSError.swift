@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftMessages
-import NSLogger
 
 struct YSError : YSErrorProtocol
 {
@@ -52,7 +51,7 @@ struct YSError : YSErrorProtocol
         self.systemCode = systemCode
         if !debugInfo.isEmpty
         {
-            Log(.Model, .Info, "debug info : \(debugInfo)")
+            LogDefault(.Model, .Info, "debug info : \(debugInfo)")
         }
     }
     
