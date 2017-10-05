@@ -43,13 +43,16 @@ class YSDriveSearchController : UITableViewController
         
         let footer = MJRefreshAutoNormalFooter.init
         { [weak self] () -> Void in
+            LogSearchSubdomain(.Controller, .Info, "Footer requested")
             guard let viewModel = self?.viewModel as? YSDriveSearchViewModel else
             {
+                LogSearchSubdomain(.Controller, .Info, "Footer cancelled, no model")
                 self?.tableView.mj_footer.endRefreshing()
                 return
             }
             viewModel.getNextPartOfFiles
             { [weak viewModel] in
+                LogSearchSubdomain(.Controller, .Info, "Footer finished with data")
                 guard let viewModel = viewModel, viewModel.allPagesDownloaded else
                 {
                     self?.tableView.mj_footer.endRefreshing()
@@ -71,6 +74,7 @@ class YSDriveSearchController : UITableViewController
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem)
     {
         navigationController?.dismiss(animated: true)
+        LogSearchSubdomain(.Controller, .Info, "")
         viewModel?.searchViewControllerDidFinish()
     }
     
@@ -112,6 +116,7 @@ class YSDriveSearchController : UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        LogSearchSubdomain(.Controller, .Info, "Row: \(indexPath.row)")
         searchController.isActive = false
         viewModel?.useFile(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -122,11 +127,13 @@ extension YSDriveSearchController : YSDriveFileTableViewCellDelegate
 {
     func downloadButtonPressed(_ fileDriveIdentifier: String)
     {
+        LogSearchSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
         viewModel?.download(fileDriveIdentifier)
     }
     
     func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
     {
+        LogSearchSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
         viewModel?.stopDownloading(fileDriveIdentifier)
     }
 }
@@ -135,6 +142,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
 {
     func filesDidChange(viewModel: YSDriveSearchViewModelProtocol)
     {
+        LogSearchSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         {
             self.tableView.reloadData()
@@ -143,6 +151,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func metadataDownloadStatusDidChange(viewModel: YSDriveSearchViewModelProtocol)
     {
+        LogSearchSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async
         {
             if !viewModel.isDownloadingMetadata && !viewModel.allPagesDownloaded
@@ -154,6 +163,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func errorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol)
     {
+        LogSearchSubdomain(.Controller, .Info, "")
         if error.isNoInternetError()
         {
             SwiftMessages.showNoInternetError(error)
@@ -176,6 +186,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier : String)
     {
+        LogSearchSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
         let message = SwiftMessages.createMessage(error)
         switch error.errorType
         {
@@ -198,6 +209,7 @@ extension YSDriveSearchController : YSDriveSearchViewModelViewDelegate
     
     func reloadFileDownload(at index: Int, viewModel: YSDriveSearchViewModelProtocol)
     {
+        LogSearchSubdomain(.Controller, .Info, "Index: \(index)")
         DispatchQueue.main.async
         {
             let indexPath = IndexPath.init(row: index, section: 0)
@@ -218,6 +230,7 @@ extension YSDriveSearchController : UISearchResultsUpdating
         pendingRequestForSearchModel?.cancel()
         guard let viewModel1 = viewModel as? YSDriveSearchViewModel, let searchText = searchController.searchBar.text, searchText.characters.count > 1 else { return }
         viewModel1.searchTerm = searchText
+        LogSearchSubdomain(.Controller, .Info, "Search text: " + searchText)
         viewModel1.updateLocalResults()
         // Wrap our request to viewModel in a work item
         let requestWorkItem = DispatchWorkItem { [weak viewModel1] in
@@ -236,6 +249,7 @@ extension YSDriveSearchController : UISearchBarDelegate
         pendingRequestForSearchModel?.cancel()
         let section = YSSearchSectionType(rawValue: searchBar.scopeButtonTitles![selectedScope])
         guard let sectionType = section, let viewModel1 = viewModel as? YSDriveSearchViewModel else { return }
+        LogSearchSubdomain(.Controller, .Info, "Section type: \(sectionType)")
         viewModel1.sectionType = sectionType
         viewModel1.updateLocalResults()
         // Wrap our request to viewModel in a work item

@@ -30,9 +30,11 @@
 		5005705B1F78EB14008C981C /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 500570461F78EB14008C981C /* UIScrollView+MJRefresh.m */; };
 		5005705C1F78EB14008C981C /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 500570481F78EB14008C981C /* UIView+MJExtension.m */; };
 		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
-		507293871F77D43A002A7C53 /* ViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */; };
+		501DD30A1F852552008AA5C0 /* YSNSLoggerDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */; };
+		5068A1441F8619670063DA9D /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5068A1431F8619670063DA9D /* Cartfile */; };
+		507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */; };
 		507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507D740C1F30ADB300A3045B /* GoogleService-Info.plist */; };
-		50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* Converting.swift */; };
+		50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */; };
 		50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 50E562241E71BA90004E47A2 /* ServiceAccount.json */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
 		50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562271E71BA90004E47A2 /* YSConstants.swift */; };
@@ -97,7 +99,7 @@
 		50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E562701E71BA90004E47A2 /* YSToolbarView.xib */; };
 		50EC7AB71F4DAEEF00315985 /* YSClassExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */; };
 		50EC7ABB1F4F692A00315985 /* YSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */; };
-		50F4F4371F644EA000CB9646 /* SwiftMessagesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F4F4361F644EA000CB9646 /* SwiftMessagesExtension.swift */; };
+		50F4F4371F644EA000CB9646 /* YSSwiftMessagesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F4F4361F644EA000CB9646 /* YSSwiftMessagesExtension.swift */; };
 		58437EB2B086D3F33BB34816 /* Pods_QuickFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */; };
 /* End PBXBuildFile section */
 
@@ -176,11 +178,13 @@
 		500570471F78EB14008C981C /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		500570481F78EB14008C981C /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
-		507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
+		501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSLoggerDecorator.swift; sourceTree = "<group>"; };
+		5068A1431F8619670063DA9D /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
 		507293891F77DA81002A7C53 /* LNPopupController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNPopupController.xcodeproj; path = LNPopupController/LNPopupController/LNPopupController.xcodeproj; sourceTree = SOURCE_ROOT; };
 		507D740C1F30ADB300A3045B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50B1C4A31ED7F85D009B11B5 /* Converting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converting.swift; sourceTree = "<group>"; };
+		50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConverting.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562241E71BA90004E47A2 /* ServiceAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		50E562261E71BA90004E47A2 /* YSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
@@ -247,7 +251,7 @@
 		50E562711E71BA90004E47A2 /* QuickFile.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = QuickFile.entitlements; sourceTree = "<group>"; };
 		50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSClassExtension.swift; sourceTree = "<group>"; };
 		50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSStringExtension.swift; sourceTree = "<group>"; };
-		50F4F4361F644EA000CB9646 /* SwiftMessagesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMessagesExtension.swift; sourceTree = "<group>"; };
+		50F4F4361F644EA000CB9646 /* YSSwiftMessagesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSwiftMessagesExtension.swift; sourceTree = "<group>"; };
 		700D140BB4D9E31A8E2DCCFB /* Pods_QuickFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B8E9930D6644F431BFC63B /* Pods-YSGGP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSGGP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSGGP/Pods-YSGGP.release.xcconfig"; sourceTree = "<group>"; };
 		B5721FD85E43A7A23A3C32CC /* Pods-QuickFile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickFile/Pods-QuickFile.debug.xcconfig"; sourceTree = "<group>"; };
@@ -362,6 +366,17 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		501DD3081F851FC1008AA5C0 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				50E562231E71BA90004E47A2 /* Info.plist */,
+				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
+				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
+				5068A1431F8619670063DA9D /* Cartfile */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
 		5072938A1F77DA81002A7C53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,15 +424,14 @@
 		50E562211E71BA90004E47A2 /* Additional Classes */ = {
 			isa = PBXGroup;
 			children = (
+				501DD3081F851FC1008AA5C0 /* Plists */,
 				50F4F4351F644E1000CB9646 /* Extensions */,
-				50B1C4A31ED7F85D009B11B5 /* Converting.swift */,
-				507D740C1F30ADB300A3045B /* GoogleService-Info.plist */,
-				50E562231E71BA90004E47A2 /* Info.plist */,
+				50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */,
 				501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */,
-				50E562241E71BA90004E47A2 /* ServiceAccount.json */,
 				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
 				50E562271E71BA90004E47A2 /* YSConstants.swift */,
 				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
+				501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */,
 			);
 			path = "Additional Classes";
 			sourceTree = "<group>";
@@ -561,8 +575,8 @@
 		50F4F4351F644E1000CB9646 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				50F4F4361F644EA000CB9646 /* SwiftMessagesExtension.swift */,
-				507293861F77D43A002A7C53 /* ViewControllerLoggingExtension.swift */,
+				50F4F4361F644EA000CB9646 /* YSSwiftMessagesExtension.swift */,
+				507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */,
 				50EC7AB61F4DAEEF00315985 /* YSClassExtension.swift */,
 				50E562281E71BA90004E47A2 /* YSDateExtension.swift */,
 				50E562291E71BA90004E47A2 /* YSDictionaryExtension.swift */,
@@ -686,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5068A1441F8619670063DA9D /* Cartfile in Resources */,
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
 				507D740D1F30ADB300A3045B /* GoogleService-Info.plist in Resources */,
 				50E562741E71BA90004E47A2 /* ServiceAccount.json in Resources */,
@@ -779,7 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50B1C4A41ED7F85D009B11B5 /* Converting.swift in Sources */,
+				50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */,
 				50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */,
 				50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */,
 				50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */,
@@ -799,6 +814,7 @@
 				50E562B01E71BA90004E47A2 /* YSHeaderForSection.swift in Sources */,
 				50E562881E71BA90004E47A2 /* YSPlaylistViewController.swift in Sources */,
 				500570551F78EB14008C981C /* MJRefreshNormalHeader.m in Sources */,
+				501DD30A1F852552008AA5C0 /* YSNSLoggerDecorator.swift in Sources */,
 				50E5627E1E71BA90004E47A2 /* YSDatabaseManager.swift in Sources */,
 				501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */,
 				50E5627B1E71BA90004E47A2 /* YSTabBarController.swift in Sources */,
@@ -837,7 +853,7 @@
 				50E562901E71BA90004E47A2 /* YSPlaylistCoordinator.swift in Sources */,
 				500570561F78EB14008C981C /* MJRefreshStateHeader.m in Sources */,
 				500570521F78EB14008C981C /* MJRefreshBackNormalFooter.m in Sources */,
-				507293871F77D43A002A7C53 /* ViewControllerLoggingExtension.swift in Sources */,
+				507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */,
 				500570501F78EB14008C981C /* MJRefreshAutoStateFooter.m in Sources */,
 				50E562A51E71BA90004E47A2 /* YSSettingsViewModelProtocol.swift in Sources */,
 				500570581F78EB14008C981C /* MJRefreshConst.m in Sources */,
@@ -856,7 +872,7 @@
 				50E562A21E71BA90004E47A2 /* YSDriveViewModelProtocol.swift in Sources */,
 				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
 				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
-				50F4F4371F644EA000CB9646 /* SwiftMessagesExtension.swift in Sources */,
+				50F4F4371F644EA000CB9646 /* YSSwiftMessagesExtension.swift in Sources */,
 				50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */,
 				50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
 			);
@@ -1001,7 +1017,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
+				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";
@@ -1025,7 +1041,7 @@
 				DEVELOPMENT_TEAM = 9GXW8252L9;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "QuickFile/Additional Classes/Info.plist";
+				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";

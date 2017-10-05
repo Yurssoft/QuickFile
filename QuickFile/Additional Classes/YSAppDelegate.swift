@@ -138,7 +138,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate
                     if let oldestLogFileUrl = fileUrlsSortedByDate.last
                     {
                         try FileManager.default.removeItem(at: oldestLogFileUrl) // we delete the oldest log
-                        Log(.App, .Info, "Removed oldest log" + oldestLogFileUrl.relativePath)
+                        Log(.App, .Info, "Removed oldest log: " + oldestLogFileUrl.relativePath)
                     }
                 }
             }
