@@ -21,7 +21,7 @@ protocol YSUpdatingDelegate: class
     func filesDidChange()
 }
 
-/*TODO:
+/* TODO:
  - search add loading indicator
  - show all downloads in playlist
  - logged as
@@ -32,9 +32,10 @@ protocol YSUpdatingDelegate: class
  - use codable instead of reflection
  - delete played files after 24 hours
  - display all files in drive and use document previewer for all files
- - what happens when no storage, make downloads in order
- - add tutorial screen, battery life
- - fix search in search
+ - what happens when no storage
+ - make downloads in order
+ - add tutorial screen
+ - battery life
  */
 
 @UIApplicationMain
