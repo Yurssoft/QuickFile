@@ -103,7 +103,7 @@ class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
 
     func refreshDisplay() {
         logDriveSubdomain(.Controller, .Info, "")
-        if (viewIfLoaded != nil) {
+        if viewIfLoaded != nil {
             tableView.reloadData()
         }
     }

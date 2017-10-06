@@ -30,18 +30,18 @@ struct YSDriveFile: YSDriveFileProtocol {
     var isCurrentlyPlaying: Bool
 
     init(fileName: String?, fileSize: String?, mimeType: String?, fileDriveIdentifier: String?, folderName: String?, folderID: String?, playedTime: String?, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String?) {
-        self.fileName = fileName.unwropped()
-        self.fileSize = fileSize.unwropped()
-        self.mimeType = mimeType.unwropped()
-        self.fileDriveIdentifier = fileDriveIdentifier.unwropped()
-        self.folder.folderName = folderName.unwropped()
-        self.folder.folderID = folderID.unwropped()
+        self.fileName = fileName.unwrapped()
+        self.fileSize = fileSize.unwrapped()
+        self.mimeType = mimeType.unwrapped()
+        self.fileDriveIdentifier = fileDriveIdentifier.unwrapped()
+        self.folder.folderName = folderName.unwrapped()
+        self.folder.folderID = folderID.unwrapped()
 
-        self.playedTime = playedTime.unwropped()
+        self.playedTime = playedTime.unwrapped()
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
         self.isDeletedFromDrive = false
-        self.pageToken = pageToken.unwropped()
+        self.pageToken = pageToken.unwrapped()
     }
     
     init(fileName: String, fileSize: String, mimeType: String, fileDriveIdentifier: String, folderName: String, folderID: String, playedTime: String, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String) {
