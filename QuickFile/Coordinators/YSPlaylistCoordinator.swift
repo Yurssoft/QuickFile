@@ -12,10 +12,8 @@ import AVKit
 import AVFoundation
 import SwiftMessages
 
-class YSPlaylistCoordinator: YSCoordinatorProtocol
-{
-    func start(playlistViewController: YSPlaylistViewController)
-    {
+class YSPlaylistCoordinator: YSCoordinatorProtocol {
+    func start(playlistViewController: YSPlaylistViewController) {
         let viewModel =  YSPlaylistViewModel()
         playlistViewController.viewModel = viewModel
         YSAppDelegate.appDelegate().playerCoordinator.viewModel.playerDelegate = playlistViewController
@@ -25,10 +23,8 @@ class YSPlaylistCoordinator: YSCoordinatorProtocol
     }
 }
 
-extension YSPlaylistCoordinator : YSPlaylistViewModelCoordinatorDelegate
-{
-    func playlistViewModelDidSelectFile(_ viewModel: YSPlaylistViewModelProtocol, file: YSDriveFileProtocol)
-    {
+extension YSPlaylistCoordinator: YSPlaylistViewModelCoordinatorDelegate {
+    func playlistViewModelDidSelectFile(_ viewModel: YSPlaylistViewModelProtocol, file: YSDriveFileProtocol) {
         YSAppDelegate.appDelegate().playerCoordinator.play(file: file)
     }
 }

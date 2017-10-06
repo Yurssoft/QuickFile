@@ -10,18 +10,17 @@ import Foundation
 import UIKit
 import SwiftMessages
 
-typealias FilesCompletionHandler = (_ files:[YSDriveFileProtocol]) -> Swift.Void
-typealias ErrorCompletionHandler = (_ error:YSErrorProtocol?) -> Swift.Void
+typealias FilesCompletionHandler = (_ files: [YSDriveFileProtocol]) -> Swift.Void
+typealias ErrorCompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
 typealias AccessTokenAddedCompletionHandler = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
 //                                      //files              //error           //next page token
-typealias AllFilesCompletionHandler = ([YSDriveFileProtocol],YSErrorProtocol?, String?) -> Swift.Void
+typealias AllFilesCompletionHandler = ([YSDriveFileProtocol], YSErrorProtocol?, String?) -> Swift.Void
                                                         //files                //current playing    //error
-typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?,YSErrorProtocol?) -> Swift.Void
-typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary : [String : Any]?,_ error: YSErrorProtocol?) -> Swift.Void
+typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?, YSErrorProtocol?) -> Swift.Void
+typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary: [String: Any]?, _ error: YSErrorProtocol?) -> Swift.Void
 
-struct YSConstants
-{
-    static let kDriveClientID = "416980241627-jl0l2kt36fd7soan5k8hlhtsgfkoblns.apps.googleusercontent.com" 
+struct YSConstants {
+    static let kDriveClientID = "416980241627-jl0l2kt36fd7soan5k8hlhtsgfkoblns.apps.googleusercontent.com"
     static let kStoryboardName = "Main"
     static let kDriveEmbededSegue = "YSDriveViewControllerSegue"
     static let kSettingsEmbededSegue = "YSSettingsViewControllerSegue"
@@ -40,16 +39,15 @@ struct YSConstants
     static let kPageSize = 100
     static let kNumberOfLogsStored = 19
     static let kNoInternetSystemCode = -1009
-    static let kDefaultBlueColor = UIColor(red:23/255.0, green:156/255.0, blue:209/255.0, alpha:1.0)
-    static let kDefaultBarColor = UIColor(red:254/255.0, green:213/255.0, blue:165/255.0, alpha:1.0)
+    static let kDefaultBlueColor = UIColor(red: 23/255.0, green: 156/255.0, blue: 209/255.0, alpha: 1.0)
+    static let kDefaultBarColor = UIColor(red: 254/255.0, green: 213/255.0, blue: 165/255.0, alpha: 1.0)
     static let kMessageDuration = SwiftMessages.Duration.automatic
     static let localFilePathForDownloadingFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let cacheFolder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     static let logsFolder = cacheFolder.appendingPathComponent("AppLogs")
 }
 
-enum YSErrorType
-{
+enum YSErrorType {
     case none
     case couldNotGetFileList
     case cancelledLoginToDrive

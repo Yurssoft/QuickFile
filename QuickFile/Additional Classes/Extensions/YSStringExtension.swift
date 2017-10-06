@@ -8,12 +8,9 @@
 
 import Foundation
 
-extension String
-{
-    mutating func addingPercentEncoding(_ nextPageToken : String?)
-    {
-        if let nextPageToken = nextPageToken
-        {
+extension String {
+    mutating func addingPercentEncoding(_ nextPageToken: String?) {
+        if let nextPageToken = nextPageToken {
             let encodedNextPageToken = CFURLCreateStringByAddingPercentEscapes(
                 nil,
                 nextPageToken as CFString!,
@@ -29,15 +26,12 @@ extension String
 protocol OptionalString {}
 extension String: OptionalString {}
 
-extension Optional where Wrapped: OptionalString
-{
-    func unwropped(_ defaultValue: @autoclosure () -> String? = "") -> String
-    {
-        guard let unwroppedSelf = self as? String else
-        {
+extension Optional where Wrapped: OptionalString {
+    //TODO: typo
+    func unwropped(_ defaultValue: @autoclosure () -> String? = "") -> String {
+        guard let unwroppedSelf = self as? String else {
             return defaultValue()!
         }
         return unwroppedSelf
     }
 }
-

@@ -8,18 +8,13 @@
 
 import UIKit
 
-class YSTabBarController: UITabBarController
-{
-    override func viewDidLoad()
-    {
+class YSTabBarController: UITabBarController {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        var driveTopViewController : YSDriveTopViewController? = nil
-        for navigationVC in childViewControllers
-        {
-            for topVC in navigationVC.childViewControllers
-            {
-                if let drTopVC = topVC as? YSDriveTopViewController
-                {
+        var driveTopViewController: YSDriveTopViewController? = nil
+        for navigationVC in childViewControllers {
+            for topVC in navigationVC.childViewControllers {
+                if let drTopVC = topVC as? YSDriveTopViewController {
                     driveTopViewController = drTopVC
                 }
             }
@@ -28,9 +23,8 @@ class YSTabBarController: UITabBarController
         YSAppDelegate.appDelegate().driveTopCoordinator = coordinator
         coordinator.start(driveTopVC: driveTopViewController!)
     }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         YSAppDelegate.appDelegate().playerCoordinator.start(tabBarController: self)
     }

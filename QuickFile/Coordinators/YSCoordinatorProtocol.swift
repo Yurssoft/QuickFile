@@ -8,6 +8,5 @@
 
 import UIKit
 
-protocol YSCoordinatorProtocol: class
-{
+protocol YSCoordinatorProtocol: class {
 }

@@ -8,10 +8,8 @@
 
 import Foundation
 
-extension NSError
-{
-    var localizedDescriptionAndUnderlyingKey : String
-    {
+extension NSError {
+    var localizedDescriptionAndUnderlyingKey: String {
         return "\(self.localizedDescription) - \(self.userInfo.value(forKey: NSUnderlyingErrorKey, defaultValue: "")) "
     }
 }

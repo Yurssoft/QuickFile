@@ -8,13 +8,10 @@
 
 import Foundation
 
-class YSPlaylistAndPlayerModel : YSPlaylistAndPlayerModelProtocol
-{
-    func allFiles(_ completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler)
-    {
+class YSPlaylistAndPlayerModel: YSPlaylistAndPlayerModelProtocol {
+    func allFiles(_ completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler) {
         YSDatabaseManager.allFilesWithCurrentPlaying { (databaseYSFiles, currentPlaying, yserror) in
-            if let error = yserror
-            {
+            if let error = yserror {
                 completionHandler([], nil, error)
             }
             let allFiles = databaseYSFiles.filter { $0.localFileExists() || !$0.isAudio }

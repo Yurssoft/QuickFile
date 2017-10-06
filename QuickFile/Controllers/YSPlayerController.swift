@@ -11,8 +11,7 @@ import AVFoundation
 import MarqueeLabel
 import MediaPlayer
 
-class YSPlayerController: UIViewController
-{
+class YSPlayerController: UIViewController {
 	@IBOutlet weak var songNameLabel: MarqueeLabel!
 	@IBOutlet weak var albumNameLabel: UILabel!
 	@IBOutlet weak var albumArtImageView: UIImageView!
@@ -22,92 +21,76 @@ class YSPlayerController: UIViewController
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
-	
-	required init?(coder aDecoder: NSCoder)
-    {
+
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
         updateBarButtons()
 	}
-    
-    var viewModel: YSPlayerViewModelProtocol?
-    {
-        willSet
-        {
+
+    var viewModel: YSPlayerViewModelProtocol? {
+        willSet {
             viewModel?.viewDelegate = nil
         }
-        didSet
-        {
+        didSet {
             viewModel?.viewDelegate = self
         }
     }
-    
-    @IBAction func songSeekSliderValueChanged(_ sender: UISlider)
-    {
+
+    @IBAction func songSeekSliderValueChanged(_ sender: UISlider) {
         viewModel?.seekFloat(to: sender.value)
     }
-    
-    @IBAction func volumeSliderValueChanged(_ sender: UISlider)
-    {
+
+    @IBAction func volumeSliderValueChanged(_ sender: UISlider) {
         let volumeView = MPVolumeView()
-        if let view = volumeView.subviews.first as? UISlider
-        {
+        if let view = volumeView.subviews.first as? UISlider {
             view.value = sender.value
         }
     }
-    
-    @IBAction func nextTapped(_ sender: UIButton)
-    {
-        LogPlayerSubdomain(.Controller, .Info, "")
+
+    @IBAction func nextTapped(_ sender: UIButton) {
+        logPlayerSubdomain(.Controller, .Info, "")
         viewModel?.next()
     }
-    
-    @IBAction func previousTapped(_ sender: UIButton)
-    {
-        LogPlayerSubdomain(.Controller, .Info, "")
+
+    @IBAction func previousTapped(_ sender: UIButton) {
+        logPlayerSubdomain(.Controller, .Info, "")
         viewModel?.previous()
     }
-    
-    @IBAction func playPauseTapped(_ sender: UIButton)
-    {
-        LogPlayerSubdomain(.Controller, .Info, "")
+
+    @IBAction func playPauseTapped(_ sender: UIButton) {
+        logPlayerSubdomain(.Controller, .Info, "")
         viewModel?.togglePlayPause()
     }
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         playerDidChange(viewModel: viewModel!)
     }
-    func updateBarButtons()
-    {
+    func updateBarButtons() {
         guard let viewModel = viewModel  else {
             return
         }
         let pause = UIBarButtonItem(image: UIImage(named: viewModel.isPlaying ? "pause" : "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
         let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(nextTapped(_:)))
-        
+
         popupItem.leftBarButtonItems = [ pause ]
         popupItem.rightBarButtonItems = [ next ]
     }
-    
-    func updateTime()
-    {
+
+    func updateTime() {
         updateTimeLabels()
         updateSongSlider()
         updateVolumeSlider()
     }
-    
-    func updateTimeLabels()
-    {
+
+    func updateTimeLabels() {
         guard let viewModel = viewModel else { return }
         elapsedTimeLabel.text = humanReadableTimeInterval(viewModel.fileCurrentTime)
         remainingTimeLabel.text = "-" + humanReadableTimeInterval(viewModel.fileDuration - viewModel.fileCurrentTime)
     }
-    
-    func updateSongSlider()
-    {
-        if songSeekSlider.isTracking
-        {
+
+    func updateSongSlider() {
+        if songSeekSlider.isTracking {
             return
         }
         let fileDuration = Float(viewModel?.fileDuration ?? 0)
@@ -117,11 +100,9 @@ class YSPlayerController: UIViewController
         songSeekSlider.value = currentTime
         popupItem.progress = currentTime / fileDuration
     }
-    
-    func updateVolumeSlider()
-    {
-        if volumeSlider.isTracking
-        {
+
+    func updateVolumeSlider() {
+        if volumeSlider.isTracking {
             return
         }
         volumeSlider.minimumValue = 0
@@ -129,21 +110,19 @@ class YSPlayerController: UIViewController
         let audioSession = AVAudioSession.sharedInstance()
         volumeSlider.value = audioSession.outputVolume
     }
-    
-    func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String
-    {
+
+    func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String {
         let timeInt = Int(round(timeInterval))
         let (hh, mm, ss) = (timeInt / 3600, (timeInt % 3600) / 60, (timeInt % 3600) % 60)
-        
+
         let hhString: String? = hh > 0 ? String(hh) : nil
         let mmString = (hh > 0 && mm < 10 ? "0" : "") + String(mm)
         let ssString = (ss < 10 ? "0" : "") + String(ss)
-        
+
         return (hhString != nil ? (hhString! + ":") : "") + mmString + ":" + ssString
     }
-    
-    func updatePopubButtons()
-    {
+
+    func updatePopubButtons() {
         updateBarButtons()
         guard let file = viewModel?.currentFile else { return }
         popupItem.title = file.fileName
@@ -151,16 +130,12 @@ class YSPlayerController: UIViewController
     }
 }
 
-extension YSPlayerController : YSPlayerViewModelViewDelegate
-{
-    func playerDidChange(viewModel: YSPlayerViewModelProtocol)
-    {
-        LogPlayerSubdomain(.Controller, .Info, "")
-        DispatchQueue.main.async
-        {
+extension YSPlayerController: YSPlayerViewModelViewDelegate {
+    func playerDidChange(viewModel: YSPlayerViewModelProtocol) {
+        logPlayerSubdomain(.Controller, .Info, "")
+        DispatchQueue.main.async {
             self.updatePopubButtons()
-            if self.isViewLoaded, let file = viewModel.currentFile
-            {
+            if self.isViewLoaded, let file = viewModel.currentFile {
                 self.updateTime()
                 self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
                 self.songNameLabel.text = file.fileName
@@ -168,20 +143,16 @@ extension YSPlayerController : YSPlayerViewModelViewDelegate
             }
         }
     }
-    
-    func timeDidChange(viewModel: YSPlayerViewModelProtocol)
-    {
-        DispatchQueue.main.async
-        {
-            if self.isViewLoaded
-            {
+
+    func timeDidChange(viewModel: YSPlayerViewModelProtocol) {
+        DispatchQueue.main.async {
+            if self.isViewLoaded {
                 self.updateTime()
             }
         }
     }
-    
-    func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
-    {
-        
+
+    func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol) {
+
     }
 }

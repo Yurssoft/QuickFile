@@ -8,17 +8,16 @@
 
 import Foundation
 
-protocol YSDriveSearchModelProtocol
-{
+protocol YSDriveSearchModelProtocol {
     func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
-    
+
     func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
-    
+
     func download(_ fileDriveIdentifier: String)
-    
+
     func stopDownload(_ fileDriveIdentifier: String)
-    
+
     func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
-    
+
     func upfateFileGeneralInfo(for file: YSDriveFileProtocol)
 }

@@ -8,21 +8,15 @@
 
 import Foundation
 
-class YSSettingsModel
-{
-    var isLoggedIn : Bool
-    {
+class YSSettingsModel {
+    var isLoggedIn: Bool {
         return YSCredentialManager.isLoggedIn
     }
-    
-    func logOut() throws
-    {
-        do
-        {
+
+    func logOut() throws {
+        do {
             try YSCredentialManager.logOut()
-        }
-        catch
-        {
+        } catch {
             throw error
         }
     }

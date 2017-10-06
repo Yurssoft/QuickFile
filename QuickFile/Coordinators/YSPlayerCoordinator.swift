@@ -13,17 +13,14 @@ import SwiftMessages
 import MediaPlayer
 import LNPopupController
 
-class YSPlayerCoordinator: YSCoordinatorProtocol
-{
+class YSPlayerCoordinator: YSCoordinatorProtocol {
     var viewModel = YSPlayerViewModel.init()
     fileprivate var tabBarController: UITabBarController?
     fileprivate var popupContentController: YSPlayerController?
     private var isStarted = false
-    
-    func start(tabBarController: UITabBarController)
-    {
-        if isStarted
-        {
+
+    func start(tabBarController: UITabBarController) {
+        if isStarted {
             return
         }
         self.tabBarController = tabBarController
@@ -33,28 +30,23 @@ class YSPlayerCoordinator: YSCoordinatorProtocol
         YSAppDelegate.appDelegate().playerDelegate = viewModel
         isStarted = true
     }
-    
-    func play(file: YSDriveFileProtocol)
-    {
+
+    func play(file: YSDriveFileProtocol) {
         viewModel.play(file: file)
     }
 }
 
-extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
-{
-    func showPlayer()
-    {
-        DispatchQueue.main.async
-        {
-            if self.tabBarController?.popupPresentationState != .hidden
-            {
+extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
+    func showPlayer() {
+        DispatchQueue.main.async {
+            if self.tabBarController?.popupPresentationState != .hidden {
                 return
             }
             let audioSession = AVAudioSession.sharedInstance()
             try? audioSession.setCategory(AVAudioSessionCategoryPlayback)
             try? audioSession.setActive(true)
             UIApplication.shared.beginReceivingRemoteControlEvents()
-            
+
             self.popupContentController = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as? YSPlayerController
             self.popupContentController?.viewModel = self.viewModel
             self.tabBarController?.presentPopupBar(withContentViewController: self.popupContentController!, animated: true, completion: nil)
@@ -62,13 +54,10 @@ extension YSPlayerCoordinator : YSPlayerViewModelCoordinatorDelegate
             self.tabBarController?.popupBar.subtitleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGray]
         }
     }
-    
-    func hidePlayer()
-    {
-        DispatchQueue.main.async
-        {
-            if self.tabBarController?.popupPresentationState == .hidden
-            {
+
+    func hidePlayer() {
+        DispatchQueue.main.async {
+            if self.tabBarController?.popupPresentationState == .hidden {
                 return
             }
             let audioSession = AVAudioSession.sharedInstance()

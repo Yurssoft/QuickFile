@@ -14,94 +14,78 @@ import KeychainAccess
 import ReachabilitySwift
 import Reflection
 
-class YSCredentialManager
-{
-    static let shared : YSCredentialManager =
-    {
+class YSCredentialManager {
+    static let shared: YSCredentialManager = {
         let instance = YSCredentialManager()
         return instance
     }()
-    
-    private init()
-    {
+
+    private init() {
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
-        let tokenData = keychain[data: YSConstants.kTokenKeychainItemKey]
-        if tokenData == nil
-        {
-            return
-        }
-        if (tokenData?.isEmpty)!
-        {
-            return
-        }
-        let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData!) as! [String : Any]
-        self.token = try! construct(dictionary: tokenDictionary)
+        let tokenDataUnwrapped = keychain[data: YSConstants.kTokenKeychainItemKey]
+        
+        guard let tokenData = tokenDataUnwrapped,
+            !tokenData.isEmpty,
+            let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? [String: Any],
+            let tokenUnwrapped = try? construct(YSToken.self, dictionary: tokenDictionary) as? YSToken,
+            let token = tokenUnwrapped
+            else { return }
+        self.token = token
     }
-    
-    private var token : YSToken = YSToken()
-    
-    private var isValidAccessToken : Bool
-    {
+
+    private var token: YSToken = YSToken()
+
+    private var isValidAccessToken: Bool {
         let isTokenPresent = !token.accessToken.isEmpty
         let isNotTimedOut = token.accessTokenAvailableTo.isLessThanDate(date: Date())
         return isTokenPresent && !isNotTimedOut
     }
-    
-    func isPresentRefreshToken() -> Bool
-    {
+
+    func isPresentRefreshToken() -> Bool {
         return !token.refreshToken.isEmpty
     }
-    
-    func setTokens(refreshToken : String, accessToken : String, availableTo : Date)
-    {
+
+    func setTokens(refreshToken: String, accessToken: String, availableTo: Date) {
         token.refreshToken = refreshToken
         token.accessToken = accessToken
         token.accessTokenAvailableTo = availableTo
         saveTokenToKeychain()
     }
-    
-    func setAccessToken(tokenType : String, accessToken : String, availableTo : Date)
-    {
+
+    func setAccessToken(tokenType: String, accessToken: String, availableTo: Date) {
         token.accessTokenTokenType = tokenType
         token.accessToken = accessToken
         token.accessTokenAvailableTo = availableTo
         saveTokenToKeychain()
     }
-    
-    private func saveTokenToKeychain()
-    {
+
+    private func saveTokenToKeychain() {
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         let tokenDictionary = toDictionary(type: token)
         let tokenData = NSKeyedArchiver.archivedData(withRootObject: tokenDictionary)
         keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
     }
-    
-    private func urlForAccessToken() -> URL
-    {
+
+    private func urlForAccessToken() -> URL {
         let url = "\(YSConstants.kAccessTokenAPIEndpoint)?client_id=\(YSConstants.kDriveClientID)&refresh_token=\(token.refreshToken)&grant_type=refresh_token"
         return URL.init(string: url)!
     }
-    
-    func addAccessTokenHeaders(_ request: URLRequest, _ taskIdentifier: String, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
-    {
-        if isValidAccessToken
-        {
+
+    func addAccessTokenHeaders(_ request: URLRequest, _ taskIdentifier: String, _ completionHandler: @escaping AccessTokenAddedCompletionHandler) {
+        if isValidAccessToken {
             addHeaders(to: request, completionHandler)
             return
         }
         var requestForToken = URLRequest.init(url: urlForAccessToken())
         requestForToken.httpMethod = "POST"
-        
-        let accessHeadersTask = URLSession.shared.dataTask(with: requestForToken)
-        { data, response, error in
-            if let err = YSNetworkResponseManager.validate(response, error: error)
-            {
+
+        let accessHeadersTask = URLSession.shared.dataTask(with: requestForToken) { data, response, error in
+            if let err = YSNetworkResponseManager.validate(response, error: error) {
                 completionHandler(request, err)
                 return
             }
             let dict = YSNetworkResponseManager.convertToDictionary(from: data!)
-            if let accessToken = dict["access_token"] as? String , let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber
-            {
+            if let accessToken = dict["access_token"] as? String, let tokenType = dict["token_type"] as? String, let expiresIn = dict["expires_in"] as? NSNumber {
                 let availableTo = Date().addingTimeInterval(expiresIn.doubleValue)
                 self.setAccessToken(tokenType: tokenType, accessToken: accessToken, availableTo: availableTo)
                 self.addHeaders(to: request, completionHandler)
@@ -110,32 +94,30 @@ class YSCredentialManager
         accessHeadersTask.taskDescription = taskIdentifier
         accessHeadersTask.resume()
     }
-    
-    private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler)
-    {
+
+    private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler) {
         var request = request
-        if token.accessTokenTokenType.isEmpty
-        {
+        if token.accessTokenTokenType.isEmpty {
             request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
             completionHandler(request, nil)
-        }
-        else
-        {
+        } else {
             request.setValue("\(token.accessTokenTokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
             completionHandler(request, nil)
         }
     }
-    
-    class var isLoggedIn : Bool
-    {
+
+    class var isLoggedIn: Bool {
         let isLoggedIn = !YSCredentialManager.shared.token.refreshToken.isEmpty && Auth.auth().currentUser != nil
         return isLoggedIn
     }
-    
-    class func logOut() throws
-    {
+
+    class func logOut() throws {
         GIDSignIn.sharedInstance().signOut()
-        try? Auth.auth().signOut()
+        do {
+            try Auth.auth().signOut()
+        } catch let error as NSError {
+            logDefault(.Service, .Error, "Could not log out: " + error.localizedDescriptionAndUnderlyingKey)
+        }
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         keychain[data: YSConstants.kTokenKeychainItemKey] = Data()
         shared.token = YSToken()

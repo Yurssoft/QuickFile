@@ -8,28 +8,24 @@
 
 import UIKit
 
-protocol YSDriveCoordinatorDelegate: class
-{
+protocol YSDriveCoordinatorDelegate: class {
     func driveCoordinatorDidFinish(driveCoordinator: YSDriveCoordinator, error: YSErrorProtocol?)
     func driveCoordinatorDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)
     func driveCoordinatorDidRequestedLogin()
     func driveViewControllerDidRequestedSearch()
 }
 
-class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
-{
+class YSDriveCoordinator: NSObject, YSCoordinatorProtocol {
     fileprivate weak var driveViewController: YSDriveViewController?
-    weak var delegate : YSDriveCoordinatorDelegate?
-    var folder : YSFolder?
-    
-    init(driveViewController: YSDriveViewController, folder: YSFolder)
-    {
+    weak var delegate: YSDriveCoordinatorDelegate?
+    var folder: YSFolder?
+
+    init(driveViewController: YSDriveViewController, folder: YSFolder) {
         self.driveViewController = driveViewController
         self.folder = folder
     }
-    
-    func start()
-    {
+
+    func start() {
         let viewModel = YSDriveViewModel()
         YSAppDelegate.appDelegate().downloadsDelegate = viewModel
         YSAppDelegate.appDelegate().driveDelegate = viewModel
@@ -37,52 +33,43 @@ class YSDriveCoordinator: NSObject, YSCoordinatorProtocol
         viewModel.coordinatorDelegate = self
         driveViewController?.viewModel = viewModel
     }
-    
-    func updateDownloadDelegate()
-    {
+
+    func updateDownloadDelegate() {
         guard let delegate = driveViewController?.viewModel as? YSUpdatingDelegate else { return }
         YSAppDelegate.appDelegate().downloadsDelegate = delegate
         YSAppDelegate.appDelegate().driveDelegate?.filesDidChange()
     }
-    
-    fileprivate func start(folderID: String,error: YSError?)
-    {
+
+    fileprivate func start(folderID: String, error: YSError?) {
         let viewModel =  YSDriveViewModel()
         driveViewController?.viewModel = viewModel
         viewModel.model = YSDriveModel(folder: folder)
         viewModel.coordinatorDelegate = self
-        if error == nil
-        {
+        if error == nil {
             return
         }
         viewModel.viewDelegate?.errorDidChange(viewModel: viewModel, error: error!)
     }
 }
 
-extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate
-{
-    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol)
-    {
+extension YSDriveCoordinator: YSDriveViewModelCoordinatorDelegate {
+    func driveViewModelDidSelectFile(_ viewModel: YSDriveViewModelProtocol, file: YSDriveFileProtocol) {
         delegate?.driveCoordinatorDidSelectFile(viewModel, file: file)
     }
 
-    func driveViewModelDidRequestedLogin()
-    {
+    func driveViewModelDidRequestedLogin() {
         delegate?.driveCoordinatorDidRequestedLogin()
     }
-    
-    func driveViewModelDidFinish()
-    {
+
+    func driveViewModelDidFinish() {
         delegate?.driveCoordinatorDidFinish(driveCoordinator: self, error: nil)
     }
-    
-    func driveViewControllerDidRequestedSearch()
-    {
+
+    func driveViewControllerDidRequestedSearch() {
         delegate?.driveViewControllerDidRequestedSearch()
     }
-    
-    func driveViewControllerDidDeletedFiles()
-    {
+
+    func driveViewControllerDidDeletedFiles() {
         YSAppDelegate.appDelegate().playerDelegate?.filesDidChange()
         YSAppDelegate.appDelegate().playlistDelegate?.filesDidChange()
     }

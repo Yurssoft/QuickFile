@@ -8,10 +8,8 @@
 
 import UIKit
 
-class YSSettingsCoordinator: YSCoordinatorProtocol
-{
-    func start(settingsViewController: YSSettingsTableViewController)
-    {
+class YSSettingsCoordinator: YSCoordinatorProtocol {
+    func start(settingsViewController: YSSettingsTableViewController) {
         let viewModel = YSSettingsViewModel()
         settingsViewController.viewModel = viewModel
         viewModel.model = YSSettingsModel()
@@ -19,19 +17,15 @@ class YSSettingsCoordinator: YSCoordinatorProtocol
     }
 }
 
-extension YSSettingsCoordinator : YSSettingsCoordinatorDelegate
-{
-    func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel)
-    {
-        if let tababarController = YSAppDelegate.appDelegate().window!.rootViewController as? UITabBarController
-        {
+extension YSSettingsCoordinator: YSSettingsCoordinatorDelegate {
+    func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel) {
+        if let tababarController = YSAppDelegate.appDelegate().window!.rootViewController as? UITabBarController {
             tababarController.selectedIndex = 0 // go to drive tab
             YSAppDelegate.appDelegate().driveTopCoordinator?.getFilesAfterSuccessLogin()
         }
     }
-    
-    func viewModelDidDeleteAllLocalFiles(viewModel: YSSettingsViewModel)
-    {
+
+    func viewModelDidDeleteAllLocalFiles(viewModel: YSSettingsViewModel) {
         YSAppDelegate.appDelegate().playerDelegate?.filesDidChange()
         YSAppDelegate.appDelegate().playlistDelegate?.filesDidChange()
         YSAppDelegate.appDelegate().driveDelegate?.filesDidChange()

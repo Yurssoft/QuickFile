@@ -8,21 +8,18 @@
 
 import Foundation
 
-struct YSFolder
-{
+struct YSFolder {
     var folderName: String = ""
     var folderID: String = ""
-    
-    static func rootFolder() -> YSFolder
-    {
+
+    static func rootFolder() -> YSFolder {
         var folder = YSFolder()
         folder.folderID = "root"
         folder.folderName = "Root"
         return folder
     }
-    
-    static func searchFolder() -> YSFolder
-    {
+
+    static func searchFolder() -> YSFolder {
         var folder = YSFolder()
         folder.folderID = "search"
         folder.folderName = "Search"

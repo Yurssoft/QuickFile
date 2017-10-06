@@ -8,9 +8,8 @@
 
 import Foundation
 
-protocol YSSettingsModelProtocol
-{
-    var isLoggedIn : Bool {get}
-    
+protocol YSSettingsModelProtocol {
+    var isLoggedIn: Bool {get}
+
     func logOut() throws
 }

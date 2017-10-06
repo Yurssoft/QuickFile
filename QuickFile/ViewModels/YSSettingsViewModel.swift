@@ -10,88 +10,71 @@ import Foundation
 import SwiftMessages
 import GoogleSignIn
 
-class YSSettingsViewModel : YSSettingsViewModelProtocol
-{
-    var isLoggedIn : Bool
-    {
+class YSSettingsViewModel: YSSettingsViewModelProtocol {
+    var isLoggedIn: Bool {
         return model!.isLoggedIn
     }
 
-    var loggedString : String
-    {
-        if isLoggedIn
-        {
+    var loggedString: String {
+        if isLoggedIn {
             let loggedInMessage = "Logged in to Drive"
             return loggedInMessage
         }
         return "Not logged in"
     }
-    
-    fileprivate var error : YSErrorProtocol = YSError()
-    {
-        didSet
-        {
-            if !error.isEmpty()
-            {
+
+    fileprivate var error: YSErrorProtocol = YSError() {
+        didSet {
+            if !error.isEmpty() {
                 viewDelegate?.errorDidChange(viewModel: self, error: error)
             }
         }
     }
-    
+
     weak var viewDelegate: YSSettingsViewModelViewDelegate?
-    var model : YSSettingsModel?
+    var model: YSSettingsModel?
     weak var coordinatorDelegate: YSSettingsCoordinatorDelegate?
-    
-    func logOut()
-    {
-        do
-        {
+
+    func logOut() {
+        do {
             try model?.logOut()
-        }
-        catch
-        {
-            viewDelegate?.errorDidChange(viewModel: self, error: error as! YSErrorProtocol)
+        } catch {
+            guard let error = error as? YSErrorProtocol else { return }
+            viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
-    
-    func deleteAllFiles()
-    {
+
+    func deleteAllFiles() {
         YSDatabaseManager.deleteAllDownloads { (error) in
             guard let error = error else { return }
-            if error.messageType == Theme.success || error.title.contains("Deleted")
-            {
+            if error.messageType == Theme.success || error.title.contains("Deleted") {
                 self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
             }
             self.viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
-    
-    func deletePlayedFiles()
-    {
+
+    func deletePlayedFiles() {
         YSDatabaseManager.deletePlayedDownloads { (error) in
             guard let error = error else { return }
-            if error.messageType == Theme.success || error.title.contains("Deleted")
-            {
+            if error.messageType == Theme.success || error.title.contains("Deleted") {
                 self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
             }
             self.viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
-    
-    func deleteAllMetadata()
-    {
+
+    func deleteAllMetadata() {
         YSDatabaseManager.deleteDatabase { (error) in
             guard let error = error else { return }
-            if error.messageType == Theme.success || error.title.contains("Deleted")
-            {
+            if error.messageType == Theme.success || error.title.contains("Deleted") {
                 self.coordinatorDelegate?.viewModelDidDeleteAllLocalFiles(viewModel: self)
             }
             self.viewDelegate?.errorDidChange(viewModel: self, error: error)
         }
     }
-    
-    func successfullyLoggedIn()
-    {
+
+    func successfullyLoggedIn() {
         coordinatorDelegate?.viewModelSuccessfullyLoggedIn(viewModel: self)
     }
 }

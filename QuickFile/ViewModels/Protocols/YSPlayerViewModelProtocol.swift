@@ -8,41 +8,37 @@
 
 import Foundation
 
-protocol YSPlayerDelegate: class
-{
+protocol YSPlayerDelegate: class {
     func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
 }
 
-protocol YSPlayerViewModelViewDelegate: class
-{
+protocol YSPlayerViewModelViewDelegate: class {
     func playerDidChange(viewModel: YSPlayerViewModelProtocol)
     func timeDidChange(viewModel: YSPlayerViewModelProtocol)
     func errorDidChange(viewModel: YSPlayerViewModelProtocol, error: YSErrorProtocol)
 }
 
-protocol YSPlayerViewModelCoordinatorDelegate: class
-{
+protocol YSPlayerViewModelCoordinatorDelegate: class {
     func showPlayer()
     func hidePlayer()
 }
 
-protocol YSPlayerViewModelProtocol
-{
+protocol YSPlayerViewModelProtocol {
     weak var playerDelegate: YSPlayerDelegate? { get set }
     var model: YSPlaylistAndPlayerModelProtocol? { get set }
     weak var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
     weak var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }
-    var error : YSErrorProtocol { get }
-    var isPlaying : Bool { get }
+    var error: YSErrorProtocol { get }
+    var isPlaying: Bool { get }
     var currentFile: YSDriveFileProtocol? { get }
     var fileDuration: TimeInterval { get }
     var fileCurrentTime: TimeInterval { get }
-    
+
     func togglePlayPause()
     func play(file: YSDriveFileProtocol?)
     func pause()
     func next()
     func previous()
-    func seek(to time:Double)
-    func seekFloat(to time:Float)
+    func seek(to time: Double)
+    func seekFloat(to time: Float)
 }

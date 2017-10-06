@@ -9,37 +9,32 @@
 import UIKit
 import DZNEmptyDataSet
 
-class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
-{
+class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     @IBOutlet weak var tableView: UITableView!
-    
-    var viewModel: YSPlaylistViewModelProtocol?
-    {
-        willSet
-        {
+
+    var viewModel: YSPlaylistViewModelProtocol? {
+        willSet {
             viewModel?.viewDelegate = nil
         }
-        didSet
-        {
+        didSet {
             viewModel?.viewDelegate = self
         }
     }
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         let cellBundle = Bundle(for: YSDriveFileTableViewCell.self)
         let cellNib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: cellBundle)
-        
+
         tableView.register(cellNib, forCellReuseIdentifier: YSDriveFileTableViewCell.nameOfClass)
-        
+
         let headerBundle = Bundle(for: YSHeaderForSection.self)
         let headerNib = UINib(nibName: YSHeaderForSection.nameOfClass, bundle: headerBundle)
-        
+
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: YSHeaderForSection.nameOfClass)
-        
+
         setupCoordinator()
         configurePullToRefresh()
         getFiles()
@@ -47,136 +42,113 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
     }
-    func setupCoordinator()
-    {
+    func setupCoordinator() {
         YSAppDelegate.appDelegate().playlistCoordinator.start(playlistViewController: self)
     }
-    
-    func configurePullToRefresh()
-    {
-        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock:
-        { [weak self] () -> Void in
-            LogPlaylistSubdomain(.Controller, .Info, "Requested refresh")
+
+    func configurePullToRefresh() {
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] () -> Void in
+            logPlaylistSubdomain(.Controller, .Info, "Requested refresh")
             self?.getFiles()
         })
     }
-    
-    func getFiles()
-    {
-        viewModel?.getFiles(completion:
-        { [weak self] _ in
+
+    func getFiles() {
+        viewModel?.getFiles(completion: { [weak self] _ in
             self?.tableView.mj_header.endRefreshing()
             self?.tableView.reloadData()
         })
     }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString!
-    {
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let promptText = "There are no file yet"
         let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }
-    
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString!
-    {
+
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         let promptText = "Reload"
         let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }
-    
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage!
-    {
+
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return UIImage.init(named: "music")
     }
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor!
-    {
+
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return UIColor.white
     }
-    
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!)
-    {
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         guard let viewModel = viewModel else { return }
         viewModel.getFiles(completion: {_ in })
     }
-    
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool
-    {
+
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
     }
 }
 
-extension YSPlaylistViewController : UITableViewDataSource
-{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+extension YSPlaylistViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (viewModel?.numberOfFiles(in: section))!
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         return (viewModel?.numberOfFolders)!
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath) as! YSDriveFileTableViewCell
-        let file = viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
-        cell.configureForPlaylist(file)
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath)
+        if let cell = cell as? YSDriveFileTableViewCell {
+            let file = viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
+            cell.configureForPlaylist(file)
+        }
         return cell
     }
-    
+
     @objc(tableView:heightForRowAtIndexPath:)
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return YSConstants.kCellHeight
     }
 }
 
-extension YSPlaylistViewController : UITableViewDelegate
-{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        LogPlaylistSubdomain(.Controller, .Info, "")
+extension YSPlaylistViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        logPlaylistSubdomain(.Controller, .Info, "")
         viewModel?.useFile(at: indexPath.section, file: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: YSHeaderForSection.nameOfClass) as! YSHeaderForSection
-        let folder = viewModel?.folder(at: section)
-        headerView.configure(title: folder?.fileName)
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: YSHeaderForSection.nameOfClass)
+        if let headerView = headerView as? YSHeaderForSection {
+            let folder = viewModel?.folder(at: section)
+            headerView.configure(title: folder?.fileName)
+        }
         return headerView
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    {
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return viewModel?.folder(at: section) == nil ? 0 : YSConstants.kHeaderHeight
     }
 }
 
-extension YSPlaylistViewController : YSPlayerDelegate
-{
-    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
-    {
-        LogPlaylistSubdomain(.Controller, .Info, "")
+extension YSPlaylistViewController: YSPlayerDelegate {
+    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?) {
+        logPlaylistSubdomain(.Controller, .Info, "")
         guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
-        for indexPath in indexPaths
-        {
-            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
-            {
+        for indexPath in indexPaths {
+            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
                 cell.configureForPlaylist(file)
             }
         }
-        if let playingFile = viewModel?.currentFile
-        {
-            DispatchQueue.main.async
-            {
-                if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell
-                {
+        if let playingFile = viewModel?.currentFile {
+            DispatchQueue.main.async {
+                if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
                     let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
                     cell.configureForPlaylist(file)
                 }
@@ -185,19 +157,15 @@ extension YSPlaylistViewController : YSPlayerDelegate
     }
 }
 
-extension YSPlaylistViewController : YSPlaylistViewModelViewDelegate
-{
-    func filesDidChange(viewModel: YSPlaylistViewModelProtocol)
-    {
-        LogPlaylistSubdomain(.Controller, .Info, "")
-        DispatchQueue.main.async
-        {
+extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
+    func filesDidChange(viewModel: YSPlaylistViewModelProtocol) {
+        logPlaylistSubdomain(.Controller, .Info, "")
+        DispatchQueue.main.async {
             [weak self] in self?.tableView.reloadData()
         }
     }
-    
-    func errorDidChange(viewModel: YSPlaylistViewModelProtocol, error: YSErrorProtocol)
-    {
-        
+
+    func errorDidChange(viewModel: YSPlaylistViewModelProtocol, error: YSErrorProtocol) {
+
     }
 }

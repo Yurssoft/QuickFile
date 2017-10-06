@@ -8,21 +8,17 @@
 
 import Foundation
 
-protocol CallSimpleCompletion
-{
+protocol CallSimpleCompletion {
     func callCompletion(_ completion: @escaping () -> Swift.Void)
 }
 
-extension CallSimpleCompletion
-{
-    func callCompletion(_ completion: @escaping () -> Swift.Void)
-    {
-        DispatchQueue.main.async
-        {
+extension CallSimpleCompletion {
+    func callCompletion(_ completion: @escaping () -> Swift.Void) {
+        DispatchQueue.main.async {
             completion()
         }
     }
 }
 
-extension YSDriveViewModel : CallSimpleCompletion {}
-extension YSDriveSearchViewModel : CallSimpleCompletion {}
+extension YSDriveViewModel: CallSimpleCompletion {}
+extension YSDriveSearchViewModel: CallSimpleCompletion {}

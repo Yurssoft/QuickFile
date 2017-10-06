@@ -8,19 +8,14 @@
 
 import Foundation
 
-public func toDictionary<T>(type: T) -> [String: Any]
-{
+public func toDictionary<T>(type: T) -> [String: Any] {
     let mirroredObject = Mirror(reflecting: type)
-    
+
     var objectDictionary = [String: Any]()
-    for (_, attr) in mirroredObject.children.enumerated()
-    {
-        if let property_name = attr.label as String!, property_name == "folder", let folderObj = attr.value as? YSFolder
-        {
+    for (_, attr) in mirroredObject.children.enumerated() {
+        if let property_name = attr.label as String!, property_name == "folder", let folderObj = attr.value as? YSFolder {
             objectDictionary[property_name] = toDictionary(type: folderObj)
-        }
-        else if let property_name = attr.label as String!
-        {
+        } else if let property_name = attr.label as String! {
             objectDictionary[property_name] = attr.value
         }
     }

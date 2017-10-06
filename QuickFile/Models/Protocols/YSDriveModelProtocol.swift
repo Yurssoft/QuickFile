@@ -8,15 +8,14 @@
 
 import Foundation
 
-protocol YSDriveModelProtocol
-{
-    var isLoggedIn : Bool {get}
-    
-    func getFiles(pageToken: String, nextPageToken: String?,_ completionHandler: @escaping AllFilesCompletionHandler)
-    
+protocol YSDriveModelProtocol {
+    var isLoggedIn: Bool {get}
+
+    func getFiles(pageToken: String, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
+
     func download(_ fileDriveIdentifier: String)
-    
+
     func stopDownload(_ fileDriveIdentifier: String)
-    
+
     func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
 }

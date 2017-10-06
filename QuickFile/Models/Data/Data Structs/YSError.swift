@@ -9,23 +9,20 @@
 import Foundation
 import SwiftMessages
 
-struct YSError : YSErrorProtocol
-{
-    var errorType : YSErrorType
+struct YSError: YSErrorProtocol {
+    var errorType: YSErrorType
     var messageType: Theme
     var title: String
-    var message : String
-    let buttonTitle : String
-    let debugInfo : String
-    var systemCode : Int
-    
-    init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String)
-    {
-        self.init(errorType : errorType, messageType: messageType, title: title, message : message, buttonTitle : buttonTitle, systemCode : -1)
+    var message: String
+    let buttonTitle: String
+    let debugInfo: String
+    var systemCode: Int
+
+    init(errorType: YSErrorType, messageType: Theme, title: String, message: String, buttonTitle: String) {
+        self.init(errorType: errorType, messageType: messageType, title: title, message: message, buttonTitle: buttonTitle, systemCode: -1)
     }
-    
-    init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String, systemCode : Int)
-    {
+
+    init(errorType: YSErrorType, messageType: Theme, title: String, message: String, buttonTitle: String, systemCode: Int) {
         self.errorType = errorType
         self.messageType = messageType
         self.title = title
@@ -34,14 +31,12 @@ struct YSError : YSErrorProtocol
         self.debugInfo = ""
         self.systemCode = systemCode
     }
-    
-    init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String, debugInfo : String)
-    {
-        self.init(errorType : errorType, messageType: messageType, title: title, message : message, buttonTitle : buttonTitle, debugInfo : debugInfo, systemCode : -1)
+
+    init(errorType: YSErrorType, messageType: Theme, title: String, message: String, buttonTitle: String, debugInfo: String) {
+        self.init(errorType: errorType, messageType: messageType, title: title, message: message, buttonTitle: buttonTitle, debugInfo: debugInfo, systemCode: -1)
     }
-    
-    init(errorType : YSErrorType, messageType: Theme, title: String, message : String, buttonTitle : String, debugInfo : String, systemCode : Int)
-    {
+
+    init(errorType: YSErrorType, messageType: Theme, title: String, message: String, buttonTitle: String, debugInfo: String, systemCode: Int) {
         self.errorType = errorType
         self.messageType = messageType
         self.title = title
@@ -49,14 +44,12 @@ struct YSError : YSErrorProtocol
         self.buttonTitle = buttonTitle
         self.debugInfo = debugInfo
         self.systemCode = systemCode
-        if !debugInfo.isEmpty
-        {
-            LogDefault(.Model, .Info, "debug info : \(debugInfo)")
+        if !debugInfo.isEmpty {
+            logDefault(.Model, .Info, "debug info : \(debugInfo)")
         }
     }
-    
-    init()
-    {
+
+    init() {
         self.errorType = YSErrorType.none
         self.messageType = Theme.info
         self.title = ""
@@ -65,23 +58,20 @@ struct YSError : YSErrorProtocol
         self.debugInfo = ""
         self.systemCode = -1
     }
-    
-    mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String)
-    {
+
+    mutating func update(errorType: YSErrorType, messageType: Theme, title: String, message: String) {
         update(errorType: errorType, messageType: messageType, title: title, message: message, systemCode: -1)
     }
-    
-    mutating func update(errorType : YSErrorType, messageType: Theme, title: String, message : String, systemCode : Int)
-    {
+
+    mutating func update(errorType: YSErrorType, messageType: Theme, title: String, message: String, systemCode: Int) {
         self.errorType = errorType
         self.messageType = messageType
         self.title = title
         self.message = message
         self.systemCode = systemCode
     }
-    
-    func isEmpty() -> Bool
-    {
+
+    func isEmpty() -> Bool {
         if
         self.errorType == YSErrorType.none &&
         self.messageType == Theme.info &&
@@ -94,9 +84,8 @@ struct YSError : YSErrorProtocol
         }
         return false
     }
-    
-    func isNoInternetError() -> Bool
-    {
+
+    func isNoInternetError() -> Bool {
         return errorType == .couldNotGetFileList && systemCode == YSConstants.kNoInternetSystemCode
     }
 }

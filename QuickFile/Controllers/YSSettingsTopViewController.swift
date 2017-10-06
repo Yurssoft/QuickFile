@@ -8,33 +8,27 @@
 
 import UIKit
 
-class YSSettingsTopViewController: UIViewController
-{
+class YSSettingsTopViewController: UIViewController {
     var settingsVC: YSSettingsTableViewController!
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupCoordinator()
     }
-    
-    func setupCoordinator()
-    {
+
+    func setupCoordinator() {
         YSAppDelegate.appDelegate().settingsCoordinator.start(settingsViewController: settingsVC!)
     }
-    
-    @IBAction func refreshSettings(_ sender: UIBarButtonItem)
-    {
-        LogSettingsSubdomain(.Controller, .Info, "")
+
+    @IBAction func refreshSettings(_ sender: UIBarButtonItem) {
+        logSettingsSubdomain(.Controller, .Info, "")
         settingsVC.tableView.reloadData()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segueIdentifier = YSConstants.kSettingsEmbededSegue
-        
-        if segue.identifier == segueIdentifier
-        {
+
+        if segue.identifier == segueIdentifier {
             settingsVC = segue.destination as? YSSettingsTableViewController
         }
     }

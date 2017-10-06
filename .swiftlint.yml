@@ -3,3 +3,5 @@ excluded:
   - Pods
   - QuickFile/MJRefresh
   - Source/ExcludedFile.swift
+
+line_length: 510

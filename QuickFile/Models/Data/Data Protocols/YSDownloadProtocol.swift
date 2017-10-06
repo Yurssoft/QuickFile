@@ -8,21 +8,19 @@
 
 import Foundation
 
-enum YSDownloadStatus
-{
+enum YSDownloadStatus {
     case downloading(
         progress : Float
     )
     case pending
 }
 
-protocol YSDownloadProtocol
-{
-    var fileDriveIdentifier : String { get set }
-    var totalSize : String? { get set }
-    
-    var downloadTask : URLSessionDownloadTask? { get set }
-    var resumeData : Data? { get set }
-    
-    var downloadStatus : YSDownloadStatus { get set }
+protocol YSDownloadProtocol {
+    var fileDriveIdentifier: String { get set }
+    var totalSize: String? { get set }
+
+    var downloadTask: URLSessionDownloadTask? { get set }
+    var resumeData: Data? { get set }
+
+    var downloadStatus: YSDownloadStatus { get set }
 }

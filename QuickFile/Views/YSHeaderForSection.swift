@@ -9,17 +9,12 @@
 import Foundation
 import UIKit
 
-class YSHeaderForSection: UITableViewHeaderFooterView
-{
+class YSHeaderForSection: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
-    func configure(title: String?)
-    {
-        if let title = title
-        {
+    func configure(title: String?) {
+        if let title = title {
             titleLabel.text = title
-        }
-        else
-        {
+        } else {
             titleLabel.text = ""
         }
         contentView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)

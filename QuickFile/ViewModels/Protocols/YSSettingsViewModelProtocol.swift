@@ -8,21 +8,18 @@
 
 import Foundation
 
-protocol YSSettingsViewModelViewDelegate: class
-{
+protocol YSSettingsViewModelViewDelegate: class {
     func errorDidChange(viewModel: YSSettingsViewModel, error: YSErrorProtocol)
 }
 
-protocol YSSettingsCoordinatorDelegate: class
-{
+protocol YSSettingsCoordinatorDelegate: class {
     func viewModelSuccessfullyLoggedIn(viewModel: YSSettingsViewModel)
     func viewModelDidDeleteAllLocalFiles(viewModel: YSSettingsViewModel)
 }
 
-protocol YSSettingsViewModelProtocol
-{
-    var isLoggedIn : Bool { get }
-    var loggedString : String { get }
+protocol YSSettingsViewModelProtocol {
+    var isLoggedIn: Bool { get }
+    var loggedString: String { get }
     weak var coordinatorDelegate: YSSettingsCoordinatorDelegate? { get set }
     func logOut()
     func deleteAllFiles()

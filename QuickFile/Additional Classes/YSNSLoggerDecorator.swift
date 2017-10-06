@@ -9,38 +9,32 @@
 import Foundation
 import NSLogger
 
-public func LogDriveSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logDriveSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Drive: " + fnName + " " + format)
 }
 
-public func LogSearchSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                               _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logSearchSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                               _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Search: " + fnName + " " + format)
 }
 
-public func LogPlayerSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                              _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logPlayerSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                              _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Player: " + fnName + " " + format)
 }
 
-public func LogPlaylistSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                               _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logPlaylistSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                               _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Playlist: " + fnName + " " + format)
 }
 
-public func LogSettingsSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                                 _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logSettingsSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                                 _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Settings: " + fnName + " " + format)
 }
 
-public func LogDefault(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
-                                 _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-{
+public func logDefault(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String,
+                                 _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, fnName + " :  " + format)
 }
