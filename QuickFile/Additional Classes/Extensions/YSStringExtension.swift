@@ -25,3 +25,19 @@ extension String
         }
     }
 }
+
+protocol OptionalString {}
+extension String: OptionalString {}
+
+extension Optional where Wrapped: OptionalString
+{
+    func unwropped(_ defaultValue: @autoclosure () -> String? = "") -> String
+    {
+        guard let unwroppedSelf = self as? String else
+        {
+            return defaultValue()!
+        }
+        return unwroppedSelf
+    }
+}
+

@@ -152,7 +152,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             }
             catch let error as NSError
             {
-                LogDefault(.Network, .Error, "Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
+                LogDefault(.Network, .Error, "Could not delete file from disk: \(error.localizedDescription) - \(error.userInfo.value(forKey: NSUnderlyingErrorKey, defaultValue: ""))")
             }
             
             do
@@ -164,7 +164,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate
             catch let error as NSError
             {
                 try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
-                LogDefault(.Network, .Error, "Could not copy file to disk: \(error.localizedDescription) - \(error.userInfo[NSUnderlyingErrorKey] ?? "")")
+                LogDefault(.Network, .Error, "Could not copy file to disk: \(error.localizedDescription) - \(error.userInfo.value(forKey: NSUnderlyingErrorKey, defaultValue: ""))")
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(currentFileIdentifier)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
                 

@@ -36,18 +36,18 @@ struct YSDriveFile : YSDriveFileProtocol
     
     init(fileName : String?, fileSize : String?, mimeType : String?, fileDriveIdentifier : String?, folderName : String?, folderID : String?, playedTime : String?, isPlayed : Bool, isCurrentlyPlaying : Bool, isDeletedFromDrive : Bool, pageToken : String?)
     {
-        self.fileName = checkStringForNil(string: fileName)
-        self.fileSize = checkStringForNil(string: fileSize)
-        self.mimeType = checkStringForNil(string: mimeType)
-        self.fileDriveIdentifier = checkStringForNil(string: fileDriveIdentifier)
-        self.folder.folderName = checkStringForNil(string: folderName)
-        self.folder.folderID = checkStringForNil(string: folderID)
+        self.fileName = fileName.unwropped()
+        self.fileSize = fileSize.unwropped()
+        self.mimeType = mimeType.unwropped()
+        self.fileDriveIdentifier = fileDriveIdentifier.unwropped()
+        self.folder.folderName = folderName.unwropped()
+        self.folder.folderID = folderID.unwropped()
         
-        self.playedTime = checkStringForNil(string: playedTime)
+        self.playedTime = playedTime.unwropped()
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
         self.isDeletedFromDrive = false
-        self.pageToken = checkStringForNil(string: pageToken)
+        self.pageToken = pageToken.unwropped()
     }
     
     init()
@@ -130,13 +130,4 @@ struct YSDriveFile : YSDriveFileProtocol
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
     
-}
-
-fileprivate func checkStringForNil(string : String?) -> String
-{
-    if string == nil
-    {
-        return ""
-    }
-    return string!
 }
