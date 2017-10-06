@@ -147,7 +147,6 @@ class YSSettingsTableViewController: UITableViewController
         present(alertController, animated: true)
     }
     
-    
     func deleteAllMetadata()
     {
         LogSettingsSubdomain(.Controller, .Info, "")

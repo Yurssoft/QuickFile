@@ -1,0 +1,5 @@
+excluded:
+  - Carthage
+  - Pods
+  - QuickFile/MJRefresh
+  - Source/ExcludedFile.swift

@@ -20,4 +20,5 @@ target 'QuickFile' do
     pod 'Reflection'
     pod 'SwiftyTimer'
     pod 'SwiftLint'
+    pod 'RazzleDazzle'
 end
