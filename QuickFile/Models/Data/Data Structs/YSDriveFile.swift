@@ -83,15 +83,19 @@ struct YSDriveFile : YSDriveFileProtocol
             let dict = attr as NSDictionary
             fileSize = dict.fileSize()
             self.fileSize = String(fileSize)
-        } catch {
-            LogDefault(.Model, .Error, "Error creating file path: \(error)")
+        } catch let error as NSError {
+            LogDriveSubdomain(.Model, .Error, "Error creating file path: " + error.localizedDescriptionAndUnderlyingKey)
         }
         return fileSize
     }
     
     func removeLocalFile()
     {
-        try? FileManager.default.removeItem(at: localFilePath()!)
+        do {
+            try FileManager.default.removeItem(at: localFilePath()!)
+        } catch let error as NSError {
+            LogDriveSubdomain(.Model, .Error, "Error deleting file: " + error.localizedDescriptionAndUnderlyingKey)
+        }
         YSAppDelegate.appDelegate().filesOnDisk.remove(fileDriveIdentifier)
     }
     
@@ -99,7 +103,6 @@ struct YSDriveFile : YSDriveFileProtocol
     {
         return "File name: \(fileName) ID: \(fileDriveIdentifier) FolderID: \(folder.folderID) Folder name: \(folder.folderName) IS AUDIO: \(isAudio)\t"
     }
-    
     
     func fileUrl() -> String
     {
@@ -129,5 +132,4 @@ struct YSDriveFile : YSDriveFileProtocol
     {
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
-    
 }

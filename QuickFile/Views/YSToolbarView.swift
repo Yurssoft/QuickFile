@@ -51,19 +51,19 @@ protocol YSToolbarViewDelegate : class
     
     @IBAction func selectAllTapped(_ sender: UIButton)
     {
-        LogDefault(.View, .Info, #function)
+        LogDefault(.View, .Info, "")
         ysToolbarDelegate?.selectAllButtonTapped(toolbar: self)
     }
     
     @IBAction func downloadTapped(_ sender: UIButton)
     {
-        LogDefault(.View, .Info, #function)
+        LogDefault(.View, .Info, "")
         ysToolbarDelegate?.downloadButtonTapped(toolbar: self)
     }
     
     @IBAction func deleteTapped(_ sender: UIButton)
     {
-        LogDefault(.View, .Info, #function)
+        LogDefault(.View, .Info, "")
         ysToolbarDelegate?.deleteButtonTapped(toolbar: self)
     }
     

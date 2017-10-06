@@ -29,6 +29,7 @@
 		5005705C1F78EB14008C981C /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 500570481F78EB14008C981C /* UIView+MJExtension.m */; };
 		501046011F627C310075C5A8 /* ReqresDefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */; };
 		501DD30A1F852552008AA5C0 /* YSNSLoggerDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */; };
+		502BE3661F878FEF005E03D0 /* YSNSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BE3651F878FEF005E03D0 /* YSNSErrorExtension.swift */; };
 		505A142C1F861AEE00EC82B0 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 505A142B1F861AEE00EC82B0 /* Cartfile */; };
 		505A142E1F861B9500EC82B0 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505A142D1F861B9500EC82B0 /* LNPopupController.framework */; };
 		507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */; };
@@ -160,6 +161,7 @@
 		500570481F78EB14008C981C /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSLoggerDecorator.swift; sourceTree = "<group>"; };
+		502BE3651F878FEF005E03D0 /* YSNSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSErrorExtension.swift; sourceTree = "<group>"; };
 		505A142B1F861AEE00EC82B0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		505A142D1F861B9500EC82B0 /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				50E5622A1E71BA90004E47A2 /* YSNSObjectExtension.swift */,
 				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
 				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
+				502BE3651F878FEF005E03D0 /* YSNSErrorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
 				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
 				50F4F4371F644EA000CB9646 /* YSSwiftMessagesExtension.swift in Sources */,
+				502BE3661F878FEF005E03D0 /* YSNSErrorExtension.swift in Sources */,
 				50E562861E71BA90004E47A2 /* YSDriveViewController.swift in Sources */,
 				50E5629A1E71BA90004E47A2 /* YSPlaylistAndPlayerProtocol.swift in Sources */,
 			);
