@@ -54,14 +54,14 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
 
                 case "files":
 
-                    let files = filesDictionary.value(forKey: fileKey, defaultValue: [])
+                    let files = filesDictionary[forKey: fileKey, []]
 
                     for file in files {
                         if let fileDict = file as? [String: Any] {
-                            let ysFile = YSDriveFile.init(fileName: fileDict.value(forKey: "name", defaultValue: ""),
-                                                          fileSize: fileDict.value(forKey: "size", defaultValue: ""),
-                                                          mimeType: fileDict.value(forKey: "mimeType", defaultValue: ""),
-                                                          fileDriveIdentifier: fileDict.value(forKey: "id", defaultValue: ""),
+                            let ysFile = YSDriveFile.init(fileName: fileDict[forKey: "name", ""],
+                                                          fileSize: fileDict[forKey: "size", ""],
+                                                          mimeType: fileDict[forKey: "mimeType", ""],
+                                                          fileDriveIdentifier: fileDict[forKey: "id", ""],
                                                           folderName: "",
                                                           folderID: "",
                                                           playedTime: "",

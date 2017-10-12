@@ -17,8 +17,8 @@ extension Dictionary {
             if let propertyKey = key as? String {
                 if propertyKey == "folder", let value = val as? [String: Any] {
                     var folder = YSFolder()
-                    folder.folderID = value.value(forKey: "folderID", defaultValue: "")
-                    folder.folderName = value.value(forKey: "folderName", defaultValue: "")
+                    folder.folderID = value[forKey: "folderID", ""]
+                    folder.folderName = value[forKey: "folderName", ""]
                     try? set(folder, key: propertyKey, for: &ysFile)
                 } else if propertyKey == "isAudio" { continue } else {
                     try? set(val ?? "", key: propertyKey, for: &ysFile)
@@ -30,10 +30,12 @@ extension Dictionary {
 }
 
 extension Dictionary where Value == Any {
-    func value<T>(forKey key: Key, defaultValue: @autoclosure () -> T) -> T {
-        guard let value = self[key] as? T else {
-            return defaultValue()
+    subscript<T>(forKey key: Key, defaultV: @autoclosure () -> T) -> T {
+        get {
+            guard let value = self[key] as? T else {
+                return defaultV()
+            }
+            return value
         }
-        return value
     }
 }

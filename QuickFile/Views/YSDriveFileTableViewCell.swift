@@ -108,7 +108,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
 
 extension YSDriveFileTableViewCell: PKDownloadButtonDelegate {
     func downloadButtonTapped(_ downloadButton: PKDownloadButton!, currentState state: PKDownloadButtonState) {
-        switch (state) {
+        switch state {
         case .startDownload:
             downloadButton.state = .pending
             downloadButton.pendingView.startSpin()

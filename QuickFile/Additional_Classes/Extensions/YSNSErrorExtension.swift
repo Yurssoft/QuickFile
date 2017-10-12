@@ -10,6 +10,6 @@ import Foundation
 
 extension NSError {
     var localizedDescriptionAndUnderlyingKey: String {
-        return "\(self.localizedDescription) - \(self.userInfo.value(forKey: NSUnderlyingErrorKey, defaultValue: "")) "
+        return "\(self.localizedDescription) - \(self.userInfo[forKey: NSUnderlyingErrorKey, ""]) "
     }
 }

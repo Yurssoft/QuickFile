@@ -21,7 +21,7 @@ class YSDatabaseManager {
                 let rootFolderID = YSFolder.rootFolder().folderID
                 var ysFiles: [YSDriveFileProtocol] = []
                 let nextPageToken = remoteFilesDict["nextPageToken"] as? String
-                let remoteFilesArrayDict = remoteFilesDict.value(forKey: "files", defaultValue: [[String: Any]]())
+                let remoteFilesArrayDict = remoteFilesDict[forKey: "files", [[String: Any]]()]
 
                 var isRootFolderAdded = false
                 var isSearchFolderAdded = false
@@ -29,14 +29,14 @@ class YSDatabaseManager {
                 var remoteFilesDict = [String: [String: Any]]()
                 for remoteFile in remoteFilesArrayDict {
                     //map ysfiledict to remote property names
-                    let fileIdentifier = remoteFile.value(forKey: "id", defaultValue: "")
+                    let fileIdentifier = remoteFile[forKey: "id", ""]
                     var emptyFile = [String: Any]()
                     let mappedFile = mapFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
                     remoteFilesDict[fileIdentifier] = mappedFile
                 }
 
                 for var dbFile in dbFilesArrayDict {
-                    let currentFileIdentifier = dbFile.value.value(forKey: "fileDriveIdentifier", defaultValue: "")
+                    let currentFileIdentifier = dbFile.value[forKey: "fileDriveIdentifier", ""]
                     let isRootFolder = (currentFileIdentifier == YSFolder.rootFolder().folderID)
                     if isRootFolder {
                         isRootFolderAdded = isRootFolder
@@ -68,7 +68,7 @@ class YSDatabaseManager {
                     let ysFile = remoteFile.value.toYSFile()
                     remoteFile.value["isAudio"] = ysFile.isAudio
                     ysFiles.append(ysFile)
-                    dbFilesArrayDict[remoteFile.value.value(forKey: "fileDriveIdentifier", defaultValue: "")] = remoteFile.value
+                    dbFilesArrayDict[remoteFile.value[forKey: "fileDriveIdentifier", ""]] = remoteFile.value
                 }
 
                 if !isRootFolderAdded && folder.folderID == rootFolderID {

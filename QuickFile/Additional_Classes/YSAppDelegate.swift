@@ -202,7 +202,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     //recieves remote silent notification
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let aps = userInfo.value(forKey: "aps", defaultValue: "")
+        let aps = userInfo[forKey: "aps", ""]
         logDefault(.App, .Info, "Recieved remote silent notification: \(aps)")
         if aps.characters.count > 0 {
             completionHandler(.newData)
@@ -224,8 +224,8 @@ extension YSAppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         logDefault(.App, .Info, "Recieved push notification: \(response.notification.request.content.userInfo)")
         let userInfo = response.notification.request.content.userInfo
-        let aps = userInfo.value(forKey: "aps", defaultValue: [String: Any]())
-        let urlString = aps.value(forKey: "link_url", defaultValue: "")
+        let aps = userInfo[forKey: "aps", [String: Any]()]
+        let urlString = aps[forKey: "link_url", ""]
         if urlString.characters.count > 0, let url = URL(string: urlString) {
             let safari = SFSafariViewController(url: url)
             window?.rootViewController?.present(safari, animated: true, completion: nil)
