@@ -286,7 +286,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
         if let viewModel = viewModel, viewModel.isLoggedIn {
             promptText = "Folder is empty or there are no .mp3 files"
         }
-        let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
+        let attributes = [NSAttributedStringKey.foregroundColor: YSConstants.kDefaultBlueColor, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }
@@ -296,7 +296,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
         if let viewModel = viewModel, viewModel.isLoggedIn {
             promptText = "Reload"
         }
-        let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }

@@ -62,14 +62,14 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let promptText = "There are no file yet"
-        let attributes = [NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0)]
+        let attributes = [NSAttributedStringKey.foregroundColor: YSConstants.kDefaultBlueColor, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }
 
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         let promptText = "Reload"
-        let attributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)]
         let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
         return attributedString
     }

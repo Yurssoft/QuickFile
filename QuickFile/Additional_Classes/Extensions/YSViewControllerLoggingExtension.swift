@@ -11,7 +11,7 @@ import UIKit
 private let swizzling: (AnyClass, Selector, Selector) -> Void = { forClass, originalSelector, swizzledSelector in
     let originalMethod = class_getInstanceMethod(forClass, originalSelector)
     let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
-    method_exchangeImplementations(originalMethod, swizzledMethod)
+    method_exchangeImplementations(originalMethod!, swizzledMethod!)
 }
 
 extension UIViewController {
@@ -30,7 +30,7 @@ extension UIViewController {
         swizzling(UIViewController.self, originalSelector, swizzledSelector)
     }()
 
-    func swizzled_viewDidLoad() {
+    @objc func swizzled_viewDidLoad() {
         swizzled_viewDidLoad()
         logDefault(.Controller, .Info, self.nameOfClass + ": viewDidLoad()")
     }

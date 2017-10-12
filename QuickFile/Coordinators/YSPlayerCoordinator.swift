@@ -51,7 +51,7 @@ extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
             self.popupContentController?.viewModel = self.viewModel
             self.tabBarController?.presentPopupBar(withContentViewController: self.popupContentController!, animated: true, completion: nil)
             self.tabBarController?.popupBar.tintColor = YSConstants.kDefaultBlueColor
-            self.tabBarController?.popupBar.subtitleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGray]
+            self.tabBarController?.popupBar.subtitleTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.lightGray]
         }
     }
 

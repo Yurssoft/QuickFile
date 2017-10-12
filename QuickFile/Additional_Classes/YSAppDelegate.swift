@@ -64,7 +64,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
         startNSLogger()
         Reqres.logger = ReqresDefaultLogger()
         Reqres.register()
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: YSConstants.kDefaultBlueColor], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: YSConstants.kDefaultBlueColor], for: .selected)
         UITabBar.appearance().tintColor = YSConstants.kDefaultBlueColor
 
         FirebaseApp.configure()

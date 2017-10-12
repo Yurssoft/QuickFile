@@ -27,7 +27,6 @@ protocol OptionalString {}
 extension String: OptionalString {}
 
 extension Optional where Wrapped: OptionalString {
-    
     func unwrapped(_ defaultValue: @autoclosure () -> String? = "") -> String {
         guard let unwroppedSelf = self as? String else {
             return defaultValue()!

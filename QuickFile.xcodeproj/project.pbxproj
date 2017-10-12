@@ -33,6 +33,8 @@
 		505A142C1F861AEE00EC82B0 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 505A142B1F861AEE00EC82B0 /* Cartfile */; };
 		505A142E1F861B9500EC82B0 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505A142D1F861B9500EC82B0 /* LNPopupController.framework */; };
 		507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */; };
+		508C57951F8FB82700E8A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */; };
+		508C57961F8FB82B00E8A472 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 508C57941F8FB45E00E8A472 /* ServiceAccount.json */; };
 		50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
 		50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562271E71BA90004E47A2 /* YSConstants.swift */; };
@@ -621,6 +623,7 @@
 					50AB0DB51D8FF242008EDB0D = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 9GXW8252L9;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -661,8 +664,10 @@
 			files = (
 				505A142C1F861AEE00EC82B0 /* Cartfile in Resources */,
 				50E562AD1E71BA90004E47A2 /* Main.storyboard in Resources */,
+				508C57951F8FB82700E8A472 /* GoogleService-Info.plist in Resources */,
 				50E562AC1E71BA90004E47A2 /* LaunchScreen.storyboard in Resources */,
 				50E562B31E71BA90004E47A2 /* YSToolbarView.xib in Resources */,
+				508C57961F8FB82B00E8A472 /* ServiceAccount.json in Resources */,
 				50E562AF1E71BA90004E47A2 /* YSDriveFileTableViewCell.xib in Resources */,
 				50E562AB1E71BA90004E47A2 /* Assets.xcassets in Resources */,
 				50E562B11E71BA90004E47A2 /* YSHeaderForSection.xib in Resources */,
@@ -1050,7 +1055,8 @@
 				PROVISIONING_PROFILE = "8d2b3d35-e61c-4ad9-af46-68e7f5a44979";
 				PROVISIONING_PROFILE_SPECIFIER = Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1079,7 +1085,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = Prod;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
