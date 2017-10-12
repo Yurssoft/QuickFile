@@ -118,7 +118,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
         let file = "\(logsDirectory.relativePath)/NSLoggerData-" + UUID().uuidString + ".rawnsloggerdata"
         LoggerSetBufferFile(nil, file as CFString)
 
-        LoggerSetOptions(nil, UInt32(kLoggerOption_BufferLogsUntilConnection | kLoggerOption_BrowseBonjour | kLoggerOption_BrowseOnlyLocalDomain))
+        LoggerSetOptions(nil, UInt32(kLoggerOption_BufferLogsUntilConnection | kLoggerOption_BrowseBonjour | kLoggerOption_BrowseOnlyLocalDomain | kLoggerOption_LogToConsole))
 
         if let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String {
             LoggerSetupBonjour(nil, nil, bundleName as CFString)

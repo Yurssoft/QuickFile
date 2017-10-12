@@ -755,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "cd /Users/yuriiboiko/dev/quickfileprivate/devKeys\nADDITIONAL_FILES_DIR=${SRCROOT}/QuickFile/Additional_Classes/Plists\nGOOGLE_APP_ID=GOOGLE_APP_ID_VALUE\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional_Classes/Plists/ServiceAccount.json\"";
+			shellScript = "ADDITIONAL_FILES_DIR=${SRCROOT}/QuickFile/Additional_Classes/Plists\nGOOGLE_APP_ID=$( defaults read ${ADDITIONAL_FILES_DIR}/GoogleService-Info.plist GOOGLE_APP_ID )\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${ADDITIONAL_FILES_DIR}/ServiceAccount.json\"";
 		};
 		502BE3671F87A06C005E03D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
