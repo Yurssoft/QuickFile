@@ -52,13 +52,11 @@ class YSSettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let identifier = cell.reuseIdentifier, let viewModel = viewModel else { return }
         switch identifier {
-            case cellLogInOutInfoIdentifier:
-                cell.textLabel?.text = viewModel.loggedString
-            break
-            case cellLogInOutIdentifier:
-                 cell.textLabel?.textColor = viewModel.isLoggedIn ? UIColor.red : UIColor.black
-                 cell.textLabel?.text = viewModel.isLoggedIn ? "Log Out From Drive" : "Log In To Drive"
-            break
+        case cellLogInOutInfoIdentifier:
+            cell.textLabel?.text = viewModel.loggedString
+        case cellLogInOutIdentifier:
+            cell.textLabel?.textColor = viewModel.isLoggedIn ? UIColor.red : UIColor.black
+            cell.textLabel?.text = viewModel.isLoggedIn ? "Log Out From Drive" : "Log In To Drive"
         default:
             break
         }
@@ -74,16 +72,12 @@ class YSSettingsTableViewController: UITableViewController {
                 } else {
                     loginToDrive()
                 }
-                break
             case cellDeleteAllIdentifier:
                 deleteAllDownloads()
-                break
             case cellDeletePlayedIdentifier:
                 deletePlayedDownloads()
-                break
             case cellDeleteAllDatabaseMetadataIdentifier:
                 deleteAllMetadata()
-                break
             default:
                 break
             }
@@ -226,26 +220,22 @@ extension YSSettingsTableViewController: YSSettingsViewModelViewDelegate {
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide(id: message.id)
             }
-            break
         case .cancelledLoginToDrive, .couldNotLoginToDrive, .notLoggedInToDrive:
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide(id: message.id)
                 self.loginToDrive()
             }
-            break
 
         case .couldNotLogOutFromDrive:
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide(id: message.id)
                 self.logOutFromDrive()
             }
-            break
 
         default:
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide(id: message.id)
             }
-            break
         }
         SwiftMessages.showDefaultMessage(message)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

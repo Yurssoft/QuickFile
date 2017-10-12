@@ -51,11 +51,9 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 case .downloading(let progress):
                     downloadButton.state = .downloading
                     downloadButton.stopDownloadButton.progress = CGFloat(progress)
-                    break
                 case .pending:
                     downloadButton.state = .pending
                     downloadButton.pendingView.startSpin()
-                    break
                 }
             } else {
                 downloadButton.state = .startDownload
@@ -96,7 +94,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
 
     var fileSize: String {
         guard let file = file else { return "" }
-        if file.isAudio, file.fileSize.characters.count > 0, var sizeInt = Int(file.fileSize) {
+        if file.isAudio, file.fileSize.count > 0, var sizeInt = Int(file.fileSize) {
             sizeInt = sizeInt / 1024 / 1024
             return sizeInt > 0 ? "\(sizeInt) MB" : file.mimeType
         } else {
@@ -113,14 +111,11 @@ extension YSDriveFileTableViewCell: PKDownloadButtonDelegate {
             downloadButton.state = .pending
             downloadButton.pendingView.startSpin()
             delegate?.downloadButtonPressed(file?.fileDriveIdentifier ?? "")
-            break
         case .pending, .downloading:
             downloadButton.state = .startDownload
             delegate?.stopDownloadButtonPressed(file?.fileDriveIdentifier ?? "")
-            break
         case .downloaded:
             downloadButton.isHidden = true
-            break
         }
     }
 }

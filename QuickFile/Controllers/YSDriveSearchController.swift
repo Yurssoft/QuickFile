@@ -155,7 +155,6 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide()
             }
-            break
         default:
             break
         }
@@ -171,7 +170,6 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
                 self.downloadButtonPressed(fileDriveIdentifier)
                 SwiftMessages.hide()
             }
-            break
         default: break
         }
         SwiftMessages.showDefaultMessage(message)
@@ -197,7 +195,7 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
 extension YSDriveSearchController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         pendingRequestForSearchModel?.cancel()
-        guard let viewModel1 = viewModel as? YSDriveSearchViewModel, let searchText = searchController.searchBar.text, searchText.characters.count > 1 else { return }
+        guard let viewModel1 = viewModel as? YSDriveSearchViewModel, let searchText = searchController.searchBar.text, searchText.count > 1 else { return }
         viewModel1.searchTerm = searchText
         logSearchSubdomain(.Controller, .Info, "Search text: " + searchText)
         viewModel1.updateLocalResults()

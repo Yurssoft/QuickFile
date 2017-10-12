@@ -131,12 +131,10 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
             if localFiles.count > indexPath.row {
                 return localFiles[indexPath.row]
             }
-            break
         case .globalFiles:
             if globalFiles.count > indexPath.row {
                 return globalFiles[indexPath.row]
             }
-            break
         }
         viewDelegate?.filesDidChange(viewModel: self)
         return YSDriveFile()
@@ -151,11 +149,9 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
         case .localFiles:
             guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < localFiles.count else { return }
             coordinatorDelegate.searchViewModelDidSelectFile(self, file: localFiles[indexPath.row])
-            break
         case .globalFiles:
             guard let coordinatorDelegate = coordinatorDelegate, indexPath.row < globalFiles.count else { return }
             coordinatorDelegate.searchViewModelDidSelectFile(self, file: globalFiles[indexPath.row])
-            break
         }
     }
 

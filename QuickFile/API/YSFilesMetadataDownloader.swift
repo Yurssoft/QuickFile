@@ -35,10 +35,8 @@ class YSFilesMetadataDownloader {
 
     class func cancelTaskWithIdentifier(taskIdentifier: String) {
         URLSession.shared.getAllTasks { tasks in
-            for task in tasks {
-                if task.taskDescription == taskIdentifier {
-                    task.cancel()
-                }
+            for task in tasks where task.taskDescription == taskIdentifier {
+                task.cancel()
             }
         }
     }

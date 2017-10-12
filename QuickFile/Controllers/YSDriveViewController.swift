@@ -219,7 +219,6 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
                 self.downloadButtonPressed(fileDriveIdentifier)
                 SwiftMessages.hide()
             }
-            break
         default: break
         }
         SwiftMessages.showDefaultMessage(message)
@@ -242,20 +241,17 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
                 self.viewModel?.loginToDrive()
                 SwiftMessages.hide()
             }
-            break
 
         case .loggedInToToDrive:
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide()
             }
-            break
 
         case .couldNotGetFileList:
             message.buttonTapHandler = { _ in
                 SwiftMessages.hide()
                 viewModel.refreshFiles {}
             }
-            break
         default: break
         }
         SwiftMessages.showDefaultMessage(message)

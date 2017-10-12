@@ -20,16 +20,13 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
         switch sectionType {
         case .all:
             url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINS(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
-            break
         case .files:
             url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'audio'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
-            break
         case .folders:
             url += "corpus=user&orderBy=folder,name&pageSize=\(YSConstants.kPageSize)&q=SEARCH_CONTAINSmimeType+contains+'folder'+and+trashed=false&spaces=drive&fields=nextPageToken,files(id,+name,+size,+mimeType)&key=AIzaSyCMsksSn6-1FzYhN49uDAzN83HGvFVXqaU"
-            break
         }
         let searchTermClean = searchTerm.replacingOccurrences(of: " ", with: "")
-        if searchTermClean.characters.count > 0 {
+        if searchTermClean.count > 0 {
             let searchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
             let contains = "name+contains+'\(searchTerm)'+and+"
             url = url.replacingOccurrences(of: "SEARCH_CONTAINS", with: contains)
@@ -47,7 +44,7 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
             for fileKey in filesDictionary.keys {
                 switch fileKey {
                 case "nextPageToken":
-                    if let token = filesDictionary[fileKey] as? String, token.characters.count > 0 {
+                    if let token = filesDictionary[fileKey] as? String, token.count > 0 {
                         nextPageToken = token
                     }
                     continue
@@ -74,7 +71,7 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
                     }
                     continue
 
-                    default:
+                default:
                     break
                 }
             }
