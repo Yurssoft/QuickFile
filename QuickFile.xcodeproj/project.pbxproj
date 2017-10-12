@@ -755,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:8ba3fc0bed298ebc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional_Classes/Plists/ServiceAccount.json\"";
+			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:4a2610bd6a6ce51b\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional_Classes/Plists/ServiceAccount.json\"";
 		};
 		502BE3671F87A06C005E03D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
