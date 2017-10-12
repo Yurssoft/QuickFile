@@ -157,14 +157,14 @@
 		500570461F78EB14008C981C /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		500570471F78EB14008C981C /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		500570481F78EB14008C981C /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		500E0A481F8F68710012E862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../quickfileprivate/devKeys/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		500E0A491F8F698E0012E862 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ServiceAccount.json; path = ../../../../quickfileprivate/devKeys/ServiceAccount.json; sourceTree = "<group>"; };
 		501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqresDefaultLogger.swift; sourceTree = "<group>"; };
 		501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSLoggerDecorator.swift; sourceTree = "<group>"; };
 		502BE3651F878FEF005E03D0 /* YSNSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNSErrorExtension.swift; sourceTree = "<group>"; };
 		505A142B1F861AEE00EC82B0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		505A142D1F861B9500EC82B0 /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
+		508C578F1F8F8CBE00E8A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../quickfileprivate/devKeys/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		508C57901F8F8CBE00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ServiceAccount.json; path = ../../../../quickfileprivate/devKeys/ServiceAccount.json; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConverting.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 			isa = PBXGroup;
 			children = (
 				50E562231E71BA90004E47A2 /* Info.plist */,
-				500E0A491F8F698E0012E862 /* ServiceAccount.json */,
-				500E0A481F8F68710012E862 /* GoogleService-Info.plist */,
+				508C578F1F8F8CBE00E8A472 /* GoogleService-Info.plist */,
+				508C57901F8F8CBE00E8A472 /* ServiceAccount.json */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -382,7 +382,7 @@
 				500570191F78E065008C981C /* QuickFile-Bridging-Header.h */,
 				5005701A1F78EB14008C981C /* MJRefresh */,
 				50E5622D1E71BA90004E47A2 /* API */,
-				50E562211E71BA90004E47A2 /* Additional Classes */,
+				50E562211E71BA90004E47A2 /* Additional_Classes */,
 				50E562351E71BA90004E47A2 /* Controllers */,
 				50E5623D1E71BA90004E47A2 /* Coordinators */,
 				50E562451E71BA90004E47A2 /* Models */,
@@ -393,7 +393,7 @@
 			path = QuickFile;
 			sourceTree = "<group>";
 		};
-		50E562211E71BA90004E47A2 /* Additional Classes */ = {
+		50E562211E71BA90004E47A2 /* Additional_Classes */ = {
 			isa = PBXGroup;
 			children = (
 				501DD3081F851FC1008AA5C0 /* Plists */,
@@ -405,7 +405,7 @@
 				50E5622B1E71BA90004E47A2 /* YSTabBarController.swift */,
 				501DD3091F852552008AA5C0 /* YSNSLoggerDecorator.swift */,
 			);
-			path = "Additional Classes";
+			path = Additional_Classes;
 			sourceTree = "<group>";
 		};
 		50E5622D1E71BA90004E47A2 /* API */ = {
@@ -593,6 +593,7 @@
 				50AB0DB41D8FF242008EDB0D /* Resources */,
 				07CB881B3B1C2E24B034515F /* [CP] Embed Pods Frameworks */,
 				007B97F269BEA38879F14D2A /* [CP] Copy Pods Resources */,
+				508C57891F8F84CD00E8A472 /* ShellScript */,
 				502578121DC3513300C6EFFF /* ShellScript */,
 				507016191DEDE56400A7CAEF /* ShellScript */,
 				50CBD1561E1D0842006789EF /* Embed Frameworks */,
@@ -754,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:8ba3fc0bed298ebc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional Classes/ServiceAccount.json\"";
+			shellScript = "GOOGLE_APP_ID=1:416980241627:ios:8ba3fc0bed298ebc\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"${SRCROOT}/QuickFile/Additional_Classes/Plists/ServiceAccount.json\"";
 		};
 		502BE3671F87A06C005E03D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -796,6 +797,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
+		};
+		508C57891F8F84CD00E8A472 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd /Users/yuriiboiko/dev/quickfileprivate/devKeys\nSERVICE_FILENAME=GoogleService-Info.plist\nSERVICE_ACCOUNT_FILENAME=ServiceAccount.json\nADDITIONAL_FILES_DIR=${SRCROOT}/QuickFile/Additional_Classes/Plists\ncp $SERVICE_FILENAME $ADDITIONAL_FILES_DIR\ncp $SERVICE_ACCOUNT_FILENAME $ADDITIONAL_FILES_DIR";
 		};
 		8AAE1B2F875A9DC262D22F9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1042,7 +1056,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuickFile/Additional_Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";
@@ -1070,7 +1084,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "QuickFile/Additional Classes/Plists/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuickFile/Additional_Classes/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yurs-soft.quickfile";
