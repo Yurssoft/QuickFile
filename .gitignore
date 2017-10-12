@@ -17,3 +17,5 @@ build/
 xcuserdata/
 *.moved-aside
 *.xcuserstate
+QuickFile/Additional_Classes/Plists/GoogleService-Info.plist
+QuickFile/Additional_Classes/Plists/ServiceAccount.json

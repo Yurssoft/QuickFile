@@ -163,8 +163,8 @@
 		505A142B1F861AEE00EC82B0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		505A142D1F861B9500EC82B0 /* LNPopupController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LNPopupController.framework; path = Carthage/Build/iOS/LNPopupController.framework; sourceTree = "<group>"; };
 		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
-		508C578F1F8F8CBE00E8A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../quickfileprivate/devKeys/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		508C57901F8F8CBE00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ServiceAccount.json; path = ../../../../quickfileprivate/devKeys/ServiceAccount.json; sourceTree = "<group>"; };
+		508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		508C57941F8FB45E00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConverting.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 			isa = PBXGroup;
 			children = (
 				50E562231E71BA90004E47A2 /* Info.plist */,
-				508C578F1F8F8CBE00E8A472 /* GoogleService-Info.plist */,
-				508C57901F8F8CBE00E8A472 /* ServiceAccount.json */,
+				508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */,
+				508C57941F8FB45E00E8A472 /* ServiceAccount.json */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -593,7 +593,6 @@
 				50AB0DB41D8FF242008EDB0D /* Resources */,
 				07CB881B3B1C2E24B034515F /* [CP] Embed Pods Frameworks */,
 				007B97F269BEA38879F14D2A /* [CP] Copy Pods Resources */,
-				508C57891F8F84CD00E8A472 /* ShellScript */,
 				502578121DC3513300C6EFFF /* ShellScript */,
 				507016191DEDE56400A7CAEF /* ShellScript */,
 				50CBD1561E1D0842006789EF /* Embed Frameworks */,
@@ -797,19 +796,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:|WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
-		};
-		508C57891F8F84CD00E8A472 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "cd /Users/yuriiboiko/dev/quickfileprivate/devKeys\nSERVICE_FILENAME=GoogleService-Info.plist\nSERVICE_ACCOUNT_FILENAME=ServiceAccount.json\nADDITIONAL_FILES_DIR=${SRCROOT}/QuickFile/Additional_Classes/Plists\ncp $SERVICE_FILENAME $ADDITIONAL_FILES_DIR\ncp $SERVICE_ACCOUNT_FILENAME $ADDITIONAL_FILES_DIR";
 		};
 		8AAE1B2F875A9DC262D22F9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
