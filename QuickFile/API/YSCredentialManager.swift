@@ -11,7 +11,7 @@ import GoogleSignIn
 import Firebase
 import SwiftMessages
 import KeychainAccess
-import ReachabilitySwift
+import Reachability
 import Reflection
 
 class YSCredentialManager {

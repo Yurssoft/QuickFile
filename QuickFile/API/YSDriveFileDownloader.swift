@@ -9,7 +9,7 @@
 import UIKit
 import SwiftMessages
 import Firebase
-import ReachabilitySwift
+import Reachability
 
 class YSDriveFileDownloader: NSObject {
     fileprivate var downloads = [String: YSDownloadProtocol]()
