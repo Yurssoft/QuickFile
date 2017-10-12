@@ -50,9 +50,7 @@ class YSDatabaseManager {
                     if let remoteFile = remoteFilesDict[currentFileIdentifier] {
                         dbFile.value = mergeFiles(dbFile: &dbFile.value, remoteFile: remoteFile, folder: folder)
                         dbFile.value["pageToken"] = pageToken
-                        var ysFile = dbFile.value.toYSFile()
-                        checkIfFileExists(file: &ysFile)
-
+                        let ysFile = dbFile.value.toYSFile()
                         ysFiles.append(ysFile)
                         remoteFilesDict[currentFileIdentifier] = nil
                     } else {
@@ -95,14 +93,6 @@ class YSDatabaseManager {
             })
         } else {
             callCompletionHandler(nextPageToken: nil, completionHandler, files: [], notLoggedInError())
-        }
-    }
-
-    fileprivate class func checkIfFileExists(file: inout YSDriveFileProtocol) {
-        if !YSAppDelegate.appDelegate().filesOnDisk.contains(file.fileDriveIdentifier) && file.localFileExists() {
-            YSAppDelegate.appDelegate().filesOnDisk.insert(file.fileDriveIdentifier)
-            var file = file
-            _ = file.updateFileSize()
         }
     }
 

@@ -51,7 +51,6 @@ struct YSDriveFile: YSDriveFileProtocol {
         self.fileDriveIdentifier = fileDriveIdentifier
         self.folder.folderName = folderName
         self.folder.folderID = folderID
-        
         self.playedTime = playedTime
         self.isPlayed = isPlayed
         self.isCurrentlyPlaying = isCurrentlyPlaying
@@ -81,6 +80,7 @@ struct YSDriveFile: YSDriveFileProtocol {
 
     mutating func updateFileSize() -> UInt64 {
         var fileSize: UInt64 = 0
+        //TODO: get file size with directory contents on app start
         guard let filePath = localFilePath()?.path else { return fileSize }
         do {
             let attr = try FileManager.default.attributesOfItem(atPath: filePath)

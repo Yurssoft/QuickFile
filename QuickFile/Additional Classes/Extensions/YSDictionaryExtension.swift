@@ -9,8 +9,8 @@
 import Reflection
 import Foundation
 
-public extension Dictionary {
-    internal func toYSFile() -> YSDriveFileProtocol {
+extension Dictionary {
+    func toYSFile() -> YSDriveFileProtocol {
         var ysFile = YSDriveFile()
         for key in keys {
             let val = self[key]
