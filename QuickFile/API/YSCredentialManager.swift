@@ -23,17 +23,17 @@ class YSCredentialManager {
     private init() {
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
         let tokenDataUnwrapped = keychain[data: YSConstants.kTokenKeychainItemKey]
-        
-        guard let tokenData = tokenDataUnwrapped,
-            !tokenData.isEmpty,
-            let tokenDictionary = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? [String: Any],
-            let tokenUnwrapped = try? construct(YSToken.self, dictionary: tokenDictionary) as? YSToken,
-            let token = tokenUnwrapped
-            else { return }
-        self.token = token
+        do {
+            if let tokenData = tokenDataUnwrapped {
+                let token = try JSONDecoder().decode(YSToken.self, from: tokenData)
+                self.token = token
+            }
+        } catch {
+            logDefault(.Service, .Error, "Something wrong with token data: " + error.localizedDescription)
+        }
     }
 
-    private var token: YSToken = YSToken()
+    private var token = YSToken()
 
     private var isValidAccessToken: Bool {
         let isTokenPresent = !token.accessToken.isEmpty
@@ -61,9 +61,12 @@ class YSCredentialManager {
 
     private func saveTokenToKeychain() {
         let keychain = Keychain(service: YSConstants.kTokenKeychainKey)
-        let tokenDictionary = toDictionary(type: token)
-        let tokenData = NSKeyedArchiver.archivedData(withRootObject: tokenDictionary)
-        keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
+        do {
+            let tokenData = try JSONEncoder().encode(token)
+            keychain[data: YSConstants.kTokenKeychainItemKey] = tokenData
+        } catch {
+            logDefault(.Service, .Error, "Something wrong with token data: " + error.localizedDescription)
+        }
     }
 
     private func urlForAccessToken() -> URL {

@@ -418,7 +418,6 @@
 				50E562301E71BA90004E47A2 /* YSDriveFileDownloader.swift */,
 				50E562311E71BA90004E47A2 /* YSFilesMetadataDownloader.swift */,
 				50E562321E71BA90004E47A2 /* YSNetworkResponseManager.swift */,
-				50E562331E71BA90004E47A2 /* YSToken.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -490,6 +489,7 @@
 				50E5624D1E71BA90004E47A2 /* YSDriveFile.swift */,
 				50E5624E1E71BA90004E47A2 /* YSError.swift */,
 				50E562561E71BA90004E47A2 /* YSFolder.swift */,
+				50E562331E71BA90004E47A2 /* YSToken.swift */,
 			);
 			path = "Data Structs";
 			sourceTree = "<group>";

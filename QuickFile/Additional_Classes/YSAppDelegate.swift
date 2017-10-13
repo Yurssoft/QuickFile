@@ -35,6 +35,7 @@ protocol YSUpdatingDelegate: class {
  - make downloads in order
  - add tutorial screen
  - battery life
+ - send logs
  */
 
 @UIApplicationMain

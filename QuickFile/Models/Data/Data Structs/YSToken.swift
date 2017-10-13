@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct YSToken {
+struct YSToken: Codable {
     //AccessToken
-    var accessToken: String = ""
-    var accessTokenTokenType: String = ""
-    var accessTokenAvailableTo: Date = Date().addDays(days: -200)
+    var accessToken = ""
+    var accessTokenTokenType = ""
+    var accessTokenAvailableTo = Date().addDays(days: -200)
 
     //RefreshToken
-    var refreshToken: String = ""
+    var refreshToken = ""
 }
