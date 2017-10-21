@@ -153,7 +153,7 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
         switch error.errorType {
         case .couldNotGetFileList:
             message.buttonTapHandler = { _ in
-                SwiftMessages.hide()
+                viewModel.updateGlobalResults()
             }
         default:
             break

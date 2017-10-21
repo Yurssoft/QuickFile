@@ -36,6 +36,7 @@ protocol YSUpdatingDelegate: class {
  - add tutorial screen
  - battery life
  - send logs
+ - share extension
  */
 
 @UIApplicationMain

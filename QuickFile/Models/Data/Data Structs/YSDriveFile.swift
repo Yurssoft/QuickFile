@@ -29,6 +29,13 @@ struct YSDriveFile: YSDriveFileProtocol {
     var isPlayed: Bool
     var isCurrentlyPlaying: Bool
 
+    enum YSDriveFileCodingKeys: String, CodingKey {
+        case fileDriveIdentifier = "id"
+        case fileName = "name"
+        case mimeType
+        case fileSize = "size"
+    }
+    
     init(fileName: String?, fileSize: String?, mimeType: String?, fileDriveIdentifier: String?, folderName: String?, folderID: String?, playedTime: String?, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String?) {
         self.fileName = fileName.unwrapped()
         self.fileSize = fileSize.unwrapped()
@@ -129,5 +136,21 @@ struct YSDriveFile: YSDriveFileProtocol {
 
     static func fileUrlStatic(fileDriveIdentifier: String) -> String {
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
+    }
+}
+
+extension YSDriveFile: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: YSDriveFileCodingKeys.self)
+        fileDriveIdentifier = try values.decode(String.self, forKey: .fileDriveIdentifier)
+        fileName = try values.decode(String.self, forKey: .fileName)
+        mimeType = try values.decode(String.self, forKey: .mimeType)
+        fileSize = ((try? values.decode(String.self, forKey: .fileSize)) ?? "")
+        
+        self.playedTime = ""
+        self.isPlayed = false
+        self.isCurrentlyPlaying = false
+        self.isDeletedFromDrive = false
+        self.pageToken = ""
     }
 }

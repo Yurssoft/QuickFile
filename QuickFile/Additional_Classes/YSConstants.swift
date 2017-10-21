@@ -18,6 +18,7 @@ typealias AllFilesCompletionHandler = ([YSDriveFileProtocol], YSErrorProtocol?, 
                                                         //files                //current playing    //error
 typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?, YSErrorProtocol?) -> Swift.Void
 typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary: [String: Any]?, _ error: YSErrorProtocol?) -> Swift.Void
+typealias FilesListMetadataDownloadedCH = (_ filesList: YSFiles, _ error: YSErrorProtocol?) -> Swift.Void //CH - completion handler
 
 struct YSConstants {
     static let kDriveClientID = "416980241627-jl0l2kt36fd7soan5k8hlhtsgfkoblns.apps.googleusercontent.com"

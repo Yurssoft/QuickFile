@@ -33,49 +33,12 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
         } else {
             url = url.replacingOccurrences(of: "SEARCH_CONTAINS", with: "")
         }
-        YSFilesMetadataDownloader.downloadFilesList(for: url, taskUIID) { filesDictionary, error in
+        YSFilesMetadataDownloader.downloadFiles(for: url, taskUIID) { files, error in
             if let err = error as? YSError {
                 completionHandler([], err, "")
                 return
             }
-            guard let filesDictionary = filesDictionary else { return completionHandler([], YSError(), "") }
-            var ysFiles = [YSDriveFileProtocol]()
-            var nextPageToken: String?
-            for fileKey in filesDictionary.keys {
-                switch fileKey {
-                case "nextPageToken":
-                    if let token = filesDictionary[fileKey] as? String, token.count > 0 {
-                        nextPageToken = token
-                    }
-                    continue
-
-                case "files":
-
-                    let files = filesDictionary[forKey: fileKey, []]
-
-                    for file in files {
-                        if let fileDict = file as? [String: Any] {
-                            let ysFile = YSDriveFile.init(fileName: fileDict[forKey: "name", ""],
-                                                          fileSize: fileDict[forKey: "size", ""],
-                                                          mimeType: fileDict[forKey: "mimeType", ""],
-                                                          fileDriveIdentifier: fileDict[forKey: "id", ""],
-                                                          folderName: "",
-                                                          folderID: "",
-                                                          playedTime: "",
-                                                          isPlayed: false,
-                                                          isCurrentlyPlaying: false,
-                                                          isDeletedFromDrive: false,
-                                                          pageToken: "")
-                            ysFiles.append(ysFile)
-                        }
-                    }
-                    continue
-
-                default:
-                    break
-                }
-            }
-            completionHandler(ysFiles, YSError(), nextPageToken)
+            completionHandler(files.files, YSError(), files.nextPageToken)
         }
     }
 
