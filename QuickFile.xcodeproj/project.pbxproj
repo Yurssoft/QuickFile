@@ -36,7 +36,6 @@
 		508C57951F8FB82700E8A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */; };
 		508C57961F8FB82B00E8A472 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 508C57941F8FB45E00E8A472 /* ServiceAccount.json */; };
 		50930A211F9156A100249CEA /* YSFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930A201F9156A100249CEA /* YSFiles.swift */; };
-		50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
 		50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562271E71BA90004E47A2 /* YSConstants.swift */; };
 		50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562281E71BA90004E47A2 /* YSDateExtension.swift */; };
@@ -170,7 +169,6 @@
 		508C57941F8FB45E00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		50930A201F9156A100249CEA /* YSFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSFiles.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConverting.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562261E71BA90004E47A2 /* YSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
 		50E562271E71BA90004E47A2 /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
@@ -402,7 +400,6 @@
 			children = (
 				501DD3081F851FC1008AA5C0 /* Plists */,
 				50F4F4351F644E1000CB9646 /* Extensions */,
-				50B1C4A31ED7F85D009B11B5 /* YSConverting.swift */,
 				501046001F627C310075C5A8 /* ReqresDefaultLogger.swift */,
 				50E562261E71BA90004E47A2 /* YSAppDelegate.swift */,
 				50E562271E71BA90004E47A2 /* YSConstants.swift */,
@@ -830,7 +827,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50B1C4A41ED7F85D009B11B5 /* YSConverting.swift in Sources */,
 				50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */,
 				50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */,
 				50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */,

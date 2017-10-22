@@ -33,7 +33,7 @@ class YSDriveModel: YSDriveModelProtocol {
             return
         }
         url += "corpus=user&orderBy=folder%2Cname&pageSize=\(YSConstants.kPageSize)&q='\(folder.folderID)'+in+parents+and+(mimeType+contains+'folder'+or+mimeType+contains+'audio')+and+trashed%3Dfalse&spaces=drive&fields=nextPageToken%2C+files(id%2C+name%2C+size%2C+mimeType)&key=\(YSConstants.kDriveAPIKey)"
-        YSFilesMetadataDownloader.downloadFilesList(for: url, taskUIID) { filesDictionary, error in
+        YSFilesMetadataDownloader.downloadFiles(for: url, taskUIID) { files, error in
             if let yserror = error as? YSError {
                 if nextPageToken != nil {
                     DispatchQueue.main.async {
@@ -44,7 +44,7 @@ class YSDriveModel: YSDriveModelProtocol {
                 YSDatabaseManager.offlineFiles(fileDriveIdentifier: folder.folderID, yserror, completionHandler)
                 return
             }
-            YSDatabaseManager.save(pageToken: pageToken, remoteFilesDict: filesDictionary!, folder, completionHandler)
+            YSDatabaseManager.save(pageToken: pageToken, remoteFiles: files, folder, completionHandler)
         }
     }
 

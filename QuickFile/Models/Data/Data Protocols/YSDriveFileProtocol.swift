@@ -32,4 +32,6 @@ protocol YSDriveFileProtocol {
 
     func localFileExists() -> Bool
     func removeLocalFile()
+    
+    func toDictionary() -> [String: Any]
 }

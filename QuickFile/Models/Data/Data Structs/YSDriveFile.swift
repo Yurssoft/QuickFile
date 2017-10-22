@@ -36,6 +36,20 @@ struct YSDriveFile: YSDriveFileProtocol {
         case fileSize = "size"
     }
     
+    enum YSDriveFileEncodingKeys: String, CodingKey {
+        case fileDriveIdentifier
+        case fileName
+        case fileSize
+        case folder
+        case isAudio
+        case isCurrentlyPlaying
+        case isDeletedFromDrive
+        case isPlayed
+        case mimeType
+        case pageToken
+        case playedTime
+    }
+    
     init(fileName: String?, fileSize: String?, mimeType: String?, fileDriveIdentifier: String?, folderName: String?, folderID: String?, playedTime: String?, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String?) {
         self.fileName = fileName.unwrapped()
         self.fileSize = fileSize.unwrapped()
@@ -118,6 +132,7 @@ struct YSDriveFile: YSDriveFileProtocol {
     func fileUrl() -> String {
         return YSDriveFile.fileUrlStatic(fileDriveIdentifier: fileDriveIdentifier)
     }
+    
     func localFilePath() -> URL? {
         return YSDriveFile.localFilePathStatic(fileDriveIdentifier: fileDriveIdentifier)
     }
@@ -137,6 +152,14 @@ struct YSDriveFile: YSDriveFileProtocol {
     static func fileUrlStatic(fileDriveIdentifier: String) -> String {
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
+    
+    func toDictionary() -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try? encoder.encode(self)
+        let fileDictionary = YSNetworkResponseManager.convertToDictionary(from: data)
+        return fileDictionary
+    }
 }
 
 extension YSDriveFile: Decodable {
@@ -152,5 +175,22 @@ extension YSDriveFile: Decodable {
         self.isCurrentlyPlaying = false
         self.isDeletedFromDrive = false
         self.pageToken = ""
+    }
+}
+
+extension YSDriveFile: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: YSDriveFileEncodingKeys.self)
+        try container.encode(fileDriveIdentifier, forKey: .fileDriveIdentifier)
+        try container.encode(fileName, forKey: .fileName)
+        try container.encode(fileSize, forKey: .fileSize)
+        try container.encode(folder, forKey: .folder)
+        try container.encode(isAudio, forKey: .isAudio)
+        try container.encode(isCurrentlyPlaying, forKey: .isCurrentlyPlaying)
+        try container.encode(isDeletedFromDrive, forKey: .isDeletedFromDrive)
+        try container.encode(isPlayed, forKey: .isPlayed)
+        try container.encode(mimeType, forKey: .mimeType)
+        try container.encode(pageToken, forKey: .pageToken)
+        try container.encode(playedTime, forKey: .playedTime)
     }
 }

@@ -37,6 +37,7 @@ protocol YSUpdatingDelegate: class {
  - battery life
  - send logs
  - share extension
+ - google analytics
  */
 
 @UIApplicationMain

@@ -11,7 +11,7 @@ import Firebase
 import SwiftMessages
 
 class YSDatabaseManager {
-    class func save(pageToken: String, remoteFilesDict: [String: Any], _ folder: YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler) {
+    class func save(pageToken: String, remoteFiles: YSFiles, _ folder: YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 var dbFilesArrayDict = [String: [String: Any]]()
@@ -20,19 +20,16 @@ class YSDatabaseManager {
                 }
                 let rootFolderID = YSFolder.rootFolder().folderID
                 var ysFiles: [YSDriveFileProtocol] = []
-                let nextPageToken = remoteFilesDict["nextPageToken"] as? String
-                let remoteFilesArrayDict = remoteFilesDict[forKey: "files", [[String: Any]]()]
+                let nextPageToken = remoteFiles.nextPageToken
+                let remoteFilesArray = remoteFiles.files
 
                 var isRootFolderAdded = false
                 var isSearchFolderAdded = false
 
-                var remoteFilesDict = [String: [String: Any]]()
-                for remoteFile in remoteFilesArrayDict {
-                    //map ysfiledict to remote property names
-                    let fileIdentifier = remoteFile[forKey: "id", ""]
-                    var emptyFile = [String: Any]()
-                    let mappedFile = mapFiles(dbFile: &emptyFile, remoteFile: remoteFile, folder: folder)
-                    remoteFilesDict[fileIdentifier] = mappedFile
+                var remoteFilesDict = [String: YSDriveFile]()
+                for remoteFile in remoteFilesArray {
+                    let fileIdentifier = remoteFile.fileDriveIdentifier
+                    remoteFilesDict[fileIdentifier] = remoteFile
                 }
 
                 for var dbFile in dbFilesArrayDict {
@@ -62,25 +59,24 @@ class YSDatabaseManager {
                     }
                     dbFilesArrayDict[currentFileIdentifier] = dbFile.value
                 }
-
-                for var remoteFile in remoteFilesDict {
-                    remoteFile.value["pageToken"] = pageToken
-                    let ysFile = remoteFile.value.toYSFile()
-                    remoteFile.value["isAudio"] = ysFile.isAudio
-                    ysFiles.append(ysFile)
-                    dbFilesArrayDict[remoteFile.value[forKey: "fileDriveIdentifier", ""]] = remoteFile.value
+                
+                for var remoteFile in remoteFilesDict.values {
+                    remoteFile.pageToken = pageToken
+                    remoteFile.folder = folder
+                    ysFiles.append(remoteFile)
+                    dbFilesArrayDict[remoteFile.fileDriveIdentifier] = remoteFile.toDictionary()
                 }
 
                 if !isRootFolderAdded && folder.folderID == rootFolderID {
                     let rootFolder = YSDriveFile.init(fileName: YSFolder.rootFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
                     ysFiles.append(rootFolder)
-                    let rootFolderDict = toDictionary(type: rootFolder)
+                    let rootFolderDict = rootFolder.toDictionary()
                     dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
                 }
                 if !isSearchFolderAdded {
                     let searchFolder = YSDriveFile.init(fileName: YSFolder.searchFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.searchFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
                     ysFiles.append(searchFolder)
-                    let rootFolderDict = toDictionary(type: searchFolder)
+                    let rootFolderDict = searchFolder.toDictionary()
                     dbFilesArrayDict[searchFolder.fileDriveIdentifier] = rootFolderDict
                 }
                 ref.child("files").setValue(dbFilesArrayDict)
@@ -96,24 +92,18 @@ class YSDatabaseManager {
         }
     }
 
-    fileprivate class func mapFiles(dbFile: inout [String: Any], remoteFile: [String: Any], folder: YSFolder) -> [String: Any] {
+    fileprivate class func mergeFiles(dbFile: inout [String: Any], remoteFile: YSDriveFile, folder: YSFolder) -> [String: Any] {
         var dbFile = dbFile
-        dbFile["fileDriveIdentifier"] = remoteFile["id"]
-        dbFile["folder"] = toDictionary(type: folder)
-        dbFile["fileName"] = remoteFile["name"]
-        dbFile["mimeType"] = remoteFile["mimeType"]
-        dbFile["fileSize"] = remoteFile["size"]
-        dbFile["isDeletedFromDrive"] = false
-        return dbFile
-    }
-
-    fileprivate class func mergeFiles(dbFile: inout [String: Any], remoteFile: [String: Any], folder: YSFolder) -> [String: Any] {
-        var dbFile = dbFile
-        dbFile["fileDriveIdentifier"] = remoteFile["fileDriveIdentifier"]
-        dbFile["folder"] = toDictionary(type: folder)
-        dbFile["fileName"] = remoteFile["fileName"]
-        dbFile["mimeType"] = remoteFile["mimeType"]
-        dbFile["fileSize"] = remoteFile["fileSize"]
+        dbFile["fileDriveIdentifier"] = remoteFile.fileDriveIdentifier
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try? encoder.encode(folder)
+        
+        dbFile["folder"] = YSNetworkResponseManager.convertToDictionary(from: data)
+        dbFile["fileName"] = remoteFile.fileName
+        dbFile["mimeType"] = remoteFile.mimeType
+        dbFile["fileSize"] = remoteFile.fileSize
         dbFile["isDeletedFromDrive"] = false
         return dbFile
     }
@@ -269,18 +259,19 @@ class YSDatabaseManager {
             ref.child("files/\(identifier)").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 var file = file
                 file.folder = YSFolder.searchFolder()
-                var updatedFile = toDictionary(type: file)
+                var updatedFile = file.toDictionary()
 
                 for currentDatabaseFile in dbFilesData.children {
                     if let databaseFile = currentDatabaseFile as? DataSnapshot,
                         var dbFile = databaseFile.value as? [String: Any],
                         let folderDict = dbFile["folder"] as? [String: String],
                         let folderName = folderDict["folderName"],
-                        let folderID = folderDict["folderID"] {
+                        let folderID = folderDict["folderID"],
+                        let file = file as? YSDriveFile {
                         var folder = YSFolder()
                         folder.folderName = folderName
                         folder.folderID = folderID
-                        updatedFile = mergeFiles(dbFile: &dbFile, remoteFile: updatedFile, folder: folder)
+                        updatedFile = mergeFiles(dbFile: &dbFile, remoteFile: file, folder: folder)
                     } else {
                         logDefault(.DB, .Error, "Something wrong with dbFile : \(currentDatabaseFile as? DataSnapshot)")
                     }
