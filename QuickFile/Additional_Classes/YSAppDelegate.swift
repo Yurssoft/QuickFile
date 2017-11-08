@@ -24,7 +24,6 @@ protocol YSUpdatingDelegate: class {
  - search add loading indicator
  - show all downloads in playlist
  - logged as
- - download wifi only (allowsCellularAccess)
  - firebase functions?
  - add spotlight search
  - add search in playlist

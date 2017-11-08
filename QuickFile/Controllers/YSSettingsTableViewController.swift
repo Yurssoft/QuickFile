@@ -19,11 +19,14 @@ class YSSettingsTableViewController: UITableViewController {
         didSet {
             viewModel?.viewDelegate = self
             if isViewLoaded {
+                downloadOnCellularSwitch.isOn = viewModel?.isCellularAccessAllowed ?? false
                 tableView.reloadData()
             }
         }
     }
-
+    
+    @IBOutlet weak var downloadOnCellularSwitch: UISwitch!
+    
     fileprivate var signInButton: GIDSignInButton?
 
     fileprivate let cellLogInOutIdentifier = "logInOutCell"
@@ -31,6 +34,7 @@ class YSSettingsTableViewController: UITableViewController {
     fileprivate let cellDeleteAllIdentifier = "deleteAllCell"
     fileprivate let cellDeletePlayedIdentifier = "deletePlayedDownloads"
     fileprivate let cellDeleteAllDatabaseMetadataIdentifier = "deleteAllMetadata"
+    fileprivate let cellDownloadOnCellularIdentifier = "downloadOnCellular"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +89,10 @@ class YSSettingsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    @IBAction func downloadOnCellularSwitchValueChanged(_ sender: UISwitch) {
+        viewModel?.isCellularAccessAllowed = sender.isOn
+    }
+    
     func loginToDrive() {
         logSettingsSubdomain(.Controller, .Info, "")
         GIDSignIn.sharedInstance().signInSilently()

@@ -20,6 +20,7 @@ protocol YSSettingsCoordinatorDelegate: class {
 protocol YSSettingsViewModelProtocol {
     var isLoggedIn: Bool { get }
     var loggedString: String { get }
+    var isCellularAccessAllowed: Bool { get set}
     weak var coordinatorDelegate: YSSettingsCoordinatorDelegate? { get set }
     func logOut()
     func deleteAllFiles()

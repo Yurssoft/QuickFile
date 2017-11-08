@@ -24,6 +24,9 @@ class YSDriveFileDownloader: NSObject {
         super.init()
 
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.yurssoft.YSGGP.drive_background_file_downloader_session")
+        if let allowsCellularAccessNum = UserDefaults.standard.value(forKey: YSConstants.kCellularAccessAllowedUserDefaultKey) as? Bool {
+            configuration.allowsCellularAccess = allowsCellularAccessNum
+        }
         sessionQueue.qualityOfService = .userInitiated
         sessionQueue.name = "drive_background_file_downloader_delegate_queue"
         let backgroundSession = URLSession(configuration: configuration, delegate: self, delegateQueue: sessionQueue)

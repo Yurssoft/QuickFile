@@ -46,6 +46,7 @@ struct YSConstants {
     static let localFilePathForDownloadingFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let cacheFolder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     static let logsFolder = cacheFolder.appendingPathComponent("AppLogs")
+    static let kCellularAccessAllowedUserDefaultKey = "kCellularAccessAllowedUserDefaultKey"
 }
 
 enum YSErrorType {
