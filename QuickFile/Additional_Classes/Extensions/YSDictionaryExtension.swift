@@ -12,7 +12,6 @@ import Foundation
 extension Dictionary {
     func toYSFile() -> YSDriveFileProtocol {
         var ysFile = YSDriveFile()
-        ysFile
         for key in keys {
             let val = self[key]
             if let propertyKey = key as? String {
