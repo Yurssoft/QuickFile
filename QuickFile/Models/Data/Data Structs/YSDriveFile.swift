@@ -35,7 +35,6 @@ struct YSDriveFile: YSDriveFileProtocol {
         case mimeType
         case fileSize = "size"
     }
-    
     enum YSDriveFileEncodingKeys: String, CodingKey {
         case fileDriveIdentifier
         case fileName
@@ -49,7 +48,6 @@ struct YSDriveFile: YSDriveFileProtocol {
         case pageToken
         case playedTime
     }
-    
     init(fileName: String?, fileSize: String?, mimeType: String?, fileDriveIdentifier: String?, folderName: String?, folderID: String?, playedTime: String?, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String?) {
         self.fileName = fileName.unwrapped()
         self.fileSize = fileSize.unwrapped()
@@ -64,7 +62,6 @@ struct YSDriveFile: YSDriveFileProtocol {
         self.isDeletedFromDrive = false
         self.pageToken = pageToken.unwrapped()
     }
-    
     init(fileName: String, fileSize: String, mimeType: String, fileDriveIdentifier: String, folderName: String, folderID: String, playedTime: String, isPlayed: Bool, isCurrentlyPlaying: Bool, isDeletedFromDrive: Bool, pageToken: String) {
         self.fileName = fileName
         self.fileSize = fileSize
@@ -132,7 +129,6 @@ struct YSDriveFile: YSDriveFileProtocol {
     func fileUrl() -> String {
         return YSDriveFile.fileUrlStatic(fileDriveIdentifier: fileDriveIdentifier)
     }
-    
     func localFilePath() -> URL? {
         return YSDriveFile.localFilePathStatic(fileDriveIdentifier: fileDriveIdentifier)
     }
@@ -152,7 +148,6 @@ struct YSDriveFile: YSDriveFileProtocol {
     static func fileUrlStatic(fileDriveIdentifier: String) -> String {
         return String(format: "%@files/%@?alt=media&key=%@", YSConstants.kDriveAPIEndpoint, fileDriveIdentifier, YSConstants.kDriveAPIKey)
     }
-    
     func toDictionary() -> [String: Any] {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -169,7 +164,6 @@ extension YSDriveFile: Decodable {
         fileName = try values.decode(String.self, forKey: .fileName)
         mimeType = try values.decode(String.self, forKey: .mimeType)
         fileSize = ((try? values.decode(String.self, forKey: .fileSize)) ?? "")
-        
         self.playedTime = ""
         self.isPlayed = false
         self.isCurrentlyPlaying = false

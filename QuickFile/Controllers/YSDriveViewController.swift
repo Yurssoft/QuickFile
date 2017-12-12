@@ -328,7 +328,6 @@ extension YSDriveViewController: YSToolbarViewDelegate {
         selectedIndexes.removeAll()
         for index in 0..<tableView.numberOfRows(inSection: 0) {
             let indexPath = IndexPath.init(row: index, section: 0)
-            
             if let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell, let file = cell.file, file.isAudio {
                 selectedIndexes.insert(indexPath)
                 tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)

@@ -24,9 +24,7 @@ class YSSettingsTableViewController: UITableViewController {
             }
         }
     }
-    
     @IBOutlet weak var downloadOnCellularSwitch: UISwitch!
-    
     fileprivate var signInButton: GIDSignInButton?
 
     fileprivate let cellLogInOutIdentifier = "logInOutCell"
@@ -92,7 +90,6 @@ class YSSettingsTableViewController: UITableViewController {
     @IBAction func downloadOnCellularSwitchValueChanged(_ sender: UISwitch) {
         viewModel?.isCellularAccessAllowed = sender.isOn
     }
-    
     func loginToDrive() {
         logSettingsSubdomain(.Controller, .Info, "")
         GIDSignIn.sharedInstance().signInSilently()

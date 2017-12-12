@@ -59,7 +59,6 @@ class YSDatabaseManager {
                     }
                     dbFilesArrayDict[currentFileIdentifier] = dbFile.value
                 }
-                
                 for var remoteFile in remoteFilesDict.values {
                     remoteFile.pageToken = pageToken
                     remoteFile.folder = folder
@@ -95,11 +94,9 @@ class YSDatabaseManager {
     fileprivate class func mergeFiles(dbFile: inout [String: Any], remoteFile: YSDriveFile, folder: YSFolder) -> [String: Any] {
         var dbFile = dbFile
         dbFile["fileDriveIdentifier"] = remoteFile.fileDriveIdentifier
-        
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try? encoder.encode(folder)
-        
         dbFile["folder"] = YSNetworkResponseManager.convertToDictionary(from: data)
         dbFile["fileName"] = remoteFile.fileName
         dbFile["mimeType"] = remoteFile.mimeType

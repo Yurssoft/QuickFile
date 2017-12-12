@@ -11,7 +11,6 @@ import SwiftMessages
 import GoogleSignIn
 
 class YSSettingsViewModel: YSSettingsViewModelProtocol {
-    
     var isLoggedIn: Bool {
         return model!.isLoggedIn
     }
@@ -35,7 +34,6 @@ class YSSettingsViewModel: YSSettingsViewModelProtocol {
     weak var viewDelegate: YSSettingsViewModelViewDelegate?
     var model: YSSettingsModel?
     weak var coordinatorDelegate: YSSettingsCoordinatorDelegate?
-    
     var isCellularAccessAllowed: Bool {
         set (newValue) {
             UserDefaults.standard.set(newValue, forKey: YSConstants.kCellularAccessAllowedUserDefaultKey)

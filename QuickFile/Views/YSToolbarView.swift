@@ -9,7 +9,7 @@
 import UIKit
 import CoreGraphics
 
-protocol YSToolbarViewDelegate : class {
+protocol YSToolbarViewDelegate: class {
     func selectAllButtonTapped(toolbar: YSToolbarView)
     func downloadButtonTapped(toolbar: YSToolbarView)
     func deleteButtonTapped(toolbar: YSToolbarView)

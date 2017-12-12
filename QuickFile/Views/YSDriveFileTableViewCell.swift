@@ -9,7 +9,7 @@
 import UIKit
 import DownloadButton
 
-protocol YSDriveFileTableViewCellDelegate : class {
+protocol YSDriveFileTableViewCellDelegate: class {
     func downloadButtonPressed(_ fileDriveIdentifier: String)
     func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
 }

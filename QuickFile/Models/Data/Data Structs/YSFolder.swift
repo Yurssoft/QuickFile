@@ -8,10 +8,9 @@
 
 import Foundation
 
-struct YSFolder : Codable {
+struct YSFolder: Codable {
     var folderName: String = ""
     var folderID: String = ""
-    
     static func rootFolder() -> YSFolder {
         var folder = YSFolder()
         folder.folderID = "root"
@@ -25,8 +24,7 @@ struct YSFolder : Codable {
         folder.folderName = "Search"
         return folder
     }
-    
-    func toDictionary() -> [String : Any] {
+    func toDictionary() -> [String: Any] {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try? encoder.encode(self)

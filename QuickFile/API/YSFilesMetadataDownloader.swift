@@ -32,7 +32,6 @@ class YSFilesMetadataDownloader {
             task.resume()
         }
     }
-    
     class func downloadFiles(for requestURL: String, _ taskIdentifier: String, _ completion: FilesListMetadataDownloadedCH? = nil) {
         let reqURL = URL.init(string: requestURL)
         let request = URLRequest.init(url: reqURL!)

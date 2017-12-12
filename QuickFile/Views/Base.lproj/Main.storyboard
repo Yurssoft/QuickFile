@@ -624,9 +624,9 @@
                                             <constraint firstItem="kwy-Em-99q" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" multiplier="1.5:1" id="fE2-cI-J9i"/>
                                             <constraint firstAttribute="trailing" secondItem="dzo-kN-7yN" secondAttribute="trailing" constant="32" id="fMM-y7-azo"/>
                                             <constraint firstItem="dbx-OI-2ab" firstAttribute="centerX" secondItem="MfD-29-12N" secondAttribute="centerX" id="jeI-U0-X9l"/>
-                                            <constraint firstAttribute="trailing" secondItem="sD8-7q-Tvz" secondAttribute="trailing" constant="32" id="mJF-0I-Qft"/>
+                                            <constraint firstAttribute="right" secondItem="sD8-7q-Tvz" secondAttribute="right" constant="32" id="mJF-0I-Qft"/>
                                             <constraint firstItem="sD8-7q-Tvz" firstAttribute="centerY" secondItem="MfD-29-12N" secondAttribute="centerY" multiplier="1:3" id="vxc-qD-bkv"/>
-                                            <constraint firstAttribute="trailing" secondItem="Jfg-vl-aFj" secondAttribute="trailing" constant="32" id="z49-q6-jYX"/>
+                                            <constraint firstAttribute="right" secondItem="Jfg-vl-aFj" secondAttribute="right" constant="32" id="z49-q6-jYX"/>
                                         </constraints>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lvC-kb-was">
