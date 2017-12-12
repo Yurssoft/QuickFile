@@ -1,3 +1,10 @@
+# 2017-10-17 -- v4.1.1
+- Fixes an issue that `GIDSignInUIDelegate`'s `signInWillDispatch:error:` was
+  not called on iOS 11. Please note that it is intended that neither
+  `signIn:presentViewController:` nor `signIn:dimissViewController:` is called
+  on iOS 11 because SFAuthenticationSession is not presented by the app's view
+  controller.
+
 # 2017-09-13 -- v4.1.0
 - Uses SFAuthenticationSession on iOS 11.
 
