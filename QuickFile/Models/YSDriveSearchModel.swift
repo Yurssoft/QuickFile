@@ -14,7 +14,7 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
         YSFilesMetadataDownloader.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
     }
 
-    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler) {
+    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCH) {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
         url.addingPercentEncoding(nextPageToken)
         switch sectionType {
@@ -42,7 +42,7 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
         }
     }
 
-    func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler) {
+    func getAllFiles(_ completionHandler: @escaping AllFilesCH) {
         YSDatabaseManager.getAllFiles(completionHandler)
     }
 

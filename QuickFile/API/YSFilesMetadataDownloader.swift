@@ -12,7 +12,7 @@ import SystemConfiguration
 import Reqres
 
 class YSFilesMetadataDownloader {
-    class func downloadFilesList(for requestURL: String, _ taskIdentifier: String, _ completionHandler: FilesListMetadataDownloadedCompletionHandler? = nil) {
+    class func downloadFilesList(for requestURL: String, _ taskIdentifier: String, _ completionHandler: FilesListDictDownloadedCH? = nil) {
         let reqURL = URL.init(string: requestURL)
         let request = URLRequest.init(url: reqURL!)
         YSCredentialManager.shared.addAccessTokenHeaders(request, taskIdentifier) { request, error in

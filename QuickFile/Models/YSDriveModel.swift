@@ -25,7 +25,7 @@ class YSDriveModel: YSDriveModelProtocol {
         YSFilesMetadataDownloader.cancelTaskWithIdentifier(taskIdentifier: taskUIID)
     }
 
-    func getFiles(pageToken: String, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler) {
+    func getFiles(pageToken: String, nextPageToken: String?, _ completionHandler: @escaping AllFilesCH) {
         var url = "\(YSConstants.kDriveAPIEndpoint)files?"
         url.addingPercentEncoding(nextPageToken)
         guard let folder = currentFolder else {

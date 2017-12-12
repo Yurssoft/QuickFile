@@ -85,7 +85,7 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
         //TODO: ?
     }
 
-    func getFiles(completion: @escaping ErrorCompletionHandler) {
+    func getFiles(completion: @escaping ErrorCH) {
         files = []
         model?.allFiles { (files, _, error) in
                 self.files = files

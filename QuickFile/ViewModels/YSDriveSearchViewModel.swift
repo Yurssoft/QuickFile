@@ -155,7 +155,7 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
         }
     }
 
-    fileprivate func getFiles(_ completion: @escaping FilesCompletionHandler) {
+    fileprivate func getFiles(_ completion: @escaping FilesCH) {
         isDownloadingMetadata = true
         model?.getFiles(for: searchTerm, sectionType: sectionType, nextPageToken: nextPageToken) {[unowned self] (files, error, nextPageToken) in
             if let errorDebugInfo = error?.debugInfo, errorDebugInfo.contains("cancelled") {

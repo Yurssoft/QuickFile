@@ -9,9 +9,9 @@
 import Foundation
 
 protocol YSDriveSearchModelProtocol {
-    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCompletionHandler)
+    func getFiles(for searchTerm: String, sectionType: YSSearchSectionType, nextPageToken: String?, _ completionHandler: @escaping AllFilesCH)
 
-    func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler)
+    func getAllFiles(_ completionHandler: @escaping AllFilesCH)
 
     func download(_ fileDriveIdentifier: String)
 

@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import SwiftMessages
 
-typealias FilesCompletionHandler = (_ files: [YSDriveFileProtocol]) -> Swift.Void
-typealias ErrorCompletionHandler = (_ error: YSErrorProtocol?) -> Swift.Void
-typealias AccessTokenAddedCompletionHandler = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
+typealias FilesCH = (_ files: [YSDriveFileProtocol]) -> Swift.Void
+typealias ErrorCH = (_ error: YSErrorProtocol?) -> Swift.Void
+typealias AccessTokenAddedCH = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void
 //                                      //files              //error           //next page token
-typealias AllFilesCompletionHandler = ([YSDriveFileProtocol], YSErrorProtocol?, String?) -> Swift.Void
+typealias AllFilesCH = ([YSDriveFileProtocol], YSErrorProtocol?, String?) -> Swift.Void
                                                         //files                //current playing    //error
-typealias AllFilesAndCurrentPlayingCompletionHandler = ([YSDriveFileProtocol], YSDriveFileProtocol?, YSErrorProtocol?) -> Swift.Void
-typealias FilesListMetadataDownloadedCompletionHandler = (_ filesDictionary: [String: Any]?, _ error: YSErrorProtocol?) -> Swift.Void
+typealias AllFilesAndCurrentPlayingCH = ([YSDriveFileProtocol], YSDriveFileProtocol?, YSErrorProtocol?) -> Swift.Void
+typealias FilesListDictDownloadedCH = (_ filesDictionary: [String: Any]?, _ error: YSErrorProtocol?) -> Swift.Void
 typealias FilesListMetadataDownloadedCH = (_ filesList: YSFiles, _ error: YSErrorProtocol?) -> Swift.Void //CH - completion handler
 
 struct YSConstants {

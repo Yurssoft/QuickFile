@@ -11,7 +11,7 @@ import Firebase
 import SwiftMessages
 
 class YSDatabaseManager {
-    class func save(pageToken: String, remoteFiles: YSFiles, _ folder: YSFolder, _ completionHandler: @escaping AllFilesCompletionHandler) {
+    class func save(pageToken: String, remoteFiles: YSFiles, _ folder: YSFolder, _ completionHandler: @escaping AllFilesCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 var dbFilesArrayDict = [String: [String: Any]]()
@@ -105,7 +105,7 @@ class YSDatabaseManager {
         return dbFile
     }
 
-    class func offlineFiles(fileDriveIdentifier: String, _ error: YSError, _ completionHandler: @escaping AllFilesCompletionHandler) {
+    class func offlineFiles(fileDriveIdentifier: String, _ error: YSError, _ completionHandler: @escaping AllFilesCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFiles) in
                 var sortedFiles: [YSDriveFileProtocol] = []
@@ -127,7 +127,7 @@ class YSDatabaseManager {
         }
     }
 
-    class func getAllFiles(_ completionHandler: @escaping AllFilesCompletionHandler) {
+    class func getAllFiles(_ completionHandler: @escaping AllFilesCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFiles) in
                 var sortedFiles: [YSDriveFileProtocol] = []
@@ -149,7 +149,7 @@ class YSDatabaseManager {
         }
     }
 
-    class func deleteAllDownloads(_ completionHandler: @escaping ErrorCompletionHandler) {
+    class func deleteAllDownloads(_ completionHandler: @escaping ErrorCH) {
         let documentsUrls = getAllFilesUrls()
         _ = documentsUrls.map { url in
             try? FileManager.default.removeItem(at: url)
@@ -175,7 +175,7 @@ class YSDatabaseManager {
         return allFileNames
     }
 
-    class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCompletionHandler) {
+    class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 for currentDatabaseFile in dbFilesData.children {
@@ -196,7 +196,7 @@ class YSDatabaseManager {
         }
     }
 
-    class func deleteDatabase(_ completionHandler: @escaping ErrorCompletionHandler) {
+    class func deleteDatabase(_ completionHandler: @escaping ErrorCH) {
         deleteAllDownloads({ _ in })
         if let ref = referenceForCurrentUser() {
             ref.child("files").removeValue()
@@ -207,7 +207,7 @@ class YSDatabaseManager {
         }
     }
 
-    class func allFilesWithCurrentPlaying(completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler) {
+    class func allFilesWithCurrentPlaying(completionHandler: @escaping AllFilesAndCurrentPlayingCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 var sortedFiles: [YSDriveFileProtocol] = []
@@ -294,13 +294,13 @@ class YSDatabaseManager {
         return nil
     }
 
-    private class func callCompletionHandler(nextPageToken: String?, _ completionHandler: AllFilesCompletionHandler?, files: [YSDriveFileProtocol], _ error: YSError) {
+    private class func callCompletionHandler(nextPageToken: String?, _ completionHandler: AllFilesCH?, files: [YSDriveFileProtocol], _ error: YSError) {
         DispatchQueue.main.async {
             completionHandler!(files, error, nextPageToken)
         }
     }
 
-    private class func callCompletionHandler(_ completionHandler: ErrorCompletionHandler?, _ error: YSError) {
+    private class func callCompletionHandler(_ completionHandler: ErrorCH?, _ error: YSError) {
         DispatchQueue.main.async {
             completionHandler!(error)
         }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol YSPlaylistAndPlayerModelProtocol {
-    func allFiles(_ completionHandler: @escaping AllFilesAndCurrentPlayingCompletionHandler)
+    func allFiles(_ completionHandler: @escaping AllFilesAndCurrentPlayingCH)
 }

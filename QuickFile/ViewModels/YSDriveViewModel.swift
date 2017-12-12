@@ -86,7 +86,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
         viewDelegate?.filesDidChange(viewModel: self)
     }
 
-    fileprivate func getFiles(_ completion: @escaping FilesCompletionHandler) {
+    fileprivate func getFiles(_ completion: @escaping FilesCH) {
         isDownloadingMetadata = true
         model?.getFiles(pageToken: pageTokens.first!, nextPageToken: pageTokens.count > 1 ? pageTokens.last : nil) { [unowned self] (files, error, nextPageToken) in
             if let errorDebugInfo = error?.debugInfo, errorDebugInfo.contains("cancelled") {

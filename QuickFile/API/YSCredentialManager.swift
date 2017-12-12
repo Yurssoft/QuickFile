@@ -73,7 +73,7 @@ class YSCredentialManager {
         return URL.init(string: url)!
     }
 
-    func addAccessTokenHeaders(_ request: URLRequest, _ taskIdentifier: String, _ completionHandler: @escaping AccessTokenAddedCompletionHandler) {
+    func addAccessTokenHeaders(_ request: URLRequest, _ taskIdentifier: String, _ completionHandler: @escaping AccessTokenAddedCH) {
         if isValidAccessToken {
             addHeaders(to: request, completionHandler)
             return
@@ -97,7 +97,7 @@ class YSCredentialManager {
         accessHeadersTask.resume()
     }
 
-    private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCompletionHandler) {
+    private func addHeaders(to request: URLRequest, _ completionHandler: @escaping AccessTokenAddedCH) {
         var request = request
         if token.accessTokenTokenType.isEmpty {
             request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
