@@ -146,12 +146,21 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
                 currentPlayingIndex = currentFileIndex
             }
-            let isCurrentlyPlaying = currentFile.isCurrentlyPlaying && player != nil
-            guard !isCurrentlyPlaying, let fileUrl = currentFile.localFilePath(), let audioPlayer = try? AVAudioPlayer(contentsOf: fileUrl) else {
+            
+            guard let fileUrl = currentFile.localFilePath() else {
                 playerDelegate?.currentFilePlayingDidChange(viewModel: self)
                 return
             }
-            updateNowPlayingInfoForCurrentPlaybackItem()
+            var audioPlayerNotInited: AVAudioPlayer?
+            do {
+                audioPlayerNotInited = try AVAudioPlayer(contentsOf: fileUrl)
+            } catch let error as NSError {
+                logPlayerSubdomain(.Model, .Error, "Error initializing AVAudioPlayer: " + error.localizedDescriptionAndUnderlyingKey)
+            }
+            guard currentFile.isCurrentlyPlaying, let audioPlayer = audioPlayerNotInited else {
+                playerDelegate?.currentFilePlayingDidChange(viewModel: self)
+                return
+            }
             player?.stop()
             player?.delegate = nil
             audioPlayer.delegate = self
@@ -159,10 +168,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             let audioSession = AVAudioSession.sharedInstance()
             audioPlayer.volume = audioSession.outputVolume
             player = audioPlayer
-            let fileTime = Double(currentFile.playedTime) ?? 0
-            if fileTime > 1.0.seconds {
-                seek(to: fileTime)
-            }
         }
         playerDelegate?.currentFilePlayingDidChange(viewModel: self)
     }
@@ -228,11 +233,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func play() {
-        guard let player = player else {
+        guard let player = player, let currentFileUnwrapped = currentFile else {
             play(file: currentFile)
             return
         }
-        player.currentTime = Double((currentFile?.playedTime ?? "0.0")) ?? 0.0
+        let fileTime = Double(currentFileUnwrapped.playedTime) ?? 0
+        if fileTime > 1.0.seconds {
+            seek(to: fileTime)
+        }
         updateCurrentPlayingFile(isCurrent: true)
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
