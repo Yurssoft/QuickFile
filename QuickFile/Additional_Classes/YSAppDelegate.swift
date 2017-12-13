@@ -37,7 +37,6 @@ protocol YSUpdatingDelegate: class {
  - send logs
  - share extension
  - google analytics
- - app version
  - playlist delete downloads
  */
 

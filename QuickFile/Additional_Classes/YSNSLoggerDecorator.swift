@@ -9,9 +9,6 @@
 import Foundation
 import NSLogger
 
-//Log(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: @autoclosure () -> String,
-//    _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function)
-
 public func logDriveSubdomain(_ domain: LoggerDomain, _ level: LoggerLevel, _ format: String, _ filename: String = #file, lineNumber: Int32 = #line, fnName: String = #function) {
     Log(domain, level, "-Drive: " + fnName + " " + format, filename, lineNumber: lineNumber, fnName: fnName)
 }

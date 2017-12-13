@@ -36,6 +36,7 @@
 		508C57951F8FB82700E8A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */; };
 		508C57961F8FB82B00E8A472 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 508C57941F8FB45E00E8A472 /* ServiceAccount.json */; };
 		50930A211F9156A100249CEA /* YSFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930A201F9156A100249CEA /* YSFiles.swift */; };
+		50C1704F1FE15E56001AD795 /* YSAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1704E1FE15E56001AD795 /* YSAboutViewController.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
 		50E562771E71BA90004E47A2 /* YSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562271E71BA90004E47A2 /* YSConstants.swift */; };
 		50E562781E71BA90004E47A2 /* YSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562281E71BA90004E47A2 /* YSDateExtension.swift */; };
@@ -169,6 +170,7 @@
 		508C57941F8FB45E00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
 		50930A201F9156A100249CEA /* YSFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSFiles.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C1704E1FE15E56001AD795 /* YSAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAboutViewController.swift; sourceTree = "<group>"; };
 		50E562231E71BA90004E47A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E562261E71BA90004E47A2 /* YSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSAppDelegate.swift; sourceTree = "<group>"; };
 		50E562271E71BA90004E47A2 /* YSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSConstants.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				50E5623A1E71BA90004E47A2 /* YSPlaylistViewController.swift */,
 				50E5623B1E71BA90004E47A2 /* YSSettingsTableViewController.swift */,
 				50E5623C1E71BA90004E47A2 /* YSSettingsTopViewController.swift */,
+				50C1704E1FE15E56001AD795 /* YSAboutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C1704F1FE15E56001AD795 /* YSAboutViewController.swift in Sources */,
 				50E5628E1E71BA90004E47A2 /* YSDriveTopCoordinator.swift in Sources */,
 				50E5628F1E71BA90004E47A2 /* YSPlayerCoordinator.swift in Sources */,
 				50E562841E71BA90004E47A2 /* YSDriveSearchController.swift in Sources */,

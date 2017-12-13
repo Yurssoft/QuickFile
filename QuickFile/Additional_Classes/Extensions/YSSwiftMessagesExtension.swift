@@ -31,7 +31,11 @@ extension SwiftMessages {
         message.configureTheme(error.messageType)
         message.configureDropShadow()
         message.configureContent(title: error.title, body: error.message)
-        message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        if error.buttonTitle.count > 1 {
+            message.button?.setTitle(error.buttonTitle, for: UIControlState.normal)
+        } else {
+            message.button?.removeFromSuperview()
+        }
         guard let message1 = message as? T else {
             return T()
         }
