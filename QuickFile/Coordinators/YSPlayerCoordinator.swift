@@ -43,8 +43,12 @@ extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
                 return
             }
             let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            try? audioSession.setActive(true)
+            do {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                try audioSession.setActive(true)
+            } catch let error as NSError {
+                logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
+            }
             UIApplication.shared.beginReceivingRemoteControlEvents()
 
             self.popupContentController = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as? YSPlayerController
@@ -61,7 +65,11 @@ extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
                 return
             }
             let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setActive(false)
+            do {
+                try audioSession.setActive(false)
+            } catch let error as NSError {
+                logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
+            }
             UIApplication.shared.endReceivingRemoteControlEvents()
             self.tabBarController?.dismissPopupBar(animated: true, completion: nil)
         }

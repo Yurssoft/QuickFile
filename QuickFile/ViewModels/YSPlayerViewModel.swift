@@ -146,7 +146,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
                 currentPlayingIndex = currentFileIndex
             }
-            
             guard let fileUrl = currentFile.localFilePath() else {
                 playerDelegate?.currentFilePlayingDidChange(viewModel: self)
                 return
