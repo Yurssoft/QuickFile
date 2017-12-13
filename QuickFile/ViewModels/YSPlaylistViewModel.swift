@@ -82,7 +82,6 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     }
 
     func removeDownloads() {
-        //TODO: ?
     }
 
     func getFiles(completion: @escaping ErrorCH) {

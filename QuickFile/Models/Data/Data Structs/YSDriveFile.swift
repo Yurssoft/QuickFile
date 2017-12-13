@@ -96,23 +96,6 @@ struct YSDriveFile: YSDriveFileProtocol {
         return YSAppDelegate.appDelegate().filesOnDisk.contains(fileDriveIdentifier)
     }
 
-    mutating func updateFileSize() -> UInt64 {
-        var fileSize: UInt64 = 0
-        //TODO: get file size with directory contents on app start
-        guard let filePath = localFilePath()?.path else { return fileSize }
-        do {
-            let attr = try FileManager.default.attributesOfItem(atPath: filePath)
-            guard let fileSizeInt = attr[FileAttributeKey.size] as? UInt64 else { return fileSize }
-            fileSize = fileSizeInt
-            let dict = attr as NSDictionary
-            fileSize = dict.fileSize()
-            self.fileSize = String(fileSize)
-        } catch let error as NSError {
-            logDriveSubdomain(.Model, .Error, "Error creating file path: " + error.localizedDescriptionAndUnderlyingKey)
-        }
-        return fileSize
-    }
-
     func removeLocalFile() {
         do {
             try FileManager.default.removeItem(at: localFilePath()!)

@@ -28,7 +28,6 @@ protocol YSDriveFileProtocol {
     static func fileUrlStatic(fileDriveIdentifier: String) -> String
     static func localFilePathStatic(fileDriveIdentifier: String) -> URL?
     static func localFileExistsStatic(fileDriveIdentifier: String) -> Bool
-    mutating func updateFileSize() -> UInt64
 
     func localFileExists() -> Bool
     func removeLocalFile()
