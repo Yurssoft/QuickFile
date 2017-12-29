@@ -340,6 +340,13 @@ extension YSDriveViewController: YSToolbarViewDelegate {
     }
 
     func deleteButtonTapped(toolbar: YSToolbarView) {
+        if selectedIndexes.count < 1 {
+            let error = YSError.init(errorType: .none, messageType: .warning, title: "Select files", message: "Please, select at least one file", buttonTitle: "")
+            if let viewModel = viewModel {
+                errorDidChange(viewModel: viewModel, error: error)
+            }
+            return
+        }
         let alertController = UIAlertController(title: "Confirm", message: "Deleting \(selectedIndexes.count) local files", preferredStyle: .actionSheet)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

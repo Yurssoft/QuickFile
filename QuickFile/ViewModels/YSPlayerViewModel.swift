@@ -239,8 +239,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         let fileTime = Double(currentFileUnwrapped.playedTime) ?? 0
         if fileTime > 1.0.seconds {
             seek(to: fileTime)
+        } else {
+            updateCurrentPlayingFile(isCurrent: true)
         }
-        updateCurrentPlayingFile(isCurrent: true)
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -254,14 +255,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func next() {
-        updateCurrentPlayingFile(isCurrent: true)
+        updateCurrentPlayingFile(isCurrent: false)
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
     func previous() {
-        updateCurrentPlayingFile(isCurrent: true)
+        updateCurrentPlayingFile(isCurrent: false)
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -323,7 +324,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func seek(to time: Double) {
-        player?.currentTime = Double(time)
+        player?.currentTime = time
         updateCurrentPlayingFile(isCurrent: true)
         viewDelegate?.timeDidChange(viewModel: self)
     }
@@ -343,6 +344,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             let remainingTime = duration - elapsedTime
             let remainingTimeInt = Int(round(remainingTime))
             currentFile.isPlayed = remainingTimeInt < 5 && !currentFile.isPlayed
+            let ds = String(describing: elapsedTime)
+            currentFile.playedTime = ds
         }
         self.currentFile = currentFile
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
