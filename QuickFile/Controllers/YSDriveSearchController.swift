@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftMessages
+import DZNEmptyDataSet
 
 class YSDriveSearchController: UITableViewController {
     var viewModel: YSDriveSearchViewModelProtocol? {
@@ -61,6 +62,8 @@ class YSDriveSearchController: UITableViewController {
         }
         footer?.isAutomaticallyHidden = true
         tableView.mj_footer = footer
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +78,10 @@ class YSDriveSearchController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        guard let viewModel = viewModel else { return 0 }
+        if viewModel.numberOfLocalFiles == 0 && viewModel.numberOfGlobalFiles == 0 {
+            return 0
+        }
         return 2
     }
 
@@ -230,5 +237,39 @@ extension YSDriveSearchController: UISearchBarDelegate {
         }
         pendingRequestForSearchModel = requestWorkItem
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(750), execute: requestWorkItem)
+    }
+}
+
+extension YSDriveSearchController: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let promptText = "Nothing found"
+        let attributes = [NSAttributedStringKey.foregroundColor: YSConstants.kDefaultBlueColor, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18.0)]
+        let attributedString = NSAttributedString.init(string: promptText, attributes: attributes)
+        return attributedString
+    }
+
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        var image = UIImage(named: "empty_search")
+        image = resizeImage(image: image!, scaleFactor: 0.5)
+        return image
+    }
+
+    func resizeImage(image: UIImage, scaleFactor: CGFloat) -> UIImage {
+        let size = image.size.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+        let hasAlpha = true
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return scaledImage!
+    }
+}
+
+extension YSDriveSearchController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

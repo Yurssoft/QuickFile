@@ -11,7 +11,7 @@ import SwiftMessages
 import M13ProgressSuite
 import DZNEmptyDataSet
 
-class YSDriveViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class YSDriveViewController: UITableViewController {
     var selectedIndexes = Set<IndexPath>()
     var viewModel: YSDriveViewModelProtocol? {
         willSet {
@@ -276,7 +276,9 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
             }
         }
     }
+}
 
+extension YSDriveViewController: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var promptText = "Browse your audio files from Google Drive"
         if let viewModel = viewModel, viewModel.isLoggedIn {
@@ -299,21 +301,23 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
 
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         if let viewModel = viewModel, viewModel.isLoggedIn {
-            return UIImage.init(named: "folder_small")
+            return UIImage(named: "folder_small")
         }
-        return UIImage.init(named: "drive")
+        return UIImage(named: "drive")
     }
 
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return UIColor.white
     }
+}
 
+extension YSDriveViewController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         guard let viewModel = viewModel, !viewModel.isDownloadingMetadata else { return false }
         return !viewModel.isLoggedIn || viewModel.numberOfFiles < 1
     }
 
-    @objc func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         guard let viewModel = viewModel else { return }
         viewModel.isLoggedIn ? viewModel.refreshFiles {} : viewModel.loginToDrive()
     }
