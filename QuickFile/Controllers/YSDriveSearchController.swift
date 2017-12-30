@@ -30,6 +30,7 @@ class YSDriveSearchController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = [YSSearchSectionType.all.rawValue, YSSearchSectionType.files.rawValue, YSSearchSectionType.folders.rawValue]
         searchController.searchBar.delegate = self
+        searchController.delegate = self
 
         if #available(iOS 11, *) {
             navigationItem.searchController = searchController
@@ -271,5 +272,16 @@ extension YSDriveSearchController: DZNEmptyDataSetSource {
 extension YSDriveSearchController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
+    }
+}
+
+extension YSDriveSearchController: UISearchControllerDelegate {
+    func willDismissSearchController(_ searchController: UISearchController) {
+        if var viewModel = viewModel {
+            pendingRequestForSearchModel?.cancel()
+            viewModel.searchTerm = ""
+            viewModel.updateLocalResults()
+            viewModel.updateGlobalResults()
+        }
     }
 }
