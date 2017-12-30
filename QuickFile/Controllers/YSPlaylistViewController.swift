@@ -25,6 +25,7 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isHidden = true
         let cellBundle = Bundle(for: YSDriveFileTableViewCell.self)
         let cellNib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: cellBundle)
 
@@ -56,6 +57,7 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
     func getFiles() {
         viewModel?.getFiles(completion: { [weak self] _ in
             self?.tableView.mj_header.endRefreshing()
+            self?.tableView.isHidden = false
             self?.tableView.reloadData()
         })
     }

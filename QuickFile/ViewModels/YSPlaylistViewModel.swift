@@ -87,13 +87,13 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     func getFiles(completion: @escaping ErrorCH) {
         files = []
         model?.allFiles { (files, _, error) in
-                self.files = files
-                if let error = error {
-                    self.error = error
-                }
-                DispatchQueue.main.async {
-                    completion(error)
-                }
+            self.files = files
+            if let error = error {
+                self.error = error
+            }
+            DispatchQueue.main.async {
+                completion(error)
+            }
         }
     }
 

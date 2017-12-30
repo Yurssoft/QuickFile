@@ -140,7 +140,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
                 files[indexPath.row] = file
             }
         }
-        if (indexes.count < 1) {
+        if indexes.count < 1 {
             coordinatorDelegate?.driveViewControllerDidDeletedFiles()
             viewDelegate?.filesDidChange(viewModel: self)
         }
