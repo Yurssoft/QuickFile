@@ -330,11 +330,13 @@ extension YSDriveViewController: DZNEmptyDataSetDelegate {
 extension YSDriveViewController: YSToolbarViewDelegate {
     func selectAllButtonTapped(toolbar: YSToolbarView) {
         selectedIndexes.removeAll()
-        for index in 0..<tableView.numberOfRows(inSection: 0) {
-            let indexPath = IndexPath.init(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell, let file = cell.file, file.isAudio {
-                selectedIndexes.insert(indexPath)
-                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        if let viewModel = viewModel {
+            for index in 0..<viewModel.numberOfFiles {
+                if let file = viewModel.file(at: index), file.isAudio {
+                    let indexPath = IndexPath.init(row: index, section: 0)
+                    tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                    selectedIndexes.insert(indexPath)
+                }
             }
         }
     }
