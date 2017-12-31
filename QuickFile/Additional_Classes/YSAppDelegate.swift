@@ -38,6 +38,7 @@ protocol YSUpdatingDelegate: class {
  - share extension
  - google analytics
  - playlist delete downloads
+ - reverse sorting of files
  */
 
 @UIApplicationMain
@@ -83,12 +84,11 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
 
 //        YSDatabaseManager.deleteDatabase { (error) in
 //            //TODO: REMOVES DATABASE
-//            log.error("DATABASE DELETED")
-//            log.error("DATABASE DELETED")
-//            log.error("DATABASE DELETED")
+//            logDefault(.App, .Error, "DATABASE DELETED")
+//            logDefault(.App, .Error, "DATABASE DELETED")
+//            logDefault(.App, .Error, "DATABASE DELETED")
 //            let when = DispatchTime.now() + 3
-//            DispatchQueue.main.asyncAfter(deadline: when)
-//            {
+//            DispatchQueue.main.asyncAfter(deadline: when) {
 //                self.driveDelegate?.filesDidChange()
 //            }
 //        }

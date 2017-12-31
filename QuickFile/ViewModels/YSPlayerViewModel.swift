@@ -156,7 +156,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             } catch let error as NSError {
                 logPlayerSubdomain(.Model, .Error, "Error initializing AVAudioPlayer: " + error.localizedDescriptionAndUnderlyingKey)
             }
-            guard currentFile.isCurrentlyPlaying, let audioPlayer = audioPlayerNotInited else {
+            guard let audioPlayer = audioPlayerNotInited else {
                 playerDelegate?.currentFilePlayingDidChange(viewModel: self)
                 return
             }
@@ -219,6 +219,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func play(file: YSDriveFileProtocol?) {
+        updateCurrentPlayingFile(isCurrent: false)
         if file == nil && currentFile == nil {
             currentFile = files.first
         } else {
@@ -255,14 +256,12 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func next() {
-        updateCurrentPlayingFile(isCurrent: false)
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
     func previous() {
-        updateCurrentPlayingFile(isCurrent: false)
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -337,17 +336,16 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         guard var currentFile = currentFile else { return }
         currentFile.isCurrentlyPlaying = isCurrent
         if let player = player {
-            currentFile.playedTime = String(describing: player.currentTime)
-
             let elapsedTime = player.currentTime as Double
             let duration = player.duration as Double
             let remainingTime = duration - elapsedTime
             let remainingTimeInt = Int(round(remainingTime))
             currentFile.isPlayed = remainingTimeInt < 5 && !currentFile.isPlayed
-            let ds = String(describing: elapsedTime)
-            currentFile.playedTime = ds
+            let elapsedTimeStr = String(describing: elapsedTime)
+            currentFile.playedTime = elapsedTimeStr
         }
         self.currentFile = currentFile
+        files[currentPlayingIndex] = currentFile
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
 }
