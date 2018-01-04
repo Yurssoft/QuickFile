@@ -39,6 +39,7 @@ protocol YSUpdatingDelegate: class {
  - google analytics
  - playlist delete downloads
  - reverse sorting of files
+ - display that file is played
  */
 
 @UIApplicationMain
