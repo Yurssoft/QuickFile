@@ -1,34 +1,34 @@
 PODS:
   - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
-  - Firebase/Auth (4.7.0):
+  - Firebase/Auth (4.8.0):
     - Firebase/Core
-    - FirebaseAuth (= 4.4.0)
-  - Firebase/Core (4.7.0):
+    - FirebaseAuth (= 4.4.1)
+  - Firebase/Core (4.8.0):
     - FirebaseAnalytics (= 4.0.5)
-    - FirebaseCore (= 4.0.12)
-  - Firebase/Crash (4.7.0):
+    - FirebaseCore (= 4.0.13)
+  - Firebase/Crash (4.8.0):
     - Firebase/Core
     - FirebaseCrash (= 2.0.2)
-  - Firebase/Database (4.7.0):
+  - Firebase/Database (4.8.0):
     - Firebase/Core
-    - FirebaseDatabase (= 4.1.2)
-  - Firebase/Messaging (4.7.0):
+    - FirebaseDatabase (= 4.1.3)
+  - Firebase/Messaging (4.8.0):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.7)
-  - Firebase/Performance (4.7.0):
+    - FirebaseMessaging (= 2.0.8)
+  - Firebase/Performance (4.8.0):
     - Firebase/Core
-    - FirebasePerformance (= 1.0.7)
+    - FirebasePerformance (= 1.1.0)
   - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseAuth (4.4.0):
+  - FirebaseAuth (4.4.1):
     - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.12):
+  - FirebaseCore (4.0.13):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseCrash (2.0.2):
     - FirebaseAnalytics (~> 4.0)
@@ -36,18 +36,19 @@ PODS:
     - GoogleToolboxForMac/Logger (~> 2.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseDatabase (4.1.2):
+  - FirebaseDatabase (4.1.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.7)
-  - FirebaseMessaging (2.0.7):
+  - FirebaseInstanceID (2.0.8):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.0.8):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebasePerformance (1.0.7):
+  - FirebasePerformance (1.1.0):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - FirebaseSwizzlingUtilities (~> 1.0)
@@ -96,7 +97,7 @@ PODS:
   - RazzleDazzle (0.1.5)
   - ReachabilitySwift (4.1.0)
   - Reflection (0.15.0)
-  - Reqres (2.1.0)
+  - Reqres (2.1.1)
   - SwiftLint (0.24.0)
   - SwiftMessages (4.1.0)
   - SwiftyTimer (2.0.0)
@@ -126,15 +127,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
+  Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
-  FirebaseAuth: cdeee95b528958dbb7dcf220ad0fb804d3a284b0
-  FirebaseCore: 6cf108b63997bc08c04a1ffa55a3ac0d71a59ffc
+  FirebaseAuth: dc0dd403beca5b2b016aac89c2d0b8dad1c81926
+  FirebaseCore: 3c02ec652db3d03fdc8bc6d9154af3e20d64b6f5
   FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
-  FirebaseDatabase: 18ecb23e15c7f58bb0c4527e9cace06897cc40ca
-  FirebaseInstanceID: 148c25c986c8699e67304b114e365713dce467f2
-  FirebaseMessaging: 1a11d1c0a9ed9b3f75a0685bb0ae5932e1062f5f
-  FirebasePerformance: de71cd3093d4cf579d8a65326557cbe67bad6e80
+  FirebaseDatabase: 7088bfc4af2cc00231bb36e1404fc2d7509eb4dc
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
+  FirebasePerformance: 3877d097c59956aa2d7a317dbae503c2b4e78459
   FirebaseSwizzlingUtilities: f1c49a5a372ac852c853722a5891a0a5e2344a6c
   GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
@@ -150,11 +151,11 @@ SPEC CHECKSUMS:
   RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Reflection: 25cb331157e0d2691271f6492216030acc58ff1e
-  Reqres: 98a22e7b0772d423fabda44bfed533f197bc4856
+  Reqres: d532d6fddbede6d688552a7f2535fb0102fc4aca
   SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: dfa0d6912f20707d8d47ae7f99a8381a5fbc0820
+PODFILE CHECKSUM: 4d8ba2d4f9e35824542ebf72bbaa158412ae2101
 
 COCOAPODS: 1.3.1
