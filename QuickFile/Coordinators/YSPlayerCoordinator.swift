@@ -44,7 +44,11 @@ extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
             }
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                if #available(iOS 11.0, *) {
+                    try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, routeSharingPolicy: .longForm)
+                } else {
+                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                }
                 try audioSession.setActive(true)
             } catch let error as NSError {
                 logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
