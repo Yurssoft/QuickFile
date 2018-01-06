@@ -42,18 +42,6 @@ extension YSPlayerCoordinator: YSPlayerViewModelCoordinatorDelegate {
             if self.tabBarController?.popupPresentationState != .hidden {
                 return
             }
-            let audioSession = AVAudioSession.sharedInstance()
-            do {
-                if #available(iOS 11.0, *) {
-                    try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, routeSharingPolicy: .longForm)
-                } else {
-                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                }
-                try audioSession.setActive(true)
-            } catch let error as NSError {
-                logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
-            }
-            UIApplication.shared.beginReceivingRemoteControlEvents()
 
             self.popupContentController = self.tabBarController?.storyboard?.instantiateViewController(withIdentifier: YSPlayerController.nameOfClass) as? YSPlayerController
             self.popupContentController?.viewModel = self.viewModel
