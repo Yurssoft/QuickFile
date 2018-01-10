@@ -40,6 +40,9 @@ protocol YSUpdatingDelegate: class {
  - playlist delete downloads
  - reverse sorting of files
  - display that file is played
+ - rethink relogin, what to do with current data and downloads and current downloads
+ - fix bug with bottom toolbar
+ - volume regulation to av player
  */
 
 @UIApplicationMain

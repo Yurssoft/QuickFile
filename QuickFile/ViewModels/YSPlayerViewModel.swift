@@ -36,14 +36,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     weak var viewDelegate: YSPlayerViewModelViewDelegate?
     weak var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate?
 
-    var files: [YSDriveFileProtocol] = [] {
-        didSet {
-            if files.count > 0 || currentFile != nil {
-                coordinatorDelegate?.showPlayer()
-            }
-            viewDelegate?.playerDidChange(viewModel: self)
-        }
-    }
+    var files: [YSDriveFileProtocol] = []
 
     var model: YSPlaylistAndPlayerModelProtocol? {
         willSet {
@@ -178,6 +171,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     let filesInFolder = files.filter { $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
                     playerFiles += filesInFolder
                 }
+                self.files = playerFiles
                 if  let localFileExists = currentPlaying?.localFileExists(), currentPlaying != nil && self.currentFile == nil && localFileExists {
                     self.currentFile = currentPlaying
                 }
@@ -193,7 +187,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     self.coordinatorDelegate?.hidePlayer()
                 }
                 self.updateCurrentPlaying()
-                self.files = playerFiles
+            
+                if self.files.count > 0 || self.currentFile != nil {
+                    self.coordinatorDelegate?.showPlayer()
+                }
+                self.viewDelegate?.playerDidChange(viewModel: self)
                 if let error = error {
                     self.error = error
                 }
@@ -345,7 +343,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             currentFile.playedTime = elapsedTimeStr
         }
         self.currentFile = currentFile
-        files[currentPlayingIndex] = currentFile
+        if files.indices.contains(currentPlayingIndex) {
+            files[currentPlayingIndex] = currentFile
+        }
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
 
