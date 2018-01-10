@@ -13,6 +13,7 @@ import MediaPlayer
 import SwiftyTimer
 
 class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate {
+    
     let commandCenter = MPRemoteCommandCenter.shared()
 
     weak var playerDelegate: YSPlayerDelegate?
@@ -132,8 +133,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         return player?.currentTime ?? 0
     }
 
-    var currentPlayingIndex: Int = 0
-
+    private var currentPlayingIndex: Int = 0
+    
     fileprivate func updateCurrentPlaying() {
         if var currentFile = currentFile {
             if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
@@ -198,7 +199,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
     }
 
-    func selectFolders(from files: [YSDriveFileProtocol]) -> [YSDriveFileProtocol] {
+    private func selectFolders(from files: [YSDriveFileProtocol]) -> [YSDriveFileProtocol] {
         let folders = files.filter {
                 let folderFile = $0
                 if !folderFile.isAudio {
@@ -267,7 +268,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
 
     // MARK: - Now Playing Info
 
-    func updateNowPlayingInfoForCurrentPlaybackItem() {
+    private func updateNowPlayingInfoForCurrentPlaybackItem() {
         guard let player = player, let currentPlaybackItem = currentFile else {
             let emptyPlayingInfo = [:] as [String: AnyObject]
             set(emptyPlayingInfo)
@@ -292,14 +293,14 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         set(nowPlayingInfo as [String: AnyObject]?)
     }
 
-    func updateNowPlayingInfoElapsedTime() {
+    private func updateNowPlayingInfoElapsedTime() {
         guard let player = player, var nowPlayingInfo = nowPlayingInfo else { return }
 
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: player.currentTime as Double)
         set(nowPlayingInfo)
     }
 
-    func set(_ nowPlayingInfo: [String: AnyObject]?) {
+    private func set(_ nowPlayingInfo: [String: AnyObject]?) {
         let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         self.nowPlayingInfo = nowPlayingInfo
@@ -348,8 +349,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
-
-    func configureAudioSession() {
+    
+    private func configureAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             if #available(iOS 11.0, *) {

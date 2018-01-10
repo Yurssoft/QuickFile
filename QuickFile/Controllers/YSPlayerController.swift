@@ -18,11 +18,11 @@ class YSPlayerController: UIViewController {
     @IBOutlet weak var payPauseButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var songSeekSlider: UISlider!
-    @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
-
-	required init?(coder aDecoder: NSCoder) {
+    @IBOutlet weak var volumeView: MPVolumeView!
+    
+    required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
         updateBarButtons()
 	}
@@ -38,13 +38,6 @@ class YSPlayerController: UIViewController {
 
     @IBAction func songSeekSliderValueChanged(_ sender: UISlider) {
         viewModel?.seekFloat(to: sender.value)
-    }
-
-    @IBAction func volumeSliderValueChanged(_ sender: UISlider) {
-        let volumeView = MPVolumeView()
-        if let view = volumeView.subviews.first as? UISlider {
-            view.value = sender.value
-        }
     }
 
     @IBAction func nextTapped(_ sender: UIButton) {
@@ -64,6 +57,7 @@ class YSPlayerController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        volumeView.setRouteButtonImage(UIImage(named: "airplay"), for: UIControlState.normal)
         playerDidChange(viewModel: viewModel!)
     }
     func updateBarButtons() {
@@ -80,7 +74,6 @@ class YSPlayerController: UIViewController {
     func updateTime() {
         updateTimeLabels()
         updateSongSlider()
-        updateVolumeSlider()
     }
 
     func updateTimeLabels() {
@@ -99,16 +92,6 @@ class YSPlayerController: UIViewController {
         songSeekSlider.maximumValue = fileDuration
         songSeekSlider.value = currentTime
         popupItem.progress = currentTime / fileDuration
-    }
-
-    func updateVolumeSlider() {
-        if volumeSlider.isTracking {
-            return
-        }
-        volumeSlider.minimumValue = 0
-        volumeSlider.maximumValue = 1
-        let audioSession = AVAudioSession.sharedInstance()
-        volumeSlider.value = audioSession.outputVolume
     }
 
     func humanReadableTimeInterval(_ timeInterval: TimeInterval) -> String {
@@ -138,7 +121,7 @@ extension YSPlayerController: YSPlayerViewModelViewDelegate {
             if self.isViewLoaded, let file = viewModel.currentFile {
                 self.updateTime()
                 self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
-                self.songNameLabel.text = file.fileName
+                self.songNameLabel.text = file.fileName + "  "
                 self.albumNameLabel.text = file.folder.folderName
             }
         }
