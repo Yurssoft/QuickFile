@@ -120,9 +120,9 @@ extension YSPlaylistViewController: UITableViewDataSource {
 
 extension YSPlaylistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         logPlaylistSubdomain(.Controller, .Info, "")
         viewModel?.useFile(at: indexPath.section, file: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,16 +144,8 @@ extension YSPlaylistViewController: YSPlayerDelegate {
         logPlaylistSubdomain(.Controller, .Info, "")
         guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
         for indexPath in indexPaths {
-            if let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section), let cell = tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
-                cell.configureForPlaylist(file)
-            }
-        }
-        if let playingFile = viewModel?.currentFile {
             DispatchQueue.main.async {
-                if let indexPath = self.viewModel?.indexPath(of: playingFile), let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
-                    let file = self.viewModel?.file(at: indexPath.row, folderIndex: indexPath.section)
-                    cell.configureForPlaylist(file)
-                }
+                self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
             }
         }
     }

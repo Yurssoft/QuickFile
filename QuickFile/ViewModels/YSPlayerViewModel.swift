@@ -161,7 +161,6 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             audioPlayer.volume = audioSession.outputVolume
             player = audioPlayer
         }
-        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
     }
 
     func getFiles() {
@@ -243,6 +242,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
         configureAudioSession()
         player.play()
+        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
@@ -250,18 +250,21 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     func pause() {
         updateCurrentPlayingFile(isCurrent: true)
         player?.pause()
+        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
     func next() {
         play(file: nextFile)
+        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
     func previous() {
         play(file: previousFile)
+        playerDelegate?.currentFilePlayingDidChange(viewModel: self)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
@@ -339,7 +342,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             let duration = player.duration as Double
             let remainingTime = duration - elapsedTime
             let remainingTimeInt = Int(round(remainingTime))
-            currentFile.isPlayed = remainingTimeInt < 5 && !currentFile.isPlayed
+            if !currentFile.isPlayed {
+                currentFile.isPlayed = remainingTimeInt < 5
+            }
             let elapsedTimeStr = String(describing: elapsedTime)
             currentFile.playedTime = elapsedTimeStr
         }
