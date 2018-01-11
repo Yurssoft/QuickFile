@@ -10,6 +10,7 @@ import Foundation
 
 protocol YSPlaylistViewModelViewDelegate: class {
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol)
+    func fileDidChange(viewModel: YSPlaylistViewModelProtocol)
     func errorDidChange(viewModel: YSPlaylistViewModelProtocol, error: YSErrorProtocol)
 }
 

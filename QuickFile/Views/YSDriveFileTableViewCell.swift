@@ -72,7 +72,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
         downloadButton.isHidden = true
         guard let file = file else { return }
         accessoryType = file.isPlayed ? .checkmark : .none
-        if file.fileDriveIdentifier == YSAppDelegate.appDelegate().playerCoordinator.viewModel.currentFile?.fileDriveIdentifier {
+        if file.isCurrentlyPlaying {
             if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font {
                 fileNameLabel?.font = UIFont.boldSystemFont(ofSize: fileNameLabelFont.pointSize)
                 fileInfoLabel?.font = UIFont.boldSystemFont(ofSize: fileInfoLabelFont.pointSize)

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol YSPlayerDelegate: class {
-    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?)
+    func fileDidChange(file: YSDriveFileProtocol)
 }
 
 protocol YSPlayerViewModelViewDelegate: class {

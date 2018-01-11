@@ -16,7 +16,7 @@ class YSPlaylistCoordinator: YSCoordinatorProtocol {
     func start(playlistViewController: YSPlaylistViewController) {
         let viewModel =  YSPlaylistViewModel()
         playlistViewController.viewModel = viewModel
-        YSAppDelegate.appDelegate().playerCoordinator.viewModel.playerDelegate = playlistViewController
+        YSAppDelegate.appDelegate().playerCoordinator.viewModel.playerDelegate = viewModel
         YSAppDelegate.appDelegate().playlistDelegate = viewModel
         viewModel.model = YSPlaylistAndPlayerModel()
         viewModel.coordinatorDelegate = self

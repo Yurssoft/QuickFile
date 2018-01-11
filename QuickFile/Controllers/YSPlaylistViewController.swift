@@ -139,8 +139,8 @@ extension YSPlaylistViewController: UITableViewDelegate {
     }
 }
 
-extension YSPlaylistViewController: YSPlayerDelegate {
-    func currentFilePlayingDidChange(viewModel: YSPlayerViewModelProtocol?) {
+extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
+    func fileDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
         guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
         for indexPath in indexPaths {
@@ -149,9 +149,7 @@ extension YSPlaylistViewController: YSPlayerDelegate {
             }
         }
     }
-}
-
-extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
+    
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async {

@@ -115,3 +115,13 @@ extension YSPlaylistViewModel: YSUpdatingDelegate {
         model = YSPlaylistAndPlayerModel()
     }
 }
+
+extension YSPlaylistViewModel: YSPlayerDelegate {
+    func fileDidChange(file: YSDriveFileProtocol) {
+        let indexOfUpdatingFile = files.index(where: { $0.fileDriveIdentifier == file.fileDriveIdentifier })
+        if let indexOfUpdatingFile = indexOfUpdatingFile, files.indices.contains(indexOfUpdatingFile) {
+            files[indexOfUpdatingFile] = file
+        }
+        viewDelegate?.fileDidChange(viewModel: self)
+    }
+}
