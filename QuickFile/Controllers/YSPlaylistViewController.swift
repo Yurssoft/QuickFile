@@ -142,11 +142,9 @@ extension YSPlaylistViewController: UITableViewDelegate {
 extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
     func fileDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
-        guard let indexPaths = tableView.indexPathsForVisibleRows else { return }
-        for indexPath in indexPaths {
             DispatchQueue.main.async {
-                self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-            }
+                guard let indexPaths = self.tableView.indexPathsForVisibleRows else { return }
+                self.tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
     

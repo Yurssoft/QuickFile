@@ -21,4 +21,5 @@ target 'QuickFile' do
     pod 'SwiftyTimer'
     pod 'SwiftLint'
     pod 'RazzleDazzle'
+    pod 'DeviceKit'
 end

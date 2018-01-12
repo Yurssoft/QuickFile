@@ -116,7 +116,6 @@ class YSDriveSearchController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         logSearchSubdomain(.Controller, .Info, "Row: \(indexPath.row)")
-        searchController.isActive = false
         viewModel?.useFile(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -191,11 +190,7 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
         logSearchSubdomain(.Controller, .Info, "Index: \(index)")
         DispatchQueue.main.async {
             let indexPath = IndexPath.init(row: index, section: 0)
-            if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
-                let file = viewModel.file(at: indexPath)
-                let download = viewModel.download(for: file?.fileDriveIdentifier ?? "")
-                cell.configureForDrive(file, self, download)
-            }
+            self.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }

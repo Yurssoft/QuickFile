@@ -10,6 +10,8 @@ import UIKit
 import MessageUI
 import SafariServices
 import SwiftMessages
+import Firebase
+import DeviceKit
 
 class YSAboutViewController: UITableViewController {
     private let emailtoIdentifier = "emailto"
@@ -36,7 +38,14 @@ class YSAboutViewController: UITableViewController {
                     composeVC.mailComposeDelegate = self
                     composeVC.setToRecipients([YSConstants.kDeveloperMail])
                     composeVC.setSubject("QuickFile Feedback")
-                    composeVC.setMessageBody("Hi! I'd like to say", isHTML: false)
+                    let iosSystemVersion = UIDevice.current.systemVersion
+                    let device = Device()
+                    var messageBody = "Hi! I'd like to say that \n iOS:\(iosSystemVersion)"
+                    messageBody += "\n Phone:\(device)"
+                    if let uud = Auth.auth().currentUser?.uid {
+                        messageBody += "\n User ID:\(uud)"
+                    }
+                    composeVC.setMessageBody(messageBody, isHTML: false)
                     present(composeVC, animated: true, completion: nil)
                 } else {
                     let error = YSError.init(errorType: .none, messageType: .warning, title: "Cannot compose mail", message: "", buttonTitle: "")

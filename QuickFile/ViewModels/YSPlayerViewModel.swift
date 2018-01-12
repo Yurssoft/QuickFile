@@ -136,11 +136,10 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     private var currentPlayingIndex: Int = 0
     
     fileprivate func updateCurrentPlaying() {
-        if var currentFile = currentFile {
+        if var currentFile = currentFile, let fileUrl = currentFile.localFilePath(), fileUrl != player?.url {
             if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
                 currentPlayingIndex = currentFileIndex
             }
-            guard let fileUrl = currentFile.localFilePath() else { return }
             var audioPlayerNotInited: AVAudioPlayer?
             do {
                 audioPlayerNotInited = try AVAudioPlayer(contentsOf: fileUrl)

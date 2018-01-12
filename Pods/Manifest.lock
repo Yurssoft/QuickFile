@@ -1,4 +1,5 @@
 PODS:
+  - DeviceKit (1.4.0)
   - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Firebase/Auth (4.8.0):
@@ -103,6 +104,7 @@ PODS:
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
+  - DeviceKit
   - DownloadButton
   - DZNEmptyDataSet
   - Firebase/Auth
@@ -125,6 +127,7 @@ DEPENDENCIES:
   - SwiftyTimer
 
 SPEC CHECKSUMS:
+  DeviceKit: fa74d97499660e88081718b16688e19217595dba
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
@@ -156,6 +159,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 4d8ba2d4f9e35824542ebf72bbaa158412ae2101
+PODFILE CHECKSUM: dcd4312243536bff28ae67192a0023d475ec0065
 
 COCOAPODS: 1.3.1

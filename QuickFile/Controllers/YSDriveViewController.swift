@@ -269,11 +269,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
         logDriveSubdomain(.Controller, .Info, "Inex: \(index)")
         DispatchQueue.main.async {
             let indexPath = IndexPath.init(row: index, section: 0)
-            if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell {
-                let file = viewModel.file(at: indexPath.row)
-                let download = viewModel.download(for: file?.fileDriveIdentifier ?? "")
-                cell.configureForDrive(file, self, download)
-            }
+            self.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }

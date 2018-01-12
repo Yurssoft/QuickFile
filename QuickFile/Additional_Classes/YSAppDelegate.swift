@@ -39,10 +39,10 @@ protocol YSUpdatingDelegate: class {
  - google analytics
  - playlist delete downloads
  - reverse sorting of files
- - display that file is played
  - rethink relogin, what to do with current data and downloads and current downloads
  - fix bug with bottom toolbar
- - volume regulation to av player
+ - fix not updating playlist from drive when deleting downloads
+ - optimize row reloading in drive to hide row blinking
  */
 
 @UIApplicationMain
