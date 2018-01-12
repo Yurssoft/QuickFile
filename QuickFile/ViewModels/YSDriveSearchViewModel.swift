@@ -207,11 +207,11 @@ extension YSDriveSearchViewModel: YSUpdatingDelegate {
         }
         var index = self.localFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
         if let indexx = index, self.localFiles.count > indexx {
-            self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
+            self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
         }
 
         index = self.globalFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
         guard let indexx = index, self.globalFiles.count > indexx else { return }
-        self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
+        self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
     }
 }

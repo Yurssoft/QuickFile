@@ -15,7 +15,6 @@ extension UITabBarController {
         let offsetY = (isVisible ? -tabBarHeight : tabBarHeight)
 
         let duration: TimeInterval = (animated ? 0.3 : 0.0)
-
         UIView.animate(withDuration: duration,
                        animations: {
                         [weak self] in self?.tabBar.frame = tabBarFrame.offsetBy(dx: 0, dy: offsetY)
@@ -29,5 +28,8 @@ extension UITabBarController {
 
     func tabBarIsVisible() -> Bool {
         return tabBar.frame.origin.y < UIScreen.main.bounds.height
+    }
+    open override func viewDidLayoutSubviews() {
+        print("")//seems to have fixed bug with resetting frame of UITabBarController's tabBar
     }
 }

@@ -43,29 +43,35 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 titleRightMarginConstraint.constant = 0.0
                 return
             }
-            downloadButton.superview?.bringSubview(toFront: downloadButton)
-            downloadButton.isHidden = false
-            titleRightMarginConstraint.constant = downloadButton.frame.width + 8
-            if let download = download {
-                switch download.downloadStatus {
-                case .downloading(let progress):
-                    downloadButton.state = .downloading
-                    downloadButton.stopDownloadButton.progress = CGFloat(progress)
-                case .pending:
-                    downloadButton.state = .pending
-                    downloadButton.pendingView.startSpin()
-                }
-            } else {
-                downloadButton.state = .startDownload
-                downloadButton.startDownloadButton.cleanDefaultAppearance()
-                downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
-            }
+            updateDownloadButton(download: download)
         } else {
             downloadButton.isHidden = true
             titleRightMarginConstraint.constant = 0.0
         }
     }
 
+    func updateDownloadButton(download: YSDownloadProtocol?) {
+        downloadButton.superview?.bringSubview(toFront: downloadButton)
+        downloadButton.isHidden = false
+        titleRightMarginConstraint.constant = downloadButton.frame.width + 8
+        if let download = download {
+            switch download.downloadStatus {
+            case .downloading(let progress):
+                downloadButton.state = .downloading
+                downloadButton.stopDownloadButton.progress = CGFloat(progress)
+            case .pending:
+                downloadButton.state = .pending
+                downloadButton.pendingView.startSpin()
+            case .downloaded:
+                break
+            }
+        } else {
+            downloadButton.state = .startDownload
+            downloadButton.startDownloadButton.cleanDefaultAppearance()
+            downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
+        }
+    }
+    
     func configureForPlaylist(_ file: YSDriveFileProtocol?) {
         self.file = file
         fileImageView?.image = UIImage(named: "song")

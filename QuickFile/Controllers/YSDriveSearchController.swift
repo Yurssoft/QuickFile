@@ -186,11 +186,20 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
         downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: download.fileDriveIdentifier)
     }
 
-    func reloadFileDownload(at index: Int, viewModel: YSDriveSearchViewModelProtocol) {
+    func reloadFileDownload(at index: Int, download: YSDownloadProtocol, viewModel: YSDriveSearchViewModelProtocol) {
         logSearchSubdomain(.Controller, .Info, "Index: \(index)")
         DispatchQueue.main.async {
             let indexPath = IndexPath.init(row: index, section: 0)
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+            switch download.downloadStatus {
+            case .downloaded:
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            default:
+                if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell  {
+                    cell.updateDownloadButton(download: download)
+                } else {
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
         }
     }
 }

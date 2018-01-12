@@ -199,7 +199,7 @@ extension YSDriveViewModel: YSUpdatingDelegate {
         }
         let index = self.files.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
         guard let indexx = index, self.files.count > indexx else { return }
-        self.viewDelegate?.reloadFileDownload(at: indexx, viewModel: self)
+        self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
     }
 
     func filesDidChange() {

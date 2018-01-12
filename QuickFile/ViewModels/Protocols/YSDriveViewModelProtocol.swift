@@ -15,7 +15,7 @@ protocol YSDriveViewModelViewDelegate: class {
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol)
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
-    func reloadFileDownload(at index: Int, viewModel: YSDriveViewModelProtocol)
+    func reloadFileDownload(at index: Int, download: YSDownloadProtocol, viewModel: YSDriveViewModelProtocol)
 }
 
 protocol YSDriveViewModelCoordinatorDelegate: class {

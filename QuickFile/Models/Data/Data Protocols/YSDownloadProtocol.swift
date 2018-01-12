@@ -13,6 +13,7 @@ enum YSDownloadStatus {
         progress : Float
     )
     case pending
+    case downloaded
 }
 
 protocol YSDownloadProtocol {

@@ -115,7 +115,7 @@ extension YSDriveFileDownloader: URLSessionDelegate {
 
 extension YSDriveFileDownloader: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        if let currentFileIdentifier = downloadTask.taskDescription, let download = downloads[currentFileIdentifier] {
+        if let currentFileIdentifier = downloadTask.taskDescription, var download = downloads[currentFileIdentifier] {
             if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: currentFileIdentifier) {
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, err)
                 downloads[currentFileIdentifier] = nil
@@ -144,6 +144,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
                 return
             }
 
+            download.downloadStatus = .downloaded
             YSAppDelegate.appDelegate().playlistDelegate?.downloadDidChange(download, nil)
             YSAppDelegate.appDelegate().playerDelegate?.downloadDidChange(download, nil)
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
