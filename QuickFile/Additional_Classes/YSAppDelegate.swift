@@ -44,6 +44,9 @@ protocol YSUpdatingDelegate: class {
  - fix not updating playlist from drive when deleting downloads
  - optimize row reloading in drive to hide row blinking
  - update to crashlitycs
+ - fix crash on download
+ - fix wrong player reload after download
+ - remove segways, use main coordinator
  */
 
 @UIApplicationMain
