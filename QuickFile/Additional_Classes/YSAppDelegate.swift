@@ -43,6 +43,7 @@ protocol YSUpdatingDelegate: class {
  - fix bug with bottom toolbar
  - fix not updating playlist from drive when deleting downloads
  - optimize row reloading in drive to hide row blinking
+ - update to crashlitycs
  */
 
 @UIApplicationMain
