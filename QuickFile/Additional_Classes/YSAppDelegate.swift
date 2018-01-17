@@ -46,7 +46,8 @@ protocol YSUpdatingDelegate: class {
  - update to crashlitycs
  - fix crash on download
  - fix wrong player reload after download
- - remove segways, use main coordinator
+ - understand that uitabbarcontroller is already acting as coordinator, remove segways
+ - try other memory filters and remoce current
  */
 
 @UIApplicationMain
