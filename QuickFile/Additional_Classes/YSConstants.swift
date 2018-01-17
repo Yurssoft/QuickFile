@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SwiftMessages
 
+typealias CompletionHandler = () -> Swift.Void
 typealias FilesCH = (_ files: [YSDriveFileProtocol]) -> Swift.Void
 typealias ErrorCH = (_ error: YSErrorProtocol?) -> Swift.Void
 typealias AccessTokenAddedCH = (_ request: URLRequest, _ error: YSErrorProtocol?) -> Swift.Void

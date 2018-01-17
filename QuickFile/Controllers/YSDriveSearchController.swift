@@ -63,8 +63,10 @@ class YSDriveSearchController: UITableViewController {
         }
         footer?.isAutomaticallyHidden = true
         tableView.mj_footer = footer
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
+        viewModel?.viewIsLoadedAndReadyToDisplay {
+            self.tableView.emptyDataSetSource = self
+            self.tableView.emptyDataSetDelegate = self
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +76,7 @@ class YSDriveSearchController: UITableViewController {
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         navigationController?.dismiss(animated: true)
+        pendingRequestForSearchModel?.cancel()
         logSearchSubdomain(.Controller, .Info, "")
         viewModel?.searchViewControllerDidFinish()
     }

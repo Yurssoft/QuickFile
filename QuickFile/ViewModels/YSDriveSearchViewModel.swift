@@ -10,16 +10,17 @@ import Foundation
 import SwiftMessages
 
 class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
-    var model: YSDriveSearchModelProtocol? {
-        didSet {
-            updateGlobalResults()
-            model?.getAllFiles {[unowned self] (localFiles, error, _) in
-                self.localFilesUnfiltered = localFiles
-                guard let error = error else { return }
-                self.error = error
-            }
+    func viewIsLoadedAndReadyToDisplay(_ completion: @escaping CompletionHandler) {
+        updateGlobalResults()
+        model?.getAllFiles {[unowned self] (localFiles, error, _) in
+            self.localFilesUnfiltered = localFiles
+            completion()
+            guard let error = error else { return }
+            self.error = error
         }
     }
+    
+    var model: YSDriveSearchModelProtocol?
 
     weak var viewDelegate: YSDriveSearchViewModelViewDelegate?
     weak var coordinatorDelegate: YSDriveSearchViewModelCoordinatorDelegate?

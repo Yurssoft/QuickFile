@@ -46,8 +46,7 @@ protocol YSUpdatingDelegate: class {
  - update to crashlitycs
  - fix crash on download
  - fix wrong player reload after download
- - understand that uitabbarcontroller is already acting as coordinator, remove segways
- - try other memory filters and remoce current
+ - understand that uitabbarcontroller is already acting as coordinator, remove segways and as first step start viewmodel loading only after view did loaded
  */
 
 @UIApplicationMain

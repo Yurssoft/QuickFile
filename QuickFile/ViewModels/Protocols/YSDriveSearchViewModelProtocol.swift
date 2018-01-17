@@ -46,6 +46,7 @@ protocol YSDriveSearchViewModelProtocol {
     var sectionType: YSSearchSectionType { get set }
     var allPagesDownloaded: Bool { get }
 
+    func viewIsLoadedAndReadyToDisplay(_ completion: @escaping CompletionHandler)
     func subscribeToDownloadingProgress()
     func updateLocalResults()
     func updateGlobalResults()
