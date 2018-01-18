@@ -9,13 +9,13 @@
 import Foundation
 
 class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
-    var model: YSPlaylistAndPlayerModelProtocol? {
-        didSet {
-            getFiles { (_) in
-                self.viewDelegate?.filesDidChange(viewModel: self)
-            }
+    func viewIsLoadedAndReadyToDisplay(_ completion: @escaping CompletionHandler) {
+        getFiles { (_) in
+            self.viewDelegate?.filesDidChange(viewModel: self)
         }
     }
+    
+    var model: YSPlaylistAndPlayerModelProtocol?
 
     fileprivate var files = [YSDriveFileProtocol]() {
         didSet {

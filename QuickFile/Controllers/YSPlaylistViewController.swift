@@ -25,7 +25,6 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.isHidden = true
         let cellBundle = Bundle(for: YSDriveFileTableViewCell.self)
         let cellNib = UINib(nibName: YSDriveFileTableViewCell.nameOfClass, bundle: cellBundle)
 
@@ -38,10 +37,12 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
 
         setupCoordinator()
         configurePullToRefresh()
-        getFiles()
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
+        viewModel?.viewIsLoadedAndReadyToDisplay {
+            self.tableView.emptyDataSetSource = self
+            self.tableView.emptyDataSetDelegate = self
+            self.tableView.reloadData()
+        }
     }
     func setupCoordinator() {
         YSAppDelegate.appDelegate().playlistCoordinator.start(playlistViewController: self)
@@ -57,7 +58,6 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
     func getFiles() {
         viewModel?.getFiles(completion: { [weak self] _ in
             self?.tableView.mj_header.endRefreshing()
-            self?.tableView.isHidden = false
             self?.tableView.reloadData()
         })
     }
@@ -85,8 +85,7 @@ class YSPlaylistViewController: UIViewController, DZNEmptyDataSetSource, DZNEmpt
     }
 
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        guard let viewModel = viewModel else { return }
-        viewModel.getFiles(completion: {_ in })
+        getFiles()
     }
 
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
@@ -143,7 +142,7 @@ extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
     func fileDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
             DispatchQueue.main.async {
-                guard let indexPaths = self.tableView.indexPathsForVisibleRows else { return }
+                guard let indexPaths = self.tableView.indexPathsForVisibleRows, indexPaths.count > 0 else { return }
                 self.tableView.reloadRows(at: indexPaths, with: .none)
         }
     }

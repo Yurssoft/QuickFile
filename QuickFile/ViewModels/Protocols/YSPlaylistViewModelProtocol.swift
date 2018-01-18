@@ -25,6 +25,7 @@ protocol YSPlaylistViewModelProtocol {
     var numberOfFolders: Int { get }
     var error: YSErrorProtocol { get }
 
+    func viewIsLoadedAndReadyToDisplay(_ completion: @escaping CompletionHandler)
     func numberOfFiles(in folder: Int) -> Int
     func file(at index: Int, folderIndex: Int) -> YSDriveFileProtocol?
     func folder(at index: Int) -> YSDriveFileProtocol?
