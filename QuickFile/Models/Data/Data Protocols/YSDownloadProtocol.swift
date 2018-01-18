@@ -14,6 +14,7 @@ enum YSDownloadStatus {
     )
     case pending
     case downloaded
+    case downloadError
 }
 
 protocol YSDownloadProtocol {

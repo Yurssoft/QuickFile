@@ -14,8 +14,8 @@ struct YSError: YSErrorProtocol {
     var messageType: Theme
     var title: String
     var message: String
-    let buttonTitle: String
-    let debugInfo: String
+    var buttonTitle: String
+    var debugInfo: String
     var systemCode: Int
 
     init(errorType: YSErrorType, messageType: Theme, title: String, message: String, buttonTitle: String) {

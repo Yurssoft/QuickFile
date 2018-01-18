@@ -58,7 +58,7 @@ extension YSDriveTopCoordinator: YSDriveCoordinatorDelegate {
                 let player = AVPlayer(url: url as URL)
                 let playerViewController = AVPlayerViewController()
                 playerViewController.player = player
-                navigationController?.present(playerViewController, animated: true) {
+                YSAppDelegate.topViewController()?.present(playerViewController, animated: true) {
                     playerViewController.player!.play()
                 }
             } else {

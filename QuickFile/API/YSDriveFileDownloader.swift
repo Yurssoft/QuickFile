@@ -48,6 +48,9 @@ class YSDriveFileDownloader: NSObject {
             if case .downloading(_) = download.downloadStatus {
                 return
             }
+            if case .downloadError = download.downloadStatus {
+                return
+            }
             let url = YSDriveFile.fileUrlStatic(fileDriveIdentifier: download.fileDriveIdentifier)
             let reqURL = URL.init(string: url)
             let request = URLRequest.init(url: reqURL!)
@@ -71,11 +74,19 @@ class YSDriveFileDownloader: NSObject {
     }
 
     func download(fileDriveIdentifier: String) {
-        if YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier) || downloads[fileDriveIdentifier] != nil {
-            logDefault(.Network, .Error, "Error downloading file:  local file exists or file is already in downloading queue")
+        if YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier) {
+            logDefault(.Network, .Error, "Error downloading file: local file exists")
             return
         }
         var download = YSDownload(fileDriveIdentifier: fileDriveIdentifier)
+        if var existingDownload = downloads[fileDriveIdentifier] {
+                if case .downloadError = existingDownload.downloadStatus, let ysDownload = existingDownload as? YSDownload {
+                    download = ysDownload
+                } else {
+                    logDefault(.Network, .Error, "Error downloading file: file is already in downloading queue")
+                    return
+                }
+        }
         download.downloadStatus = .pending
         downloads[fileDriveIdentifier] = download
         YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
@@ -97,6 +108,11 @@ class YSDriveFileDownloader: NSObject {
         }
         downloads.removeAll()
         YSAppDelegate.appDelegate().downloadsDelegate?.filesDidChange()
+    }
+    
+    func noSpaceLeftOnDeviceError(_ errorText: String) -> YSErrorProtocol {
+        let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't copy file: no space left", buttonTitle: "Try again", debugInfo: errorText)
+        return errorMessage
     }
 }
 
@@ -133,12 +149,32 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
                 try fileManager.copyItem(at: location, to: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
                 logDefault(.Network, .Info, "Copied file to disk")
                 YSAppDelegate.appDelegate().filesOnDisk.insert(currentFileIdentifier)
+            } catch CocoaError.fileWriteOutOfSpace {
+                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                let errorText = "Could not copy file to disk: Run out of space"
+                logDefault(.Network, .Error, errorText)
+
+                let errorMessage = noSpaceLeftOnDeviceError(errorText)
+
+                YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, errorMessage)
+                downloads[currentFileIdentifier] = nil
+                return
+            } catch CocoaError.fileWriteNoPermission {
+                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                let errorText = "Could not copy file to disk: No permission to write do disk"
+                logDefault(.Network, .Error, errorText)
+                
+                let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't copy file: no permission to copy to disk", buttonTitle: "Try again", debugInfo: errorText)
+                
+                YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, errorMessage)
+                downloads[currentFileIdentifier] = nil
+                return
             } catch let error as NSError {
                 try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
                 logDefault(.Network, .Error, "Could not copy file to disk: " + error.localizedDescriptionAndUnderlyingKey)
-
+                
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(currentFileIdentifier)", buttonTitle: "Try again", debugInfo: error.localizedDescription)
-
+                
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, errorMessage)
                 downloads[currentFileIdentifier] = nil
                 return
@@ -167,15 +203,30 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error, let currentFileIdentifier = task.taskDescription, var download = downloads[currentFileIdentifier] {
             if error.localizedDescription.contains("cancelled") || error.localizedDescription.contains("connection was lost") || error.localizedDescription.contains("No such file or directory") {
+                logDefault(.Network, .Error, error.localizedDescription)
                 download.downloadStatus = .pending
                 downloads[currentFileIdentifier] = download
                 downloadNextFile()
                 return
             }
+            let noSpaceLeftOnDiskErrorCode = 28
+            let noSpaceLeftOnDiskErrorDomain = "NSPOSIXErrorDomain"
+            
             var yserror: YSErrorProtocol
-            yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(currentFileIdentifier)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
+            let nsError = error as NSError
+            if nsError.domain == noSpaceLeftOnDiskErrorDomain && nsError.code == noSpaceLeftOnDiskErrorCode {
+                let errorText = "Could not copy file to disk: Run out of space"
+                logDefault(.Network, .Error, errorText)
+                yserror = noSpaceLeftOnDeviceError(errorText)
+            } else {
+                logDefault(.Network, .Error, error.localizedDescription)
+                yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(currentFileIdentifier)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
+            }
+            download.downloadStatus = .downloadError
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, yserror)
-            downloads[currentFileIdentifier] = nil
+            YSAppDelegate.appDelegate().playlistDelegate?.downloadDidChange(download, nil)
+            YSAppDelegate.appDelegate().playerDelegate?.downloadDidChange(download, nil)
+            downloads[currentFileIdentifier] = download
         }
     }
 }

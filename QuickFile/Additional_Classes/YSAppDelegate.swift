@@ -47,6 +47,8 @@ protocol YSUpdatingDelegate: class {
  - fix crash on download
  - fix wrong player reload after download
  - understand that uitabbarcontroller is already acting as coordinator, remove segways and as first step start viewmodel loading only after view did loaded
+ - display current playing in drive VC
+ - what happens to logs on no storage?
  */
 
 @UIApplicationMain
@@ -188,6 +190,16 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
             return YSAppDelegate()
         }
         return delegate
+    }
+    
+    class func topViewController() -> UIViewController? {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            return topController
+        }
+        return nil
     }
 
     private func lookUpAllFilesOnDisk() {

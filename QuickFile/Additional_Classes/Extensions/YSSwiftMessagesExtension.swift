@@ -42,9 +42,9 @@ extension SwiftMessages {
         return message1
     }
 
-    class func showDefaultMessage(_ message: MessageView) {
+    class func showDefaultMessage(_ message: MessageView, isMessageErrorMessage: Bool) {
         var messageConfig = SwiftMessages.Config()
-        messageConfig.duration = YSConstants.kMessageDuration
+        messageConfig.duration = isMessageErrorMessage ? .forever : YSConstants.kMessageDuration
         messageConfig.ignoreDuplicates = false
         messageConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.hide(id: YSConstants.kOffineStatusBarMessageID)

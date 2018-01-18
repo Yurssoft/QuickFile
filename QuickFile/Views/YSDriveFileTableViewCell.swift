@@ -64,6 +64,10 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 downloadButton.pendingView.startSpin()
             case .downloaded:
                 break
+            case .downloadError:
+                downloadButton.state = .startDownload
+                downloadButton.startDownloadButton.cleanDefaultAppearance()
+                downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download_error"), for: .normal)
             }
         } else {
             downloadButton.state = .startDownload

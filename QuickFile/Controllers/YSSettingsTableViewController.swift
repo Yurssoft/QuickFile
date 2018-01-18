@@ -242,7 +242,7 @@ extension YSSettingsTableViewController: YSSettingsViewModelViewDelegate {
                 SwiftMessages.hide(id: message.id)
             }
         }
-        SwiftMessages.showDefaultMessage(message)
+        SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.tableView.reloadData()
         }

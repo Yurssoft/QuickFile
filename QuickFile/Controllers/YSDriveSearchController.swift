@@ -168,7 +168,7 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
         default:
             break
         }
-        SwiftMessages.showDefaultMessage(message)
+        SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
     }
 
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String) {
@@ -182,7 +182,7 @@ extension YSDriveSearchController: YSDriveSearchViewModelViewDelegate {
             }
         default: break
         }
-        SwiftMessages.showDefaultMessage(message)
+        SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
     }
 
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol) {

@@ -50,7 +50,7 @@ class YSAboutViewController: UITableViewController {
                 } else {
                     let error = YSError.init(errorType: .none, messageType: .warning, title: "Cannot compose mail", message: "", buttonTitle: "")
                     let message = SwiftMessages.createMessage(error)
-                    SwiftMessages.showDefaultMessage(message)
+                    SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
                 }
             case githubIdentifier:
                 if let url = URL(string: YSConstants.kProjectURL) {
@@ -75,11 +75,11 @@ extension YSAboutViewController: MFMailComposeViewControllerDelegate {
         case .failed:
             let error = YSError.init(errorType: .none, messageType: .error, title: "Failed to compose mail", message: "", buttonTitle: "")
             let message = SwiftMessages.createMessage(error)
-            SwiftMessages.showDefaultMessage(message)
+            SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
         case .sent:
             let error = YSError.init(errorType: .none, messageType: .success, title: "Sent!", message: "", buttonTitle: "")
             let message = SwiftMessages.createMessage(error)
-            SwiftMessages.showDefaultMessage(message)
+            SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
         default:
             break
         }

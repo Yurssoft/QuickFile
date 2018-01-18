@@ -221,7 +221,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
             }
         default: break
         }
-        SwiftMessages.showDefaultMessage(message)
+        SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
     }
 
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol) {
@@ -254,7 +254,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
             }
         default: break
         }
-        SwiftMessages.showDefaultMessage(message)
+        SwiftMessages.showDefaultMessage(message, isMessageErrorMessage: error.messageType == .error)
     }
 
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol) {
@@ -368,7 +368,6 @@ extension YSDriveViewController: YSToolbarViewDelegate {
             self.viewModel?.deleteDownloadsFor(self.selectedIndexes)
         }
         alertController.addAction(destroyAction)
-
-        present(alertController, animated: true)
+        YSAppDelegate.topViewController()?.present(alertController, animated: true)
     }
 }
