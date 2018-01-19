@@ -44,6 +44,7 @@ protocol YSUpdatingDelegate: class {
  - understand that uitabbarcontroller is already acting as coordinator, remove segways and as first step start viewmodel loading only after view did loaded
  - display current playing in drive VC
  - what happens to logs on no storage?
+ - stop player when playing locally from cell
  */
 
 @UIApplicationMain

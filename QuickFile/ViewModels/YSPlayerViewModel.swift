@@ -353,6 +353,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             } else {
                 try audioSession.setCategory(AVAudioSessionCategoryPlayback)
             }
+            try audioSession.setMode(AVAudioSessionModeSpokenAudio)
             try audioSession.setActive(true)
         } catch let error as NSError {
             logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
