@@ -45,6 +45,9 @@ protocol YSUpdatingDelegate: class {
  - display current playing in drive VC
  - what happens to logs on no storage?
  - stop player when playing locally from cell
+ - in search go to some foler - update downloads in this folder - go back to search - download changes are not reflected in search
+ - why sometimes size of mp3 is not displayed?
+ - do not save file to disk in main thread
  */
 
 @UIApplicationMain

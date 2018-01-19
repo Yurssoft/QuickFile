@@ -94,8 +94,9 @@ class YSDriveFileDownloader: NSObject {
     }
 
     func cancelDownloading(fileDriveIdentifier: String) {
-        if let download = downloads[fileDriveIdentifier] {
+        if var download = downloads[fileDriveIdentifier] {
             download.downloadTask?.cancel()
+            download.downloadStatus = .cancelled
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
             downloads[fileDriveIdentifier] = nil
             downloadNextFile()
@@ -203,28 +204,34 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error, let currentFileIdentifier = task.taskDescription, var download = downloads[currentFileIdentifier] {
-            if error.localizedDescription.contains("cancelled") || error.localizedDescription.contains("connection was lost") || error.localizedDescription.contains("No such file or directory") {
-                logDefault(.Network, .Error, error.localizedDescription)
-                download.downloadStatus = .pending
-                downloads[currentFileIdentifier] = download
-                downloadNextFile()
+            logDefault(.Network, .Error, error.localizedDescription)
+            if error.localizedDescription.contains("cancelled") {
+                download.downloadStatus = .cancelled
+                YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
+                downloads[currentFileIdentifier] = nil
                 return
             }
-            
+            if error.localizedDescription.contains("connection was lost") {
+                download.downloadStatus = .pending
+                YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
+                downloads[currentFileIdentifier] = download
+                return
+            }
             var yserror: YSErrorProtocol
             let nsError = error as NSError
+            
+            if error.localizedDescription.contains("No such file or directory") {
+                yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(currentFileIdentifier)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
+            }
             if nsError.domain == YSConstants.noSpaceLeftOnDiskErrorDomain && nsError.code == YSConstants.noSpaceLeftOnDiskErrorSystemCode {
                 let errorText = "Could not copy file to disk: Run out of space"
                 logDefault(.Network, .Error, errorText)
                 yserror = noSpaceLeftOnDeviceError(errorText)
             } else {
-                logDefault(.Network, .Error, error.localizedDescription)
                 yserror = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Couldn't download \(currentFileIdentifier)", buttonTitle: "Try Again", debugInfo: error.localizedDescription)
             }
             download.downloadStatus = .downloadError
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, yserror)
-            YSAppDelegate.appDelegate().playlistDelegate?.downloadDidChange(download, nil)
-            YSAppDelegate.appDelegate().playerDelegate?.downloadDidChange(download, nil)
             downloads[currentFileIdentifier] = download
         }
     }

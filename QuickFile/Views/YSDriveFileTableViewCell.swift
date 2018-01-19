@@ -68,6 +68,10 @@ class YSDriveFileTableViewCell: UITableViewCell {
                 downloadButton.state = .startDownload
                 downloadButton.startDownloadButton.cleanDefaultAppearance()
                 downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download_error"), for: .normal)
+            case .cancelled:
+                downloadButton.state = .startDownload
+                downloadButton.startDownloadButton.cleanDefaultAppearance()
+                downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
             }
         } else {
             downloadButton.state = .startDownload

@@ -270,7 +270,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
         DispatchQueue.main.async {
             let indexPath = IndexPath.init(row: index, section: 0)
             switch download.downloadStatus {
-            case .downloaded:
+            case .downloaded, .downloadError, .pending, .cancelled:
                 self.tableView.reloadRows(at: [indexPath], with: .none)
             default:
                 if let cell = self.tableView.cellForRow(at: indexPath) as? YSDriveFileTableViewCell  {
