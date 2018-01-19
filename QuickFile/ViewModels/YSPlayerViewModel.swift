@@ -29,9 +29,22 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
     }
 
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self,
+                                               selector:#selector(applicationWillResignActive(_:)),
+                                               name:NSNotification.Name.UIApplicationWillResignActive,
+                                               object: nil)
+    }
+    
+    @objc func applicationWillResignActive(_ notification: NSNotification) {
+        deactivateAudioSession()
+    }
+    
     deinit {
         player?.pause()
         elapsedTimeTimer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
 
     weak var viewDelegate: YSPlayerViewModelViewDelegate?
@@ -352,6 +365,17 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             logPlayerSubdomain(.Routing, .Error, "Error activating audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
         UIApplication.shared.beginReceivingRemoteControlEvents()
+    }
+    
+    func deactivateAudioSession() {
+        if isPlaying {
+            return
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch let error as NSError {
+            logPlayerSubdomain(.Routing, .Error, "Error deactivating audio session: " + error.localizedDescriptionAndUnderlyingKey)
+        }
     }
 }
 
