@@ -14,6 +14,7 @@ import NSLogger
 import UserNotifications
 import SafariServices
 import Reqres
+import AVFoundation
 
 protocol YSUpdatingDelegate: class {
     func downloadDidChange(_ download: YSDownloadProtocol, _ error: YSErrorProtocol?)
@@ -115,9 +116,24 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         logDefault(.App, .Info, "Finished registering for notifications")
+        configureAudioSession()
         return true
     }
 
+    private func configureAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            if #available(iOS 11.0, *) {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeSpokenAudio, routeSharingPolicy: .longForm)
+            } else {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                try audioSession.setMode(AVAudioSessionModeSpokenAudio)
+            }
+        } catch let error as NSError {
+            logDefault(.App, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
+        }
+    }
+    
     private func startNSLogger() {
         let logsDirectory = YSConstants.logsFolder
         do {

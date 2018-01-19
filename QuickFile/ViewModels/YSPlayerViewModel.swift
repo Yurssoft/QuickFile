@@ -233,7 +233,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         } else {
             updateCurrentPlayingFile(isCurrent: true)
         }
-        configureAudioSession()
+        activateAudioSession()
         player.play()
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
@@ -345,16 +345,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
     
-    private func configureAudioSession() {
-        let audioSession = AVAudioSession.sharedInstance()
+    private func activateAudioSession() {
         do {
-            if #available(iOS 11.0, *) {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, routeSharingPolicy: .longForm)
-            } else {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            }
-            try audioSession.setMode(AVAudioSessionModeSpokenAudio)
-            try audioSession.setActive(true)
+            try AVAudioSession.sharedInstance().setActive(true)
         } catch let error as NSError {
             logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
