@@ -130,7 +130,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
                 try audioSession.setMode(AVAudioSessionModeSpokenAudio)
             }
         } catch let error as NSError {
-            logDefault(.App, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
+            logDefault(.App, .Error, "Error configuring audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
     }
     

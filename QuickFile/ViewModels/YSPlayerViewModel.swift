@@ -349,7 +349,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error as NSError {
-            logPlayerSubdomain(.Routing, .Error, "Error seting audio session: " + error.localizedDescriptionAndUnderlyingKey)
+            logPlayerSubdomain(.Routing, .Error, "Error activating audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
