@@ -108,11 +108,15 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
 
 extension YSPlaylistViewModel: YSUpdatingDelegate {
     func downloadDidChange(_ download: YSDownloadProtocol, _ error: YSErrorProtocol?) {
-        model = YSPlaylistAndPlayerModel()
+        getFiles { (_) in
+            self.viewDelegate?.filesDidChange(viewModel: self)
+        }
     }
 
     func filesDidChange() {
-        model = YSPlaylistAndPlayerModel()
+        getFiles { (_) in
+            self.viewDelegate?.filesDidChange(viewModel: self)
+        }
     }
 }
 

@@ -140,10 +140,8 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
                 files[indexPath.row] = file
             }
         }
-        if indexes.count < 1 {
-            coordinatorDelegate?.driveViewControllerDidDeletedFiles()
-            viewDelegate?.filesDidChange(viewModel: self)
-        }
+        coordinatorDelegate?.driveViewControllerDidDeletedFiles()
+        viewDelegate?.filesDidChange(viewModel: self)
     }
 
     func downloadFilesFor(_ indexes: Set<IndexPath>) {

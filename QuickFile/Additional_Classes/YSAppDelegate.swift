@@ -30,7 +30,6 @@ protocol YSUpdatingDelegate: class {
  - use codable instead of reflection
  - delete played files after 24 hours
  - display all files in drive and use document previewer for all files
- - what happens when no storage
  - make downloads in order
  - add tutorial screen
  - battery life
@@ -40,11 +39,7 @@ protocol YSUpdatingDelegate: class {
  - playlist delete downloads
  - reverse sorting of files
  - rethink relogin, what to do with current data and downloads and current downloads
- - fix bug with bottom toolbar
- - fix not updating playlist from drive when deleting downloads
- - optimize row reloading in drive to hide row blinking
  - update to crashlitycs
- - fix crash on download
  - fix wrong player reload after download
  - understand that uitabbarcontroller is already acting as coordinator, remove segways and as first step start viewmodel loading only after view did loaded
  - display current playing in drive VC

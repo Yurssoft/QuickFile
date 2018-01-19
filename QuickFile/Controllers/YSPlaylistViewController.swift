@@ -142,7 +142,7 @@ extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
     func fileDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
             DispatchQueue.main.async {
-                guard let indexPaths = self.tableView.indexPathsForVisibleRows, indexPaths.count > 0 else { return }
+                guard self.isViewLoaded, (self.view.window != nil), let indexPaths = self.tableView.indexPathsForVisibleRows, indexPaths.count > 0 else { return }
                 self.tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
