@@ -32,9 +32,21 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     override init() {
         super.init()
         NotificationCenter.default.addObserver(self,
-                                               selector:#selector(applicationWillResignActive(_:)),
-                                               name:NSNotification.Name.UIApplicationWillResignActive,
+                                               selector: #selector(applicationWillResignActive(_:)),
+                                               name: NSNotification.Name.UIApplicationWillResignActive,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleMediaServicesReset),
+                                               name: NSNotification.Name.AVAudioSessionMediaServicesWereReset,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleMediaServicesLost),
+                                               name: NSNotification.Name.AVAudioSessionMediaServicesWereLost,
+                                               object: nil)
+        
+        
     }
     
     @objc func applicationWillResignActive(_ notification: NSNotification) {
@@ -153,22 +165,26 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
                 currentPlayingIndex = currentFileIndex
             }
-            var audioPlayerNotInited: AVAudioPlayer?
-            do {
-                audioPlayerNotInited = try AVAudioPlayer(contentsOf: fileUrl)
-            } catch let error as NSError {
-                logPlayerSubdomain(.Model, .Error, "Error initializing AVAudioPlayer: " + error.localizedDescriptionAndUnderlyingKey)
-            }
-            guard let audioPlayer = audioPlayerNotInited else { return }
-            player?.stop()
-            player?.delegate = nil
-            audioPlayer.delegate = self
-            let audioSession = AVAudioSession.sharedInstance()
-            audioPlayer.volume = audioSession.outputVolume
-            player = audioPlayer
+            createPlayer(fileUrl: fileUrl)
         }
     }
 
+    private func createPlayer(fileUrl: URL) {
+        var audioPlayerNotInited: AVAudioPlayer?
+        do {
+            audioPlayerNotInited = try AVAudioPlayer(contentsOf: fileUrl)
+        } catch let error as NSError {
+            logPlayerSubdomain(.Model, .Error, "Error initializing AVAudioPlayer: " + error.localizedDescriptionAndUnderlyingKey)
+        }
+        guard let audioPlayer = audioPlayerNotInited else { return }
+        player?.stop()
+        player?.delegate = nil
+        audioPlayer.delegate = self
+        let audioSession = AVAudioSession.sharedInstance()
+        audioPlayer.volume = audioSession.outputVolume
+        player = audioPlayer
+    }
+    
     func getFiles() {
         model?.allFiles { (files, currentPlaying, error) in
                 var playerFiles = [YSDriveFileProtocol]()
@@ -318,6 +334,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
+        pause()
     }
 
     func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
@@ -358,6 +375,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
     
+    //MARK - oberver methodts
     private func activateAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setActive(true)
@@ -367,8 +385,9 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
     
-    func deactivateAudioSession() {
+    private func deactivateAudioSession() {
         if isPlaying {
+            updateCurrentPlayingFile(isCurrent: true)
             return
         }
         do {
@@ -376,6 +395,17 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         } catch let error as NSError {
             logPlayerSubdomain(.Routing, .Error, "Error deactivating audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
+    }
+    
+    @objc private func handleMediaServicesReset() {
+        if let currentFileUrl = currentFile?.localFilePath() {
+            createPlayer(fileUrl: currentFileUrl)
+        }
+        pause()
+    }
+    
+    @objc private func handleMediaServicesLost() {
+        pause()
     }
 }
 

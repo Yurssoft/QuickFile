@@ -11,7 +11,7 @@ import Foundation
 class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     func viewIsLoadedAndReadyToDisplay(_ completion: @escaping CompletionHandler) {
         getFiles { (_) in
-            self.viewDelegate?.filesDidChange(viewModel: self)
+            completion()
         }
     }
     
