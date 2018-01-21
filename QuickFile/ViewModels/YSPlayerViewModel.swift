@@ -46,6 +46,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                                                name: NSNotification.Name.AVAudioSessionMediaServicesWereLost,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleRouteChange),
+                                               name: .AVAudioSessionRouteChange,
+                                               object: AVAudioSession.sharedInstance())
+        
         
     }
     
@@ -375,7 +380,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
     
-    //MARK - oberver methodts
+    //MARK: - oberver methodts
     private func activateAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setActive(true)
@@ -406,6 +411,26 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     @objc private func handleMediaServicesLost() {
         pause()
+    }
+    
+    @objc private func handleRouteChange(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+            let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+            let reason = AVAudioSessionRouteChangeReason(rawValue: reasonValue) else {
+                return
+        }
+        switch reason {
+        case .newDeviceAvailable:
+            break
+        case .oldDeviceUnavailable:
+            if let previousRoute =
+                userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription {
+                for output in previousRoute.outputs where output.portType == AVAudioSessionPortHeadphones {
+                    pause()
+                }
+            }
+        default: ()
+        }
     }
 }
 
