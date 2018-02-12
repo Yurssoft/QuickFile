@@ -279,9 +279,9 @@ class YSDatabaseManager {
     }
 
     private class func sort(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol] {
-        let sortedFiles = ysFiles.sorted(by: { (_ file1, _ file2) -> Bool in
+        let sortedFiles = ysFiles.sorted { file1, file2 in
             return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio
-        })
+        }
         return sortedFiles
     }
 
