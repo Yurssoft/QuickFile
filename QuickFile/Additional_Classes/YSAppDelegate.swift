@@ -49,6 +49,7 @@ protocol YSUpdatingDelegate: class {
  - in search go to some foler - update downloads in this folder - go back to search - download changes are not reflected in search
  - why sometimes size of mp3 is not displayed?
  - do not save file to disk in main thread
+ - possibility to play files from local storage with folder "local"
  */
 
 @UIApplicationMain

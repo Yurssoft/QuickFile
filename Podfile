@@ -17,9 +17,7 @@ target 'QuickFile' do
     pod 'DZNEmptyDataSet'
     pod 'NSLogger/Swift'
     pod 'Reqres'
-    pod 'Reflection'
     pod 'SwiftyTimer'
     pod 'SwiftLint'
-    #pod 'RazzleDazzle'
     pod 'DeviceKit'
 end
