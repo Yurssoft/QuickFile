@@ -9,12 +9,12 @@
 import Foundation
 
 protocol YSDriveFileProtocol {
-    var fileName: String { get set } //Book 343
-    var fileSize: String { get set } //108.03 MB (47 audio) or 10:18
+    var name: String { get set } //Book 343
+    var size: String { get set } //108.03 MB (47 audio) or 10:18
     var mimeType: String { get set }
     var pageToken: String { get set }
     var isAudio: Bool { get } //If true it is audio if false it is folder
-    var fileDriveIdentifier: String { get set }
+    var id: String { get set }
     var modifiedTime: String { get set }
     var folder: YSFolder { get set }
     var isDeletedFromDrive: Bool { get set }
@@ -25,9 +25,9 @@ protocol YSDriveFileProtocol {
 
     func fileUrl() -> String
     func localFilePath() -> URL?
-    static func fileUrlStatic(fileDriveIdentifier: String) -> String
-    static func localFilePathStatic(fileDriveIdentifier: String) -> URL?
-    static func localFileExistsStatic(fileDriveIdentifier: String) -> Bool
+    static func fileUrlStatic(id: String) -> String
+    static func localFilePathStatic(id: String) -> URL?
+    static func localFileExistsStatic(id: String) -> Bool
 
     func localFileExists() -> Bool
     func removeLocalFile()

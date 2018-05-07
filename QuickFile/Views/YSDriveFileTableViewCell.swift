@@ -10,12 +10,12 @@ import UIKit
 import DownloadButton
 
 protocol YSDriveFileTableViewCellDelegate: class {
-    func downloadButtonPressed(_ fileDriveIdentifier: String)
-    func stopDownloadButtonPressed(_ fileDriveIdentifier: String)
+    func downloadButtonPressed(_ id: String)
+    func stopDownloadButtonPressed(_ id: String)
 }
 
 class YSDriveFileTableViewCell: UITableViewCell {
-    @IBOutlet weak var fileNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var fileInfoLabel: UILabel!
     @IBOutlet weak var fileImageView: UIImageView!
     weak var delegate: YSDriveFileTableViewCellDelegate?
@@ -34,8 +34,8 @@ class YSDriveFileTableViewCell: UITableViewCell {
         self.delegate = delegate
         downloadButton.delegate = self
         guard let file = file else { return }
-        fileNameLabel?.text = file.fileName
-        fileInfoLabel?.text = fileSize
+        nameLabel?.text = file.name
+        fileInfoLabel?.text = size
         fileImageView?.image = UIImage(named: file.isAudio ? "song" : "folder")
         if file.isAudio {
             if file.localFileExists() {
@@ -87,28 +87,28 @@ class YSDriveFileTableViewCell: UITableViewCell {
         guard let file = file else { return }
         accessoryType = file.isPlayed ? .checkmark : .none
         if file.isCurrentlyPlaying {
-            if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font {
-                fileNameLabel?.font = UIFont.boldSystemFont(ofSize: fileNameLabelFont.pointSize)
+            if let nameLabelFont = nameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font {
+                nameLabel?.font = UIFont.boldSystemFont(ofSize: nameLabelFont.pointSize)
                 fileInfoLabel?.font = UIFont.boldSystemFont(ofSize: fileInfoLabelFont.pointSize)
             }
-            fileNameLabel.textColor = YSConstants.kDefaultBlueColor
+            nameLabel.textColor = YSConstants.kDefaultBlueColor
             fileInfoLabel.textColor = YSConstants.kDefaultBlueColor
         } else {
-            if let fileNameLabelFont = fileNameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font {
-                fileNameLabel?.font = UIFont.systemFont(ofSize: fileNameLabelFont.pointSize)
+            if let nameLabelFont = nameLabel?.font, let fileInfoLabelFont = fileInfoLabel?.font {
+                nameLabel?.font = UIFont.systemFont(ofSize: nameLabelFont.pointSize)
                 fileInfoLabel?.font = UIFont.systemFont(ofSize: fileInfoLabelFont.pointSize)
             }
-            fileNameLabel.textColor = UIColor.black
+            nameLabel.textColor = UIColor.black
             fileInfoLabel.textColor = UIColor.black
         }
         titleRightMarginConstraint.constant = 0.0
-        fileNameLabel?.text = file.fileName
-        fileInfoLabel?.text = fileSize
+        nameLabel?.text = file.name
+        fileInfoLabel?.text = size
     }
 
-    var fileSize: String {
+    var size: String {
         guard let file = file else { return "" }
-        if file.isAudio, file.fileSize.count > 0, var sizeInt = Int(file.fileSize) {
+        if file.isAudio, file.size.count > 0, var sizeInt = Int(file.size) {
             sizeInt = sizeInt / 1024 / 1024
             return sizeInt > 0 ? "\(sizeInt) MB" : file.mimeType
         } else {
@@ -124,10 +124,10 @@ extension YSDriveFileTableViewCell: PKDownloadButtonDelegate {
         case .startDownload:
             downloadButton.state = .pending
             downloadButton.pendingView.startSpin()
-            delegate?.downloadButtonPressed(file?.fileDriveIdentifier ?? "")
+            delegate?.downloadButtonPressed(file?.id ?? "")
         case .pending, .downloading:
             downloadButton.state = .startDownload
-            delegate?.stopDownloadButtonPressed(file?.fileDriveIdentifier ?? "")
+            delegate?.stopDownloadButtonPressed(file?.id ?? "")
         case .downloaded:
             downloadButton.isHidden = true
         }

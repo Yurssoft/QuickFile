@@ -9,7 +9,7 @@
 import Foundation
 
 struct YSDownload: YSDownloadProtocol {
-    var fileDriveIdentifier: String
+    var id: String
 
     var downloadTask: URLSessionDownloadTask?
     var resumeData: Data?
@@ -18,7 +18,7 @@ struct YSDownload: YSDownloadProtocol {
 
     internal var downloadStatus: YSDownloadStatus = .pending
 
-    init(fileDriveIdentifier: String) {
-        self.fileDriveIdentifier = fileDriveIdentifier
+    init(id: String) {
+        self.id = id
     }
 }

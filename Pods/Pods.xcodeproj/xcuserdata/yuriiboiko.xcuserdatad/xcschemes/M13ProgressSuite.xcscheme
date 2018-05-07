@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '25344F767C43DE28449B4D6BC97F0926'
-               BlueprintName = 'M13ProgressSuite'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'M13ProgressSuite.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25344F767C43DE28449B4D6BC97F0926"
+               BlueprintName = "M13ProgressSuite"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "M13ProgressSuite.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

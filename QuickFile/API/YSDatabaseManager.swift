@@ -28,12 +28,13 @@ class YSDatabaseManager {
 
                 var remoteFilesDict = [String: YSDriveFile]()
                 for remoteFile in remoteFilesArray {
-                    let fileIdentifier = remoteFile.fileDriveIdentifier
+                    let fileIdentifier = remoteFile.id
                     remoteFilesDict[fileIdentifier] = remoteFile
                 }
 
                 for var dbFile in dbFilesArrayDict {
-                    let currentFileIdentifier = dbFile.value[forKey: "fileDriveIdentifier", ""]
+                    dbFile.value.migrateDict()
+                    let currentFileIdentifier = dbFile.value[forKey: "id", ""]
                     let isRootFolder = (currentFileIdentifier == YSFolder.rootFolder().folderID)
                     if isRootFolder {
                         isRootFolderAdded = isRootFolder
@@ -63,20 +64,20 @@ class YSDatabaseManager {
                     remoteFile.pageToken = pageToken
                     remoteFile.folder = folder
                     ysFiles.append(remoteFile)
-                    dbFilesArrayDict[remoteFile.fileDriveIdentifier] = remoteFile.toDictionary()
+                    dbFilesArrayDict[remoteFile.id] = remoteFile.toDictionary()
                 }
 
                 if !isRootFolderAdded && folder.folderID == rootFolderID {
-                    let rootFolder = YSDriveFile.init(fileName: YSFolder.rootFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
+                    let rootFolder = YSDriveFile.init(name: YSFolder.rootFolder().folderName, size: "", mimeType: "application/vnd.google-apps.folder", id: YSFolder.rootFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
                     ysFiles.append(rootFolder)
                     let rootFolderDict = rootFolder.toDictionary()
-                    dbFilesArrayDict[rootFolder.fileDriveIdentifier] = rootFolderDict
+                    dbFilesArrayDict[rootFolder.id] = rootFolderDict
                 }
                 if !isSearchFolderAdded {
-                    let searchFolder = YSDriveFile.init(fileName: YSFolder.searchFolder().folderName, fileSize: "", mimeType: "application/vnd.google-apps.folder", fileDriveIdentifier: YSFolder.searchFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
+                    let searchFolder = YSDriveFile.init(name: YSFolder.searchFolder().folderName, size: "", mimeType: "application/vnd.google-apps.folder", id: YSFolder.searchFolder().folderID, folderName: "", folderID: "", playedTime: "", isPlayed: false, isCurrentlyPlaying: false, isDeletedFromDrive: false, pageToken: "")
                     ysFiles.append(searchFolder)
                     let rootFolderDict = searchFolder.toDictionary()
-                    dbFilesArrayDict[searchFolder.fileDriveIdentifier] = rootFolderDict
+                    dbFilesArrayDict[searchFolder.id] = rootFolderDict
                 }
                 ref.child("files").setValue(dbFilesArrayDict)
                 ysFiles = ysFiles.filter({ (ysFile) -> Bool in
@@ -93,28 +94,28 @@ class YSDatabaseManager {
 
     fileprivate class func mergeFiles(dbFile: inout [String: Any], remoteFile: YSDriveFile, folder: YSFolder) -> [String: Any] {
         var dbFile = dbFile
-        dbFile["fileDriveIdentifier"] = remoteFile.fileDriveIdentifier
+        dbFile["id"] = remoteFile.id
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try? encoder.encode(folder)
         dbFile["folder"] = YSNetworkResponseManager.convertToDictionary(from: data)
-        dbFile["fileName"] = remoteFile.fileName
+        dbFile["name"] = remoteFile.name
         dbFile["mimeType"] = remoteFile.mimeType
-        dbFile["fileSize"] = remoteFile.fileSize
+        dbFile["size"] = remoteFile.size
         dbFile["isDeletedFromDrive"] = false
         return dbFile
     }
 
-    class func offlineFiles(fileDriveIdentifier: String, _ error: YSError, _ completionHandler: @escaping AllFilesCH) {
+    class func offlineFiles(id: String, _ error: YSError, _ completionHandler: @escaping AllFilesCH) {
         if let ref = referenceForCurrentUser() {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFiles) in
                 var sortedFiles: [YSDriveFileProtocol] = []
                 var files = [YSDriveFileProtocol]()
                 for currentDatabaseFile in dbFiles.children {
                     if let databaseFile = currentDatabaseFile as? DataSnapshot,
-                        let dbFile = databaseFile.value as? [String: Any] {
+                        var dbFile = databaseFile.value as? [String: Any] {
                         var ysFile = dbFile.toYSFile()
-                        if ysFile.folder.folderID == fileDriveIdentifier {
+                        if ysFile.folder.folderID == id {
                             files.append(ysFile)
                         }
                     }
@@ -135,7 +136,7 @@ class YSDatabaseManager {
                     var files = [YSDriveFileProtocol]()
                     for currentDatabaseFile in dbFiles.children {
                         if let databaseFile = currentDatabaseFile as? DataSnapshot,
-                            let dbFile = databaseFile.value as? [String: Any] {
+                            var dbFile = databaseFile.value as? [String: Any] {
                             let ysFile = dbFile.toYSFile()
                             files.append(ysFile)
                         }
@@ -168,11 +169,11 @@ class YSDatabaseManager {
         return allUrls
     }
 
-    class func getAllFileNamesOnDisk() -> Set<String> {
+    class func getAllnamesOnDisk() -> Set<String> {
         let allFilesInDocumentsFolder = getAllFilesUrls()
-        let mp3FileNames = allFilesInDocumentsFolder.map { $0.deletingPathExtension().lastPathComponent }
-        let allFileNames = Set<String>().union(mp3FileNames)
-        return allFileNames
+        let mp3names = allFilesInDocumentsFolder.map { $0.deletingPathExtension().lastPathComponent }
+        let allnames = Set<String>().union(mp3names)
+        return allnames
     }
 
     class func deletePlayedDownloads(_ completionHandler: @escaping ErrorCH) {
@@ -180,11 +181,11 @@ class YSDatabaseManager {
             ref.child("files").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 for currentDatabaseFile in dbFilesData.children {
                     if let databaseFile = currentDatabaseFile as? DataSnapshot,
-                        let dbFile = databaseFile.value as? [String: Any] {
+                        var dbFile = databaseFile.value as? [String: Any] {
                         let ysFile = dbFile.toYSFile()
                         if ysFile.isPlayed {
                             ysFile.removeLocalFile()
-                            YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: ysFile.fileDriveIdentifier)
+                            YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(id: ysFile.id)
                         }
                     }
                 }
@@ -215,7 +216,7 @@ class YSDatabaseManager {
                 var files = [YSDriveFileProtocol]()
                 for currentDatabaseFile in dbFilesData.children {
                     if let databaseFile = currentDatabaseFile as? DataSnapshot,
-                        let dbFile = databaseFile.value as? [String: Any] {
+                        var dbFile = databaseFile.value as? [String: Any] {
                         let ysFile = dbFile.toYSFile()
                         if ysFile.isCurrentlyPlaying && ysFile.localFileExists() {
                             currentPlayingFile = ysFile
@@ -238,9 +239,9 @@ class YSDatabaseManager {
 
     class func updatePlayingInfo(file: YSDriveFileProtocol) {
         if let ref = referenceForCurrentUser() {
-            let identifier = file.fileDriveIdentifier
+            let identifier = file.id
             ref.child("files/\(identifier)").observeSingleEvent(of: .value, with: { (dbFilesData) in
-                if var dbFile = dbFilesData.value as? [String: Any], let currentFileIdentifier = dbFile["fileDriveIdentifier"] as? String, currentFileIdentifier == identifier {
+                if var dbFile = dbFilesData.value as? [String: Any], let currentFileIdentifier = dbFile["id"] as? String, currentFileIdentifier == identifier {
                     dbFile["isCurrentlyPlaying"] = file.isCurrentlyPlaying
                     dbFile["playedTime"] = file.playedTime
                     dbFile["isPlayed"] = file.isPlayed
@@ -252,7 +253,7 @@ class YSDatabaseManager {
 
     class func updateGenaralFileInfo(file: YSDriveFileProtocol) {
         if let ref = referenceForCurrentUser() {
-            let identifier = file.fileDriveIdentifier
+            let identifier = file.id
             ref.child("files/\(identifier)").observeSingleEvent(of: .value, with: { (dbFilesData) in
                 var file = file
                 file.folder = YSFolder.searchFolder()
@@ -273,14 +274,14 @@ class YSDatabaseManager {
                         logDefault(.DB, .Error, "Something wrong with dbFile : \(currentDatabaseFile as? DataSnapshot)")
                     }
                 }
-                ref.child("files/\(file.fileDriveIdentifier)").setValue(updatedFile)
+                ref.child("files/\(file.id)").setValue(updatedFile)
             })
         }
     }
 
     private class func sort(ysFiles: [YSDriveFileProtocol]) -> [YSDriveFileProtocol] {
         let sortedFiles = ysFiles.sorted { file1, file2 in
-            return file1.isAudio == file2.isAudio ? file1.fileName < file2.fileName : !file1.isAudio
+            return file1.isAudio == file2.isAudio ? file1.name < file2.name : !file1.isAudio
         }
         return sortedFiles
     }

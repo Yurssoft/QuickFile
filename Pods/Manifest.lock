@@ -1,4 +1,5 @@
 PODS:
+  - CodableFirebase (0.0.6)
   - DeviceKit (1.4.0)
   - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
@@ -96,13 +97,13 @@ PODS:
     - NSLogger/ObjC
   - Protobuf (3.5.0)
   - ReachabilitySwift (4.1.0)
-  - Reflection (0.15.0)
   - Reqres (2.1.1)
   - SwiftLint (0.24.2)
   - SwiftMessages (4.1.0)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
+  - CodableFirebase
   - DeviceKit
   - DownloadButton
   - DZNEmptyDataSet
@@ -118,13 +119,13 @@ DEPENDENCIES:
   - MarqueeLabel/Swift
   - NSLogger/Swift
   - ReachabilitySwift
-  - Reflection
   - Reqres
   - SwiftLint
   - SwiftMessages
   - SwiftyTimer
 
 SPEC CHECKSUMS:
+  CodableFirebase: 5b541b593f279cc5afd9f174ecbc92bc2e72e964
   DeviceKit: fa74d97499660e88081718b16688e19217595dba
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -150,12 +151,11 @@ SPEC CHECKSUMS:
   NSLogger: c9b80dbeee1d65eb553647a1f6f1f72171b04808
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
-  Reflection: 25cb331157e0d2691271f6492216030acc58ff1e
   Reqres: d532d6fddbede6d688552a7f2535fb0102fc4aca
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 747770225e6120946fffa5a5ff8579e4c204362e
+PODFILE CHECKSUM: 37805592b8cc89c4d10ce89eff1d083be1056b0c
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

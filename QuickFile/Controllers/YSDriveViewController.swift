@@ -127,7 +127,7 @@ class YSDriveViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: YSDriveFileTableViewCell.nameOfClass, for: indexPath)
         if let cell = cell as? YSDriveFileTableViewCell {
             let file = viewModel?.file(at: indexPath.row)
-            let download = viewModel?.download(for: file?.fileDriveIdentifier ?? "")
+            let download = viewModel?.download(for: file?.id ?? "")
             cell.configureForDrive(file, self, download)
         }
         if isEditing && selectedIndexes.contains(indexPath) {
@@ -181,14 +181,14 @@ class YSDriveViewController: UITableViewController {
 }
 
 extension YSDriveViewController: YSDriveFileTableViewCellDelegate {
-    func downloadButtonPressed(_ fileDriveIdentifier: String) {
-        logDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
-        viewModel?.download(fileDriveIdentifier)
+    func downloadButtonPressed(_ id: String) {
+        logDriveSubdomain(.Controller, .Info, "File id: " + id)
+        viewModel?.download(id)
     }
 
-    func stopDownloadButtonPressed(_ fileDriveIdentifier: String) {
-        logDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier)
-        viewModel?.stopDownloading(fileDriveIdentifier)
+    func stopDownloadButtonPressed(_ id: String) {
+        logDriveSubdomain(.Controller, .Info, "File id: " + id)
+        viewModel?.stopDownloading(id)
     }
 }
 
@@ -210,13 +210,13 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
         }
     }
 
-    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String) {
-        logDriveSubdomain(.Controller, .Info, "File id: " + fileDriveIdentifier + " Error: message: " + error.message + " debug message" + error.debugInfo)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, id: String) {
+        logDriveSubdomain(.Controller, .Info, "File id: " + id + " Error: message: " + error.message + " debug message" + error.debugInfo)
         let message = SwiftMessages.createMessage(error)
         switch error.errorType {
         case .couldNotDownloadFile:
             message.buttonTapHandler = { _ in
-                self.downloadButtonPressed(fileDriveIdentifier)
+                self.downloadButtonPressed(id)
                 SwiftMessages.hide()
             }
         default: break
@@ -225,7 +225,7 @@ extension YSDriveViewController: YSDriveViewModelViewDelegate {
     }
 
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol) {
-        downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: download.fileDriveIdentifier)
+        downloadErrorDidChange(viewModel: viewModel, error: error, id: download.id)
     }
 
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol) {

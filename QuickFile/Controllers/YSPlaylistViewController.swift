@@ -128,7 +128,7 @@ extension YSPlaylistViewController: UITableViewDelegate {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: YSHeaderForSection.nameOfClass)
         if let headerView = headerView as? YSHeaderForSection {
             let folder = viewModel?.folder(at: section)
-            headerView.configure(title: folder?.fileName)
+            headerView.configure(title: folder?.name)
         }
         return headerView
     }

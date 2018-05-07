@@ -32,7 +32,7 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     func numberOfFiles(in folder: Int) -> Int {
         guard folders.count > folder else { return 0 }
         let folderFile = folders[folder]
-        let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+        let filesInFolder = files.filter { $0.folder.folderID == folderFile.id && $0.isAudio }
         return filesInFolder.count
     }
 
@@ -44,7 +44,7 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
         let folders = files.filter {
                 let folderFile = $0
                 if !folderFile.isAudio {
-                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.id && $0.isAudio }
                     return filesInFolder.count > 0
                 } else {
                     return false
@@ -64,7 +64,7 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     func file(at index: Int, folderIndex: Int) -> YSDriveFileProtocol? {
         guard folders.count > folderIndex else { return nil }
         let folderFile = folders[folderIndex]
-        let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+        let filesInFolder = files.filter { $0.folder.folderID == folderFile.id && $0.isAudio }
         guard filesInFolder.count > index else { return nil }
         let file = filesInFolder[index]
         return file
@@ -98,9 +98,9 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
     }
 
     func indexPath(of file: YSDriveFileProtocol) -> IndexPath {
-        let fileFolderIndex = folders.index(where: { $0.fileDriveIdentifier == file.folder.folderID })
+        let fileFolderIndex = folders.index(where: { $0.id == file.folder.folderID })
         let filesInFolder = files.filter { $0.folder.folderID == file.folder.folderID && $0.isAudio }
-        let fileIndex = filesInFolder.index(where: { $0.fileDriveIdentifier == file.fileDriveIdentifier })
+        let fileIndex = filesInFolder.index(where: { $0.id == file.id })
         let indexPath = IndexPath.init(row: fileIndex ?? 0, section: fileFolderIndex ?? 0)
         return indexPath
     }
@@ -122,7 +122,7 @@ extension YSPlaylistViewModel: YSUpdatingDelegate {
 
 extension YSPlaylistViewModel: YSPlayerDelegate {
     func fileDidChange(file: YSDriveFileProtocol) {
-        let indexOfUpdatingFile = files.index(where: { $0.fileDriveIdentifier == file.fileDriveIdentifier })
+        let indexOfUpdatingFile = files.index(where: { $0.id == file.id })
         if let indexOfUpdatingFile = indexOfUpdatingFile, files.indices.contains(indexOfUpdatingFile) {
             files[indexOfUpdatingFile] = file
         }

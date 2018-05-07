@@ -37,7 +37,7 @@ class YSNetworkResponseManager {
         return errorMessage
     }
 
-    class func validateDownloadTask(_ response: URLResponse?, error: Error?, fileName: String) -> YSErrorProtocol? {
+    class func validateDownloadTask(_ response: URLResponse?, error: Error?, name: String) -> YSErrorProtocol? {
         if let httpResponse = response as? HTTPURLResponse {
             let networkErrorDescription = HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode)
             switch httpResponse.statusCode {
@@ -45,12 +45,12 @@ class YSNetworkResponseManager {
                 return nil
 
             default:
-                let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not download file \(fileName)", buttonTitle: "Try again", debugInfo: networkErrorDescription)
+                let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not download file \(name)", buttonTitle: "Try again", debugInfo: networkErrorDescription)
                 return errorMessage
             }
         }
         if let er = error as NSError? {
-            var message = "Could not download file \(fileName)"
+            var message = "Could not download file \(name)"
             if er.code == YSConstants.kNoInternetSystemCode {
                 message += " , \(er.localizedDescription)"
             }

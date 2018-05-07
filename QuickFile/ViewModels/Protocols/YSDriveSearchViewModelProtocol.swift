@@ -23,7 +23,7 @@ protocol YSDriveSearchViewModelViewDelegate: class {
     func filesDidChange(viewModel: YSDriveSearchViewModelProtocol)
     func metadataDownloadStatusDidChange(viewModel: YSDriveSearchViewModelProtocol)
     func errorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol)
-    func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
+    func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, id: String)
     func downloadErrorDidChange(viewModel: YSDriveSearchViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol)
     func reloadFileDownload(at index: Int, download: YSDownloadProtocol, viewModel: YSDriveSearchViewModelProtocol)
 }
@@ -51,11 +51,11 @@ protocol YSDriveSearchViewModelProtocol {
     func updateLocalResults()
     func updateGlobalResults()
     func file(at indexPath: IndexPath) -> YSDriveFileProtocol?
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
+    func download(for id: String) -> YSDownloadProtocol?
     func useFile(at indexPath: IndexPath)
     func getNextPartOfFiles(_ completion: @escaping () -> Swift.Void)
     func searchViewControllerDidFinish()
-    func download(_ fileDriveIdentifier: String)
-    func stopDownloading(_ fileDriveIdentifier: String)
+    func download(_ id: String)
+    func stopDownloading(_ id: String)
     func indexPath(of file: YSDriveFileProtocol) -> IndexPath
 }

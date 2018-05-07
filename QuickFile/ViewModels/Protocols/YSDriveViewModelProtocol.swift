@@ -13,7 +13,7 @@ protocol YSDriveViewModelViewDelegate: class {
     func metadataDownloadStatusDidChange(viewModel: YSDriveViewModelProtocol)
     func errorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol)
     func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, download: YSDownloadProtocol)
-    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, fileDriveIdentifier: String)
+    func downloadErrorDidChange(viewModel: YSDriveViewModelProtocol, error: YSErrorProtocol, id: String)
     func reloadFile(at index: Int, viewModel: YSDriveViewModelProtocol)
     func reloadFileDownload(at index: Int, download: YSDownloadProtocol, viewModel: YSDriveViewModelProtocol)
 }
@@ -38,14 +38,14 @@ protocol YSDriveViewModelProtocol {
     var allPagesDownloaded: Bool { get }
 
     func file(at index: Int) -> YSDriveFileProtocol?
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol?
+    func download(for id: String) -> YSDownloadProtocol?
     func useFile(at index: Int)
     func loginToDrive()
     func removeDownloads()
     func driveViewControllerDidFinish()
     func driveViewControllerDidRequestedSearch()
-    func download(_ fileDriveIdentifier: String)
-    func stopDownloading(_ fileDriveIdentifier: String)
+    func download(_ id: String)
+    func stopDownloading(_ id: String)
     func index(of file: YSDriveFileProtocol) -> Int
     func deleteDownloadsFor(_ indexes: Set<IndexPath>)
     func downloadFilesFor(_ indexes: Set<IndexPath>)

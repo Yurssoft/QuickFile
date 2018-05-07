@@ -41,22 +41,22 @@ class YSDriveModel: YSDriveModelProtocol {
                     }
                     return
                 }
-                YSDatabaseManager.offlineFiles(fileDriveIdentifier: folder.folderID, yserror, completionHandler)
+                YSDatabaseManager.offlineFiles(id: folder.folderID, yserror, completionHandler)
                 return
             }
             YSDatabaseManager.save(pageToken: pageToken, remoteFiles: files, folder, completionHandler)
         }
     }
 
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol? {
-        return YSAppDelegate.appDelegate().fileDownloader.download(for: fileDriveIdentifier)
+    func download(for id: String) -> YSDownloadProtocol? {
+        return YSAppDelegate.appDelegate().fileDownloader.download(for: id)
     }
 
-    func download(_ fileDriveIdentifier: String) {
-        YSAppDelegate.appDelegate().fileDownloader.download(fileDriveIdentifier: fileDriveIdentifier)
+    func download(_ id: String) {
+        YSAppDelegate.appDelegate().fileDownloader.download(id: id)
     }
 
-    func stopDownload(_ fileDriveIdentifier: String) {
-        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: fileDriveIdentifier)
+    func stopDownload(_ id: String) {
+        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(id: id)
     }
 }

@@ -219,7 +219,7 @@ class YSAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func lookUpAllFilesOnDisk() {
-        filesOnDisk = YSDatabaseManager.getAllFileNamesOnDisk()
+        filesOnDisk = YSDatabaseManager.getAllnamesOnDisk()
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

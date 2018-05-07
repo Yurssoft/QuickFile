@@ -6,26 +6,41 @@
 //  Copyright © 2016 Yurii Boiko. All rights reserved.
 //
 
-import Reflection
 import Foundation
+import CodableFirebase
 
-extension Dictionary {
-    func toYSFile() -> YSDriveFileProtocol {
+extension Dictionary where Key == String, Value == Any {
+    mutating func toYSFile() -> YSDriveFileProtocol {
         var ysFile = YSDriveFile()
-        for key in keys {
-            let val = self[key]
-            if let propertyKey = key as? String {
-                if propertyKey == "folder", let value = val as? [String: Any] {
-                    var folder = YSFolder()
-                    folder.folderID = value[forKey: "folderID", ""]
-                    folder.folderName = value[forKey: "folderName", ""]
-                    try? set(folder, key: propertyKey, for: &ysFile)
-                } else if propertyKey == "isAudio" { continue } else {
-                    try? set(val ?? "", key: propertyKey, for: &ysFile)
-                }
-            }
+        
+        migrateDict()
+        
+        do {
+            let model = try FirebaseDecoder().decode(YSDriveFile.self, from: self)
+            ysFile = model
+        } catch let error {
+            logDefault(.DB, .Error, "Error decoding: \(error.localizedDescription)")
         }
         return ysFile
+    }
+    
+    mutating func migrateDict() {
+        var dict = self
+        //migration
+        //migration keys: fileDriveIdentifier -> id, fileName -> name, fileSize -> size
+        if let migratedValue = dict["fileDriveIdentifier"] {
+            dict["id"] = migratedValue
+            dict["fileDriveIdentifier"] = nil
+        }
+        if let migratedValue = dict["fileName"] {
+            dict["name"] = migratedValue
+            dict["fileName"] = nil
+        }
+        if let migratedValue = dict["fileSize"] {
+            dict["size"] = migratedValue
+            dict["fileSize"] = nil
+        }
+        self = dict
     }
 }
 

@@ -67,8 +67,8 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
         return nil
     }
 
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol? {
-        return model?.download(for: fileDriveIdentifier)
+    func download(for id: String) -> YSDownloadProtocol? {
+        return model?.download(for: id)
     }
 
     func useFile(at index: Int) {
@@ -112,20 +112,20 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
         coordinatorDelegate?.driveViewControllerDidRequestedSearch()
     }
 
-    func download(_ fileDriveIdentifier: String) {
+    func download(_ id: String) {
         if !isLoggedIn {
             showNotLoggedInMessage()
             return
         }
-        model?.download(fileDriveIdentifier)
+        model?.download(id)
     }
 
-    func stopDownloading(_ fileDriveIdentifier: String) {
-        model?.stopDownload(fileDriveIdentifier)
+    func stopDownloading(_ id: String) {
+        model?.stopDownload(id)
     }
 
     func index(of file: YSDriveFileProtocol) -> Int {
-        if let index = files.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier}) {
+        if let index = files.index(where: {$0.id == file.id}) {
             return index
         }
         return 0
@@ -135,7 +135,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
         for indexPath in indexes {
             let file = files[indexPath.row]
             if file.isAudio {
-                stopDownloading(file.fileDriveIdentifier)
+                stopDownloading(file.id)
                 file.removeLocalFile()
                 files[indexPath.row] = file
             }
@@ -147,7 +147,7 @@ class YSDriveViewModel: YSDriveViewModelProtocol {
     func downloadFilesFor(_ indexes: Set<IndexPath>) {
         for indexPath in indexes {
             let file = files[indexPath.row]
-            download(file.fileDriveIdentifier)
+            download(file.id)
         }
     }
 
@@ -195,7 +195,7 @@ extension YSDriveViewModel: YSUpdatingDelegate {
         if let error = error {
             self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
         }
-        let index = self.files.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
+        let index = self.files.index(where: {$0.id == download.id})
         guard let indexx = index, self.files.count > indexx else { return }
         self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
     }

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ReflectionVersionNumber;
-FOUNDATION_EXPORT const unsigned char ReflectionVersionString[];
+FOUNDATION_EXPORT double CodableFirebaseVersionNumber;
+FOUNDATION_EXPORT const unsigned char CodableFirebaseVersionString[];
 

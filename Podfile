@@ -1,5 +1,6 @@
 platform :ios, '10.0'
 use_frameworks!
+inhibit_all_warnings!
 target 'QuickFile' do
     pod 'SwiftMessages'
     pod 'M13ProgressSuite'
@@ -20,4 +21,5 @@ target 'QuickFile' do
     pod 'SwiftyTimer'
     pod 'SwiftLint'
     pod 'DeviceKit'
+    pod 'CodableFirebase'
 end

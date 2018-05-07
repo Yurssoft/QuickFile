@@ -46,19 +46,19 @@ class YSDriveSearchModel: YSDriveSearchModelProtocol {
         YSDatabaseManager.getAllFiles(completionHandler)
     }
 
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol? {
-        return YSAppDelegate.appDelegate().fileDownloader.download(for: fileDriveIdentifier)
+    func download(for id: String) -> YSDownloadProtocol? {
+        return YSAppDelegate.appDelegate().fileDownloader.download(for: id)
     }
 
-    func download(_ fileDriveIdentifier: String) {
-        YSAppDelegate.appDelegate().fileDownloader.download(fileDriveIdentifier: fileDriveIdentifier)
+    func download(_ id: String) {
+        YSAppDelegate.appDelegate().fileDownloader.download(id: id)
     }
 
     func upfateFileGeneralInfo(for file: YSDriveFileProtocol) {
         YSDatabaseManager.updateGenaralFileInfo(file: file)
     }
 
-    func stopDownload(_ fileDriveIdentifier: String) {
-        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(fileDriveIdentifier: fileDriveIdentifier)
+    func stopDownload(_ id: String) {
+        YSAppDelegate.appDelegate().fileDownloader.cancelDownloading(id: id)
     }
 }

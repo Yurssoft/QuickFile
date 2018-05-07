@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="OrE-cw-9gu">
-                        <rect key="frame" x="8" y="8" width="27" height="27"/>
+                        <rect key="frame" x="16" y="11" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="OrE-cw-9gu" secondAttribute="height" multiplier="1:1" id="Dzz-T8-1u5"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rk8-Bj-aZj">
-                        <rect key="frame" x="43" y="6" width="289" height="21"/>
+                        <rect key="frame" x="46" y="6" width="278" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="CO9-vI-n1K"/>
                         </constraints>
@@ -36,13 +32,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDG-ng-8UF">
-                        <rect key="frame" x="43" y="24" width="289" height="15"/>
+                        <rect key="frame" x="46" y="24" width="278" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj0-8O-6hV" customClass="PKDownloadButton">
-                        <rect key="frame" x="340" y="8" width="27" height="27"/>
+                        <rect key="frame" x="337" y="11" width="22" height="22"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Aj0-8O-6hV" secondAttribute="height" multiplier="1:1" id="qXb-cj-Sx0"/>
@@ -70,7 +66,7 @@
                 <outlet property="downloadButton" destination="Aj0-8O-6hV" id="MAz-xz-c2C"/>
                 <outlet property="fileImageView" destination="OrE-cw-9gu" id="p4R-F5-jcx"/>
                 <outlet property="fileInfoLabel" destination="NDG-ng-8UF" id="OC0-Z7-sqb"/>
-                <outlet property="fileNameLabel" destination="Rk8-Bj-aZj" id="4F0-IN-asT"/>
+                <outlet property="nameLabel" destination="Rk8-Bj-aZj" id="4F0-IN-asT"/>
                 <outlet property="titleRightMarginConstraint" destination="Xww-Wz-4IP" id="DjH-Ym-La3"/>
             </connections>
             <point key="canvasLocation" x="-24.5" y="-9"/>

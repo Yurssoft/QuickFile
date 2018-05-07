@@ -51,7 +51,7 @@ class YSDriveFileDownloader: NSObject {
             if case .downloadError = download.downloadStatus {
                 return
             }
-            let url = YSDriveFile.fileUrlStatic(fileDriveIdentifier: download.fileDriveIdentifier)
+            let url = YSDriveFile.fileUrlStatic(id: download.id)
             let reqURL = URL.init(string: url)
             let request = URLRequest.init(url: reqURL!)
             YSCredentialManager.shared.addAccessTokenHeaders(request, UUID().uuidString) {  request, error in
@@ -60,26 +60,26 @@ class YSDriveFileDownloader: NSObject {
                 }
                 let downloadTask = self.session.downloadTask(with: request)
                 download.downloadTask = downloadTask
-                downloadTask.taskDescription = download.fileDriveIdentifier
+                downloadTask.taskDescription = download.id
                 downloadTask.resume()
                 download.downloadStatus = .downloading(progress: 0.0)
-                self.downloads[download.fileDriveIdentifier] = download
+                self.downloads[download.id] = download
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
             }
         }
     }
 
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol? {
-        return downloads[fileDriveIdentifier]
+    func download(for id: String) -> YSDownloadProtocol? {
+        return downloads[id]
     }
 
-    func download(fileDriveIdentifier: String) {
-        if YSDriveFile.localFileExistsStatic(fileDriveIdentifier: fileDriveIdentifier) {
+    func download(id: String) {
+        if YSDriveFile.localFileExistsStatic(id: id) {
             logDefault(.Network, .Error, "Error downloading file: local file exists")
             return
         }
-        var download = YSDownload(fileDriveIdentifier: fileDriveIdentifier)
-        if var existingDownload = downloads[fileDriveIdentifier] {
+        var download = YSDownload(id: id)
+        if var existingDownload = downloads[id] {
                 if case .downloadError = existingDownload.downloadStatus, let ysDownload = existingDownload as? YSDownload {
                     download = ysDownload
                 } else {
@@ -88,17 +88,17 @@ class YSDriveFileDownloader: NSObject {
                 }
         }
         download.downloadStatus = .pending
-        downloads[fileDriveIdentifier] = download
+        downloads[id] = download
         YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
         downloadNextFile()
     }
 
-    func cancelDownloading(fileDriveIdentifier: String) {
-        if var download = downloads[fileDriveIdentifier] {
+    func cancelDownloading(id: String) {
+        if var download = downloads[id] {
             download.downloadTask?.cancel()
             download.downloadStatus = .cancelled
             YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, nil)
-            downloads[fileDriveIdentifier] = nil
+            downloads[id] = nil
             downloadNextFile()
         }
     }
@@ -133,7 +133,7 @@ extension YSDriveFileDownloader: URLSessionDelegate {
 extension YSDriveFileDownloader: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         if let currentFileIdentifier = downloadTask.taskDescription, var download = downloads[currentFileIdentifier] {
-            if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, fileName: currentFileIdentifier) {
+            if let err = YSNetworkResponseManager.validateDownloadTask(downloadTask.response, error: nil, name: currentFileIdentifier) {
                 YSAppDelegate.appDelegate().downloadsDelegate?.downloadDidChange(download, err)
                 downloads[currentFileIdentifier] = nil
                 downloadNextFile()
@@ -141,18 +141,18 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
             }
             let fileManager = FileManager.default
             do {
-                try fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                try fileManager.removeItem(at: YSDriveFile.localFilePathStatic(id: currentFileIdentifier)!)
             } catch let error as NSError {
                 logDefault(.Network, .Error, "Could not delete file from disk: " + error.localizedDescriptionAndUnderlyingKey)
             }
 
             download.downloadStatus = .downloadError
             do {
-                try fileManager.copyItem(at: location, to: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                try fileManager.copyItem(at: location, to: YSDriveFile.localFilePathStatic(id: currentFileIdentifier)!)
                 logDefault(.Network, .Info, "Copied file to disk")
                 YSAppDelegate.appDelegate().filesOnDisk.insert(currentFileIdentifier)
             } catch CocoaError.fileWriteOutOfSpace {
-                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(id: currentFileIdentifier)!)
                 let errorText = "Could not copy file to disk: Run out of space"
                 logDefault(.Network, .Error, errorText)
 
@@ -162,7 +162,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
                 downloads[currentFileIdentifier] = download
                 return
             } catch CocoaError.fileWriteNoPermission {
-                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(id: currentFileIdentifier)!)
                 let errorText = "Could not copy file to disk: No permission to write do disk"
                 logDefault(.Network, .Error, errorText)
                 
@@ -172,7 +172,7 @@ extension YSDriveFileDownloader: URLSessionDownloadDelegate {
                 downloads[currentFileIdentifier] = download
                 return
             } catch let error as NSError {
-                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(fileDriveIdentifier: currentFileIdentifier)!)
+                try? fileManager.removeItem(at: YSDriveFile.localFilePathStatic(id: currentFileIdentifier)!)
                 logDefault(.Network, .Error, "Could not copy file to disk: " + error.localizedDescriptionAndUnderlyingKey)
                 
                 let errorMessage = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.error, title: "Error", message: "Could not copy file \(currentFileIdentifier)", buttonTitle: "Try again", debugInfo: error.localizedDescription)

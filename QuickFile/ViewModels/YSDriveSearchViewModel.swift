@@ -97,11 +97,11 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
         var localFilesFiltered = localFilesUnfiltered.filter {
             switch sectionType {
             case .all:
-                return $0.fileName.contains(searchTerm)
+                return $0.name.contains(searchTerm)
             case .files:
-                return $0.isAudio && $0.fileName.contains(searchTerm)
+                return $0.isAudio && $0.name.contains(searchTerm)
             case .folders:
-                return !$0.isAudio && $0.fileName.contains(searchTerm)
+                return !$0.isAudio && $0.name.contains(searchTerm)
             }
         }
         localFilesFiltered = Array(localFilesFiltered.prefix(5))
@@ -141,8 +141,8 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
         return YSDriveFile()
     }
 
-    func download(for fileDriveIdentifier: String) -> YSDownloadProtocol? {
-        return model?.download(for: fileDriveIdentifier)
+    func download(for id: String) -> YSDownloadProtocol? {
+        return model?.download(for: id)
     }
 
     func useFile(at indexPath: IndexPath) {
@@ -174,23 +174,23 @@ class YSDriveSearchViewModel: YSDriveSearchViewModelProtocol {
         coordinatorDelegate?.searchViewModelDidFinish()
     }
 
-    func download(_ fileDriveIdentifier: String) {
+    func download(_ id: String) {
         var allFiles = globalFiles + localFilesUnfiltered
-        allFiles = allFiles.filter({ $0.fileDriveIdentifier == fileDriveIdentifier })
+        allFiles = allFiles.filter({ $0.id == id })
         guard let file = allFiles.first else { return }
         model?.upfateFileGeneralInfo(for: file)
-        model?.download(fileDriveIdentifier)
+        model?.download(id)
     }
 
-    func stopDownloading(_ fileDriveIdentifier: String) {
-        model?.stopDownload(fileDriveIdentifier)
+    func stopDownloading(_ id: String) {
+        model?.stopDownload(id)
     }
 
     func indexPath(of file: YSDriveFileProtocol) -> IndexPath {
-        if let index = localFiles.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier}) {
+        if let index = localFiles.index(where: {$0.id == file.id}) {
             return IndexPath.init(row: index, section: YSSearchSection.localFiles.rawValue)
         }
-        if let index = globalFiles.index(where: {$0.fileDriveIdentifier == file.fileDriveIdentifier}) {
+        if let index = globalFiles.index(where: {$0.id == file.id}) {
             return IndexPath.init(row: index, section: YSSearchSection.localFiles.rawValue)
         }
         return IndexPath.init(row: 0, section: 0)
@@ -206,12 +206,12 @@ extension YSDriveSearchViewModel: YSUpdatingDelegate {
         if let error = error {
             self.viewDelegate?.downloadErrorDidChange(viewModel: self, error: error, download: download)
         }
-        var index = self.localFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
+        var index = self.localFiles.index(where: {$0.id == download.id})
         if let indexx = index, self.localFiles.count > indexx {
             self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
         }
 
-        index = self.globalFiles.index(where: {$0.fileDriveIdentifier == download.fileDriveIdentifier})
+        index = self.globalFiles.index(where: {$0.id == download.id})
         guard let indexx = index, self.globalFiles.count > indexx else { return }
         self.viewDelegate?.reloadFileDownload(at: indexx, download: download, viewModel: self)
     }

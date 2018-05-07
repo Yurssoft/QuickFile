@@ -45,14 +45,14 @@ extension YSDriveSearchCoordinator: YSDriveSearchViewModelCoordinatorDelegate {
                 }
             } else {
                 let error = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.warning, title: "Could not play song", message: "No local copy", buttonTitle: "Download")
-                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: file.fileDriveIdentifier)
+                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, id: file.id)
             }
         } else {
             guard let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as? YSDriveTopViewController else { return }
             searchNavigationController?.pushViewController(driveTopVC, animated: true)
             var ysFolder = YSFolder()
-            ysFolder.folderID = file.fileDriveIdentifier
-            ysFolder.folderName = file.fileName
+            ysFolder.folderID = file.id
+            ysFolder.folderName = file.name
             driveCoordinator.folders = [ysFolder]
             driveCoordinator.start(driveTopVC: driveTopVC, shouldShowSearch: false)
         }

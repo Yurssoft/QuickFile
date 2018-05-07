@@ -125,7 +125,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
 
     var nextFile: YSDriveFileProtocol? {
         guard let currentPlaybackFile = currentFile, files.count > 0 else { return files.first }
-        guard var nextItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})
+        guard var nextItemIndex = files.index(where: {$0.id == currentPlaybackFile.id})
         else {
            if currentPlayingIndex <= files.count {
                 return files[currentPlayingIndex]
@@ -140,7 +140,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
 
     var previousFile: YSDriveFileProtocol? {
         guard let currentPlaybackFile = currentFile, files.count > 0 else { return files.last }
-        guard var previousItemIndex = files.index(where: {$0.fileDriveIdentifier == currentPlaybackFile.fileDriveIdentifier})
+        guard var previousItemIndex = files.index(where: {$0.id == currentPlaybackFile.id})
         else {
             if currentPlayingIndex <= files.count {
                 return files[currentPlayingIndex]
@@ -167,7 +167,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     
     fileprivate func updateCurrentPlaying() {
         if var currentFile = currentFile, let fileUrl = currentFile.localFilePath(), fileUrl != player?.url {
-            if let currentFileIndex = files.index(where: {$0.fileDriveIdentifier == currentFile.fileDriveIdentifier}) {
+            if let currentFileIndex = files.index(where: {$0.id == currentFile.id}) {
                 currentPlayingIndex = currentFileIndex
             }
             createPlayer(fileUrl: fileUrl)
@@ -195,7 +195,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 var playerFiles = [YSDriveFileProtocol]()
                 let folders = self.selectFolders(from: files)
                 for folder in folders {
-                    let filesInFolder = files.filter { $0.folder.folderID == folder.fileDriveIdentifier && $0.isAudio }
+                    let filesInFolder = files.filter { $0.folder.folderID == folder.id && $0.isAudio }
                     playerFiles += filesInFolder
                 }
                 self.files = playerFiles
@@ -229,7 +229,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         let folders = files.filter {
                 let folderFile = $0
                 if !folderFile.isAudio {
-                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.fileDriveIdentifier && $0.isAudio }
+                    let filesInFolder = files.filter { $0.folder.folderID == folderFile.id && $0.isAudio }
                     return filesInFolder.count > 0
                 } else {
                     return false
@@ -301,7 +301,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             return
         }
 
-        var nowPlayingInfo = [MPMediaItemPropertyTitle: currentPlaybackItem.fileName,
+        var nowPlayingInfo = [MPMediaItemPropertyTitle: currentPlaybackItem.name,
                               MPMediaItemPropertyAlbumTitle: currentPlaybackItem.folder.folderName,
                               MPMediaItemPropertyPlaybackDuration: player.duration,
                               MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float),

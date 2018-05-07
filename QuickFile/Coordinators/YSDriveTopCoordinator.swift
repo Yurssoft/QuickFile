@@ -63,17 +63,17 @@ extension YSDriveTopCoordinator: YSDriveCoordinatorDelegate {
                 }
             } else {
                 let error = YSError(errorType: YSErrorType.couldNotDownloadFile, messageType: Theme.warning, title: "Could not play song", message: "No local copy", buttonTitle: "Download")
-                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, fileDriveIdentifier: file.fileDriveIdentifier)
+                viewModel.viewDelegate?.downloadErrorDidChange(viewModel: viewModel, error: error, id: file.id)
             }
         } else {
             var ysfolder = YSFolder()
-            ysfolder.folderID = file.fileDriveIdentifier
-            ysfolder.folderName = file.fileName
+            ysfolder.folderID = file.id
+            ysfolder.folderName = file.name
             folders.append(ysfolder)
             guard let driveTopVC = storyboard?.instantiateViewController(withIdentifier: YSDriveTopViewController.nameOfClass) as? YSDriveTopViewController else { return }
             driveTopVC.driveVCReadyDelegate = self
             driveTopVC.shouldShowSearch = shouldShowSearch
-            driveTopVC.navigationTitleStr = file.fileName
+            driveTopVC.navigationTitleStr = file.name
             navigationController?.pushViewController(driveTopVC, animated: true)
         }
     }

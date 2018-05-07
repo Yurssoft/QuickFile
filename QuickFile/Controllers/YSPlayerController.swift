@@ -108,7 +108,7 @@ class YSPlayerController: UIViewController {
     func updatePopubButtons() {
         updateBarButtons()
         guard let file = viewModel?.currentFile else { return }
-        popupItem.title = file.fileName
+        popupItem.title = file.name
         popupItem.subtitle = file.folder.folderName
     }
 }
@@ -121,7 +121,7 @@ extension YSPlayerController: YSPlayerViewModelViewDelegate {
             if self.isViewLoaded, let file = viewModel.currentFile {
                 self.updateTime()
                 self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
-                self.songNameLabel.text = file.fileName + "  "
+                self.songNameLabel.text = file.name + "  "
                 self.albumNameLabel.text = file.folder.folderName
             }
         }
