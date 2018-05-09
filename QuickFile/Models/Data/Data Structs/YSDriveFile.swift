@@ -158,13 +158,13 @@ extension YSDriveFile: Decodable {
         id = try values.decode(String.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
         mimeType = try values.decode(String.self, forKey: .mimeType)
+        folder = (try? values.decode(YSFolder.self, forKey: .folder)) ?? YSFolder.rootFolder()
         size = (try? values.decode(String.self, forKey: .size)) ?? ""
-        self.playedTime = (try? values.decode(String.self, forKey: .playedTime)) ?? ""
-        //todo: try? tp decode all values
-        self.isPlayed = false
-        self.isCurrentlyPlaying = false
-        self.isDeletedFromDrive = false
-        self.pageToken = ""
+        playedTime = (try? values.decode(String.self, forKey: .playedTime)) ?? ""
+        isPlayed = (try? values.decode(Bool.self, forKey: .isPlayed)) ?? false
+        isCurrentlyPlaying = (try? values.decode(Bool.self, forKey: .isCurrentlyPlaying)) ?? false
+        isDeletedFromDrive = (try? values.decode(Bool.self, forKey: .isDeletedFromDrive)) ?? false
+        pageToken = (try? values.decode(String.self, forKey: .pageToken)) ?? ""
     }
 }
 
