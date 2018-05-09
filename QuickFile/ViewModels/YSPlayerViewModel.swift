@@ -299,7 +299,19 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func backwards15Seconds() {
-
+        guard let player = player else {
+            return
+        }
+        let currentTime = player.currentTime
+        let secondsToAdd = 15.seconds
+        var resultingTime = currentTime - secondsToAdd
+        if resultingTime < 0 {
+            resultingTime = 0.0
+        }
+        seek(to: resultingTime)
+        if !isPlaying {
+            play()
+        }
     }
 
     private func next() {
