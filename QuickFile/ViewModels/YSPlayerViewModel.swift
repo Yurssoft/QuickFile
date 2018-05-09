@@ -281,13 +281,27 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     func forward15Seconds() {
-        
+        guard let player = player else {
+            return
+        }
+        let currentTime = player.currentTime
+        let allTime = player.duration
+        let secondsToAdd = 15.seconds
+        let resultingTime = currentTime + secondsToAdd
+        if resultingTime > allTime {
+            next()
+            return
+        }
+        seek(to: resultingTime)
+        if !isPlaying {
+            play()
+        }
     }
-    
+
     func backwards15Seconds() {
-        
+
     }
-    
+
     private func next() {
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
