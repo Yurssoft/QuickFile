@@ -98,13 +98,13 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 return .success
             })
 
-            commandCenter.seekForwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
+            commandCenter.skipForwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
                 sself.forward15Seconds()
                 return .success
             })
 
-            commandCenter.seekBackwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
+            commandCenter.skipBackwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
                 sself.backwards15Seconds()
                 return .success
