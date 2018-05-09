@@ -42,12 +42,12 @@ class YSPlayerController: UIViewController {
 
     @IBAction func forward15SecondsTapped(_ sender: UIButton) {
         logPlayerSubdomain(.Controller, .Info, "")
-        viewModel?.next()
+        viewModel?.forward15Seconds()
     }
 
     @IBAction func backwards15SecondsTapped(_ sender: UIButton) {
         logPlayerSubdomain(.Controller, .Info, "")
-        viewModel?.previous()
+        viewModel?.backwards15Seconds()
     }
 
     @IBAction func playPauseTapped(_ sender: UIButton) {

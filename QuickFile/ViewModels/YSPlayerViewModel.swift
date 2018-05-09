@@ -280,13 +280,21 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
-    func next() {
+    func forward15Seconds() {
+        
+    }
+    
+    func backwards15Seconds() {
+        
+    }
+    
+    private func next() {
         play(file: nextFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()
     }
 
-    func previous() {
+    private func previous() {
         play(file: previousFile)
         viewDelegate?.playerDidChange(viewModel: self)
         updateNowPlayingInfoForCurrentPlaybackItem()

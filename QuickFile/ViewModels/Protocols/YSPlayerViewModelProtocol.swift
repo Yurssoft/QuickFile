@@ -24,10 +24,10 @@ protocol YSPlayerViewModelCoordinatorDelegate: class {
 }
 
 protocol YSPlayerViewModelProtocol {
-    weak var playerDelegate: YSPlayerDelegate? { get set }
+    var playerDelegate: YSPlayerDelegate? { get set }
     var model: YSPlaylistAndPlayerModelProtocol? { get set }
-    weak var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
-    weak var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }
+    var viewDelegate: YSPlayerViewModelViewDelegate? { get set }
+    var coordinatorDelegate: YSPlayerViewModelCoordinatorDelegate? { get set }
     var error: YSErrorProtocol { get }
     var isPlaying: Bool { get }
     var currentFile: YSDriveFileProtocol? { get }
@@ -37,8 +37,8 @@ protocol YSPlayerViewModelProtocol {
     func togglePlayPause()
     func play(file: YSDriveFileProtocol?)
     func pause()
-    func next()
-    func previous()
+    func forward15Seconds()
+    func backwards15Seconds()
     func seek(to time: Double)
     func seekFloat(to time: Float)
 }
