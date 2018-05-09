@@ -13,7 +13,7 @@ import MediaPlayer
 import SwiftyTimer
 
 class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDelegate {
-    
+
     let commandCenter = MPRemoteCommandCenter.shared()
 
     weak var playerDelegate: YSPlayerDelegate?
@@ -35,29 +35,27 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                                                selector: #selector(applicationWillResignActive(_:)),
                                                name: NSNotification.Name.UIApplicationWillResignActive,
                                                object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleMediaServicesReset),
                                                name: NSNotification.Name.AVAudioSessionMediaServicesWereReset,
                                                object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleMediaServicesLost),
                                                name: NSNotification.Name.AVAudioSessionMediaServicesWereLost,
                                                object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleRouteChange),
                                                name: .AVAudioSessionRouteChange,
                                                object: AVAudioSession.sharedInstance())
-        
-        
     }
-    
+
     @objc func applicationWillResignActive(_ notification: NSNotification) {
         deactivateAudioSession()
     }
-    
+
     deinit {
         player?.pause()
         elapsedTimeTimer?.invalidate()
@@ -100,15 +98,15 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                 return .success
             })
 
-            commandCenter.nextTrackCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
+            commandCenter.seekForwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
-                sself.next()
+                sself.forward15Seconds()
                 return .success
             })
 
-            commandCenter.previousTrackCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
+            commandCenter.seekBackwardCommand.addTarget (handler: { [weak self] _ -> MPRemoteCommandHandlerStatus in
                 guard let sself = self else { return .commandFailed }
-                sself.previous()
+                sself.backwards15Seconds()
                 return .success
             })
             getFiles()
@@ -164,7 +162,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
     }
 
     private var currentPlayingIndex: Int = 0
-    
+
     fileprivate func updateCurrentPlaying() {
         if var currentFile = currentFile, let fileUrl = currentFile.localFilePath(), fileUrl != player?.url {
             if let currentFileIndex = files.index(where: {$0.id == currentFile.id}) {
@@ -189,7 +187,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         audioPlayer.volume = audioSession.outputVolume
         player = audioPlayer
     }
-    
+
     func getFiles() {
         model?.allFiles { (files, currentPlaying, error) in
                 var playerFiles = [YSDriveFileProtocol]()
@@ -214,8 +212,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                     self.coordinatorDelegate?.hidePlayer()
                 }
                 self.updateCurrentPlaying()
-            
-                if self.files.count > 0 || self.currentFile != nil {
+
+            if self.files.count > 0 || self.currentFile != nil {
                     self.coordinatorDelegate?.showPlayer()
                 }
                 self.viewDelegate?.playerDidChange(viewModel: self)
@@ -341,13 +339,11 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
                               MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: 1.0 as Float),
                               MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: player.currentTime as Double) ] as [String: Any]
 
-        if let image = UIImage(named: "song") {
-            if #available(iOS 10.0, *) {
-                let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (_) -> UIImage in
-                    return image
-                })
-                nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-            }
+        if #available(iOS 10.0, *) {
+            let artwork = MPMediaItemArtwork.init(boundsSize: #imageLiteral(resourceName: "song").size, requestHandler: { (_) -> UIImage in
+                return #imageLiteral(resourceName: "song")
+            })
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
         }
 
         set(nowPlayingInfo as [String: AnyObject]?)
@@ -413,7 +409,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         playerDelegate?.fileDidChange(file: currentFile)
         YSDatabaseManager.updatePlayingInfo(file: currentFile)
     }
-    
+
     //MARK: - oberver methodts
     private func activateAudioSession() {
         do {
@@ -423,7 +419,7 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
         }
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
-    
+
     private func deactivateAudioSession() {
         if isPlaying {
             updateCurrentPlayingFile(isCurrent: true)
@@ -435,18 +431,18 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             logPlayerSubdomain(.Routing, .Error, "Error deactivating audio session: " + error.localizedDescriptionAndUnderlyingKey)
         }
     }
-    
+
     @objc private func handleMediaServicesReset() {
         if let currentFileUrl = currentFile?.localFilePath() {
             createPlayer(fileUrl: currentFileUrl)
         }
         pause()
     }
-    
+
     @objc private func handleMediaServicesLost() {
         pause()
     }
-    
+
     @objc private func handleRouteChange(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
             let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
