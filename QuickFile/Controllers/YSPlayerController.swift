@@ -57,7 +57,7 @@ class YSPlayerController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        volumeView.setRouteButtonImage(UIImage(named: "airplay"), for: UIControlState.normal)
+        volumeView.setRouteButtonImage(#imageLiteral(resourceName: "airplay"), for: UIControlState.normal)
         playerDidChange(viewModel: viewModel!)
     }
     func updateBarButtons() {
@@ -65,8 +65,8 @@ class YSPlayerController: UIViewController {
             return
         }
         let pause = UIBarButtonItem(image: viewModel.isPlaying ? #imageLiteral(resourceName: "pause") : #imageLiteral(resourceName: "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
-        let next = UIBarButtonItem(image: #imageLiteral(resourceName: "15_seconds_forward"), style: .plain, target: self, action: #selector(forward15SecondsTapped(_:)))
-
+        let image = #imageLiteral(resourceName: "15_seconds_forward").resize(to: (pause.image?.size)!)
+        let next = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(forward15SecondsTapped(_:)))
         popupItem.leftBarButtonItems = [ pause ]
         popupItem.rightBarButtonItems = [ next ]
     }
@@ -120,7 +120,7 @@ extension YSPlayerController: YSPlayerViewModelViewDelegate {
             self.updatePopubButtons()
             if self.isViewLoaded, let file = viewModel.currentFile {
                 self.updateTime()
-                self.payPauseButton.setImage(UIImage.init(named: viewModel.isPlaying ? "nowPlaying_pause" : "nowPlaying_play"), for: .normal)
+                self.payPauseButton.setImage(viewModel.isPlaying ? #imageLiteral(resourceName: "nowPlaying_pause") : #imageLiteral(resourceName: "nowPlaying_play"), for: .normal)
                 self.songNameLabel.text = file.name + "  "
                 self.albumNameLabel.text = file.folder.folderName
             }

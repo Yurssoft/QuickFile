@@ -256,23 +256,9 @@ extension YSDriveSearchController: DZNEmptyDataSetSource {
         return attributedString
     }
 
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        var image = UIImage(named: "empty_search")
-        image = resizeImage(image: image!, scaleFactor: 0.5)
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage {
+        let image = #imageLiteral(resourceName: "empty_search").resize(scaleFactor: 0.5)
         return image
-    }
-
-    func resizeImage(image: UIImage, scaleFactor: CGFloat) -> UIImage {
-        let size = image.size.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
-        let hasAlpha = true
-        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
-
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
-
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return scaledImage!
     }
 }
 

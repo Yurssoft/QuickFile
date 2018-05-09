@@ -35,6 +35,7 @@
 		507293871F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */; };
 		508C57951F8FB82700E8A472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */; };
 		508C57961F8FB82B00E8A472 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 508C57941F8FB45E00E8A472 /* ServiceAccount.json */; };
+		508E95E920A3468F0080C7F6 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508E95E820A3468F0080C7F6 /* UIImage+Resize.swift */; };
 		50930A211F9156A100249CEA /* YSFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930A201F9156A100249CEA /* YSFiles.swift */; };
 		50C1704F1FE15E56001AD795 /* YSAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1704E1FE15E56001AD795 /* YSAboutViewController.swift */; };
 		50E562761E71BA90004E47A2 /* YSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E562261E71BA90004E47A2 /* YSAppDelegate.swift */; };
@@ -168,6 +169,7 @@
 		507293861F77D43A002A7C53 /* YSViewControllerLoggingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerLoggingExtension.swift; sourceTree = "<group>"; };
 		508C57931F8FB45E00E8A472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		508C57941F8FB45E00E8A472 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ServiceAccount.json; sourceTree = "<group>"; };
+		508E95E820A3468F0080C7F6 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		50930A201F9156A100249CEA /* YSFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSFiles.swift; sourceTree = "<group>"; };
 		50AB0DB61D8FF242008EDB0D /* QuickFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C1704E1FE15E56001AD795 /* YSAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSAboutViewController.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				50EC7ABA1F4F692A00315985 /* YSStringExtension.swift */,
 				50E5622C1E71BA90004E47A2 /* YSTabBarControllerExtension.swift */,
 				502BE3651F878FEF005E03D0 /* YSNSErrorExtension.swift */,
+				508E95E820A3468F0080C7F6 /* UIImage+Resize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -907,6 +910,7 @@
 				50E5627F1E71BA90004E47A2 /* YSDriveFileDownloader.swift in Sources */,
 				500570511F78EB14008C981C /* MJRefreshBackGifFooter.m in Sources */,
 				50E562A21E71BA90004E47A2 /* YSDriveViewModelProtocol.swift in Sources */,
+				508E95E920A3468F0080C7F6 /* UIImage+Resize.swift in Sources */,
 				50E562891E71BA90004E47A2 /* YSSettingsTableViewController.swift in Sources */,
 				50E562961E71BA90004E47A2 /* YSDriveFile.swift in Sources */,
 				50F4F4371F644EA000CB9646 /* YSSwiftMessagesExtension.swift in Sources */,
