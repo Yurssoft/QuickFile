@@ -40,12 +40,12 @@ class YSPlayerController: UIViewController {
         viewModel?.seekFloat(to: sender.value)
     }
 
-    @IBAction func nextTapped(_ sender: UIButton) {
+    @IBAction func forward15SecondsTapped(_ sender: UIButton) {
         logPlayerSubdomain(.Controller, .Info, "")
         viewModel?.next()
     }
 
-    @IBAction func previousTapped(_ sender: UIButton) {
+    @IBAction func backwards15SecondsTapped(_ sender: UIButton) {
         logPlayerSubdomain(.Controller, .Info, "")
         viewModel?.previous()
     }
@@ -65,7 +65,7 @@ class YSPlayerController: UIViewController {
             return
         }
         let pause = UIBarButtonItem(image: viewModel.isPlaying ? #imageLiteral(resourceName: "pause") : #imageLiteral(resourceName: "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
-        let next = UIBarButtonItem(image: #imageLiteral(resourceName: "15_seconds_forward"), style: .plain, target: self, action: #selector(nextTapped(_:)))
+        let next = UIBarButtonItem(image: #imageLiteral(resourceName: "15_seconds_forward"), style: .plain, target: self, action: #selector(forward15SecondsTapped(_:)))
 
         popupItem.leftBarButtonItems = [ pause ]
         popupItem.rightBarButtonItems = [ next ]

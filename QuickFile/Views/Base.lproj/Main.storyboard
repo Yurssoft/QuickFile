@@ -725,7 +725,7 @@
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="15_seconds_forward"/>
                                                 <connections>
-                                                    <action selector="nextTapped:" destination="XKT-fX-xn1" eventType="touchUpInside" id="Z8J-2c-DIz"/>
+                                                    <action selector="forward15SecondsTapped:" destination="XKT-fX-xn1" eventType="touchUpInside" id="Z8J-2c-DIz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWb-3a-LWC" userLabel="Prev">
@@ -733,7 +733,7 @@
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="15_seconds_backwards"/>
                                                 <connections>
-                                                    <action selector="previousTapped:" destination="XKT-fX-xn1" eventType="touchUpInside" id="LXr-EQ-zXl"/>
+                                                    <action selector="backwards15SecondsTapped:" destination="XKT-fX-xn1" eventType="touchUpInside" id="LXr-EQ-zXl"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-7q-Tvz" customClass="MarqueeLabel" customModule="MarqueeLabel">
