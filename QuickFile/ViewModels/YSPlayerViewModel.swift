@@ -396,8 +396,8 @@ class YSPlayerViewModel: NSObject, YSPlayerViewModelProtocol, AVAudioPlayerDeleg
             let duration = player.duration as Double
             let remainingTime = duration - elapsedTime
             let remainingTimeInt = Int(round(remainingTime))
-            if !currentFile.isPlayed {
-                currentFile.isPlayed = remainingTimeInt < 5
+            if !currentFile.isPlayed, remainingTimeInt < 20 {
+                currentFile.isPlayed = true
             }
             let elapsedTimeStr = String(describing: elapsedTime)
             currentFile.playedTime = elapsedTimeStr
