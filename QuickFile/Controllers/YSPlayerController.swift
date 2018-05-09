@@ -64,8 +64,8 @@ class YSPlayerController: UIViewController {
         guard let viewModel = viewModel  else {
             return
         }
-        let pause = UIBarButtonItem(image: UIImage(named: viewModel.isPlaying ? "pause" : "play"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
-        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(nextTapped(_:)))
+        let pause = UIBarButtonItem(image: viewModel.isPlaying ? #imageLiteral(resourceName: "play") : #imageLiteral(resourceName: "pause"), style: .plain, target: self, action: #selector(playPauseTapped(_:)))
+        let next = UIBarButtonItem(image: #imageLiteral(resourceName: "nowPlaying_next"), style: .plain, target: self, action: #selector(nextTapped(_:)))
 
         popupItem.leftBarButtonItems = [ pause ]
         popupItem.rightBarButtonItems = [ next ]
