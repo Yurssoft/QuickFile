@@ -50,6 +50,8 @@ protocol YSUpdatingDelegate: class {
  - why sometimes size of mp3 is not displayed?
  - do not save file to disk in main thread
  - possibility to play files from local storage with folder "local"
+ - crash on typing ukrainian characters in search
+ - show played sign in drive files to make a shortcut when you need to download file to see if it is played
  */
 
 @UIApplicationMain
