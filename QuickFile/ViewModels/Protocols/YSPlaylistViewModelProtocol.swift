@@ -12,6 +12,7 @@ protocol YSPlaylistViewModelViewDelegate: class {
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol)
     func fileDidChange(viewModel: YSPlaylistViewModelProtocol)
     func errorDidChange(viewModel: YSPlaylistViewModelProtocol, error: YSErrorProtocol)
+    func scrollToCurrentlyPlayingFile(at indexPath: IndexPath)
 }
 
 protocol YSPlaylistViewModelCoordinatorDelegate: class {
@@ -20,8 +21,8 @@ protocol YSPlaylistViewModelCoordinatorDelegate: class {
 
 protocol YSPlaylistViewModelProtocol {
     var model: YSPlaylistAndPlayerModelProtocol? { get set }
-    weak var viewDelegate: YSPlaylistViewModelViewDelegate? { get set }
-    weak var coordinatorDelegate: YSPlaylistViewModelCoordinatorDelegate? { get set}
+    var viewDelegate: YSPlaylistViewModelViewDelegate? { get set }
+    var coordinatorDelegate: YSPlaylistViewModelCoordinatorDelegate? { get set}
     var numberOfFolders: Int { get }
     var error: YSErrorProtocol { get }
 

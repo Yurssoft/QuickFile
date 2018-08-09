@@ -139,6 +139,11 @@ extension YSPlaylistViewController: UITableViewDelegate {
 }
 
 extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
+    func scrollToCurrentlyPlayingFile(at indexPath: IndexPath) {
+        //TODO: fix crash
+//        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+    }
+
     func fileDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
             DispatchQueue.main.async {
@@ -146,7 +151,7 @@ extension YSPlaylistViewController: YSPlaylistViewModelViewDelegate {
                 self.tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
-    
+
     func filesDidChange(viewModel: YSPlaylistViewModelProtocol) {
         logPlaylistSubdomain(.Controller, .Info, "")
         DispatchQueue.main.async {

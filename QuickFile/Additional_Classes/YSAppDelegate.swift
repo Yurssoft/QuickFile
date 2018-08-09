@@ -28,7 +28,6 @@ protocol YSUpdatingDelegate: class {
  - firebase functions?
  - add spotlight search
  - add search in playlist
- - use codable instead of reflection
  - delete played files after 24 hours
  - display all files in drive and use document previewer for all files
  - make downloads in order
@@ -52,6 +51,8 @@ protocol YSUpdatingDelegate: class {
  - possibility to play files from local storage with folder "local"
  - crash on typing ukrainian characters in search
  - show played sign in drive files to make a shortcut when you need to download file to see if it is played
+ - show playlist as tree and open/close it
+ - scroll playlist to currently playing song
  */
 
 @UIApplicationMain

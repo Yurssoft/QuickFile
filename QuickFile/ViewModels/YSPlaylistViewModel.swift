@@ -86,7 +86,9 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
 
     func getFiles(completion: @escaping ErrorCH) {
         files = []
-        model?.allFiles { (files, _, error) in
+        model?.allFiles { (files, currentPlayingFile, error) in
+            defer {
+            }
             self.files = files
             if let error = error {
                 self.error = error
@@ -94,6 +96,15 @@ class YSPlaylistViewModel: YSPlaylistViewModelProtocol {
             DispatchQueue.main.async {
                 completion(error)
             }
+
+
+            if let currentPlayingFile = currentPlayingFile {
+                let indexPathOfCurrentPlaying = self.indexPath(of: currentPlayingFile)
+                if !files.isEmpty {
+                    self.viewDelegate?.scrollToCurrentlyPlayingFile(at: indexPathOfCurrentPlaying)
+                }
+            }
+
         }
     }
 

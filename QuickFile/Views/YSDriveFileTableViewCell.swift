@@ -79,7 +79,7 @@ class YSDriveFileTableViewCell: UITableViewCell {
             downloadButton.startDownloadButton.setImage(UIImage.init(named: "cloud_download"), for: .normal)
         }
     }
-    
+
     func configureForPlaylist(_ file: YSDriveFileProtocol?) {
         self.file = file
         fileImageView?.image = UIImage(named: "song")
